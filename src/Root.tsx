@@ -1,6 +1,9 @@
 import "./index.css";
 import { Composition, Folder } from "remotion";
 import { ChapterTransitionProps, Overlay } from "./Overlay";
+import { BRollPriceComparison } from "./components/BRollPriceComparison";
+import { BRollSingleCard } from "./components/BRollSingleCard";
+import { FocusedReelShot } from "./components/FocusedAnalysisCard";
 
 // --- EXISTING COMPOSITIONS (Retained) ---
 const defaultChapter05Props: ChapterTransitionProps = {
@@ -232,7 +235,117 @@ export const RemotionRoot: React.FC = () => {
         />
       </Folder>
 
-      {/* 2. Primary 16:9 Script Chapters (Preserved) */}
+      {/* 2. B-ROLL GRAPHICS: Artificial Analysis Intelligence & Cost Comparisons */}
+      <Folder name="B-Roll-Pricing-Analysis">
+        {/* Isolated Single-Shot Visuals: Claude (Fable + Opus) vs DeepSeek V4.1 Flash ONLY (No text outside card) */}
+        <Composition
+          id="Reel-Shot-Intelligence-Only"
+          component={FocusedReelShot}
+          durationInFrames={120}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            type: "intelligence",
+          }}
+        />
+
+        <Composition
+          id="Reel-Shot-Cost-Only"
+          component={FocusedReelShot}
+          durationInFrames={120}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            type: "cost",
+          }}
+        />
+
+        {/* Master Instagram Reel Comparison with Audio Cues (9:16 - 1080x1920) */}
+        <Composition
+          id="Reel-BRoll-CostVsIntelligence"
+          component={BRollPriceComparison}
+          durationInFrames={150}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            titleArabicLine1: "كلود 7 دولار تقريباً عالتاسك...",
+            titleArabicLine2: "ديب سيك 0.67 دولار فقط!",
+            claudePriceText: "$7.63",
+            deepseekPriceText: "$0.67",
+            multiplierText: "أرخص بأكثر من 11 ضعف!",
+            highlightComparison: true,
+          }}
+        />
+
+        {/* Dedicated Cost per Task Reel (9:16 - 1080x1920) */}
+        <Composition
+          id="Reel-BRoll-CostOnly"
+          component={BRollSingleCard}
+          durationInFrames={120}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            type: "cost",
+            arabicHeadline: "السعر: كلود 7$ عالتاسك... ديب سيك 0.67$!",
+            arabicSubheadline: "وفر أكثر من 11 ضعف التكلفة لنفس النتيجة بالضبط 💸",
+            highlightComparison: true,
+          }}
+        />
+
+        {/* Dedicated Intelligence Index Reel (9:16 - 1080x1920) */}
+        <Composition
+          id="Reel-BRoll-IntelligenceOnly"
+          component={BRollSingleCard}
+          durationInFrames={120}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            type: "intelligence",
+            arabicHeadline: "مقارنة الذكاء: ديب سيك وكلود بنفس الكفاءة!",
+            arabicSubheadline: "أداء شبه متطابق في المهام متوسطة الصعوبة 🧠",
+            highlightComparison: true,
+          }}
+        />
+
+        {/* Widescreen YouTube / 16:9 Versions (1920x1080) */}
+        <Composition
+          id="BRoll-CostVsIntelligence-16x9"
+          component={BRollPriceComparison}
+          durationInFrames={150}
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={{
+            titleArabicLine1: "كلود سبعة دولار تقريباً عالتاسك...",
+            titleArabicLine2: "ديب سيك 0.67 فقط!",
+            claudePriceText: "$7.63",
+            deepseekPriceText: "$0.67",
+            multiplierText: "أرخص بأكثر من 11 ضعف!",
+            highlightComparison: true,
+          }}
+        />
+        <Composition
+          id="BRoll-CostOnly-16x9"
+          component={BRollSingleCard}
+          durationInFrames={120}
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={{
+            type: "cost",
+            arabicHeadline: "السعر: كلود 7$ عالتاسك... ديب سيك 0.67$!",
+            arabicSubheadline: "فرق التكلفة أكثر من 11 ضعف لكل مهمة 💸",
+            highlightComparison: true,
+          }}
+        />
+      </Folder>
+
+      {/* 3. Primary 16:9 Script Chapters (Preserved) */}
       <Composition
         id="Claude-Chapter-01"
         component={Overlay}

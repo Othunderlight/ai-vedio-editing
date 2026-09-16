@@ -1,6 +1,6 @@
 {
   "name": "AI Video Editing",
-  "description": "A Remotion video editing and animation project",
+  "description": "Remotion video motion graphics with chapter transitions and Artificial Analysis pricing comparisons",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
