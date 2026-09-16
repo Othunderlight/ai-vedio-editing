@@ -4,6 +4,7 @@ import { ChapterTransitionProps, Overlay } from "./Overlay";
 import { BRollPriceComparison } from "./components/BRollPriceComparison";
 import { BRollSingleCard } from "./components/BRollSingleCard";
 import { FocusedReelShot } from "./components/FocusedAnalysisCard";
+import { BRollApiDocumentation } from "./components/BRollApiDocumentation";
 
 // --- EXISTING COMPOSITIONS (Retained) ---
 const defaultChapter05Props: ChapterTransitionProps = {
@@ -345,7 +346,36 @@ export const RemotionRoot: React.FC = () => {
         />
       </Folder>
 
-      {/* 3. Primary 16:9 Script Chapters (Preserved) */}
+      {/* 3. B-ROLL GRAPHICS: Routine API & OpenAPI Documentation (Audio Cue: jump cut at 01:03) */}
+      <Folder name="B-Roll-API-Documentation">
+        {/* Instagram Reel (9:16 - 1080x1920) */}
+        <Composition
+          id="Reel-BRoll-ApiDocumentation"
+          component={BRollApiDocumentation}
+          durationInFrames={120}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            scrollSpeed: 1.6,
+          }}
+        />
+
+        {/* Landscape Version (16:9 - 1920x1080) */}
+        <Composition
+          id="BRoll-ApiDocumentation-16x9"
+          component={BRollApiDocumentation}
+          durationInFrames={120}
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={{
+            scrollSpeed: 1.6,
+          }}
+        />
+      </Folder>
+
+      {/* 4. Primary 16:9 Script Chapters (Preserved) */}
       <Composition
         id="Claude-Chapter-01"
         component={Overlay}
