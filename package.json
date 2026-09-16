@@ -1,7 +1,7 @@
 {
-  "name": "dont-use-claude",
+  "name": "ai-video-editing",
   "version": "1.0.0",
-  "description": "My Remotion video",
+  "description": "Remotion video editing and animation",
   "repository": {},
   "license": "UNLICENSED",
   "private": true,
@@ -23,8 +23,8 @@
     "typescript": "5.9.3"
   },
   "scripts": {
-    "dev": "remotion studio",
-    "build": "remotion bundle",
+    "dev": "remotion studio --port 3000 --no-open",
+    "build": "remotion bundle --out-dir dist",
     "upgrade": "remotion upgrade",
     "lint": "eslint src && tsc"
   },
