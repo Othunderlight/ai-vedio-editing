@@ -1,3 +1,4 @@
+import { loadFont as loadAlexandria } from "@remotion/google-fonts/Alexandria";
 import { loadFont as loadMontserrat } from "@remotion/google-fonts/Montserrat";
 import { loadFont as loadPlusJakartaSans } from "@remotion/google-fonts/PlusJakartaSans";
 import React, { useMemo } from "react";
@@ -19,6 +20,11 @@ const { fontFamily: plusJakartaFont } = loadPlusJakartaSans("normal", {
   weights: ["500", "600", "700", "800"],
 });
 
+const { fontFamily: alexandriaFont } = loadAlexandria("normal", {
+  subsets: ["arabic", "latin"],
+  weights: ["500", "600", "700", "800", "900"],
+});
+
 export interface ChapterTransitionProps {
   chapterNumber?: string;
   chapterSubtitle?: string;
@@ -29,7 +35,12 @@ export interface ChapterTransitionProps {
   accentColor?: string;
   numberColor?: string;
   glowColor?: string;
+  isRTL?: boolean;
+  trackerPosition?: "right" | "left";
+  showTracker?: boolean;
 }
+
+const containsArabic = (text: string) => /[\u0600-\u06FF]/.test(text);
 
 export const Overlay: React.FC<ChapterTransitionProps> = ({
   chapterNumber = "05",
@@ -41,9 +52,40 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
   accentColor = "#E45A35",
   numberColor = "#43291F",
   glowColor = "rgba(215, 88, 38, 0.44)",
+  isRTL,
+  trackerPosition = "right",
+  showTracker = true,
 }) => {
   const frame = useCurrentFrame();
-  const { fps, durationInFrames } = useVideoConfig();
+  const { fps, durationInFrames, width, height } = useVideoConfig();
+  const isVertical = height > width;
+
+  // Auto-detect RTL if Arabic characters are present in title or subtitle
+  const isArabic = useMemo(() => {
+    if (typeof isRTL === "boolean") return isRTL;
+    return (
+      containsArabic(titleLine1) ||
+      (titleLine2 ? containsArabic(titleLine2) : false) ||
+      (chapterSubtitle ? containsArabic(chapterSubtitle) : false)
+    );
+  }, [isRTL, titleLine1, titleLine2, chapterSubtitle]);
+
+  const activeFont = isArabic ? alexandriaFont : plusJakartaFont;
+
+  // Responsive font sizes and paddings
+  const hasSubtitle = Boolean(chapterSubtitle && chapterSubtitle.trim().length > 0);
+  const isSingleLine = !titleLine2 || titleLine2.trim().length === 0;
+
+  const titleFontSize = useMemo(() => {
+    if (isVertical) {
+      if (isSingleLine) return isArabic ? 96 : 92;
+      return isArabic ? 80 : 76;
+    }
+    return isArabic ? 72 : 78;
+  }, [isVertical, isSingleLine, isArabic]);
+
+  const numberFontSize = isVertical ? 460 : 580;
+  const contentPadding = isVertical ? "0 50px" : "0 140px";
 
   // Exit transition (last 16 frames)
   const exitDuration = 16;
@@ -84,7 +126,7 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
   const finalNumberY = driftY - exitProgress * 30;
   const finalNumberOpacity = numberEntranceOpacity * (1 - exitProgress);
 
-  // 2. Chapter Subtitle ("Chapter 5 of 10")
+  // 2. Chapter Subtitle ("Chapter 5 of 10" / "الفصل 1 من 2")
   const subtitleSpring = spring({
     frame: frame - 10,
     fps,
@@ -99,7 +141,7 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
   const subtitleOpacity =
     interpolate(subtitleSpring, [0, 1], [0, 1]) * (1 - exitProgress);
 
-  // 3. Title Line 1 ("Generate Your")
+  // 3. Title Line 1
   const title1Spring = spring({
     frame: frame - 15,
     fps,
@@ -114,7 +156,7 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
   const title1Opacity =
     interpolate(title1Spring, [0, 1], [0, 1]) * (1 - exitProgress);
 
-  // 4. Title Line 2 ("Video and Images")
+  // 4. Title Line 2
   const title2Spring = spring({
     frame: frame - 20,
     fps,
@@ -137,7 +179,7 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
   const glowScale = (1 + glowPulse) * (1 - exitProgress * 0.1);
   const glowOpacity = glowEntrance * (1 - exitProgress);
 
-  // 6. Right Side Track Animation
+  // 6. Chapter Progress Indicator Track
   const trackerSpring = spring({
     frame: frame - 6,
     fps,
@@ -147,7 +189,7 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
       stiffness: 100,
     },
   });
-  const trackerX = interpolate(trackerSpring, [0, 1], [25, 0]);
+  const trackerOffset = interpolate(trackerSpring, [0, 1], [25, 0]);
   const trackerOpacity =
     interpolate(trackerSpring, [0, 1], [0, 1]) * (1 - exitProgress);
 
@@ -156,12 +198,18 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
     return Array.from({ length: totalChapters }, (_, i) => i + 1);
   }, [totalChapters]);
 
+  // Scaled height for tracker to avoid awkward stretching when totalChapters is small (e.g. 2)
+  const trackerHeight = useMemo(() => {
+    return Math.min(380, Math.max(140, totalChapters * 45));
+  }, [totalChapters]);
+
   return (
     <AbsoluteFill
       style={{
         backgroundColor: "#0C0806",
         overflow: "hidden",
         position: "relative",
+        direction: isArabic ? "rtl" : "ltr",
       }}
     >
       {/* 1. Deep Atmospheric Vignette */}
@@ -182,7 +230,7 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
           bottom: 0,
           left: 0,
           right: 0,
-          height: "80%",
+          height: isVertical ? "65%" : "80%",
           pointerEvents: "none",
           background: `radial-gradient(ellipse 110% 70% at 50% 102%, ${glowColor} 0%, rgba(145, 52, 20, 0.28) 38%, rgba(52, 18, 10, 0.12) 68%, rgba(12, 8, 6, 0) 90%)`,
           opacity: glowOpacity,
@@ -195,10 +243,10 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
       <div
         style={{
           position: "absolute",
-          bottom: -80,
+          bottom: isVertical ? -40 : -80,
           left: "50%",
-          width: 900,
-          height: 400,
+          width: isVertical ? 760 : 900,
+          height: isVertical ? 520 : 400,
           pointerEvents: "none",
           background:
             "radial-gradient(circle at 50% 100%, rgba(255, 115, 55, 0.35) 0%, rgba(210, 75, 30, 0.18) 45%, transparent 75%)",
@@ -209,7 +257,7 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
         }}
       />
 
-      {/* 4. Giant Background Chapter Number ("05") */}
+      {/* 4. Giant Background Chapter Number ("01", "02", "05") */}
       <div
         style={{
           position: "absolute",
@@ -218,12 +266,13 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
           alignItems: "center",
           justifyContent: "center",
           pointerEvents: "none",
+          direction: "ltr", // Numbers are always LTR
         }}
       >
         <div
           style={{
             fontFamily: montserratFont,
-            fontSize: 580,
+            fontSize: numberFontSize,
             fontWeight: 900,
             lineHeight: 0.9,
             letterSpacing: "-0.045em",
@@ -250,42 +299,44 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
           justifyContent: "center",
           textAlign: "center",
           zIndex: 10,
-          padding: "0 140px",
+          padding: contentPadding,
         }}
       >
-        {/* Chapter Eyebrow ("Chapter 5 of 10") */}
-        <div
-          style={{
-            fontFamily: plusJakartaFont,
-            fontSize: 32,
-            fontWeight: 600,
-            color: "#A79589",
-            letterSpacing: "0.015em",
-            marginBottom: 24,
-            opacity: subtitleOpacity,
-            transform: `translateY(${subtitleY}px)`,
-            textShadow: "0 2px 14px rgba(0, 0, 0, 0.75)",
-          }}
-        >
-          {chapterSubtitle}
-        </div>
+        {/* Chapter Eyebrow ("Chapter 5 of 10" / "الفصل 1 من 2") - Only if provided */}
+        {hasSubtitle && (
+          <div
+            style={{
+              fontFamily: activeFont,
+              fontSize: isVertical ? (isArabic ? 38 : 34) : (isArabic ? 34 : 32),
+              fontWeight: 600,
+              color: "#A79589",
+              letterSpacing: isArabic ? "0" : "0.015em",
+              marginBottom: isArabic ? 22 : 24,
+              opacity: subtitleOpacity,
+              transform: `translateY(${subtitleY}px)`,
+              textShadow: "0 2px 14px rgba(0, 0, 0, 0.75)",
+            }}
+          >
+            {chapterSubtitle}
+          </div>
+        )}
 
-        {/* Main Title Heading ("Generate Your Video and Images") */}
+        {/* Main Title Heading */}
         <div
           style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: 6,
+            gap: isArabic ? (isVertical ? 16 : 12) : 6,
           }}
         >
           <div
             style={{
-              fontFamily: plusJakartaFont,
-              fontSize: 78,
+              fontFamily: activeFont,
+              fontSize: titleFontSize,
               fontWeight: 800,
-              lineHeight: 1.15,
-              letterSpacing: "-0.03em",
+              lineHeight: isArabic ? 1.32 : 1.15,
+              letterSpacing: isArabic ? "-0.01em" : "-0.03em",
               color: "#F6F1EB",
               opacity: title1Opacity,
               transform: `translateY(${title1Y}px)`,
@@ -295,14 +346,14 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
           >
             {titleLine1}
           </div>
-          {titleLine2 && (
+          {titleLine2 && titleLine2.trim().length > 0 && (
             <div
               style={{
-                fontFamily: plusJakartaFont,
-                fontSize: 78,
+                fontFamily: activeFont,
+                fontSize: titleFontSize,
                 fontWeight: 800,
-                lineHeight: 1.15,
-                letterSpacing: "-0.03em",
+                lineHeight: isArabic ? 1.32 : 1.15,
+                letterSpacing: isArabic ? "-0.01em" : "-0.03em",
                 color: "#F6F1EB",
                 opacity: title2Opacity,
                 transform: `translateY(${title2Y}px)`,
@@ -316,74 +367,83 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
         </div>
       </div>
 
-      {/* 6. Right-Side Chapter Progress Indicator Track */}
-      <div
-        style={{
-          position: "absolute",
-          right: 56,
-          top: "50%",
-          transform: `translateY(-50%) translateX(${trackerX}px)`,
-          opacity: trackerOpacity,
-          height: 380,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "space-between",
-          zIndex: 20,
-          pointerEvents: "none",
-        }}
-      >
-        {/* Subtle continuous background rail */}
+      {/* 6. Chapter Progress Indicator Track */}
+      {showTracker && (
         <div
           style={{
             position: "absolute",
-            top: 10,
-            bottom: 10,
-            width: 2,
-            backgroundColor: "rgba(255, 255, 255, 0.08)",
-            borderRadius: 1,
+            ...(trackerPosition === "left"
+              ? {
+                  left: isVertical ? 36 : 56,
+                  transform: `translateY(-50%) translateX(-${trackerOffset}px)`,
+                }
+              : {
+                  right: isVertical ? 36 : 56,
+                  transform: `translateY(-50%) translateX(${trackerOffset}px)`,
+                }),
+            top: "50%",
+            opacity: trackerOpacity,
+            height: trackerHeight,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "space-between",
+            zIndex: 20,
+            pointerEvents: "none",
           }}
-        />
+        >
+          {/* Subtle continuous background rail */}
+          <div
+            style={{
+              position: "absolute",
+              top: 10,
+              bottom: 10,
+              width: 2,
+              backgroundColor: "rgba(255, 255, 255, 0.08)",
+              borderRadius: 1,
+            }}
+          />
 
-        {chapterTicks.map((tick) => {
-          const isActive = tick === currentChapter;
-          return (
-            <div
-              key={tick}
-              style={{
-                position: "relative",
-                zIndex: 2,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              {isActive ? (
-                // Active Chapter Pill Indicator
-                <div
-                  style={{
-                    width: 5,
-                    height: 34,
-                    borderRadius: 3,
-                    backgroundColor: accentColor,
-                    boxShadow: `0 0 14px ${accentColor}, 0 0 28px rgba(228, 90, 53, 0.45)`,
-                  }}
-                />
-              ) : (
-                // Inactive Tick Notch
-                <div
-                  style={{
-                    width: 2,
-                    height: 16,
-                    borderRadius: 1,
-                    backgroundColor: "rgba(255, 255, 255, 0.18)",
-                  }}
-                />
-              )}
-            </div>
-          );
-        })}
-      </div>
+          {chapterTicks.map((tick) => {
+            const isActive = tick === currentChapter;
+            return (
+              <div
+                key={tick}
+                style={{
+                  position: "relative",
+                  zIndex: 2,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                {isActive ? (
+                  // Active Chapter Pill Indicator
+                  <div
+                    style={{
+                      width: 5,
+                      height: totalChapters <= 3 ? 42 : 34,
+                      borderRadius: 3,
+                      backgroundColor: accentColor,
+                      boxShadow: `0 0 14px ${accentColor}, 0 0 28px ${glowColor}`,
+                    }}
+                  />
+                ) : (
+                  // Inactive Tick Notch
+                  <div
+                    style={{
+                      width: 2,
+                      height: totalChapters <= 3 ? 20 : 16,
+                      borderRadius: 1,
+                      backgroundColor: "rgba(255, 255, 255, 0.18)",
+                    }}
+                  />
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
 
       {/* 7. Subtle Vignette Border Rim */}
       <div
