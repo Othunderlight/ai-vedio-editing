@@ -117,7 +117,7 @@ const altPocketBurnProps: ChapterTransitionProps = {
 };
 
 // --- NEW INSTAGRAM REELS (9:16 VERTICAL 1080x1920) ---
-// Chapter 1 Reel: Short punchy "فخ كـلود" without headers
+// Chapter 1 Reel: Short punchy "فخ كـلود" without headers, extra large display typography
 const reelClaude01Props: ChapterTransitionProps = {
   chapterNumber: "01",
   chapterSubtitle: "",
@@ -129,27 +129,34 @@ const reelClaude01Props: ChapterTransitionProps = {
   numberColor: "#482618",
   glowColor: "rgba(228, 90, 53, 0.48)",
   showTracker: true,
+  titleFontSize: 150,
+  numberFontSize: 650,
 };
 
-// Chapter 2 Reel: Short punchy '!"بلدوزر" لتكسر جوزة؟' split across 2 lines for reel impact
+// Chapter 2 Reel: Exact text "بلدوزر لتكسر جوزة؟!" with "?!" placed cleanly after "جوزة"
+// Split into 2 massive lines for maximum Instagram Reel visual weight
 const reelClaude02Props: ChapterTransitionProps = {
   chapterNumber: "02",
   chapterSubtitle: "",
-  titleLine1: '!"بلدوزر"',
-  titleLine2: "لتكسر جوزة؟",
+  titleLine1: "بلدوزر",
+  titleLine2: "لتكسر جوزة\u200F؟!‏",
   currentChapter: 2,
   totalChapters: 2,
   accentColor: "#F59E0B",
   numberColor: "#4A3215",
   glowColor: "rgba(245, 158, 11, 0.45)",
   showTracker: true,
+  titleLine1FontSize: 140,
+  titleLine2FontSize: 124,
+  numberFontSize: 650,
+  titleGap: 24,
 };
 
-// Chapter 2 Reel Alternative: Single line
+// Chapter 2 Reel Alternative: Exact full sentence on single line
 const reelClaude02SingleLineProps: ChapterTransitionProps = {
   chapterNumber: "02",
   chapterSubtitle: "",
-  titleLine1: '!"بلدوزر" لتكسر جوزة؟',
+  titleLine1: "بلدوزر لتكسر جوزة\u200F؟!‏",
   titleLine2: "",
   currentChapter: 2,
   totalChapters: 2,
@@ -157,6 +164,8 @@ const reelClaude02SingleLineProps: ChapterTransitionProps = {
   numberColor: "#4A3215",
   glowColor: "rgba(245, 158, 11, 0.45)",
   showTracker: true,
+  titleFontSize: 106,
+  numberFontSize: 650,
 };
 
 // Clean versions without side tracker (if desired)

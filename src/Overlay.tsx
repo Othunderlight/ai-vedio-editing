@@ -38,6 +38,11 @@ export interface ChapterTransitionProps {
   isRTL?: boolean;
   trackerPosition?: "right" | "left";
   showTracker?: boolean;
+  titleFontSize?: number;
+  titleLine1FontSize?: number;
+  titleLine2FontSize?: number;
+  numberFontSize?: number;
+  titleGap?: number;
 }
 
 const containsArabic = (text: string) => /[\u0600-\u06FF]/.test(text);
@@ -55,6 +60,11 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
   isRTL,
   trackerPosition = "right",
   showTracker = true,
+  titleFontSize: propTitleFontSize,
+  titleLine1FontSize: propTitleLine1FontSize,
+  titleLine2FontSize: propTitleLine2FontSize,
+  numberFontSize: propNumberFontSize,
+  titleGap: propTitleGap,
 }) => {
   const frame = useCurrentFrame();
   const { fps, durationInFrames, width, height } = useVideoConfig();
@@ -76,16 +86,24 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
   const hasSubtitle = Boolean(chapterSubtitle && chapterSubtitle.trim().length > 0);
   const isSingleLine = !titleLine2 || titleLine2.trim().length === 0;
 
-  const titleFontSize = useMemo(() => {
+  const defaultTitleFontSize = useMemo(() => {
     if (isVertical) {
-      if (isSingleLine) return isArabic ? 96 : 92;
-      return isArabic ? 80 : 76;
+      if (isSingleLine) return isArabic ? 140 : 124;
+      return isArabic ? 116 : 98;
     }
     return isArabic ? 72 : 78;
   }, [isVertical, isSingleLine, isArabic]);
 
-  const numberFontSize = isVertical ? 460 : 580;
-  const contentPadding = isVertical ? "0 50px" : "0 140px";
+  const line1FontSize =
+    propTitleLine1FontSize ?? propTitleFontSize ?? defaultTitleFontSize;
+  const line2FontSize =
+    propTitleLine2FontSize ?? propTitleFontSize ?? defaultTitleFontSize;
+
+  const computedNumberFontSize =
+    propNumberFontSize ?? (isVertical ? 650 : 580);
+  const computedTitleGap =
+    propTitleGap ?? (isVertical ? 24 : isArabic ? 12 : 6);
+  const contentPadding = isVertical ? "0 40px" : "0 140px";
 
   // Exit transition (last 16 frames)
   const exitDuration = 16;
@@ -272,7 +290,7 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
         <div
           style={{
             fontFamily: montserratFont,
-            fontSize: numberFontSize,
+            fontSize: computedNumberFontSize,
             fontWeight: 900,
             lineHeight: 0.9,
             letterSpacing: "-0.045em",
@@ -327,21 +345,22 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: isArabic ? (isVertical ? 16 : 12) : 6,
+            gap: computedTitleGap,
+            maxWidth: "100%",
           }}
         >
           <div
             style={{
               fontFamily: activeFont,
-              fontSize: titleFontSize,
-              fontWeight: 800,
-              lineHeight: isArabic ? 1.32 : 1.15,
+              fontSize: line1FontSize,
+              fontWeight: 900,
+              lineHeight: isArabic ? 1.25 : 1.15,
               letterSpacing: isArabic ? "-0.01em" : "-0.03em",
               color: "#F6F1EB",
               opacity: title1Opacity,
               transform: `translateY(${title1Y}px)`,
               textShadow:
-                "0 4px 28px rgba(0, 0, 0, 0.85), 0 2px 6px rgba(0, 0, 0, 0.95)",
+                "0 6px 36px rgba(0, 0, 0, 0.9), 0 2px 8px rgba(0, 0, 0, 0.95)",
             }}
           >
             {titleLine1}
@@ -350,15 +369,15 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
             <div
               style={{
                 fontFamily: activeFont,
-                fontSize: titleFontSize,
-                fontWeight: 800,
-                lineHeight: isArabic ? 1.32 : 1.15,
+                fontSize: line2FontSize,
+                fontWeight: 900,
+                lineHeight: isArabic ? 1.25 : 1.15,
                 letterSpacing: isArabic ? "-0.01em" : "-0.03em",
                 color: "#F6F1EB",
                 opacity: title2Opacity,
                 transform: `translateY(${title2Y}px)`,
                 textShadow:
-                  "0 4px 28px rgba(0, 0, 0, 0.85), 0 2px 6px rgba(0, 0, 0, 0.95)",
+                  "0 6px 36px rgba(0, 0, 0, 0.9), 0 2px 8px rgba(0, 0, 0, 0.95)",
               }}
             >
               {titleLine2}
