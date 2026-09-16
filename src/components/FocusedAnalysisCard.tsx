@@ -150,9 +150,9 @@ export const FocusedReelShot: React.FC<FocusedReelShotProps> = ({
     extrapolateRight: "clamp",
   });
 
-  // Plot height for giant vertical columns suited for Reel 9:16
-  const plotHeight = 880;
-  const barWidth = 230;
+  // Dimensions for high-impact 9:16 mobile view
+  const plotHeight = 940;
+  const barWidth = 240;
 
   // Subtle breathing background glow
   const glowPulse = Math.sin((frame / fps) * Math.PI * 1.5) * 0.08 + 0.92;
@@ -164,14 +164,14 @@ export const FocusedReelShot: React.FC<FocusedReelShotProps> = ({
         opacity: exitOpacity,
         display: "flex",
         flexDirection: "column",
-        justifyContent: "space-between",
-        padding: "110px 65px 120px 65px",
+        justifyContent: "flex-start",
+        padding: "100px 60px 80px 60px",
         boxSizing: "border-box",
         overflow: "hidden",
         fontFamily: plusJakartaFont,
       }}
     >
-      {/* Dynamic Ambient Background Glow (matching Claude terracotta & DeepSeek electric blue) */}
+      {/* Dynamic Ambient Background Glow */}
       <div
         style={{
           position: "absolute",
@@ -182,14 +182,14 @@ export const FocusedReelShot: React.FC<FocusedReelShotProps> = ({
           height: "100vw",
           borderRadius: "50%",
           background: isCost
-            ? "radial-gradient(circle, rgba(77, 107, 254, 0.18) 0%, rgba(217, 119, 87, 0.14) 45%, transparent 70%)"
-            : "radial-gradient(circle, rgba(147, 51, 234, 0.18) 0%, rgba(77, 107, 254, 0.12) 45%, transparent 70%)",
+            ? "radial-gradient(circle, rgba(77, 107, 254, 0.22) 0%, rgba(217, 119, 87, 0.16) 45%, transparent 70%)"
+            : "radial-gradient(circle, rgba(147, 51, 234, 0.22) 0%, rgba(77, 107, 254, 0.14) 45%, transparent 70%)",
           filter: "blur(120px)",
           pointerEvents: "none",
         }}
       />
 
-      {/* 1. TOP HEADER: Placed at the very top, much bigger */}
+      {/* 1. TOP HEADER: Placed at the very top, large & prominent */}
       <div
         style={{
           width: "100%",
@@ -199,6 +199,7 @@ export const FocusedReelShot: React.FC<FocusedReelShotProps> = ({
           transform: `translateY(${titleY}px)`,
           opacity: titleOpacity,
           zIndex: 20,
+          marginBottom: 60,
         }}
       >
         <div
@@ -206,7 +207,7 @@ export const FocusedReelShot: React.FC<FocusedReelShotProps> = ({
             display: "flex",
             alignItems: "center",
             gap: 20,
-            marginBottom: 16,
+            marginBottom: 14,
           }}
         >
           {/* Badge Icon */}
@@ -216,14 +217,14 @@ export const FocusedReelShot: React.FC<FocusedReelShotProps> = ({
               height: 32,
               backgroundColor: badgeColor,
               borderRadius: 8,
-              boxShadow: `0 0 20px ${badgeColor}88`,
+              boxShadow: `0 0 22px ${badgeColor}aa`,
             }}
           />
           {/* Massive Display Title */}
           <h1
             style={{
               fontFamily: newsreaderFont,
-              fontSize: 76,
+              fontSize: 78,
               fontWeight: 700,
               color: "#F9FAFB",
               margin: 0,
@@ -245,229 +246,237 @@ export const FocusedReelShot: React.FC<FocusedReelShotProps> = ({
             margin: 0,
             letterSpacing: "-0.01em",
             lineHeight: 1.4,
-            maxWidth: 900,
+            maxWidth: 920,
           }}
         >
           {subtitle}
         </p>
       </div>
 
-      {/* 2. CHART PLOT AREA: 3 Huge Columns */}
+      {/* 2. UNIFIED CHART SECTION: Bars + Labels right under the graph */}
       <div
         style={{
           position: "relative",
-          height: plotHeight,
           width: "100%",
           display: "flex",
-          alignItems: "flex-end",
-          justifyContent: "space-between",
-          boxSizing: "border-box",
+          flexDirection: "column",
+          alignItems: "center",
           zIndex: 10,
         }}
       >
-        {/* Subtle Horizontal Dotted Gridlines across the dark background */}
+        {/* Columns & Bars Area */}
         <div
           style={{
-            position: "absolute",
-            top: 20,
-            left: 0,
-            right: 0,
-            borderTop: "2px dashed rgba(255, 255, 255, 0.12)",
-            pointerEvents: "none",
+            position: "relative",
+            height: plotHeight,
+            width: "100%",
+            display: "flex",
+            alignItems: "flex-end",
+            justifyContent: "space-between",
+            boxSizing: "border-box",
           }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            top: "33%",
-            left: 0,
-            right: 0,
-            borderTop: "2px dashed rgba(255, 255, 255, 0.12)",
-            pointerEvents: "none",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            top: "66%",
-            left: 0,
-            right: 0,
-            borderTop: "2px dashed rgba(255, 255, 255, 0.12)",
-            pointerEvents: "none",
-          }}
-        />
+        >
+          {/* Subtle Horizontal Dotted Gridlines across the plot */}
+          <div
+            style={{
+              position: "absolute",
+              top: 20,
+              left: 0,
+              right: 0,
+              borderTop: "2px dashed rgba(255, 255, 255, 0.12)",
+              pointerEvents: "none",
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              top: "33%",
+              left: 0,
+              right: 0,
+              borderTop: "2px dashed rgba(255, 255, 255, 0.12)",
+              pointerEvents: "none",
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              top: "66%",
+              left: 0,
+              right: 0,
+              borderTop: "2px dashed rgba(255, 255, 255, 0.12)",
+              pointerEvents: "none",
+            }}
+          />
 
-        {/* Baseline Axis Line */}
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            borderBottom: "2.5px solid rgba(255, 255, 255, 0.22)",
-            pointerEvents: "none",
-          }}
-        />
+          {/* Baseline Axis Line directly at the bottom of the bars */}
+          <div
+            style={{
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              borderBottom: "2.5px solid rgba(255, 255, 255, 0.22)",
+              pointerEvents: "none",
+            }}
+          />
 
-        {/* The 3 Huge Columns */}
-        {data.map((item, index) => {
-          const barSpring = spring({
-            frame: frame - 6 - index * 3,
-            fps,
-            config: { damping: 14, mass: 0.7, stiffness: 90 },
-          });
+          {/* The 3 Columns with values and animated bars */}
+          {data.map((item, index) => {
+            const barSpring = spring({
+              frame: frame - 6 - index * 3,
+              fps,
+              config: { damping: 14, mass: 0.7, stiffness: 90 },
+            });
 
-          // Height calculation
-          const targetHeight = (item.value / maxValue) * (plotHeight - 120);
-          const currentHeight = Math.max(16, targetHeight * barSpring);
+            // Height calculation
+            const targetHeight = (item.value / maxValue) * (plotHeight - 130);
+            const currentHeight = Math.max(20, targetHeight * barSpring);
 
-          return (
-            <div
-              key={item.id}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                position: "relative",
-                width: barWidth,
-                height: "100%",
-                justifyContent: "flex-end",
-              }}
-            >
-              {/* For Cost: Value sits directly ABOVE the bar */}
-              {isCost && (
-                <div
-                  style={{
-                    fontSize: 44,
-                    fontWeight: 800,
-                    color: item.brandColor,
-                    marginBottom: 16,
-                    letterSpacing: "-0.02em",
-                    whiteSpace: "nowrap",
-                    textShadow: `0 0 25px ${item.brandColor}66`,
-                  }}
-                >
-                  {item.displayValue}
-                </div>
-              )}
-
-              {/* The Giant Vertical Bar */}
+            return (
               <div
+                key={item.id}
                 style={{
-                  width: barWidth,
-                  height: currentHeight,
-                  backgroundColor: item.color,
-                  borderTopLeftRadius: 16,
-                  borderTopRightRadius: 16,
                   display: "flex",
-                  alignItems: "flex-start",
-                  justifyContent: "center",
-                  paddingTop: 18,
-                  boxSizing: "border-box",
-                  boxShadow: `0 8px 32px ${item.brandColor}44`,
+                  flexDirection: "column",
+                  alignItems: "center",
                   position: "relative",
+                  width: barWidth,
+                  height: "100%",
+                  justifyContent: "flex-end",
                 }}
               >
-                {/* For Intelligence: Value is prominently inside the top of the bar */}
-                {!isCost && (
-                  <span
+                {/* For Cost: Value sits directly ABOVE the bar */}
+                {isCost && (
+                  <div
                     style={{
                       fontSize: 48,
                       fontWeight: 800,
-                      color: "#FFFFFF",
+                      color: item.brandColor,
+                      marginBottom: 16,
                       letterSpacing: "-0.02em",
-                      textShadow: "0 2px 10px rgba(0, 0, 0, 0.4)",
+                      whiteSpace: "nowrap",
+                      textShadow: `0 0 28px ${item.brandColor}88`,
                     }}
                   >
                     {item.displayValue}
-                  </span>
+                  </div>
                 )}
+
+                {/* The Giant Vertical Bar */}
+                <div
+                  style={{
+                    width: barWidth,
+                    height: currentHeight,
+                    backgroundColor: item.color,
+                    borderTopLeftRadius: 18,
+                    borderTopRightRadius: 18,
+                    display: "flex",
+                    alignItems: "flex-start",
+                    justifyContent: "center",
+                    paddingTop: 20,
+                    boxSizing: "border-box",
+                    boxShadow: `0 8px 36px ${item.brandColor}55`,
+                    position: "relative",
+                  }}
+                >
+                  {/* For Intelligence: Value is prominently inside the top of the bar */}
+                  {!isCost && (
+                    <span
+                      style={{
+                        fontSize: 52,
+                        fontWeight: 800,
+                        color: "#FFFFFF",
+                        letterSpacing: "-0.02em",
+                        textShadow: "0 2px 12px rgba(0, 0, 0, 0.5)",
+                      }}
+                    >
+                      {item.displayValue}
+                    </span>
+                  )}
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
 
-      {/* 3. X-AXIS LABELS & COMPANY LOGOS (Upright normal 90-degree titles, no italic) */}
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-between",
-          boxSizing: "border-box",
-          zIndex: 10,
-          marginTop: 24,
-        }}
-      >
-        {data.map((item) => (
-          <div
-            key={item.id}
-            style={{
-              width: barWidth,
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              textAlign: "center",
-            }}
-          >
-            {/* Official Company SVG Logo from public/assets/ */}
+        {/* 3. LOGOS & TITLES PLACED RIGHT UNDER THE GRAPH WITH SMALL SPACE */}
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            boxSizing: "border-box",
+            marginTop: 22,
+          }}
+        >
+          {data.map((item) => (
             <div
+              key={item.id}
               style={{
-                width: 68,
-                height: 68,
-                borderRadius: 18,
-                backgroundColor: "rgba(255, 255, 255, 0.08)",
-                border: "1px solid rgba(255, 255, 255, 0.12)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                marginBottom: 16,
-                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.4)",
-              }}
-            >
-              <Img
-                src={staticFile(item.logoPath)}
-                style={{
-                  width: 44,
-                  height: 44,
-                  objectFit: "contain",
-                }}
-              />
-            </div>
-
-            {/* Model Name: Normal upright 90-degree text (no slant, no italic) */}
-            <div
-              style={{
+                width: barWidth,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                gap: 4,
+                textAlign: "center",
               }}
             >
-              <span
+              {/* Pure SVG Company Logo: Much bigger, NO background box */}
+              <div
                 style={{
-                  fontSize: 23,
-                  fontWeight: 700,
-                  color: "#F9FAFB",
-                  lineHeight: 1.25,
-                  letterSpacing: "-0.01em",
+                  width: 80,
+                  height: 80,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: 12,
                 }}
               >
-                {item.nameLine1}
-              </span>
-              <span
+                <Img
+                  src={staticFile(item.logoPath)}
+                  style={{
+                    width: 76,
+                    height: 76,
+                    objectFit: "contain",
+                    filter: "drop-shadow(0 4px 16px rgba(0,0,0,0.5))",
+                  }}
+                />
+              </div>
+
+              {/* Model Name: Bigger, normal 90-degree upright text (no slant, no italic) */}
+              <div
                 style={{
-                  fontSize: 18,
-                  fontWeight: 500,
-                  color: "#9CA3AF",
-                  lineHeight: 1.2,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  gap: 4,
                 }}
               >
-                {item.nameLine2}
-              </span>
+                <span
+                  style={{
+                    fontSize: 28,
+                    fontWeight: 800,
+                    color: "#FFFFFF",
+                    lineHeight: 1.25,
+                    letterSpacing: "-0.015em",
+                    whiteSpace: "normal",
+                  }}
+                >
+                  {item.nameLine1}
+                </span>
+                <span
+                  style={{
+                    fontSize: 21,
+                    fontWeight: 600,
+                    color: "#9CA3AF",
+                    lineHeight: 1.2,
+                  }}
+                >
+                  {item.nameLine2}
+                </span>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </AbsoluteFill>
   );
