@@ -5,6 +5,84 @@ import { BRollPriceComparison } from "./components/BRollPriceComparison";
 import { BRollSingleCard } from "./components/BRollSingleCard";
 import { FocusedReelShot } from "./components/FocusedAnalysisCard";
 import { BRollApiDocumentation } from "./components/BRollApiDocumentation";
+import {
+  EnglishTutorialProps,
+  EnglishTutorialReel,
+} from "./components/EnglishTutorialReel";
+import {
+  NotebookGrammarProps,
+  NotebookGrammarReel,
+} from "./components/NotebookGrammarReel";
+
+// --- PRESENT SIMPLE NOTEBOOK GRAMMAR REEL (Matching user reference video) ---
+const presentSimpleNotebookProps: NotebookGrammarProps = {
+  baseVerb: "drink",
+  objectNoun: "coffee.",
+  firstPronouns: ["I", "You"],
+  thirdPronouns: ["He", "She"],
+  bgImagePath: "assets/bg-en-claen.png",
+};
+
+// --- ENGLISH TUTORIAL (INSTAGRAM REELS) ---
+const tutorial01Props: EnglishTutorialProps = {
+  episodeTag: "DAILY ENGLISH • EPISODE 01",
+  category: "vocabulary",
+  headline: "Stop Saying 'I'm Very Busy'!",
+  hookSubtext: "Level up your conversational English with this native phrase",
+  incorrectPhrase: "I am very busy today.",
+  incorrectLabel: "COMMON & REPETITIVE",
+  correctPhrase: "I'm swamped.",
+  correctLabel: "NATIVE & NATURAL",
+  phonetic: "/swɑːmpt/",
+  meaning: "Having too much to deal with at once",
+  exampleSentence:
+    '"Sorry I couldn\'t reply earlier, I\'m completely swamped with work."',
+  exampleHighlight: "swamped",
+  proTip:
+    "💡 Nuance: Use 'swamped' at work or with friends when overwhelmed by tasks.",
+  accentColor: "#F59E0B",
+  ctaText: "Double tap ❤️ & save for your next conversation!",
+};
+
+const tutorial02Props: EnglishTutorialProps = {
+  episodeTag: "GRAMMAR SECRETS • EPISODE 02",
+  category: "grammar",
+  headline: "Stop Making This Email Mistake!",
+  hookSubtext: "90% of English learners make this common preposition error",
+  incorrectPhrase: "I look forward to see you.",
+  incorrectLabel: "COMMON MISTAKE",
+  correctPhrase: "I look forward to seeing you.",
+  correctLabel: "GRAMMATICALLY ACCURATE",
+  phonetic: "/ˈsiːɪŋ/",
+  meaning: "Anticipating future meeting with positive expectation",
+  exampleSentence:
+    '"Thank you for your time, I look forward to seeing you next Tuesday."',
+  exampleHighlight: "seeing you",
+  proTip:
+    "💡 Rule: 'To' here is a preposition, not part of an infinitive, so it takes a gerund (-ing)!",
+  accentColor: "#3B82F6",
+  ctaText: "Save this 📌 for your next professional email!",
+};
+
+const tutorial03Props: EnglishTutorialProps = {
+  episodeTag: "PHRASAL VERBS • EPISODE 03",
+  category: "phrasal-verbs",
+  headline: "Master The Verb 'Break Down'!",
+  hookSubtext: "One phrasal verb with 3 completely different meanings",
+  incorrectPhrase: "My car stopped working suddenly.",
+  incorrectLabel: "BASIC VOCABULARY",
+  correctPhrase: "My car broke down.",
+  correctLabel: "NATURAL PHRASAL VERB",
+  phonetic: "/broʊk daʊn/",
+  meaning: "1. Mechanical failure | 2. Emotional collapse | 3. Explain simply",
+  exampleSentence:
+    '"Could you break down the monthly budget numbers for the team?"',
+  exampleHighlight: "break down",
+  proTip:
+    "💡 Bonus: When someone says 'let's break it down', they mean let's analyze step by step!",
+  accentColor: "#10B981",
+  ctaText: "Share with a friend 🚀 & follow for daily lessons!",
+};
 
 // --- EXISTING COMPOSITIONS (Retained) ---
 const defaultChapter05Props: ChapterTransitionProps = {
@@ -185,7 +263,8 @@ const reelClaude02CleanProps: ChapterTransitionProps = {
 
 export const RemotionRoot: React.FC = () => {
   return (
-    <Folder name="section-transition">
+    <>
+      <Folder name="section-transition">
       {/* 1. INSTAGRAM REELS (9:16 Vertical - 1080x1920) */}
       <Composition
         id="Reel-Claude-Chapter-01"
@@ -475,5 +554,55 @@ export const RemotionRoot: React.FC = () => {
         />
       </Folder>
     </Folder>
+
+    {/* 2. ENGLISH TUTORIALS FOR INSTAGRAM (9:16 Vertical - 1080x1920) */}
+    <Folder name="english-tutorials-instagram">
+      <Composition
+        id="IG-Notebook-Grammar-Present-Simple"
+        component={NotebookGrammarReel}
+        durationInFrames={540}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={presentSimpleNotebookProps}
+      />
+      <Composition
+        id="IG-English-01-Stop-Saying-Busy"
+        component={EnglishTutorialReel}
+        durationInFrames={150}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={tutorial01Props}
+      />
+      <Composition
+        id="IG-English-02-Look-Forward-To"
+        component={EnglishTutorialReel}
+        durationInFrames={150}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={tutorial02Props}
+      />
+      <Composition
+        id="IG-English-03-Phrasal-Verb-Break-Down"
+        component={EnglishTutorialReel}
+        durationInFrames={150}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={tutorial03Props}
+      />
+      <Composition
+        id="IG-English-Template-Customizable"
+        component={EnglishTutorialReel}
+        durationInFrames={150}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={tutorial01Props}
+      />
+    </Folder>
+    </>
   );
 };

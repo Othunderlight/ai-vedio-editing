@@ -1,6 +1,6 @@
 {
   "name": "AI Video Editing",
-  "description": "Remotion video motion graphics with chapter transitions and Artificial Analysis pricing comparisons",
+  "description": "Remotion video motion graphics with chapter transitions, pricing comparisons, and Instagram English tutorial notebook animations",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
