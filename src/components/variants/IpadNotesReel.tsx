@@ -810,13 +810,22 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
   );
 };
 
-/* --- SCENE 5: IPAD NOTEBOOK FACTS --- */
+/* --- SCENE 5: IPAD NOTEBOOK FACTS (With Original Animated Thermometer & Boiling Beaker) --- */
 const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
   frame,
   fps,
 }) => {
   const enter = spring({ frame, fps, config: { damping: 14 } });
-  const temp = Math.min(100, Math.round(interpolate(frame, [10, 80], [20, 100])));
+
+  // Thermometer temperature rising from 20°C to 100°C
+  const tempProgress = interpolate(frame, [10, 100], [20, 100], {
+    extrapolateRight: "clamp",
+  });
+  const mercuryHeight = interpolate(tempProgress, [20, 100], [50, 240]);
+
+  // Boiling steam wave oscillation
+  const steamWave = Math.sin(frame / 4) * 8;
+  const steamWave2 = Math.cos(frame / 3) * 10;
 
   return (
     <AbsoluteFill
@@ -824,12 +833,15 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
         display: "flex",
         flexDirection: "column",
         padding: "140px 60px 180px 60px",
-        gap: "24px",
+        gap: "22px",
       }}
     >
+      {/* Category Pill Tag */}
       <div
         style={{
-          display: "inline-block",
+          display: "inline-flex",
+          alignItems: "center",
+          gap: "8px",
           alignSelf: "flex-start",
           backgroundColor: "#DCFCE7",
           color: "#166534",
@@ -840,49 +852,223 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
           transform: `scale(${enter})`,
         }}
       >
-        🔬 Use #2: Facts & Scientific Truths
+        <span>🔬 USE #2 OF 4:</span>
+        <span style={{ fontWeight: 700 }}>Facts & Scientific Truths</span>
       </div>
 
+      {/* SCIENTIFIC THERMOMETER & BOILING LAB CARD (iPad Note Card) */}
       <div
         style={{
           backgroundColor: "#FFFFFF",
           border: "1px solid #E2E8F0",
           borderRadius: "28px",
-          padding: "36px",
-          boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
+          padding: "28px 24px",
+          boxShadow: "0 12px 36px rgba(0,0,0,0.06)",
           display: "flex",
           alignItems: "center",
-          gap: "28px",
+          justifyContent: "space-around",
           transform: `scale(${enter})`,
         }}
       >
+        {/* Animated Thermometer SVG (Clean Modern iPad Style) */}
         <div
           style={{
-            fontSize: "64px",
-            backgroundColor: "#EFF6FF",
-            padding: "20px",
-            borderRadius: "24px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          🧪
-        </div>
-        <div>
-          <div style={{ fontSize: "28px", fontWeight: 800, color: "#1E293B" }}>
-            Universal Law: {temp}°C
-          </div>
+          <svg width="110" height="280" viewBox="0 0 100 280">
+            {/* Outer glass tube */}
+            <rect
+              x="38"
+              y="15"
+              width="24"
+              height="200"
+              rx="12"
+              fill="#F8FAFC"
+              stroke="#CBD5E1"
+              strokeWidth="3"
+            />
+            {/* Bottom Bulb */}
+            <circle
+              cx="50"
+              cy="235"
+              r="28"
+              fill="#EF4444"
+              stroke="#CBD5E1"
+              strokeWidth="3"
+            />
+            {/* Temperature scale markings */}
+            {[0, 25, 50, 75, 100].map((t, idx) => {
+              const y = 200 - idx * 40;
+              return (
+                <g key={idx}>
+                  <line
+                    x1="66"
+                    y1={y}
+                    x2="78"
+                    y2={y}
+                    stroke="#94A3B8"
+                    strokeWidth="2"
+                  />
+                  <text
+                    x="84"
+                    y={y + 5}
+                    fill="#64748B"
+                    fontSize="14"
+                    fontWeight="700"
+                  >
+                    {t}°
+                  </text>
+                </g>
+              );
+            })}
+            {/* Rising Mercury Bar */}
+            <rect
+              x="43"
+              y={215 - (mercuryHeight - 50)}
+              width="14"
+              height={mercuryHeight - 30}
+              rx="7"
+              fill="url(#mercuryGradIpad)"
+            />
+            <defs>
+              <linearGradient
+                id="mercuryGradIpad"
+                x1="0"
+                y1="0"
+                x2="0"
+                y2="1"
+              >
+                <stop offset="0%" stopColor="#F97316" />
+                <stop offset="100%" stopColor="#EF4444" />
+              </linearGradient>
+            </defs>
+          </svg>
+
+          {/* Temperature Digital Readout Pill */}
           <div
             style={{
-              fontFamily: caveatFont,
-              fontSize: "36px",
-              color: "#64748B",
+              backgroundColor: "#FEE2E2",
+              border: "1px solid #FCA5A5",
+              borderRadius: "12px",
+              padding: "4px 14px",
+              fontSize: "22px",
+              fontWeight: 800,
+              color: "#DC2626",
               marginTop: "6px",
             }}
           >
-            Water boils at 100°C everywhere!
+            {Math.round(tempProgress)} °C
+          </div>
+        </div>
+
+        {/* Animated Boiling Beaker / Kettle */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          {/* Steam wisps rising */}
+          <svg width="170" height="65" viewBox="0 0 160 60">
+            <path
+              d={`M 40 50 Q ${40 + steamWave} 25, 45 5`}
+              stroke="rgba(100, 116, 139, 0.5)"
+              strokeWidth="4"
+              fill="none"
+              strokeLinecap="round"
+            />
+            <path
+              d={`M 80 50 Q ${80 + steamWave2} 25, 85 5`}
+              stroke="rgba(100, 116, 139, 0.7)"
+              strokeWidth="5"
+              fill="none"
+              strokeLinecap="round"
+            />
+            <path
+              d={`M 120 50 Q ${120 - steamWave} 25, 115 5`}
+              stroke="rgba(100, 116, 139, 0.4)"
+              strokeWidth="4"
+              fill="none"
+              strokeLinecap="round"
+            />
+          </svg>
+
+          {/* Beaker Container */}
+          <div
+            style={{
+              width: "180px",
+              height: "160px",
+              borderRadius: "14px 14px 32px 32px",
+              backgroundColor: "rgba(224, 242, 254, 0.6)",
+              border: "3px solid #94A3B8",
+              position: "relative",
+              overflow: "hidden",
+              boxShadow: "0 8px 20px rgba(56, 189, 248, 0.15)",
+            }}
+          >
+            {/* Boiling Water Liquid */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: "110px",
+                backgroundColor: "rgba(56, 189, 248, 0.5)",
+                borderTop: "2px solid #38BDF8",
+              }}
+            >
+              {/* Boiling Bubbles */}
+              {[16, 45, 80, 120, 150].map((bx, i) => (
+                <div
+                  key={i}
+                  style={{
+                    position: "absolute",
+                    left: `${bx}px`,
+                    bottom: `${(frame * 4 + i * 25) % 100}px`,
+                    width: `${9 + (i % 3) * 4}px`,
+                    height: `${9 + (i % 3) * 4}px`,
+                    borderRadius: "50%",
+                    backgroundColor: "#FFFFFF",
+                    boxShadow: "0 0 4px rgba(255,255,255,0.8)",
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Bottom Heat Fire Glow */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: "18px",
+                background:
+                  "linear-gradient(to top, rgba(239, 68, 68, 0.6), transparent)",
+              }}
+            />
+          </div>
+
+          <div
+            style={{
+              marginTop: "12px",
+              fontFamily: caveatFont,
+              fontSize: "26px",
+              color: "#0369A1",
+              fontWeight: 700,
+            }}
+          >
+            ♨️ Boiling water at 100°C
           </div>
         </div>
       </div>
 
+      {/* Example Box */}
       <div
         style={{
           backgroundColor: "#FFFFFF",
@@ -897,13 +1083,14 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
             fontFamily: caveatFont,
             fontSize: "44px",
             color: "#1C1917",
+            lineHeight: 1.4,
           }}
         >
           👉 "If you heat water to 100 °C, it{" "}
           <span
             style={{
               backgroundColor: "rgba(254, 240, 138, 0.7)",
-              padding: "0 6px",
+              padding: "0 8px",
               borderRadius: "4px",
             }}
           >
@@ -916,12 +1103,33 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
   );
 };
 
-/* --- SCENE 6: IPAD NOTEBOOK INSTRUCTIONS --- */
+/* --- SCENE 6: IPAD NOTEBOOK INSTRUCTIONS (With Animated Gliding Mouse & Click) --- */
 const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
   frame,
   fps,
 }) => {
   const enter = spring({ frame, fps, config: { damping: 14 } });
+
+  // Animated Mouse Cursor gliding across to the desktop icon
+  const cursorX = interpolate(frame, [0, 60], [100, 340], {
+    extrapolateRight: "clamp",
+  });
+  const cursorY = interpolate(frame, [0, 60], [30, 90], {
+    extrapolateRight: "clamp",
+  });
+
+  // Click shockwave animation at frame 60
+  const isClicked = frame >= 60;
+  const clickWave = isClicked
+    ? interpolate(frame - 60, [0, 25], [0.8, 2.2], {
+        extrapolateRight: "clamp",
+      })
+    : 0;
+  const clickWaveOpacity = isClicked
+    ? interpolate(frame - 60, [0, 25], [1, 0], {
+        extrapolateRight: "clamp",
+      })
+    : 0;
 
   return (
     <AbsoluteFill
@@ -929,12 +1137,14 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
         display: "flex",
         flexDirection: "column",
         padding: "140px 60px 180px 60px",
-        gap: "24px",
+        gap: "22px",
       }}
     >
       <div
         style={{
-          display: "inline-block",
+          display: "inline-flex",
+          alignItems: "center",
+          gap: "8px",
           alignSelf: "flex-start",
           backgroundColor: "#F3E8FF",
           color: "#7E22CE",
@@ -945,34 +1155,191 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
           transform: `scale(${enter})`,
         }}
       >
-        📋 Use #3: Instructions
+        <span>📋 USE #3 OF 4:</span>
+        <span style={{ fontWeight: 700 }}>Instructions & Directions</span>
       </div>
 
+      {/* COMPUTER DESKTOP UI WINDOW CARD (iPad Digital Study Frame) */}
       <div
         style={{
           backgroundColor: "#FFFFFF",
           border: "1px solid #E2E8F0",
           borderRadius: "28px",
-          padding: "36px",
-          boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
+          padding: "26px",
+          boxShadow: "0 12px 36px rgba(0,0,0,0.06)",
           transform: `scale(${enter})`,
+          position: "relative",
+          overflow: "hidden",
         }}
       >
-        <div style={{ fontSize: "26px", fontWeight: 800, color: "#1E293B" }}>
-          Step-by-Step Directions
-        </div>
+        {/* Window Titlebar */}
         <div
           style={{
-            fontFamily: caveatFont,
-            fontSize: "40px",
-            color: "#64748B",
-            marginTop: "10px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            borderBottom: "1px solid #E2E8F0",
+            paddingBottom: "14px",
+            marginBottom: "18px",
           }}
         >
-          Click the app icon to begin 🖱️
+          <div style={{ display: "flex", gap: "8px" }}>
+            <div
+              style={{
+                width: "14px",
+                height: "14px",
+                borderRadius: "50%",
+                backgroundColor: "#EF4444",
+              }}
+            />
+            <div
+              style={{
+                width: "14px",
+                height: "14px",
+                borderRadius: "50%",
+                backgroundColor: "#F59E0B",
+              }}
+            />
+            <div
+              style={{
+                width: "14px",
+                height: "14px",
+                borderRadius: "50%",
+                backgroundColor: "#10B981",
+              }}
+            />
+          </div>
+          <div
+            style={{
+              fontSize: "17px",
+              fontWeight: 700,
+              color: "#64748B",
+            }}
+          >
+            Desktop OS • Click Action Guide
+          </div>
+          <div style={{ width: "40px" }} />
+        </div>
+
+        {/* Desktop Screen Area */}
+        <div
+          style={{
+            height: "190px",
+            backgroundColor: "#F8FAFC",
+            borderRadius: "16px",
+            border: "1px solid #E2E8F0",
+            padding: "20px",
+            position: "relative",
+          }}
+        >
+          {/* Target App Icon */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "8px",
+              position: "absolute",
+              left: "300px",
+              top: "20px",
+              transform: isClicked ? "scale(1.04)" : "scale(1)",
+            }}
+          >
+            <div
+              style={{
+                width: "80px",
+                height: "80px",
+                borderRadius: "18px",
+                backgroundColor: isClicked ? "#10B981" : "#3B82F6",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                boxShadow: isClicked
+                  ? "0 0 24px rgba(16, 185, 129, 0.4)"
+                  : "0 8px 16px rgba(0,0,0,0.12)",
+                fontSize: "40px",
+              }}
+            >
+              💻
+            </div>
+            <span
+              style={{
+                fontSize: "16px",
+                fontWeight: 700,
+                color: "#334155",
+                backgroundColor: "#FFFFFF",
+                padding: "2px 8px",
+                borderRadius: "6px",
+                border: "1px solid #E2E8F0",
+              }}
+            >
+              Programme.exe
+            </span>
+          </div>
+
+          {/* Click Shockwave Ripple */}
+          {isClicked && (
+            <div
+              style={{
+                position: "absolute",
+                left: "340px",
+                top: "60px",
+                width: "80px",
+                height: "80px",
+                borderRadius: "50%",
+                border: "3px solid #10B981",
+                transform: `translate(-50%, -50%) scale(${clickWave})`,
+                opacity: clickWaveOpacity,
+                pointerEvents: "none",
+              }}
+            />
+          )}
+
+          {/* Click Badge */}
+          {isClicked && (
+            <div
+              style={{
+                position: "absolute",
+                left: "405px",
+                top: "22px",
+                backgroundColor: "#10B981",
+                color: "#FFFFFF",
+                fontWeight: 800,
+                fontSize: "18px",
+                padding: "4px 14px",
+                borderRadius: "999px",
+                boxShadow: "0 4px 12px rgba(16, 185, 129, 0.3)",
+              }}
+            >
+              *CLICK!* 🖱️
+            </div>
+          )}
+
+          {/* Moving Mouse Cursor */}
+          <div
+            style={{
+              position: "absolute",
+              left: `${cursorX}px`,
+              top: `${cursorY}px`,
+              transform: isClicked ? "scale(0.85)" : "scale(1)",
+              zIndex: 30,
+              filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.25))",
+            }}
+          >
+            <svg width="44" height="44" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M4 3L11 20L14 13L21 11L4 3Z"
+                fill="#1E293B"
+                stroke="#FFFFFF"
+                strokeWidth="2"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
         </div>
       </div>
 
+      {/* Example Box */}
       <div
         style={{
           backgroundColor: "#FFFFFF",
@@ -987,13 +1354,14 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
             fontFamily: caveatFont,
             fontSize: "42px",
             color: "#1C1917",
+            lineHeight: 1.4,
           }}
         >
           👉 "To start the programme, first{" "}
           <span
             style={{
               backgroundColor: "rgba(254, 240, 138, 0.7)",
-              padding: "0 6px",
+              padding: "0 8px",
               borderRadius: "4px",
             }}
           >
@@ -1006,12 +1374,23 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
   );
 };
 
-/* --- SCENE 7: IPAD NOTEBOOK STORIES --- */
+/* --- SCENE 7: IPAD NOTEBOOK STORIES (With Animated Clapperboard & Hero Pop) --- */
 const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
   frame,
   fps,
 }) => {
   const enter = spring({ frame, fps, config: { damping: 14 } });
+
+  // Movie Clapper snap animation
+  const clapAngle = interpolate(frame, [0, 20, 35], [-25, 0, 0], {
+    extrapolateRight: "clamp",
+  });
+
+  const heroPop = spring({
+    frame: frame - 25,
+    fps,
+    config: { damping: 10, mass: 0.7 },
+  });
 
   return (
     <AbsoluteFill
@@ -1019,12 +1398,14 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
         display: "flex",
         flexDirection: "column",
         padding: "140px 60px 180px 60px",
-        gap: "24px",
+        gap: "22px",
       }}
     >
       <div
         style={{
-          display: "inline-block",
+          display: "inline-flex",
+          alignItems: "center",
+          gap: "8px",
           alignSelf: "flex-start",
           backgroundColor: "#FFE4E6",
           color: "#E11D48",
@@ -1035,34 +1416,147 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
           transform: `scale(${enter})`,
         }}
       >
-        🎬 Use #4: Stories & Movies
+        <span>🎬 USE #4 OF 4:</span>
+        <span style={{ fontWeight: 700 }}>Stories & Films</span>
       </div>
 
+      {/* MOVIE CLAPPERBOARD & HERO GRAPHIC CARD (iPad Note Card) */}
       <div
         style={{
           backgroundColor: "#FFFFFF",
           border: "1px solid #E2E8F0",
           borderRadius: "28px",
-          padding: "36px",
-          boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
+          padding: "28px 24px",
+          boxShadow: "0 12px 36px rgba(0,0,0,0.06)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-around",
           transform: `scale(${enter})`,
         }}
       >
-        <div style={{ fontSize: "26px", fontWeight: 800, color: "#1E293B" }}>
-          Plot Summaries
-        </div>
+        {/* Animated Movie Clapperboard */}
         <div
           style={{
-            fontFamily: caveatFont,
-            fontSize: "40px",
-            color: "#64748B",
-            marginTop: "10px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
           }}
         >
-          Use Present Simple when retelling film stories!
+          <div
+            style={{
+              position: "relative",
+              width: "185px",
+              height: "160px",
+            }}
+          >
+            {/* Clapper Top Moving Bar */}
+            <div
+              style={{
+                width: "185px",
+                height: "32px",
+                backgroundColor: "#1E293B",
+                border: "2px solid #0F172A",
+                borderRadius: "5px",
+                transformOrigin: "left bottom",
+                transform: `rotate(${clapAngle}deg)`,
+                backgroundImage:
+                  "repeating-linear-gradient(45deg, #FFFFFF, #FFFFFF 12px, #1E293B 12px, #1E293B 24px)",
+                marginBottom: "4px",
+              }}
+            />
+
+            {/* Clapperboard Body */}
+            <div
+              style={{
+                width: "185px",
+                height: "120px",
+                backgroundColor: "#1E293B",
+                border: "2px solid #0F172A",
+                borderRadius: "5px",
+                padding: "10px 12px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                boxShadow: "0 6px 16px rgba(0,0,0,0.15)",
+              }}
+            >
+              <div
+                style={{
+                  fontSize: "14px",
+                  fontWeight: 800,
+                  color: "#C084FC",
+                  letterSpacing: "1px",
+                }}
+              >
+                PROD: GRAMMAR REEL
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  fontSize: "13px",
+                  color: "#94A3B8",
+                  fontWeight: 700,
+                }}
+              >
+                <span>SCENE: 04</span>
+                <span>TAKE: 01</span>
+              </div>
+              <div
+                style={{
+                  fontSize: "18px",
+                  fontWeight: 900,
+                  color: "#FBBF24",
+                }}
+              >
+                ACTION! 🎬
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Hero Comic Action Badge */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            transform: `scale(${heroPop})`,
+          }}
+        >
+          <div
+            style={{
+              width: "130px",
+              height: "130px",
+              borderRadius: "50%",
+              background: "linear-gradient(135deg, #EC4899, #8B5CF6)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontSize: "68px",
+              boxShadow: "0 8px 25px rgba(236, 72, 153, 0.35)",
+            }}
+          >
+            🦸‍♂️
+          </div>
+          <div
+            style={{
+              marginTop: "12px",
+              backgroundColor: "rgba(168, 85, 247, 0.15)",
+              border: "1px solid #C084FC",
+              color: "#7E22CE",
+              padding: "4px 14px",
+              borderRadius: "999px",
+              fontSize: "17px",
+              fontWeight: 800,
+            }}
+          >
+            HERO SAVES VILLAGE!
+          </div>
         </div>
       </div>
 
+      {/* Example Box */}
       <div
         style={{
           backgroundColor: "#FFFFFF",
@@ -1077,13 +1571,14 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
             fontFamily: caveatFont,
             fontSize: "42px",
             color: "#1C1917",
+            lineHeight: 1.4,
           }}
         >
           👉 "In the film, the hero{" "}
           <span
             style={{
               backgroundColor: "rgba(254, 240, 138, 0.7)",
-              padding: "0 6px",
+              padding: "0 8px",
               borderRadius: "4px",
             }}
           >
