@@ -86,10 +86,11 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
 
       {/* Retro Brutalist Corner Badges */}
       <div
+        dir="auto"
         style={{
           position: "absolute",
           top: "40px",
-          left: "40px",
+          right: "40px",
           backgroundColor: "#FFFFFF",
           border: "4px solid #000000",
           boxShadow: "5px 5px 0px #000000",
@@ -98,7 +99,8 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
           fontWeight: 900,
           letterSpacing: "1px",
           zIndex: 40,
-          transform: "rotate(-2deg)",
+          transform: "rotate(2deg)",
+          textAlign: "right",
         }}
       >
         قواعد الإنجليزية #01
@@ -108,7 +110,7 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
         style={{
           position: "absolute",
           top: "40px",
-          right: "40px",
+          left: "40px",
           backgroundColor: "#FF7675",
           color: "#FFFFFF",
           border: "4px solid #000000",
@@ -117,7 +119,7 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
           fontSize: "22px",
           fontWeight: 900,
           zIndex: 40,
-          transform: "rotate(2deg)",
+          transform: "rotate(-2deg)",
         }}
       >
         ⏱️ {timeCode} / 01:00
@@ -237,11 +239,13 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
               🎙️ VOICEOVER
             </div>
             <div
+              dir="auto"
               style={{
                 fontSize: "32px",
                 fontWeight: 900,
                 lineHeight: 1.3,
                 color: "#000000",
+                textAlign: "right",
               }}
             >
               {activeCaption.text}
@@ -276,6 +280,7 @@ const Scene1BrutalistHook: React.FC<{ frame: number; fps: number }> = ({
     >
       {/* Pop-in Stamp Sticker */}
       <div
+        dir="auto"
         style={{
           backgroundColor: "#55EFC4",
           border: "5px solid #000000",
@@ -286,6 +291,7 @@ const Scene1BrutalistHook: React.FC<{ frame: number; fps: number }> = ({
           letterSpacing: "2px",
           transform: `scale(${popIn}) rotate(-3deg)`,
           marginBottom: "36px",
+          textAlign: "right",
         }}
       >
         ⚡ دورة سريعة في 60 ثانية
@@ -328,10 +334,11 @@ const Scene1BrutalistHook: React.FC<{ frame: number; fps: number }> = ({
             SIMPLE
           </span>
           <br />
-          في 60 ثانية ⏱️
+          <span dir="auto">في 60 ثانية ⏱️</span>
         </h1>
 
         <div
+          dir="auto"
           style={{
             backgroundColor: "#FFE600",
             border: "4px solid #000000",
@@ -341,6 +348,7 @@ const Scene1BrutalistHook: React.FC<{ frame: number; fps: number }> = ({
             fontWeight: 900,
             marginTop: "16px",
             display: "inline-block",
+            textAlign: "right",
           }}
         >
           👉 "لنشرحها خطوة بخطوة!"
@@ -371,9 +379,10 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
     >
       {/* Header Tag */}
       <div
+        dir="auto"
         style={{
           display: "inline-block",
-          alignSelf: "flex-start",
+          alignSelf: "flex-end",
           backgroundColor: "#55EFC4",
           border: "4px solid #000000",
           boxShadow: "6px 6px 0px #000000",
@@ -381,6 +390,7 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
           fontSize: "26px",
           fontWeight: 900,
           transform: `scale(${pop1}) rotate(-1.5deg)`,
+          textAlign: "right",
         }}
       >
         (+) قاعدة الإثبات (Positive)
@@ -422,6 +432,7 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
         </div>
 
         <div
+          dir="auto"
           style={{
             marginTop: "20px",
             backgroundColor: "#FF7675",
@@ -431,6 +442,7 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
             padding: "12px 20px",
             fontSize: "24px",
             fontWeight: 900,
+            textAlign: "right",
           }}
         >
           ⚠️ قاعدة: مع He / She / It ➔ نضيف -S أو -ES أو -IES!
@@ -535,17 +547,28 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
         }}
       >
         <div
+          dir="auto"
           style={{
-            backgroundColor: "#000000",
-            color: "#FFFFFF",
-            display: "inline-block",
-            padding: "6px 16px",
-            fontSize: "22px",
-            fontWeight: 900,
+            display: "flex",
+            justifyContent: "flex-end",
+            width: "100%",
             marginBottom: "14px",
           }}
         >
-          (–) صيغة النفي (Negative)
+          <div
+            dir="auto"
+            style={{
+              backgroundColor: "#000000",
+              color: "#FFFFFF",
+              display: "inline-block",
+              padding: "6px 16px",
+              fontSize: "22px",
+              fontWeight: 900,
+              textAlign: "right",
+            }}
+          >
+            (–) صيغة النفي (Negative)
+          </div>
         </div>
         <div style={{ fontSize: "36px", fontWeight: 900, color: "#000000" }}>
           Subject +{" "}
@@ -588,17 +611,28 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
         }}
       >
         <div
+          dir="auto"
           style={{
-            backgroundColor: "#000000",
-            color: "#FFFFFF",
-            display: "inline-block",
-            padding: "6px 16px",
-            fontSize: "22px",
-            fontWeight: 900,
+            display: "flex",
+            justifyContent: "flex-end",
+            width: "100%",
             marginBottom: "14px",
           }}
         >
-          (?) صيغة السؤال (Question)
+          <div
+            dir="auto"
+            style={{
+              backgroundColor: "#000000",
+              color: "#FFFFFF",
+              display: "inline-block",
+              padding: "6px 16px",
+              fontSize: "22px",
+              fontWeight: 900,
+              textAlign: "right",
+            }}
+          >
+            (?) صيغة السؤال (Question)
+          </div>
         </div>
         <div style={{ fontSize: "36px", fontWeight: 900 }}>
           <span
@@ -654,6 +688,7 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
       }}
     >
       <div
+        dir="auto"
         style={{
           backgroundColor: "#00F0FF",
           border: "4px solid #000000",
@@ -661,8 +696,9 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
           padding: "8px 24px",
           fontSize: "26px",
           fontWeight: 900,
-          alignSelf: "flex-start",
+          alignSelf: "flex-end",
           transform: `scale(${pop}) rotate(-2deg)`,
+          textAlign: "right",
         }}
       >
         الاستخدام 1: العادات والروتين (Habits)
@@ -679,19 +715,21 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
         }}
       >
         <div
+          dir="auto"
           style={{
             fontSize: "24px",
             fontWeight: 900,
             marginBottom: "30px",
             display: "flex",
             justifyContent: "space-between",
+            flexDirection: "row-reverse",
           }}
         >
-          <span>الماضي (Past)</span>
-          <span style={{ backgroundColor: "#FFE600", padding: "2px 10px", border: "2px solid #000" }}>
+          <span dir="auto">الماضي (Past)</span>
+          <span dir="auto" style={{ backgroundColor: "#FFE600", padding: "2px 10px", border: "2px solid #000" }}>
             الحاضر (Now)
           </span>
-          <span>المستقبل (Future) ➔</span>
+          <span dir="auto">المستقبل (Future) ➔</span>
         </div>
 
         {/* The Black Axis */}
@@ -738,7 +776,14 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
           ))}
         </div>
 
-        <div style={{ fontSize: "22px", fontWeight: 800, textAlign: "center" }}>
+        <div
+          dir="auto"
+          style={{
+            fontSize: "22px",
+            fontWeight: 800,
+            textAlign: "right",
+          }}
+        >
           أفعال متكررة عبر الزمن: تحدث دائماً!
         </div>
       </div>
@@ -817,6 +862,7 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
     >
       {/* Header Tag */}
       <div
+        dir="auto"
         style={{
           backgroundColor: "#FF7675",
           color: "#FFFFFF",
@@ -825,8 +871,9 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
           padding: "8px 24px",
           fontSize: "26px",
           fontWeight: 900,
-          alignSelf: "flex-start",
+          alignSelf: "flex-end",
           transform: `scale(${pop}) rotate(1.5deg)`,
+          textAlign: "right",
         }}
       >
         الاستخدام 2: الحقائق العلمية (Facts)
@@ -1019,6 +1066,7 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
           </div>
 
           <div
+            dir="auto"
             style={{
               marginTop: "14px",
               backgroundColor: "#55EFC4",
@@ -1028,6 +1076,7 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
               fontSize: "20px",
               fontWeight: 900,
               color: "#000000",
+              textAlign: "right",
             }}
           >
             ♨️ غليان الماء عند 100°م
@@ -1111,6 +1160,7 @@ const Scene6BrutalistInstructions: React.FC<{
       }}
     >
       <div
+        dir="auto"
         style={{
           backgroundColor: "#A29BFE",
           border: "4px solid #000000",
@@ -1118,8 +1168,9 @@ const Scene6BrutalistInstructions: React.FC<{
           padding: "8px 24px",
           fontSize: "26px",
           fontWeight: 900,
-          alignSelf: "flex-start",
+          alignSelf: "flex-end",
           transform: `scale(${pop}) rotate(-1.5deg)`,
+          textAlign: "right",
         }}
       >
         الاستخدام 3: إعطاء التعليمات (Instructions)
@@ -1139,10 +1190,12 @@ const Scene6BrutalistInstructions: React.FC<{
       >
         {/* Desktop Titlebar */}
         <div
+          dir="auto"
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
+            flexDirection: "row-reverse",
             borderBottom: "4px solid #000000",
             paddingBottom: "16px",
             marginBottom: "20px",
@@ -1178,6 +1231,7 @@ const Scene6BrutalistInstructions: React.FC<{
             />
           </div>
           <div
+            dir="auto"
             style={{
               fontSize: "20px",
               fontWeight: 900,
@@ -1185,6 +1239,7 @@ const Scene6BrutalistInstructions: React.FC<{
               backgroundColor: "#FFE600",
               border: "2px solid #000000",
               padding: "2px 10px",
+              textAlign: "right",
             }}
           >
             نظام التشغيل • التعليمات
@@ -1267,6 +1322,7 @@ const Scene6BrutalistInstructions: React.FC<{
           {/* Click Badge */}
           {isClicked && (
             <div
+              dir="auto"
               style={{
                 position: "absolute",
                 left: "435px",
@@ -1365,6 +1421,7 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
       }}
     >
       <div
+        dir="auto"
         style={{
           backgroundColor: "#55EFC4",
           border: "4px solid #000000",
@@ -1372,8 +1429,9 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
           padding: "8px 24px",
           fontSize: "26px",
           fontWeight: 900,
-          alignSelf: "flex-start",
+          alignSelf: "flex-end",
           transform: `scale(${pop}) rotate(2deg)`,
+          textAlign: "right",
         }}
       >
         الاستخدام 4: سرد القصص والأفلام (Stories)
@@ -1437,26 +1495,30 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
               }}
             >
               <div
+                dir="auto"
                 style={{
                   fontSize: "15px",
                   fontWeight: 900,
                   color: "#FFE600",
                   letterSpacing: "1px",
+                  textAlign: "right",
                 }}
               >
                 PROD: ملخص الفيلم
               </div>
               <div
+                dir="auto"
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
+                  flexDirection: "row-reverse",
                   fontSize: "13px",
                   color: "#FFFFFF",
                   fontWeight: 800,
                 }}
               >
-                <span>مشهد: 04</span>
-                <span>تصوير: 01</span>
+                <span dir="auto">مشهد: 04</span>
+                <span dir="auto">تصوير: 01</span>
               </div>
               <div
                 style={{
@@ -1496,6 +1558,7 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
             🦸‍♂️
           </div>
           <div
+            dir="auto"
             style={{
               marginTop: "12px",
               backgroundColor: "#FFE600",
@@ -1505,6 +1568,7 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
               padding: "4px 14px",
               fontSize: "18px",
               fontWeight: 900,
+              textAlign: "right",
             }}
           >
             البطل ينقذ أهل القرية!
@@ -1571,6 +1635,7 @@ const Scene8BrutalistCTA: React.FC<{ frame: number; fps: number }> = ({
       >
         <div style={{ fontSize: "70px", marginBottom: "16px" }}>🚀</div>
         <h2
+          dir="auto"
           style={{
             fontFamily: montserratFont,
             fontSize: "64px",
@@ -1581,10 +1646,11 @@ const Scene8BrutalistCTA: React.FC<{ frame: number; fps: number }> = ({
         >
           تابعنا للمزيد من
           <br />
-          قواعد الإنجليزية في دقيقة!
+          <span dir="auto">قواعد الإنجليزية في دقيقة!</span>
         </h2>
 
         <div
+          dir="auto"
           style={{
             backgroundColor: "#55EFC4",
             border: "4px solid #000000",
@@ -1599,6 +1665,7 @@ const Scene8BrutalistCTA: React.FC<{ frame: number; fps: number }> = ({
         </div>
 
         <div
+          dir="auto"
           style={{
             backgroundColor: "#000000",
             color: "#FFFFFF",
@@ -1610,7 +1677,7 @@ const Scene8BrutalistCTA: React.FC<{ frame: number; fps: number }> = ({
             display: "inline-block",
           }}
         >
-          + متابعة (Follow)
+          <span dir="auto">+ متابعة (Follow)</span>
         </div>
       </div>
     </AbsoluteFill>

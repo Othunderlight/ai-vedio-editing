@@ -712,6 +712,7 @@ export const SceneHook: React.FC<{
 
       {/* Main Bold Title */}
       <div
+        dir="auto"
         style={{
           textAlign: "center",
           transform: `scale(${titleEntrance}) translateY(${interpolate(
@@ -723,6 +724,7 @@ export const SceneHook: React.FC<{
         }}
       >
         <div
+          dir="auto"
           style={{
             backgroundColor: "rgba(245, 158, 11, 0.15)",
             color: accentColor,
@@ -739,6 +741,7 @@ export const SceneHook: React.FC<{
         </div>
 
         <h1
+          dir="auto"
           style={{
             fontFamily: montserratFont,
             fontSize: "82px",
@@ -750,6 +753,7 @@ export const SceneHook: React.FC<{
           Present Simple
           <br />
           <span
+            dir="auto"
             style={{
               color: accentColor,
               textShadow: `0 0 40px ${accentColor}80`,
@@ -762,6 +766,7 @@ export const SceneHook: React.FC<{
         </h1>
 
         <p
+          dir="auto"
           style={{
             fontSize: "34px",
             fontWeight: 600,
@@ -776,6 +781,7 @@ export const SceneHook: React.FC<{
 
         {/* Hook Breakdown Tag */}
         <div
+          dir="auto"
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -789,7 +795,7 @@ export const SceneHook: React.FC<{
           }}
         >
           <span>🔥</span>
-          <span>"تعال نفهم القاعدة خطوة بخطوة!"</span>
+          <span dir="auto">"تعال نفهم القاعدة خطوة بخطوة!"</span>
         </div>
       </div>
     </AbsoluteFill>
@@ -839,13 +845,20 @@ export const ScenePositive: React.FC<{
     >
       {/* Title Section Banner */}
       <div
+        dir="auto"
         style={{
           transform: `translateY(${interpolate(cardSlideIn, [0, 1], [-80, 0])}px)`,
           opacity: cardSlideIn,
           marginBottom: "36px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
+          textAlign: "right",
+          width: "100%",
         }}
       >
         <div
+          dir="auto"
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -860,15 +873,17 @@ export const ScenePositive: React.FC<{
             marginBottom: "16px",
           }}
         >
-          <span>(+) صيغة الإثبات (Positive)</span>
+          <span dir="auto">(+) صيغة الإثبات (Positive)</span>
         </div>
         <h2
+          dir="auto"
           style={{
             fontFamily: montserratFont,
             fontSize: "60px",
             fontWeight: 900,
             margin: 0,
             letterSpacing: "-1px",
+            textAlign: "right",
           }}
         >
           تركيب الجملة المثبتة
@@ -888,11 +903,13 @@ export const ScenePositive: React.FC<{
         }}
       >
         <div
+          dir="auto"
           style={{
             fontSize: "22px",
             fontWeight: 800,
             color: "#94A3B8",
             marginBottom: "14px",
+            textAlign: "right",
           }}
         >
           القاعدة الأساسية (Formula)
@@ -938,6 +955,7 @@ export const ScenePositive: React.FC<{
 
         {/* Rule Highlight Pill */}
         <div
+          dir="auto"
           style={{
             marginTop: "24px",
             padding: "16px 24px",
@@ -946,13 +964,15 @@ export const ScenePositive: React.FC<{
             border: "1px solid rgba(255, 255, 255, 0.1)",
             display: "flex",
             alignItems: "center",
+            justifyContent: "flex-end",
             gap: "16px",
+            textAlign: "right",
           }}
         >
-          <span style={{ fontSize: "28px" }}>⚠️</span>
-          <div style={{ fontSize: "24px", fontWeight: 700, color: "#E2E8F0" }}>
+          <div dir="auto" style={{ fontSize: "24px", fontWeight: 700, color: "#E2E8F0", textAlign: "right" }}>
             مع <span style={{ color: "#38BDF8" }}>He / She / It</span> ➔ نضيف{" "}
             <span
+              dir="auto"
               style={{
                 color: "#FBBF24",
                 fontWeight: 900,
@@ -965,6 +985,7 @@ export const ScenePositive: React.FC<{
             </span>
             !
           </div>
+          <span style={{ fontSize: "28px" }}>⚠️</span>
         </div>
       </div>
 
@@ -1005,6 +1026,7 @@ export const ScenePositive: React.FC<{
             </span>
           </div>
           <div
+            dir="auto"
             style={{
               backgroundColor: "rgba(56, 189, 248, 0.15)",
               color: "#38BDF8",
@@ -1055,6 +1077,7 @@ export const ScenePositive: React.FC<{
             </span>
           </div>
           <div
+            dir="auto"
             style={{
               backgroundColor: `${accentColor}25`,
               color: accentColor,
@@ -1152,8 +1175,19 @@ export const SceneNegativeAndQuestion: React.FC<{
       }}
     >
       {/* Title */}
-      <div style={{ marginBottom: "36px" }}>
+      <div
+        dir="auto"
+        style={{
+          marginBottom: "36px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
+          textAlign: "right",
+          width: "100%",
+        }}
+      >
         <div
+          dir="auto"
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -1168,15 +1202,17 @@ export const SceneNegativeAndQuestion: React.FC<{
             marginBottom: "16px",
           }}
         >
-          <span>(– & ؟) النفي وتكوين السؤال</span>
+          <span dir="auto">(– & ؟) النفي وتكوين السؤال</span>
         </div>
         <h2
+          dir="auto"
           style={{
             fontFamily: montserratFont,
             fontSize: "60px",
             fontWeight: 900,
             margin: 0,
             letterSpacing: "-1px",
+            textAlign: "right",
           }}
         >
           Negative & Questions
@@ -1201,23 +1237,28 @@ export const SceneNegativeAndQuestion: React.FC<{
         }}
       >
         <div
+          dir="auto"
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
+            flexDirection: "row-reverse",
             marginBottom: "16px",
           }}
         >
           <div
+            dir="auto"
             style={{
               fontSize: "28px",
               fontWeight: 900,
               color: "#FB7185",
+              textAlign: "right",
             }}
           >
             (–) قاعدة النفي (Negative)
           </div>
           <div
+            dir="auto"
             style={{
               backgroundColor: "rgba(244, 63, 94, 0.15)",
               color: "#FDA4AF",
@@ -1296,23 +1337,28 @@ export const SceneNegativeAndQuestion: React.FC<{
         }}
       >
         <div
+          dir="auto"
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
+            flexDirection: "row-reverse",
             marginBottom: "16px",
           }}
         >
           <div
+            dir="auto"
             style={{
               fontSize: "28px",
               fontWeight: 900,
               color: "#38BDF8",
+              textAlign: "right",
             }}
           >
             (؟) قاعدة السؤال (Questions)
           </div>
           <div
+            dir="auto"
             style={{
               backgroundColor: "rgba(56, 189, 248, 0.15)",
               color: "#7DD3FC",
@@ -1421,8 +1467,19 @@ export const SceneHabitsTimeline: React.FC<{
       }}
     >
       {/* Title */}
-      <div style={{ marginBottom: "30px" }}>
+      <div
+        dir="auto"
+        style={{
+          marginBottom: "30px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
+          textAlign: "right",
+          width: "100%",
+        }}
+      >
         <div
+          dir="auto"
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -1437,15 +1494,17 @@ export const SceneHabitsTimeline: React.FC<{
             marginBottom: "16px",
           }}
         >
-          <span>الاستخدام 1 من 4</span>
+          <span dir="auto">الاستخدام 1 من 4</span>
         </div>
         <h2
+          dir="auto"
           style={{
             fontFamily: montserratFont,
             fontSize: "60px",
             fontWeight: 900,
             margin: 0,
             letterSpacing: "-1px",
+            textAlign: "right",
           }}
         >
           1. العادات والروتين اليومي (Habits)
@@ -1465,6 +1524,7 @@ export const SceneHabitsTimeline: React.FC<{
         }}
       >
         <div
+          dir="auto"
           style={{
             fontSize: "22px",
             fontWeight: 800,
@@ -1472,10 +1532,11 @@ export const SceneHabitsTimeline: React.FC<{
             marginBottom: "30px",
             display: "flex",
             justifyContent: "space-between",
+            flexDirection: "row-reverse",
           }}
         >
-          <span>خط زمني لتكرار الحدث (Timeline)</span>
-          <span style={{ color: accentColor }}>الماضي ➔ الحاضر ➔ المستقبل</span>
+          <span dir="auto">خط زمني لتكرار الحدث (Timeline)</span>
+          <span dir="auto" style={{ color: accentColor }}>الماضي ➔ الحاضر ➔ المستقبل</span>
         </div>
 
         {/* The Timeline SVG Track */}
@@ -1550,6 +1611,7 @@ export const SceneHabitsTimeline: React.FC<{
                 X
               </div>
               <span
+                dir="auto"
                 style={{
                   marginTop: "16px",
                   fontSize: "16px",
@@ -1566,8 +1628,9 @@ export const SceneHabitsTimeline: React.FC<{
 
         {/* Caption beneath timeline */}
         <div
+          dir="auto"
           style={{
-            textAlign: "center",
+            textAlign: "right",
             fontSize: "24px",
             fontWeight: 700,
             color: "#CBD5E1",
@@ -1580,9 +1643,11 @@ export const SceneHabitsTimeline: React.FC<{
 
       {/* Floating Keywords tags */}
       <div
+        dir="auto"
         style={{
           display: "flex",
           flexWrap: "wrap",
+          justifyContent: "flex-end",
           gap: "14px",
           marginBottom: "30px",
         }}
@@ -1595,6 +1660,7 @@ export const SceneHabitsTimeline: React.FC<{
         ].map((kw, i) => (
           <div
             key={i}
+            dir="auto"
             style={{
               backgroundColor: "rgba(245, 158, 11, 0.15)",
               border: "1.5px solid rgba(245, 158, 11, 0.4)",
@@ -1691,8 +1757,19 @@ export const SceneFactsTruths: React.FC<{
       }}
     >
       {/* Header */}
-      <div style={{ marginBottom: "30px" }}>
+      <div
+        dir="auto"
+        style={{
+          marginBottom: "30px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
+          textAlign: "right",
+          width: "100%",
+        }}
+      >
         <div
+          dir="auto"
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -1707,15 +1784,17 @@ export const SceneFactsTruths: React.FC<{
             marginBottom: "16px",
           }}
         >
-          <span>الاستخدام 2 من 4</span>
+          <span dir="auto">الاستخدام 2 من 4</span>
         </div>
         <h2
+          dir="auto"
           style={{
             fontFamily: montserratFont,
             fontSize: "60px",
             fontWeight: 900,
             margin: 0,
             letterSpacing: "-1px",
+            textAlign: "right",
           }}
         >
           2. الحقائق العلمية والثوابت (Facts)
@@ -1922,11 +2001,13 @@ export const SceneFactsTruths: React.FC<{
           </div>
 
           <div
+            dir="auto"
             style={{
               marginTop: "16px",
               fontSize: "22px",
               fontWeight: 800,
               color: "#38BDF8",
+              textAlign: "right",
             }}
           >
             ♨️ غليان الماء عند 100°م (حقيقة علمية)
@@ -2028,8 +2109,19 @@ export const SceneInstructions: React.FC<{
       }}
     >
       {/* Header */}
-      <div style={{ marginBottom: "30px" }}>
+      <div
+        dir="auto"
+        style={{
+          marginBottom: "30px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
+          textAlign: "right",
+          width: "100%",
+        }}
+      >
         <div
+          dir="auto"
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -2044,15 +2136,17 @@ export const SceneInstructions: React.FC<{
             marginBottom: "16px",
           }}
         >
-          <span>الاستخدام 3 من 4</span>
+          <span dir="auto">الاستخدام 3 من 4</span>
         </div>
         <h2
+          dir="auto"
           style={{
             fontFamily: montserratFont,
             fontSize: "60px",
             fontWeight: 900,
             margin: 0,
             letterSpacing: "-1px",
+            textAlign: "right",
           }}
         >
           3. إعطاء التعليمات والتوجيهات (Instructions)
@@ -2075,10 +2169,12 @@ export const SceneInstructions: React.FC<{
       >
         {/* Desktop Titlebar */}
         <div
+          dir="auto"
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
+            flexDirection: "row-reverse",
             borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
             paddingBottom: "18px",
             marginBottom: "26px",
@@ -2111,10 +2207,12 @@ export const SceneInstructions: React.FC<{
             />
           </div>
           <div
+            dir="auto"
             style={{
               fontSize: "18px",
               fontWeight: 700,
               color: "#94A3B8",
+              textAlign: "right",
             }}
           >
             نظام التشغيل • خطوات التشغيل والضغط
@@ -2201,6 +2299,7 @@ export const SceneInstructions: React.FC<{
           {/* Click Badge */}
           {isClicked && (
             <div
+              dir="auto"
               style={{
                 position: "absolute",
                 left: "430px",
@@ -2315,8 +2414,19 @@ export const SceneStoriesFilms: React.FC<{
       }}
     >
       {/* Header */}
-      <div style={{ marginBottom: "30px" }}>
+      <div
+        dir="auto"
+        style={{
+          marginBottom: "30px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
+          textAlign: "right",
+          width: "100%",
+        }}
+      >
         <div
+          dir="auto"
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -2331,15 +2441,17 @@ export const SceneStoriesFilms: React.FC<{
             marginBottom: "16px",
           }}
         >
-          <span>الاستخدام 4 من 4</span>
+          <span dir="auto">الاستخدام 4 من 4</span>
         </div>
         <h2
+          dir="auto"
           style={{
             fontFamily: montserratFont,
             fontSize: "60px",
             fontWeight: 900,
             margin: 0,
             letterSpacing: "-1px",
+            textAlign: "right",
           }}
         >
           4. سرد القصص وتلخيص الأفلام (Stories)
@@ -2387,7 +2499,7 @@ export const SceneStoriesFilms: React.FC<{
                 transformOrigin: "left bottom",
                 transform: `rotate(${clapAngle}deg)`,
                 backgroundImage:
-                  "repeating-linear-gradient(45deg, #FFFFFF, #FFFFFF 15px, #0F172A 15px, #0F172A 30px)",
+                    "repeating-linear-gradient(45deg, #FFFFFF, #FFFFFF 15px, #0F172A 15px, #0F172A 30px)",
                 marginBottom: "4px",
               }}
             />
@@ -2407,26 +2519,30 @@ export const SceneStoriesFilms: React.FC<{
               }}
             >
               <div
+                dir="auto"
                 style={{
                   fontSize: "16px",
                   fontWeight: 900,
                   color: "#C084FC",
                   letterSpacing: "1px",
+                  textAlign: "right",
                 }}
               >
                 PROD: ملخص الفيلم
               </div>
               <div
+                dir="auto"
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
+                  flexDirection: "row-reverse",
                   fontSize: "14px",
                   color: "#94A3B8",
                   fontWeight: 700,
                 }}
               >
-                <span>مشهد: 04</span>
-                <span>تصوير: 01</span>
+                <span dir="auto">مشهد: 04</span>
+                <span dir="auto">تصوير: 01</span>
               </div>
               <div
                 style={{
@@ -2466,6 +2582,7 @@ export const SceneStoriesFilms: React.FC<{
             🦸‍♂️
           </div>
           <div
+            dir="auto"
             style={{
               marginTop: "16px",
               backgroundColor: "rgba(168, 85, 247, 0.25)",
@@ -2475,6 +2592,7 @@ export const SceneStoriesFilms: React.FC<{
               borderRadius: "999px",
               fontSize: "20px",
               fontWeight: 800,
+              textAlign: "right",
             }}
           >
             البطل ينقذ أهل القرية!
@@ -2578,6 +2696,7 @@ export const SceneCallToAction: React.FC<{
         </div>
 
         <h2
+          dir="auto"
           style={{
             fontFamily: montserratFont,
             fontSize: "60px",
@@ -2588,10 +2707,11 @@ export const SceneCallToAction: React.FC<{
         >
           تابعنا للمزيد من
           <br />
-          <span style={{ color: accentColor }}>قواعد الإنجليزية في دقيقة!</span>
+          <span dir="auto" style={{ color: accentColor }}>قواعد الإنجليزية في دقيقة!</span>
         </h2>
 
         <p
+          dir="auto"
           style={{
             fontSize: "28px",
             fontWeight: 600,
@@ -2605,6 +2725,7 @@ export const SceneCallToAction: React.FC<{
 
         {/* Comment prompt Box */}
         <div
+          dir="auto"
           style={{
             backgroundColor: "rgba(15, 23, 42, 0.8)",
             border: "2px dashed rgba(255, 255, 255, 0.2)",
@@ -2619,6 +2740,7 @@ export const SceneCallToAction: React.FC<{
         >
           <span style={{ fontSize: "36px" }}>💬</span>
           <span
+            dir="auto"
             style={{
               fontSize: "28px",
               fontWeight: 700,
@@ -2631,6 +2753,7 @@ export const SceneCallToAction: React.FC<{
 
         {/* Animated Follow Button */}
         <div
+          dir="auto"
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -2647,7 +2770,7 @@ export const SceneCallToAction: React.FC<{
             }`,
           }}
         >
-          <span>{isFollowClicked ? "تمت المتابعة ✔️" : "+ متابعة (Follow)"}</span>
+          <span dir="auto">{isFollowClicked ? "تمت المتابعة ✔️" : "+ متابعة (Follow)"}</span>
         </div>
       </div>
     </AbsoluteFill>

@@ -323,6 +323,7 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
         {/* Chapter Eyebrow ("Chapter 5 of 10" / "الفصل 1 من 2") - Only if provided */}
         {hasSubtitle && (
           <div
+            dir="auto"
             style={{
               fontFamily: activeFont,
               fontSize: isVertical ? (isArabic ? 38 : 34) : (isArabic ? 34 : 32),
@@ -341,6 +342,7 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
 
         {/* Main Title Heading */}
         <div
+          dir="auto"
           style={{
             display: "flex",
             flexDirection: "column",
@@ -350,6 +352,7 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
           }}
         >
           <div
+            dir="auto"
             style={{
               fontFamily: activeFont,
               fontSize: line1FontSize,
@@ -367,6 +370,7 @@ export const Overlay: React.FC<ChapterTransitionProps> = ({
           </div>
           {titleLine2 && titleLine2.trim().length > 0 && (
             <div
+              dir="auto"
               style={{
                 fontFamily: activeFont,
                 fontSize: line2FontSize,

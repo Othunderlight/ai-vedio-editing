@@ -100,6 +100,7 @@ export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
           <span style={{ fontSize: "14px", color: "#A8A29E" }}>• iPad</span>
         </div>
         <div
+          dir="auto"
           style={{
             backgroundColor: "#FFFFFF",
             padding: "6px 20px",
@@ -109,6 +110,7 @@ export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
             fontSize: "18px",
             fontWeight: 700,
             color: "#44403C",
+            textAlign: "right",
           }}
         >
           📓 مذكرة القواعد • المضارع البسيط (Present Simple)
@@ -249,6 +251,7 @@ export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
             }}
           >
             <div
+              dir="auto"
               style={{
                 fontSize: "14px",
                 fontWeight: 700,
@@ -260,6 +263,7 @@ export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
               🎙️ ملاحظات المعلم
             </div>
             <div
+              dir="auto"
               style={{
                 fontSize: "30px",
                 fontWeight: 700,
@@ -325,6 +329,7 @@ const Scene1IpadHook: React.FC<{ frame: number; fps: number }> = ({
         />
 
         <div
+          dir="auto"
           style={{
             display: "inline-block",
             backgroundColor: "#ECFDF5",
@@ -341,6 +346,7 @@ const Scene1IpadHook: React.FC<{ frame: number; fps: number }> = ({
         </div>
 
         <h1
+          dir="auto"
           style={{
             fontSize: "76px",
             fontWeight: 800,
@@ -351,7 +357,7 @@ const Scene1IpadHook: React.FC<{ frame: number; fps: number }> = ({
         >
           Present Simple
           <br />
-          <span style={{ position: "relative", display: "inline-block" }}>
+          <span dir="auto" style={{ position: "relative", display: "inline-block" }}>
             في 60 ثانية ⏱️
             {/* Highlighter Wipe Underneath */}
             <span
@@ -370,6 +376,7 @@ const Scene1IpadHook: React.FC<{ frame: number; fps: number }> = ({
         </h1>
 
         <div
+          dir="auto"
           style={{
             fontFamily: caveatFont,
             fontSize: "44px",
@@ -408,9 +415,10 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
     >
       {/* Chapter Tag */}
       <div
+        dir="auto"
         style={{
           display: "inline-block",
-          alignSelf: "flex-start",
+          alignSelf: "flex-end",
           backgroundColor: "#DCFCE7",
           color: "#166534",
           padding: "8px 24px",
@@ -418,6 +426,7 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
           fontSize: "22px",
           fontWeight: 800,
           transform: `scale(${enter})`,
+          textAlign: "right",
         }}
       >
         📌 القاعدة 1: صيغة الإثبات (Positive)
@@ -440,6 +449,7 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
 
         {/* Highlight Note */}
         <div
+          dir="auto"
           style={{
             position: "relative",
             marginTop: "16px",
@@ -447,6 +457,7 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
             fontSize: "28px",
             fontWeight: 700,
             color: "#B45309",
+            textAlign: "right",
           }}
         >
           مع He / She / It ➔ نضيف{" "}
@@ -571,18 +582,29 @@ const Scene3IpadNegAndQ: React.FC<{ frame: number; fps: number }> = ({
         }}
       >
         <div
+          dir="auto"
           style={{
-            display: "inline-block",
-            backgroundColor: "#FFE4E6",
-            color: "#E11D48",
-            padding: "4px 18px",
-            borderRadius: "14px",
-            fontSize: "18px",
-            fontWeight: 800,
+            display: "flex",
+            justifyContent: "flex-end",
+            width: "100%",
             marginBottom: "12px",
           }}
         >
-          (–) صيغة النفي: don't / doesn't
+          <div
+            dir="auto"
+            style={{
+              display: "inline-block",
+              backgroundColor: "#FFE4E6",
+              color: "#E11D48",
+              padding: "4px 18px",
+              borderRadius: "14px",
+              fontSize: "18px",
+              fontWeight: 800,
+              textAlign: "right",
+            }}
+          >
+            (–) صيغة النفي: don't / doesn't
+          </div>
         </div>
         <div style={{ fontSize: "30px", fontWeight: 700, color: "#1C1917" }}>
           Subject +{" "}
@@ -615,18 +637,29 @@ const Scene3IpadNegAndQ: React.FC<{ frame: number; fps: number }> = ({
         }}
       >
         <div
+          dir="auto"
           style={{
-            display: "inline-block",
-            backgroundColor: "#E0F2FE",
-            color: "#0284C7",
-            padding: "4px 18px",
-            borderRadius: "14px",
-            fontSize: "18px",
-            fontWeight: 800,
+            display: "flex",
+            justifyContent: "flex-end",
+            width: "100%",
             marginBottom: "12px",
           }}
         >
-          (?) صيغة السؤال: Do / Does
+          <div
+            dir="auto"
+            style={{
+              display: "inline-block",
+              backgroundColor: "#E0F2FE",
+              color: "#0284C7",
+              padding: "4px 18px",
+              borderRadius: "14px",
+              fontSize: "18px",
+              fontWeight: 800,
+              textAlign: "right",
+            }}
+          >
+            (?) صيغة السؤال: Do / Does
+          </div>
         </div>
         <div style={{ fontSize: "30px", fontWeight: 700, color: "#1C1917" }}>
           <span style={{ color: "#0284C7", fontWeight: 800 }}>Do / Does</span> +
@@ -664,9 +697,10 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
       }}
     >
       <div
+        dir="auto"
         style={{
           display: "inline-block",
-          alignSelf: "flex-start",
+          alignSelf: "flex-end",
           backgroundColor: "#FEF3C7",
           color: "#B45309",
           padding: "8px 24px",
@@ -674,6 +708,7 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
           fontSize: "22px",
           fontWeight: 800,
           transform: `scale(${enter})`,
+          textAlign: "right",
         }}
       >
         📅 الاستخدام 1: العادات والروتين (Habits)
@@ -691,18 +726,20 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
         }}
       >
         <div
+          dir="auto"
           style={{
             display: "flex",
             justifyContent: "space-between",
+            flexDirection: "row-reverse",
             fontSize: "20px",
             fontWeight: 700,
             color: "#64748B",
             marginBottom: "24px",
           }}
         >
-          <span>الماضي (Past)</span>
-          <span style={{ color: "#059669", fontWeight: 800 }}>الحاضر (Now)</span>
-          <span>المستقبل (Future)</span>
+          <span dir="auto">الماضي (Past)</span>
+          <span dir="auto" style={{ color: "#059669", fontWeight: 800 }}>الحاضر (Now)</span>
+          <span dir="auto">المستقبل (Future)</span>
         </div>
 
         {/* Drawn Timeline */}
@@ -744,11 +781,12 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
         </div>
 
         <div
+          dir="auto"
           style={{
             fontFamily: caveatFont,
             fontSize: "32px",
             color: "#64748B",
-            textAlign: "center",
+            textAlign: "right",
             marginTop: "12px",
           }}
         >
@@ -843,11 +881,12 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
     >
       {/* Category Pill Tag */}
       <div
+        dir="auto"
         style={{
           display: "inline-flex",
           alignItems: "center",
           gap: "8px",
-          alignSelf: "flex-start",
+          alignSelf: "flex-end",
           backgroundColor: "#DCFCE7",
           color: "#166534",
           padding: "8px 24px",
@@ -855,10 +894,11 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
           fontSize: "22px",
           fontWeight: 800,
           transform: `scale(${enter})`,
+          textAlign: "right",
         }}
       >
-        <span>🔬 الاستخدام 2 من 4:</span>
-        <span style={{ fontWeight: 700 }}>الحقائق العلمية (Facts & Scientific Truths)</span>
+        <span dir="auto">🔬 الاستخدام 2 من 4:</span>
+        <span dir="auto" style={{ fontWeight: 700 }}>الحقائق العلمية (Facts & Scientific Truths)</span>
       </div>
 
       {/* SCIENTIFIC THERMOMETER & BOILING LAB CARD (iPad Note Card) */}
@@ -1060,12 +1100,14 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
           </div>
 
           <div
+            dir="auto"
             style={{
               marginTop: "12px",
               fontFamily: caveatFont,
               fontSize: "26px",
               color: "#0369A1",
               fontWeight: 700,
+              textAlign: "right",
             }}
           >
             ♨️ غليان الماء عند 100°م (Boiling water)
@@ -1146,11 +1188,12 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
       }}
     >
       <div
+        dir="auto"
         style={{
           display: "inline-flex",
           alignItems: "center",
           gap: "8px",
-          alignSelf: "flex-start",
+          alignSelf: "flex-end",
           backgroundColor: "#F3E8FF",
           color: "#7E22CE",
           padding: "8px 24px",
@@ -1158,10 +1201,11 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
           fontSize: "22px",
           fontWeight: 800,
           transform: `scale(${enter})`,
+          textAlign: "right",
         }}
       >
-        <span>📋 الاستخدام 3 من 4:</span>
-        <span style={{ fontWeight: 700 }}>إعطاء التعليمات والإرشادات (Instructions)</span>
+        <span dir="auto">📋 الاستخدام 3 من 4:</span>
+        <span dir="auto" style={{ fontWeight: 700 }}>إعطاء التعليمات والإرشادات (Instructions)</span>
       </div>
 
       {/* COMPUTER DESKTOP UI WINDOW CARD (iPad Digital Study Frame) */}
@@ -1179,10 +1223,12 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
       >
         {/* Window Titlebar */}
         <div
+          dir="auto"
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
+            flexDirection: "row-reverse",
             borderBottom: "1px solid #E2E8F0",
             paddingBottom: "14px",
             marginBottom: "18px",
@@ -1215,10 +1261,12 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
             />
           </div>
           <div
+            dir="auto"
             style={{
               fontSize: "17px",
               fontWeight: 700,
               color: "#64748B",
+              textAlign: "right",
             }}
           >
             نظام التشغيل • إرشادات النقر
@@ -1303,6 +1351,7 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
           {/* Click Badge */}
           {isClicked && (
             <div
+              dir="auto"
               style={{
                 position: "absolute",
                 left: "405px",
@@ -1407,11 +1456,12 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
       }}
     >
       <div
+        dir="auto"
         style={{
           display: "inline-flex",
           alignItems: "center",
           gap: "8px",
-          alignSelf: "flex-start",
+          alignSelf: "flex-end",
           backgroundColor: "#FFE4E6",
           color: "#E11D48",
           padding: "8px 24px",
@@ -1419,10 +1469,11 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
           fontSize: "22px",
           fontWeight: 800,
           transform: `scale(${enter})`,
+          textAlign: "right",
         }}
       >
-        <span>🎬 الاستخدام 4 من 4:</span>
-        <span style={{ fontWeight: 700 }}>سرد القصص وحبكات الأفلام (Stories)</span>
+        <span dir="auto">🎬 الاستخدام 4 من 4:</span>
+        <span dir="auto" style={{ fontWeight: 700 }}>سرد القصص وحبكات الأفلام (Stories)</span>
       </div>
 
       {/* MOVIE CLAPPERBOARD & HERO GRAPHIC CARD (iPad Note Card) */}
@@ -1486,26 +1537,30 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
               }}
             >
               <div
+                dir="auto"
                 style={{
                   fontSize: "14px",
                   fontWeight: 800,
                   color: "#C084FC",
                   letterSpacing: "1px",
+                  textAlign: "right",
                 }}
               >
                 PROD: ملخص الفيلم
               </div>
               <div
+                dir="auto"
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
+                  flexDirection: "row-reverse",
                   fontSize: "13px",
                   color: "#94A3B8",
                   fontWeight: 700,
                 }}
               >
-                <span>مشهد: 04</span>
-                <span>تصوير: 01</span>
+                <span dir="auto">مشهد: 04</span>
+                <span dir="auto">تصوير: 01</span>
               </div>
               <div
                 style={{
@@ -1545,6 +1600,7 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
             🦸‍♂️
           </div>
           <div
+            dir="auto"
             style={{
               marginTop: "12px",
               backgroundColor: "rgba(168, 85, 247, 0.15)",
@@ -1554,6 +1610,7 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
               borderRadius: "999px",
               fontSize: "17px",
               fontWeight: 800,
+              textAlign: "right",
             }}
           >
             البطل ينقذ أهل القرية!
@@ -1626,13 +1683,20 @@ const Scene8IpadCTA: React.FC<{ frame: number; fps: number }> = ({
         }}
       >
         <div style={{ fontSize: "64px", marginBottom: "12px" }}>✏️</div>
-        <h2 style={{ fontSize: "56px", fontWeight: 800, margin: "0 0 16px 0" }}>
+        <h2
+          dir="auto"
+          style={{ fontSize: "56px", fontWeight: 800, margin: "0 0 16px 0" }}
+        >
           احفظ هذه الملاحظة! 📌
         </h2>
-        <p style={{ fontSize: "28px", color: "#64748B", margin: "0 0 28px 0" }}>
+        <p
+          dir="auto"
+          style={{ fontSize: "28px", color: "#64748B", margin: "0 0 28px 0" }}
+        >
           اكتب جملتك في التعليقات وسأصححها لك فوراً!
         </p>
         <div
+          dir="auto"
           style={{
             backgroundColor: "#10B981",
             color: "#FFFFFF",
