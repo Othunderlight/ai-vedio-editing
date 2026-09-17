@@ -25,6 +25,11 @@ import {
   StandaloneStoriesScene,
   StandaloneCTAScene,
 } from "./components/PresentSimpleReel";
+import { NeoBrutalismReel } from "./components/variants/NeoBrutalismReel";
+import { IpadNotesReel } from "./components/variants/IpadNotesReel";
+import { KineticTypographyReel } from "./components/variants/KineticTypographyReel";
+import { RetroDesktopReel } from "./components/variants/RetroDesktopReel";
+import { MinimalCorporateReel } from "./components/variants/MinimalCorporateReel";
 
 // --- PRESENT SIMPLE 60-SECOND EDUCATIONAL REEL ---
 const presentSimpleReelDefaultProps: PresentSimpleReelProps = {
@@ -727,6 +732,79 @@ export const RemotionRoot: React.FC = () => {
           defaultProps={{ accentColor: "#F59E0B" }}
         />
       </Folder>
+    </Folder>
+
+    {/* 4. PRESENT SIMPLE DESIGN VARIANTS (Choose between 5 Distinct Styles) */}
+    <Folder name="present-simple-design-variants">
+      {/* Variant 1: Neo-Brutalism Style */}
+      <Composition
+        id="Variant-1-Neo-Brutalism"
+        component={NeoBrutalismReel}
+        durationInFrames={1800}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{
+          backgroundColor: "#FFF9D2",
+          showCaptions: true,
+        }}
+      />
+
+      {/* Variant 2: Modern iPad Note-Taking Style */}
+      <Composition
+        id="Variant-2-Modern-iPad-Notes"
+        component={IpadNotesReel}
+        durationInFrames={1800}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{
+          paperColor: "#FAF8F5",
+          showCaptions: true,
+        }}
+      />
+
+      {/* Variant 3: Bold Kinetic Typography Style */}
+      <Composition
+        id="Variant-3-Kinetic-Typography"
+        component={KineticTypographyReel}
+        durationInFrames={1800}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{
+          backgroundColor: "#000000",
+          showCaptions: true,
+        }}
+      />
+
+      {/* Variant 4: 90s Retro / Lo-Fi Desktop Style */}
+      <Composition
+        id="Variant-4-90s-Retro-Desktop"
+        component={RetroDesktopReel}
+        durationInFrames={1800}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{
+          showCaptions: true,
+        }}
+      />
+
+      {/* Variant 5: Premium Minimalist Corporate Style */}
+      <Composition
+        id="Variant-5-Premium-Minimalist"
+        component={MinimalCorporateReel}
+        durationInFrames={1800}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={{
+          brandColor: "#0F172A",
+          accentBlue: "#2563EB",
+          showCaptions: true,
+        }}
+      />
     </Folder>
     </>
   );
