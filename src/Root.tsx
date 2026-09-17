@@ -13,6 +13,26 @@ import {
   NotebookGrammarProps,
   NotebookGrammarReel,
 } from "./components/NotebookGrammarReel";
+import {
+  PresentSimpleReel,
+  PresentSimpleReelProps,
+  StandaloneHookScene,
+  StandalonePositiveScene,
+  StandaloneNegativeScene,
+  StandaloneHabitsScene,
+  StandaloneFactsScene,
+  StandaloneInstructionsScene,
+  StandaloneStoriesScene,
+  StandaloneCTAScene,
+} from "./components/PresentSimpleReel";
+
+// --- PRESENT SIMPLE 60-SECOND EDUCATIONAL REEL ---
+const presentSimpleReelDefaultProps: PresentSimpleReelProps = {
+  accentColor: "#F59E0B",
+  showVoiceoverCaptions: true,
+  showSoundEffects: true,
+  showTopTracker: true,
+};
 
 // --- PRESENT SIMPLE NOTEBOOK GRAMMAR REEL (Matching user reference video) ---
 const presentSimpleNotebookProps: NotebookGrammarProps = {
@@ -602,6 +622,111 @@ export const RemotionRoot: React.FC = () => {
         height={1920}
         defaultProps={tutorial01Props}
       />
+    </Folder>
+
+    {/* 3. NEW: PRESENT SIMPLE IN 60 SECONDS (1080x1920 Vertical Reel) */}
+    <Folder name="present-simple-in-60-seconds">
+      {/* Master 60-Second Full Educational Reel (1800 frames @ 30fps) */}
+      <Composition
+        id="Reel-Present-Simple-60s-Master"
+        component={PresentSimpleReel}
+        durationInFrames={1800}
+        fps={30}
+        width={1080}
+        height={1920}
+        defaultProps={presentSimpleReelDefaultProps}
+      />
+
+      {/* Individual Scene Breakdown for rapid testing, previewing & targeted exporting */}
+      <Folder name="Scenes-Breakdown">
+        {/* Scene 1: Hook & Title (0:00 - 0:05 | 150 frames) */}
+        <Composition
+          id="Scene-01-Title-Hook"
+          component={StandaloneHookScene}
+          durationInFrames={150}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{ accentColor: "#F59E0B" }}
+        />
+
+        {/* Scene 2: Structure (+) Positive Form (0:05 - 0:18 | 390 frames) */}
+        <Composition
+          id="Scene-02-Positive-Structure"
+          component={StandalonePositiveScene}
+          durationInFrames={390}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{ accentColor: "#F59E0B" }}
+        />
+
+        {/* Scene 3: Structure (– & ?) Negatives & Questions (0:18 - 0:26 | 240 frames) */}
+        <Composition
+          id="Scene-03-Negative-Questions"
+          component={StandaloneNegativeScene}
+          durationInFrames={240}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{ accentColor: "#F59E0B" }}
+        />
+
+        {/* Scene 4: Use 1: Habits & Routine Timeline (0:26 - 0:38 | 360 frames) */}
+        <Composition
+          id="Scene-04-Habits-Timeline"
+          component={StandaloneHabitsScene}
+          durationInFrames={360}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{ accentColor: "#F59E0B" }}
+        />
+
+        {/* Scene 5: Use 2: Facts & Truths Boiling Water (0:38 - 0:45 | 210 frames) */}
+        <Composition
+          id="Scene-05-Facts-BoilingWater"
+          component={StandaloneFactsScene}
+          durationInFrames={210}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{ accentColor: "#F59E0B" }}
+        />
+
+        {/* Scene 6: Use 3: Instructions Desktop Click (0:45 - 0:51 | 180 frames) */}
+        <Composition
+          id="Scene-06-Instructions-Desktop"
+          component={StandaloneInstructionsScene}
+          durationInFrames={180}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{ accentColor: "#F59E0B" }}
+        />
+
+        {/* Scene 7: Use 4: Stories & Films Clapperboard (0:51 - 0:56 | 150 frames) */}
+        <Composition
+          id="Scene-07-Stories-Films"
+          component={StandaloneStoriesScene}
+          durationInFrames={150}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{ accentColor: "#F59E0B" }}
+        />
+
+        {/* Scene 8: Call to Action & End Card (0:56 - 1:00 | 120 frames) */}
+        <Composition
+          id="Scene-08-CTA-EndCard"
+          component={StandaloneCTAScene}
+          durationInFrames={120}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{ accentColor: "#F59E0B" }}
+        />
+      </Folder>
     </Folder>
     </>
   );

@@ -1,6 +1,6 @@
 {
   "name": "AI Video Editing",
-  "description": "Remotion video motion graphics with chapter transitions, pricing comparisons, and Instagram English tutorial notebook animations",
+  "description": "Remotion video motion graphics featuring Present Simple in 60 Seconds vertical educational reel, chapter transitions, and animated tutorial sequences",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

@@ -1,6 +1,5 @@
-import { loadFont as loadAmiri } from "@remotion/google-fonts/Amiri";
-import { loadFont as loadLora } from "@remotion/google-fonts/Lora";
 import { loadFont as loadCairo } from "@remotion/google-fonts/Cairo";
+import { loadFont as loadPlayfairDisplay } from "@remotion/google-fonts/PlayfairDisplay";
 import React from "react";
 import {
   AbsoluteFill,
@@ -13,19 +12,14 @@ import {
   useVideoConfig,
 } from "remotion";
 
-const { fontFamily: amiriFont } = loadAmiri("normal", {
-  subsets: ["arabic", "latin"],
-  weights: ["400", "700"],
-});
-
 const { fontFamily: cairoFont } = loadCairo("normal", {
   subsets: ["arabic", "latin"],
   weights: ["600", "700", "800"],
 });
 
-const { fontFamily: loraFont } = loadLora("normal", {
+const { fontFamily: editorialSerif } = loadPlayfairDisplay("normal", {
   subsets: ["latin"],
-  weights: ["400", "500", "600", "700"],
+  weights: ["700", "800", "900"],
 });
 
 export interface NotebookGrammarProps {
@@ -36,6 +30,31 @@ export interface NotebookGrammarProps {
   bgImagePath?: string;
 }
 
+// Paper-Cutout Badge component with prominent contrast and clean drop shadow
+const PaperCutoutBadge: React.FC<{
+  children: React.ReactNode;
+  style?: React.CSSProperties;
+  rotation?: number;
+}> = ({ children, style, rotation = 0 }) => (
+  <div
+    style={{
+      backgroundColor: "#FDFBF7",
+      border: "2px solid rgba(43, 40, 37, 0.16)",
+      boxShadow:
+        "0 12px 32px rgba(43, 40, 37, 0.12), 0 3px 8px rgba(43, 40, 37, 0.08)",
+      borderRadius: "14px",
+      padding: "16px 36px",
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      transform: `rotate(${rotation}deg)`,
+      ...style,
+    }}
+  >
+    {children}
+  </div>
+);
+
 export const NotebookGrammarReel: React.FC<NotebookGrammarProps> = ({
   baseVerb = "drink",
   objectNoun = "coffee.",
@@ -43,14 +62,6 @@ export const NotebookGrammarReel: React.FC<NotebookGrammarProps> = ({
   thirdPronouns = ["He", "She"],
   bgImagePath = "assets/bg-en-claen.png",
 }) => {
-  const { durationInFrames } = useVideoConfig();
-  const frame = useCurrentFrame();
-
-  // Overall top progress bar (subtle ink style)
-  const progress = interpolate(frame, [0, durationInFrames], [0, 100], {
-    extrapolateRight: "clamp",
-  });
-
   return (
     <AbsoluteFill
       style={{
@@ -58,7 +69,7 @@ export const NotebookGrammarReel: React.FC<NotebookGrammarProps> = ({
         overflow: "hidden",
       }}
     >
-      {/* 1. Paper Background */}
+      {/* 1. Dotted Paper Background (Clean edge, no top border glitch) */}
       <AbsoluteFill>
         <Img
           src={staticFile(bgImagePath)}
@@ -69,20 +80,6 @@ export const NotebookGrammarReel: React.FC<NotebookGrammarProps> = ({
           }}
         />
       </AbsoluteFill>
-
-      {/* Top Subtle Reading Progress Bar */}
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          height: "8px",
-          width: `${progress}%`,
-          backgroundColor: "#DC2626",
-          zIndex: 60,
-          boxShadow: "0 2px 8px rgba(220, 38, 38, 0.4)",
-        }}
-      />
 
       {/* SCENE 1: First & Second Person (0 - 130 frames, ~4.3s) */}
       <Sequence durationInFrames={130}>
@@ -102,20 +99,14 @@ export const NotebookGrammarReel: React.FC<NotebookGrammarProps> = ({
         />
       </Sequence>
 
-      {/* SCENE 3: Negation with doesn't & S Removal (265 - 415 frames, ~5.0s) */}
-      <Sequence from={265} durationInFrames={150}>
-        <SceneNegation
-          baseVerb={baseVerb}
-          objectNoun={objectNoun}
-        />
+      {/* SCENE 3: Negation with doesn't & S Detaching (265 - 420 frames, ~5.2s) */}
+      <Sequence from={265} durationInFrames={155}>
+        <SceneNegation baseVerb={baseVerb} objectNoun={objectNoun} />
       </Sequence>
 
-      {/* SCENE 4: Comparison & Summary (415 - 540 frames, ~4.2s) */}
-      <Sequence from={415} durationInFrames={125}>
-        <SceneComparison
-          baseVerb={baseVerb}
-          objectNoun={objectNoun}
-        />
+      {/* SCENE 4: Comparison & Summary (420 - 540 frames, ~4.0s) */}
+      <Sequence from={420} durationInFrames={120}>
+        <SceneComparison baseVerb={baseVerb} objectNoun={objectNoun} />
       </Sequence>
     </AbsoluteFill>
   );
@@ -132,32 +123,31 @@ const SceneFirstPerson: React.FC<{
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Entrance spring
+  // Snappy, engaging spring physics for Instagram Reel pace
   const headerEntrance = spring({
     frame,
     fps,
-    config: { damping: 14, mass: 0.8 },
-  });
-
-  const pronounsEntrance = spring({
-    frame: frame - 15,
-    fps,
-    config: { damping: 12, mass: 0.9 },
+    config: { damping: 12, mass: 0.75 },
   });
 
   const verbRuleEntrance = spring({
-    frame: frame - 35,
+    frame: frame - 12,
     fps,
-    config: { damping: 13, mass: 0.8 },
+    config: { damping: 11, mass: 0.75 },
+  });
+
+  const pronounsEntrance = spring({
+    frame: frame - 18,
+    fps,
+    config: { damping: 11, mass: 0.75 },
   });
 
   const sentenceEntrance = spring({
-    frame: frame - 60,
+    frame: frame - 42,
     fps,
-    config: { damping: 12, mass: 0.9 },
+    config: { damping: 10, mass: 0.8 },
   });
 
-  // Exit transition
   const exitOpacity = interpolate(frame, [115, 130], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
@@ -167,85 +157,93 @@ const SceneFirstPerson: React.FC<{
     <AbsoluteFill
       style={{
         opacity: exitOpacity,
-        padding: "180px 100px 200px 100px",
+        padding: "160px 80px 180px 80px",
         boxSizing: "border-box",
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
       }}
     >
-      {/* Arabic Header - Right Aligned */}
+      {/* Top Header inside Paper Cutout Badge with dynamic tilt & scale */}
       <div
         style={{
           width: "100%",
           textAlign: "right",
           direction: "rtl",
           opacity: headerEntrance,
-          transform: `translateY(${interpolate(headerEntrance, [0, 1], [30, 0])}px)`,
-          marginBottom: "120px",
+          transform: `translateY(${interpolate(headerEntrance, [0, 1], [45, 0])}px) scale(${interpolate(headerEntrance, [0, 1], [0.9, 1])})`,
+          marginBottom: "140px",
         }}
       >
-        <h2
-          style={{
-            fontFamily: cairoFont,
-            fontSize: "64px",
-            fontWeight: 700,
-            color: "#1E293B",
-            margin: 0,
-            letterSpacing: "0.01em",
-          }}
-        >
-          ضمائر المتكلم والمخاطب
-        </h2>
+        <PaperCutoutBadge rotation={-0.8} style={{ padding: "16px 42px" }}>
+          <h2
+            style={{
+              fontFamily: cairoFont,
+              fontSize: "74px",
+              fontWeight: 800,
+              color: "#1E1B18",
+              margin: 0,
+              lineHeight: 1.2,
+              letterSpacing: "-0.01em",
+            }}
+          >
+            ضمائر المتكلم والمخاطب
+          </h2>
+        </PaperCutoutBadge>
       </div>
 
-      {/* Middle Content Grid: Left has verb rule, Right has Pronouns (I / You) */}
+      {/* Middle Grid: Left has verb rule + verb, Right has pronouns */}
       <div
         style={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "flex-start",
           width: "100%",
-          padding: "0 60px",
+          padding: "0 40px",
           boxSizing: "border-box",
-          marginBottom: "260px",
+          marginBottom: "240px",
         }}
       >
-        {/* Left: Verb Rule + Base Verb */}
+        {/* Left: Paper Badge Note + Bold Editorial Verb */}
         <div
           style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             opacity: verbRuleEntrance,
-            transform: `translateY(${interpolate(verbRuleEntrance, [0, 1], [25, 0])}px)`,
+            transform: `translateY(${interpolate(verbRuleEntrance, [0, 1], [35, 0])}px) scale(${interpolate(verbRuleEntrance, [0, 1], [0.92, 1])})`,
+            gap: "22px",
           }}
         >
+          <PaperCutoutBadge rotation={1.4} style={{ padding: "10px 30px" }}>
+            <span
+              style={{
+                fontFamily: cairoFont,
+                fontSize: "48px",
+                fontWeight: 800,
+                color: "#544E47",
+                direction: "rtl",
+              }}
+            >
+              فعل مجرد
+            </span>
+          </PaperCutoutBadge>
+
           <span
             style={{
-              fontFamily: amiriFont,
-              fontSize: "36px",
-              color: "#94A3B8",
-              marginBottom: "12px",
-              direction: "rtl",
-            }}
-          >
-            فعل مجرد
-          </span>
-          <span
-            style={{
-              fontFamily: loraFont,
-              fontSize: "68px",
-              fontWeight: 600,
-              color: "#1E293B",
-              letterSpacing: "0.02em",
+              fontFamily: editorialSerif,
+              fontSize: "118px",
+              fontWeight: 800,
+              color: "#1E1B18",
+              letterSpacing: "-0.02em",
+              textShadow: "0 2px 8px rgba(30, 27, 24, 0.08)",
             }}
           >
             {verb}
           </span>
         </div>
 
-        {/* Right: Pronouns list (I, You) */}
+        {/* Right: Pronouns (I, You) Hero Editorial Bold */}
         <div
           style={{
             display: "flex",
@@ -253,18 +251,20 @@ const SceneFirstPerson: React.FC<{
             alignItems: "flex-start",
             gap: "20px",
             opacity: pronounsEntrance,
-            transform: `translateY(${interpolate(pronounsEntrance, [0, 1], [25, 0])}px)`,
+            transform: `translateY(${interpolate(pronounsEntrance, [0, 1], [35, 0])}px) scale(${interpolate(pronounsEntrance, [0, 1], [0.92, 1])})`,
           }}
         >
           {pronouns.map((p) => (
             <span
               key={p}
               style={{
-                fontFamily: loraFont,
-                fontSize: "72px",
-                fontWeight: 600,
-                color: "#1E293B",
-                lineHeight: 1.1,
+                fontFamily: editorialSerif,
+                fontSize: "122px",
+                fontWeight: 800,
+                color: "#1E1B18",
+                lineHeight: 1.15,
+                letterSpacing: "-0.02em",
+                textShadow: "0 2px 8px rgba(30, 27, 24, 0.08)",
               }}
             >
               {p}
@@ -273,22 +273,23 @@ const SceneFirstPerson: React.FC<{
         </div>
       </div>
 
-      {/* Bottom Result Sentence: I drink coffee. */}
+      {/* Bottom Hero Sentence (Instagram Reel Hero Typography) */}
       <div
         style={{
           width: "100%",
           textAlign: "center",
           opacity: sentenceEntrance,
-          transform: `scale(${interpolate(sentenceEntrance, [0, 1], [0.94, 1])}) translateY(${interpolate(sentenceEntrance, [0, 1], [30, 0])}px)`,
+          transform: `scale(${interpolate(sentenceEntrance, [0, 1], [0.88, 1])}) translateY(${interpolate(sentenceEntrance, [0, 1], [40, 0])}px)`,
         }}
       >
         <span
           style={{
-            fontFamily: loraFont,
-            fontSize: "66px",
-            fontWeight: 600,
-            color: "#1E293B",
-            letterSpacing: "0.01em",
+            fontFamily: editorialSerif,
+            fontSize: "128px",
+            fontWeight: 800,
+            color: "#1E1B18",
+            letterSpacing: "-0.02em",
+            textShadow: "0 3px 12px rgba(30, 27, 24, 0.1)",
           }}
         >
           {pronouns[0]} {verb} {objectNoun}
@@ -312,27 +313,26 @@ const SceneThirdPerson: React.FC<{
   const headerEntrance = spring({
     frame,
     fps,
-    config: { damping: 14, mass: 0.8 },
+    config: { damping: 12, mass: 0.75 },
   });
 
   const pronounsEntrance = spring({
-    frame: frame - 12,
+    frame: frame - 14,
     fps,
-    config: { damping: 12, mass: 0.9 },
+    config: { damping: 11, mass: 0.75 },
   });
 
   const sentenceEntrance = spring({
-    frame: frame - 30,
+    frame: frame - 28,
     fps,
-    config: { damping: 13, mass: 0.85 },
+    config: { damping: 11, mass: 0.8 },
   });
 
-  // Animation when the letter 's' appears and attaches in red
-  // S pops in with spring at frame 60
-  const sProgress = spring({
-    frame: frame - 60,
+  // Snappy spring for the letter 's' with punchy bounce and overshoot
+  const sSpring = spring({
+    frame: frame - 55,
     fps,
-    config: { damping: 11, mass: 0.7 },
+    config: { damping: 9, mass: 0.6 },
   });
 
   const exitOpacity = interpolate(frame, [120, 135], [1, 0], {
@@ -344,36 +344,39 @@ const SceneThirdPerson: React.FC<{
     <AbsoluteFill
       style={{
         opacity: exitOpacity,
-        padding: "180px 100px 200px 100px",
+        padding: "160px 80px 180px 80px",
         boxSizing: "border-box",
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
       }}
     >
-      {/* Arabic Header - Right Aligned */}
+      {/* Arabic Header with Paper Cutout Badge */}
       <div
         style={{
           width: "100%",
           textAlign: "right",
           direction: "rtl",
           opacity: headerEntrance,
-          transform: `translateY(${interpolate(headerEntrance, [0, 1], [30, 0])}px)`,
+          transform: `translateY(${interpolate(headerEntrance, [0, 1], [45, 0])}px) scale(${interpolate(headerEntrance, [0, 1], [0.9, 1])})`,
           marginBottom: "140px",
         }}
       >
-        <h2
-          style={{
-            fontFamily: cairoFont,
-            fontSize: "64px",
-            fontWeight: 700,
-            color: "#1E293B",
-            margin: 0,
-            letterSpacing: "0.01em",
-          }}
-        >
-          الغائب المفرد
-        </h2>
+        <PaperCutoutBadge rotation={0.6} style={{ padding: "16px 42px" }}>
+          <h2
+            style={{
+              fontFamily: cairoFont,
+              fontSize: "74px",
+              fontWeight: 800,
+              color: "#1E1B18",
+              margin: 0,
+              lineHeight: 1.2,
+              letterSpacing: "-0.01em",
+            }}
+          >
+            الغائب المفرد
+          </h2>
+        </PaperCutoutBadge>
       </div>
 
       {/* Right-aligned Pronouns (He, She) */}
@@ -382,11 +385,11 @@ const SceneThirdPerson: React.FC<{
           width: "100%",
           display: "flex",
           justifyContent: "flex-end",
-          paddingRight: "60px",
+          paddingRight: "50px",
           boxSizing: "border-box",
-          marginBottom: "300px",
+          marginBottom: "260px",
           opacity: pronounsEntrance,
-          transform: `translateY(${interpolate(pronounsEntrance, [0, 1], [25, 0])}px)`,
+          transform: `translateY(${interpolate(pronounsEntrance, [0, 1], [35, 0])}px) scale(${interpolate(pronounsEntrance, [0, 1], [0.92, 1])})`,
         }}
       >
         <div
@@ -401,11 +404,13 @@ const SceneThirdPerson: React.FC<{
             <span
               key={p}
               style={{
-                fontFamily: loraFont,
-                fontSize: "72px",
-                fontWeight: 600,
-                color: "#1E293B",
-                lineHeight: 1.1,
+                fontFamily: editorialSerif,
+                fontSize: "122px",
+                fontWeight: 800,
+                color: "#1E1B18",
+                lineHeight: 1.15,
+                letterSpacing: "-0.02em",
+                textShadow: "0 2px 8px rgba(30, 27, 24, 0.08)",
               }}
             >
               {p}
@@ -414,40 +419,45 @@ const SceneThirdPerson: React.FC<{
         </div>
       </div>
 
-      {/* Center Sentence: He drink -> He drinks coffee */}
+      {/* Center Hero Sentence: He drink -> He drinks coffee */}
       <div
         style={{
           width: "100%",
           textAlign: "center",
           opacity: sentenceEntrance,
-          transform: `translateY(${interpolate(sentenceEntrance, [0, 1], [30, 0])}px)`,
+          transform: `translateY(${interpolate(sentenceEntrance, [0, 1], [40, 0])}px)`,
         }}
       >
         <div
           style={{
-            fontFamily: loraFont,
-            fontSize: "68px",
-            fontWeight: 600,
-            color: "#1E293B",
-            letterSpacing: "0.01em",
+            fontFamily: editorialSerif,
+            fontSize: "128px",
+            fontWeight: 800,
+            color: "#1E1B18",
+            letterSpacing: "-0.02em",
             display: "inline-flex",
             alignItems: "baseline",
             justifyContent: "center",
+            textShadow: "0 3px 12px rgba(30, 27, 24, 0.1)",
           }}
         >
           <span>{pronouns[0]}&nbsp;</span>
           <span>{baseVerb}</span>
 
-          {/* Animated Red 's' */}
+          {/* Smoothly Eased Vibrant Crimson 's' with punchy pop animation */}
           <span
             style={{
-              color: "#DC2626",
-              fontWeight: 700,
+              color: "#D93838",
+              fontWeight: 900,
               display: "inline-block",
-              opacity: sProgress,
-              transform: `scale(${interpolate(sProgress, [0, 1], [0, 1.15])})`,
+              opacity: sSpring,
+              transform: `scale(${interpolate(sSpring, [0, 1], [0, 1])}) translateY(${interpolate(sSpring, [0, 1], [-45, 0])}px)`,
               transformOrigin: "center bottom",
-              textShadow: "0 2px 10px rgba(220, 38, 38, 0.25)",
+              textShadow: "0 4px 18px rgba(217, 56, 56, 0.35)",
+              filter:
+                sSpring > 0.1
+                  ? `drop-shadow(0 0 ${interpolate(sSpring, [0, 0.7, 1], [0, 14, 2])}px rgba(217, 56, 56, 0.45))`
+                  : undefined,
             }}
           >
             s
@@ -461,7 +471,7 @@ const SceneThirdPerson: React.FC<{
 };
 
 /* =========================================================================
-   SCENE 3: NEGATION & DOESN'T (النفي: شطب not وسحب الـ s)
+   SCENE 3: NEGATION, DOESN'T, ORGANIC SCRIBBLE, & DETACHING 's'
    ========================================================================= */
 const SceneNegation: React.FC<{
   baseVerb: string;
@@ -470,45 +480,63 @@ const SceneNegation: React.FC<{
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // Step 1 (frame 0-35): Sentence "He not drinks coffee." appears
-  const step1Entrance = spring({
+  // Phase 1: Initial sentence "He not drinks coffee." enters smoothly
+  const initialEntrance = spring({
     frame,
     fps,
-    config: { damping: 14, mass: 0.8 },
+    config: { damping: 12, mass: 0.75 },
   });
 
-  // Step 2 (frame 35-65): Red Cross-out lines over "not"
-  const crossProgress = interpolate(frame, [35, 55], [0, 1], {
+  // Phase 2 (frame 28 - 50): Authentic hand-drawn multi-stroke scribble draws across "not"
+  const scribbleProgress = interpolate(frame, [28, 50], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Step 3 (frame 65-95): "doesn't" swoops in replacing "not"
-  const doesntEntrance = spring({
-    frame: frame - 65,
+  // Phase 3 (frame 52 - 85): Snappy spring insertion of "doesn't"
+  // Spring eases "doesn't" in while expanding space smoothly between "He" and "drink"
+  const insertionSpring = spring({
+    frame: frame - 52,
     fps,
-    config: { damping: 12, mass: 0.85 },
+    config: { damping: 11, mass: 0.8 },
   });
 
-  // Step 4 (frame 90-120): The 's' gets pulled away/disappears from drinks -> drink
-  const sRemovalProgress = interpolate(frame, [90, 110], [1, 0], {
+  // Phase 4 (frame 85 - 120): The 's' detaches from "drinks", lifts upward, floats away & dissolves
+  const sDetachSpring = spring({
+    frame: frame - 85,
+    fps,
+    config: { damping: 11, mass: 0.75 },
+  });
+
+  const exitOpacity = interpolate(frame, [140, 155], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  const exitOpacity = interpolate(frame, [135, 150], [1, 0], {
+  // Calculations for insertion and detachment
+  const notFadeOut = interpolate(frame, [52, 66], [1, 0], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  // Is "doesn't" active?
-  const showDoesnt = frame >= 65;
+  // S float and dissolve values
+  const sOpacity = interpolate(sDetachSpring, [0, 0.85, 1], [1, 0.7, 0]);
+  const sTranslateY = interpolate(sDetachSpring, [0, 1], [0, -65]);
+  const sTranslateX = interpolate(sDetachSpring, [0, 1], [0, 36]);
+  const sRotation = interpolate(sDetachSpring, [0, 1], [0, 32]);
+  const sScale = interpolate(sDetachSpring, [0, 1], [1, 0.25]);
+  // Collapsing the space of 's' so 'coffee.' smoothly settles next to 'drink.'
+  const sSlotWidth = interpolate(sDetachSpring, [0, 1], [46, 0]);
+
+  // "doesn't" width expansion for seamless ease-out push of words (sized for 124px bold serif)
+  const doesntWidth = interpolate(insertionSpring, [0, 1], [0, 420]);
+  const showDoesnt = frame >= 52;
 
   return (
     <AbsoluteFill
       style={{
         opacity: exitOpacity,
-        padding: "180px 100px 200px 100px",
+        padding: "160px 80px 180px 80px",
         boxSizing: "border-box",
         display: "flex",
         flexDirection: "column",
@@ -518,73 +546,86 @@ const SceneNegation: React.FC<{
     >
       <div
         style={{
-          opacity: step1Entrance,
-          transform: `translateY(${interpolate(step1Entrance, [0, 1], [30, 0])}px)`,
+          opacity: initialEntrance,
+          transform: `translateY(${interpolate(initialEntrance, [0, 1], [40, 0])}px)`,
           textAlign: "center",
+          width: "100%",
         }}
       >
-        {/* Main Sentence with interactive morphing elements */}
+        {/* Main Hero Sentence (Scale 124px, Bold Editorial Serif, Rich Charcoal #1E1B18) */}
         <div
           style={{
-            fontFamily: loraFont,
-            fontSize: "66px",
-            fontWeight: 600,
-            color: "#1E293B",
-            letterSpacing: "0.01em",
+            fontFamily: editorialSerif,
+            fontSize: "124px",
+            fontWeight: 800,
+            color: "#1E1B18",
+            letterSpacing: "-0.02em",
             display: "inline-flex",
             alignItems: "baseline",
             justifyContent: "center",
             position: "relative",
+            width: "100%",
+            textShadow: "0 3px 12px rgba(30, 27, 24, 0.1)",
           }}
         >
-          {/* "He " */}
-          <span>He&nbsp;</span>
+          {/* "He" with smooth ease-out shifting */}
+          <span style={{ display: "inline-block" }}>He</span>
 
-          {/* EITHER: "not" with red hand-drawn strikeout OR "doesn't" */}
+          {/* DYNAMIC SLOT: "not" (with organic scribble) OR "doesn't" (Vibrant Electric Blue #2563EB) */}
           {!showDoesnt ? (
             <span
               style={{
                 position: "relative",
                 display: "inline-block",
-                padding: "0 4px",
+                margin: "0 28px",
               }}
             >
               <span>not</span>
-              {/* Hand-drawn red scribble/strikeout SVG */}
-              {crossProgress > 0 && (
+
+              {/* Hand-drawn organic ink scribble (3 overlapping energetic strokes) */}
+              {scribbleProgress > 0 && (
                 <svg
                   style={{
                     position: "absolute",
                     top: "50%",
-                    left: "-8px",
-                    width: "calc(100% + 16px)",
-                    height: "36px",
+                    left: "-18px",
+                    width: "calc(100% + 36px)",
+                    height: "72px",
                     transform: "translateY(-50%)",
                     pointerEvents: "none",
+                    overflow: "visible",
                   }}
-                  viewBox="0 0 100 40"
+                  viewBox="0 0 120 40"
                 >
-                  <line
-                    x1="2"
-                    y1="34"
-                    x2="98"
-                    y2="6"
-                    stroke="#DC2626"
+                  <path
+                    d="M 6,28 Q 32,12 65,24 T 114,10"
+                    fill="none"
+                    stroke="#D93838"
                     strokeWidth="6"
                     strokeLinecap="round"
-                    strokeDasharray="120"
-                    strokeDashoffset={120 * (1 - crossProgress)}
+                    strokeLinejoin="round"
+                    strokeDasharray="140"
+                    strokeDashoffset={140 * (1 - scribbleProgress)}
                   />
-                  <line
-                    x1="2"
-                    y1="6"
-                    x2="98"
-                    y2="34"
-                    stroke="#DC2626"
-                    strokeWidth="6"
+                  <path
+                    d="M 112,26 Q 80,36 48,15 T 8,28"
+                    fill="none"
+                    stroke="#D93838"
+                    strokeWidth="5"
                     strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeDasharray="140"
+                    strokeDashoffset={140 * (1 - scribbleProgress)}
+                  />
+                  <path
+                    d="M 18,10 Q 56,22 104,26"
+                    fill="none"
+                    stroke="#D93838"
+                    strokeWidth="4.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
                     strokeDasharray="120"
-                    strokeDashoffset={120 * (1 - crossProgress)}
+                    strokeDashoffset={120 * (1 - scribbleProgress)}
                   />
                 </svg>
               )}
@@ -592,60 +633,142 @@ const SceneNegation: React.FC<{
           ) : (
             <span
               style={{
-                display: "inline-block",
-                color: "#2563EB",
-                fontWeight: 700,
-                opacity: doesntEntrance,
-                transform: `scale(${interpolate(doesntEntrance, [0, 1], [0.85, 1])})`,
-                textShadow: "0 2px 8px rgba(37, 99, 235, 0.2)",
+                display: "inline-flex",
+                alignItems: "baseline",
+                overflow: "hidden",
+                width: `${doesntWidth}px`,
+                opacity: insertionSpring,
+                margin: "0 10px",
+                justifyContent: "center",
               }}
             >
-              doesn't
+              {/* "not" fading out quickly */}
+              {notFadeOut > 0.05 && (
+                <span
+                  style={{
+                    position: "absolute",
+                    opacity: notFadeOut,
+                    color: "#1E1B18",
+                  }}
+                >
+                  not
+                </span>
+              )}
+
+              {/* "doesn't" entering with vibrant electric blue */}
+              <span
+                style={{
+                  color: "#2563EB",
+                  fontWeight: 900,
+                  transform: `scale(${interpolate(insertionSpring, [0, 1], [0.82, 1])})`,
+                  transformOrigin: "center baseline",
+                  whiteSpace: "nowrap",
+                  textShadow: "0 4px 16px rgba(37, 99, 235, 0.3)",
+                  padding: "0 16px",
+                }}
+              >
+                doesn't
+              </span>
             </span>
           )}
 
-          <span>&nbsp;{baseVerb}</span>
-
-          {/* The letter 's' on drink(s) */}
-          <span
-            style={{
-              color: "#DC2626",
-              fontWeight: 700,
-              display: "inline-block",
-              opacity: sRemovalProgress,
-              transform: `scale(${sRemovalProgress})`,
-              width: `${sRemovalProgress * 28}px`,
-              overflow: "hidden",
-            }}
-          >
-            s
+          {/* "drink" (sliding smoothly to the right to make room) */}
+          <span style={{ display: "inline-block", marginLeft: "16px" }}>
+            {baseVerb}
           </span>
 
-          <span>&nbsp;{objectNoun}</span>
-        </div>
-
-        {/* Dynamic Teacher Helper Note */}
-        {frame >= 70 && (
-          <div
+          {/* VISUAL DETACHING 's' (lifts off, floats away & dissolves) */}
+          <span
             style={{
-              marginTop: "80px",
-              fontFamily: cairoFont,
-              fontSize: "36px",
-              color: frame >= 90 ? "#059669" : "#DC2626",
-              fontWeight: 700,
-              direction: "rtl",
-              opacity: spring({
-                frame: frame - 70,
-                fps,
-                config: { damping: 14, mass: 0.8 },
-              }),
+              display: "inline-block",
+              width: `${sSlotWidth}px`,
+              position: "relative",
+              verticalAlign: "baseline",
             }}
           >
-            {frame >= 95
-              ? "✨ تُسحب الـ (s) ويعود الفعل مجرداً"
-              : "❌ لا يمكن استخدام not مباشرة"}
-          </div>
-        )}
+            <span
+              style={{
+                color: "#D93838",
+                fontWeight: 900,
+                display: "inline-block",
+                opacity: sOpacity,
+                transform: `translate(${sTranslateX}px, ${sTranslateY}px) rotate(${sRotation}deg) scale(${sScale})`,
+                transformOrigin: "center center",
+                textShadow: "0 4px 16px rgba(217, 56, 56, 0.35)",
+              }}
+            >
+              s
+            </span>
+          </span>
+
+          {/* " coffee." */}
+          <span style={{ display: "inline-block", marginLeft: "12px" }}>
+            {objectNoun}
+          </span>
+        </div>
+
+        {/* Paper-Cutout Badge Note below with prominent contrast & size */}
+        <div
+          style={{
+            marginTop: "110px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          {frame < 80 ? (
+            <PaperCutoutBadge
+              rotation={-0.6}
+              style={{
+                opacity: spring({
+                  frame: frame - 25,
+                  fps,
+                  config: { damping: 12, mass: 0.75 },
+                }),
+                borderColor: "rgba(217, 56, 56, 0.35)",
+                padding: "18px 44px",
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: cairoFont,
+                  fontSize: "48px",
+                  color: "#D93838",
+                  fontWeight: 800,
+                  direction: "rtl",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                ❌ لا يمكن إضافة not بجانب الفعل مباشرة
+              </span>
+            </PaperCutoutBadge>
+          ) : (
+            <PaperCutoutBadge
+              rotation={0.8}
+              style={{
+                opacity: spring({
+                  frame: frame - 78,
+                  fps,
+                  config: { damping: 12, mass: 0.75 },
+                }),
+                borderColor: "rgba(37, 99, 235, 0.35)",
+                padding: "18px 44px",
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: cairoFont,
+                  fontSize: "48px",
+                  color: "#2563EB",
+                  fontWeight: 800,
+                  direction: "rtl",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                ✨ تُسحب الـ (s) ويعود الفعل لشكله المجرّد
+              </span>
+            </PaperCutoutBadge>
+          )}
+        </div>
       </div>
     </AbsoluteFill>
   );
@@ -664,92 +787,96 @@ const SceneComparison: React.FC<{
   const headerEntrance = spring({
     frame,
     fps,
-    config: { damping: 14, mass: 0.8 },
+    config: { damping: 12, mass: 0.75 },
   });
 
   const line1Entrance = spring({
-    frame: frame - 15,
+    frame: frame - 12,
     fps,
-    config: { damping: 13, mass: 0.85 },
+    config: { damping: 11, mass: 0.75 },
   });
 
   const line2Entrance = spring({
-    frame: frame - 35,
+    frame: frame - 28,
     fps,
-    config: { damping: 13, mass: 0.85 },
+    config: { damping: 11, mass: 0.75 },
   });
 
   const footerEntrance = spring({
-    frame: frame - 60,
+    frame: frame - 48,
     fps,
-    config: { damping: 14, mass: 0.8 },
+    config: { damping: 12, mass: 0.75 },
   });
 
   return (
     <AbsoluteFill
       style={{
-        padding: "180px 100px 200px 100px",
+        padding: "160px 80px 180px 80px",
         boxSizing: "border-box",
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
       }}
     >
-      {/* Arabic Header: مقارنة - Right Aligned */}
+      {/* Top Header inside Paper Cutout Badge */}
       <div
         style={{
           width: "100%",
           textAlign: "right",
           direction: "rtl",
           opacity: headerEntrance,
-          transform: `translateY(${interpolate(headerEntrance, [0, 1], [30, 0])}px)`,
-          marginBottom: "140px",
+          transform: `translateY(${interpolate(headerEntrance, [0, 1], [45, 0])}px) scale(${interpolate(headerEntrance, [0, 1], [0.9, 1])})`,
+          marginBottom: "130px",
         }}
       >
-        <h2
-          style={{
-            fontFamily: cairoFont,
-            fontSize: "64px",
-            fontWeight: 700,
-            color: "#1E293B",
-            margin: 0,
-            letterSpacing: "0.01em",
-          }}
-        >
-          مقارنة
-        </h2>
+        <PaperCutoutBadge rotation={-0.6} style={{ padding: "16px 44px" }}>
+          <h2
+            style={{
+              fontFamily: cairoFont,
+              fontSize: "76px",
+              fontWeight: 800,
+              color: "#1E1B18",
+              margin: 0,
+              lineHeight: 1.2,
+              letterSpacing: "-0.01em",
+            }}
+          >
+            مقارنة
+          </h2>
+        </PaperCutoutBadge>
       </div>
 
-      {/* Comparison Sentences Centered */}
+      {/* Comparison Sentences Centered (Scale: 116px Bold Editorial Serif) */}
       <div
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: "60px",
+          gap: "80px",
           alignItems: "center",
           justifyContent: "center",
           width: "100%",
-          marginTop: "120px",
+          marginTop: "90px",
         }}
       >
         {/* Line 1: He drinks coffee. (Positive) */}
         <div
           style={{
             opacity: line1Entrance,
-            transform: `translateY(${interpolate(line1Entrance, [0, 1], [25, 0])}px)`,
-            fontFamily: loraFont,
-            fontSize: "64px",
-            fontWeight: 600,
-            color: "#1E293B",
-            letterSpacing: "0.01em",
+            transform: `scale(${interpolate(line1Entrance, [0, 1], [0.9, 1])}) translateY(${interpolate(line1Entrance, [0, 1], [35, 0])}px)`,
+            fontFamily: editorialSerif,
+            fontSize: "116px",
+            fontWeight: 800,
+            color: "#1E1B18",
+            letterSpacing: "-0.02em",
+            textShadow: "0 3px 12px rgba(30, 27, 24, 0.1)",
           }}
         >
           <span>He {baseVerb}</span>
           <span
             style={{
-              color: "#DC2626",
-              fontWeight: 700,
-              textShadow: "0 2px 8px rgba(220, 38, 38, 0.3)",
+              color: "#D93838",
+              fontWeight: 900,
+              textShadow: "0 3px 14px rgba(217, 56, 56, 0.35)",
             }}
           >
             s
@@ -761,20 +888,21 @@ const SceneComparison: React.FC<{
         <div
           style={{
             opacity: line2Entrance,
-            transform: `translateY(${interpolate(line2Entrance, [0, 1], [25, 0])}px)`,
-            fontFamily: loraFont,
-            fontSize: "64px",
-            fontWeight: 600,
-            color: "#1E293B",
-            letterSpacing: "0.01em",
+            transform: `scale(${interpolate(line2Entrance, [0, 1], [0.9, 1])}) translateY(${interpolate(line2Entrance, [0, 1], [35, 0])}px)`,
+            fontFamily: editorialSerif,
+            fontSize: "116px",
+            fontWeight: 800,
+            color: "#1E1B18",
+            letterSpacing: "-0.02em",
+            textShadow: "0 3px 12px rgba(30, 27, 24, 0.1)",
           }}
         >
           <span>He </span>
           <span
             style={{
               color: "#2563EB",
-              fontWeight: 700,
-              textShadow: "0 2px 8px rgba(37, 99, 235, 0.25)",
+              fontWeight: 900,
+              textShadow: "0 3px 16px rgba(37, 99, 235, 0.35)",
             }}
           >
             doesn't
@@ -783,7 +911,7 @@ const SceneComparison: React.FC<{
         </div>
       </div>
 
-      {/* Footer Label: عادات وروتين */}
+      {/* Footer Banner: عادات وروتين inside Paper Cutout Badge */}
       <div
         style={{
           marginTop: "auto",
@@ -791,20 +919,22 @@ const SceneComparison: React.FC<{
           textAlign: "center",
           direction: "rtl",
           opacity: footerEntrance,
-          transform: `translateY(${interpolate(footerEntrance, [0, 1], [20, 0])}px)`,
+          transform: `translateY(${interpolate(footerEntrance, [0, 1], [30, 0])}px) scale(${interpolate(footerEntrance, [0, 1], [0.92, 1])})`,
         }}
       >
-        <span
-          style={{
-            fontFamily: cairoFont,
-            fontSize: "44px",
-            fontWeight: 700,
-            color: "#475569",
-            letterSpacing: "0.02em",
-          }}
-        >
-          عادات وروتين
-        </span>
+        <PaperCutoutBadge rotation={0.4} style={{ padding: "18px 54px" }}>
+          <span
+            style={{
+              fontFamily: cairoFont,
+              fontSize: "58px",
+              fontWeight: 800,
+              color: "#374151",
+              letterSpacing: "0.01em",
+            }}
+          >
+            عادات وروتين
+          </span>
+        </PaperCutoutBadge>
       </div>
     </AbsoluteFill>
   );

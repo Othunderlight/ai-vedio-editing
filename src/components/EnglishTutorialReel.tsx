@@ -62,35 +62,35 @@ export const EnglishTutorialReel: React.FC<EnglishTutorialProps> = ({
     extrapolateRight: "clamp",
   });
 
-  // Staggered Animations
+  // Staggered Snappy Reel Animations
   const headerEntrance = spring({
     frame,
     fps,
-    config: { damping: 14, mass: 0.8 },
+    config: { damping: 12, mass: 0.75 },
   });
 
   const card1Entrance = spring({
-    frame: frame - 12,
+    frame: frame - 10,
     fps,
-    config: { damping: 13, mass: 0.9 },
+    config: { damping: 11, mass: 0.8 },
   });
 
   const card2Entrance = spring({
-    frame: frame - 25,
+    frame: frame - 22,
     fps,
-    config: { damping: 12, mass: 0.9 },
+    config: { damping: 10, mass: 0.75 },
   });
 
   const exampleEntrance = spring({
-    frame: frame - 42,
+    frame: frame - 38,
     fps,
-    config: { damping: 14, mass: 0.85 },
+    config: { damping: 11, mass: 0.8 },
   });
 
   const tipEntrance = spring({
-    frame: frame - 55,
+    frame: frame - 50,
     fps,
-    config: { damping: 14, mass: 0.8 },
+    config: { damping: 12, mass: 0.75 },
   });
 
   // Category badge label color
@@ -195,30 +195,30 @@ export const EnglishTutorialReel: React.FC<EnglishTutorialProps> = ({
         }}
       >
         {/* Badges Row */}
-        <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
           <div
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: "8px",
-              padding: "8px 18px",
+              gap: "10px",
+              padding: "10px 22px",
               borderRadius: "999px",
               backgroundColor: currentBadge.bg,
-              border: `1px solid ${currentBadge.border}`,
+              border: `1.5px solid ${currentBadge.border}`,
               color: currentBadge.text,
-              fontSize: "20px",
-              fontWeight: 700,
+              fontSize: "24px",
+              fontWeight: 800,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
             }}
           >
             <span
               style={{
-                width: "8px",
-                height: "8px",
+                width: "10px",
+                height: "10px",
                 borderRadius: "50%",
                 backgroundColor: currentBadge.text,
-                boxShadow: `0 0 8px ${currentBadge.text}`,
+                boxShadow: `0 0 10px ${currentBadge.text}`,
               }}
             />
             {category.toUpperCase()}
@@ -227,8 +227,8 @@ export const EnglishTutorialReel: React.FC<EnglishTutorialProps> = ({
           <div
             style={{
               color: "#94A3B8",
-              fontSize: "19px",
-              fontWeight: 600,
+              fontSize: "24px",
+              fontWeight: 700,
               letterSpacing: "0.05em",
             }}
           >
@@ -240,7 +240,7 @@ export const EnglishTutorialReel: React.FC<EnglishTutorialProps> = ({
         <h1
           style={{
             fontFamily: montserratFont,
-            fontSize: "58px",
+            fontSize: "72px",
             lineHeight: 1.15,
             fontWeight: 900,
             margin: 0,
@@ -254,7 +254,7 @@ export const EnglishTutorialReel: React.FC<EnglishTutorialProps> = ({
         <p
           style={{
             margin: 0,
-            fontSize: "24px",
+            fontSize: "30px",
             color: "#94A3B8",
             fontWeight: 500,
             lineHeight: 1.4,
@@ -270,7 +270,7 @@ export const EnglishTutorialReel: React.FC<EnglishTutorialProps> = ({
           display: "flex",
           flexDirection: "column",
           gap: "24px",
-          margin: "30px 0",
+          margin: "24px 0",
         }}
       >
         {/* INCORRECT / BASIC CARD */}
@@ -278,10 +278,10 @@ export const EnglishTutorialReel: React.FC<EnglishTutorialProps> = ({
           style={{
             opacity: card1Entrance,
             transform: `translateY(${interpolate(card1Entrance, [0, 1], [40, 0])}px)`,
-            backgroundColor: "rgba(239, 68, 68, 0.06)",
-            border: "1.5px solid rgba(239, 68, 68, 0.25)",
+            backgroundColor: "rgba(239, 68, 68, 0.08)",
+            border: "2px solid rgba(239, 68, 68, 0.35)",
             borderRadius: "24px",
-            padding: "26px 32px",
+            padding: "28px 36px",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -292,10 +292,10 @@ export const EnglishTutorialReel: React.FC<EnglishTutorialProps> = ({
               style={{
                 display: "inline-block",
                 color: "#F87171",
-                fontSize: "17px",
-                fontWeight: 700,
+                fontSize: "22px",
+                fontWeight: 800,
                 letterSpacing: "0.08em",
-                marginBottom: "8px",
+                marginBottom: "10px",
                 textTransform: "uppercase",
               }}
             >
@@ -303,11 +303,11 @@ export const EnglishTutorialReel: React.FC<EnglishTutorialProps> = ({
             </span>
             <div
               style={{
-                fontSize: "34px",
-                fontWeight: 600,
+                fontSize: "46px",
+                fontWeight: 700,
                 color: "#E2E8F0",
                 textDecoration: "line-through",
-                opacity: 0.85,
+                opacity: 0.9,
               }}
             >
               {incorrectPhrase}
@@ -319,12 +319,12 @@ export const EnglishTutorialReel: React.FC<EnglishTutorialProps> = ({
         <div
           style={{
             opacity: card2Entrance,
-            transform: `scale(${interpolate(card2Entrance, [0, 1], [0.94, 1])}) translateY(${interpolate(card2Entrance, [0, 1], [30, 0])}px)`,
-            backgroundColor: "rgba(16, 185, 129, 0.08)",
-            border: "2px solid rgba(16, 185, 129, 0.45)",
+            transform: `scale(${interpolate(card2Entrance, [0, 1], [0.93, 1])}) translateY(${interpolate(card2Entrance, [0, 1], [30, 0])}px)`,
+            backgroundColor: "rgba(16, 185, 129, 0.1)",
+            border: "2.5px solid rgba(16, 185, 129, 0.55)",
             borderRadius: "28px",
-            padding: "32px 36px",
-            boxShadow: "0 20px 40px -15px rgba(16, 185, 129, 0.15)",
+            padding: "36px 40px",
+            boxShadow: "0 24px 48px -15px rgba(16, 185, 129, 0.22)",
             position: "relative",
             overflow: "hidden",
           }}
@@ -335,13 +335,13 @@ export const EnglishTutorialReel: React.FC<EnglishTutorialProps> = ({
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              marginBottom: "12px",
+              marginBottom: "14px",
             }}
           >
             <span
               style={{
                 color: "#34D399",
-                fontSize: "18px",
+                fontSize: "24px",
                 fontWeight: 800,
                 letterSpacing: "0.08em",
                 textTransform: "uppercase",
@@ -352,12 +352,12 @@ export const EnglishTutorialReel: React.FC<EnglishTutorialProps> = ({
             {phonetic && (
               <span
                 style={{
-                  color: "#94A3B8",
-                  fontSize: "22px",
-                  fontWeight: 500,
+                  color: "#CBD5E1",
+                  fontSize: "26px",
+                  fontWeight: 600,
                   fontFamily: "monospace",
-                  backgroundColor: "rgba(255, 255, 255, 0.06)",
-                  padding: "4px 12px",
+                  backgroundColor: "rgba(255, 255, 255, 0.08)",
+                  padding: "6px 14px",
                   borderRadius: "8px",
                 }}
               >
@@ -370,11 +370,11 @@ export const EnglishTutorialReel: React.FC<EnglishTutorialProps> = ({
           <div
             style={{
               fontFamily: montserratFont,
-              fontSize: "52px",
+              fontSize: "68px",
               fontWeight: 900,
               color: "#FFFFFF",
               letterSpacing: "-0.01em",
-              marginBottom: "10px",
+              marginBottom: "12px",
             }}
           >
             {correctPhrase}
@@ -384,9 +384,9 @@ export const EnglishTutorialReel: React.FC<EnglishTutorialProps> = ({
           {meaning && (
             <div
               style={{
-                fontSize: "22px",
+                fontSize: "28px",
                 color: "#A7F3D0",
-                fontWeight: 500,
+                fontWeight: 600,
                 lineHeight: 1.4,
               }}
             >
@@ -400,30 +400,30 @@ export const EnglishTutorialReel: React.FC<EnglishTutorialProps> = ({
           style={{
             opacity: exampleEntrance,
             transform: `translateY(${interpolate(exampleEntrance, [0, 1], [30, 0])}px)`,
-            backgroundColor: "rgba(255, 255, 255, 0.04)",
-            border: "1px solid rgba(255, 255, 255, 0.1)",
+            backgroundColor: "rgba(255, 255, 255, 0.05)",
+            border: "1.5px solid rgba(255, 255, 255, 0.14)",
             borderRadius: "22px",
-            padding: "26px 30px",
+            padding: "28px 34px",
           }}
         >
           <div
             style={{
-              fontSize: "17px",
-              fontWeight: 700,
+              fontSize: "22px",
+              fontWeight: 800,
               color: "#94A3B8",
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              marginBottom: "10px",
+              marginBottom: "12px",
             }}
           >
             🗣️ In Conversation:
           </div>
           <div
             style={{
-              fontSize: "26px",
+              fontSize: "34px",
               color: "#F8FAFC",
               lineHeight: 1.5,
-              fontWeight: 500,
+              fontWeight: 600,
               fontStyle: "italic",
             }}
           >
@@ -437,13 +437,13 @@ export const EnglishTutorialReel: React.FC<EnglishTutorialProps> = ({
             style={{
               opacity: tipEntrance,
               transform: `translateY(${interpolate(tipEntrance, [0, 1], [20, 0])}px)`,
-              backgroundColor: "rgba(245, 158, 11, 0.08)",
-              border: "1px dashed rgba(245, 158, 11, 0.3)",
-              borderRadius: "18px",
-              padding: "18px 24px",
-              fontSize: "20px",
+              backgroundColor: "rgba(245, 158, 11, 0.1)",
+              border: "1.5px dashed rgba(245, 158, 11, 0.4)",
+              borderRadius: "20px",
+              padding: "22px 28px",
+              fontSize: "26px",
               color: "#FDE68A",
-              fontWeight: 500,
+              fontWeight: 600,
               lineHeight: 1.45,
             }}
           >
@@ -459,16 +459,16 @@ export const EnglishTutorialReel: React.FC<EnglishTutorialProps> = ({
           alignItems: "center",
           justifyContent: "center",
           gap: "14px",
-          padding: "18px 24px",
-          backgroundColor: "rgba(255, 255, 255, 0.05)",
-          borderRadius: "16px",
-          border: "1px solid rgba(255, 255, 255, 0.08)",
+          padding: "22px 28px",
+          backgroundColor: "rgba(255, 255, 255, 0.07)",
+          borderRadius: "18px",
+          border: "1px solid rgba(255, 255, 255, 0.12)",
         }}
       >
         <span
           style={{
-            fontSize: "20px",
-            fontWeight: 600,
+            fontSize: "26px",
+            fontWeight: 700,
             color: "#CBD5E1",
             textAlign: "center",
           }}
