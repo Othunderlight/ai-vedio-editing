@@ -185,7 +185,7 @@ const reelClaude02CleanProps: ChapterTransitionProps = {
 
 export const RemotionRoot: React.FC = () => {
   return (
-    <>
+    <Folder name="section-transition">
       {/* 1. INSTAGRAM REELS (9:16 Vertical - 1080x1920) */}
       <Composition
         id="Reel-Claude-Chapter-01"
@@ -474,6 +474,6 @@ export const RemotionRoot: React.FC = () => {
           defaultProps={chapter10Props}
         />
       </Folder>
-    </>
+    </Folder>
   );
 };
