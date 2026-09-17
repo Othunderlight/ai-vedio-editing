@@ -37,20 +37,7 @@ interface CaptionSegment {
 
 const VOICEOVER_CAPTIONS: CaptionSegment[] = [
   // 0:00 – 0:05 المقدمة (Hook)
-  {
-    fromFrame: 0,
-    toFrame: 75,
-    speaker: "Host",
-    text: "رح تفهم الـ Present Simple بأقل من دقيقة!",
-    highlightedWord: "Present Simple",
-  },
-  {
-    fromFrame: 75,
-    toFrame: 150,
-    speaker: "Host",
-    text: "جاهز؟ خلّينا نبلّش بسرعة! ⏱️",
-    highlightedWord: "نبلّش بسرعة",
-  },
+
   // 0:05 – 0:17 التركيب: الإيجاب (Positive)
   {
     fromFrame: 150,
@@ -163,20 +150,6 @@ const VOICEOVER_CAPTIONS: CaptionSegment[] = [
     highlightedWord: "hero saves",
   },
   // 0:55 – 1:00 الخاتمة (Call to Action)
-  {
-    fromFrame: 1680,
-    toFrame: 1740,
-    speaker: "Host",
-    text: "اكتبلي جملتك بالـ Present Simple بالتعليقات! 💬",
-    highlightedWord: "Present Simple بالتعليقات",
-  },
-  {
-    fromFrame: 1740,
-    toFrame: 1800,
-    speaker: "Host",
-    text: "وتابع الحساب لتتعلم قواعد تانية بدقيقة وحدة! 🚀",
-    highlightedWord: "بدقيقة وحدة! 🚀",
-  },
 ];
 
 export const PresentSimpleReel: React.FC<PresentSimpleReelProps> = ({
@@ -316,41 +289,7 @@ export const PresentSimpleReel: React.FC<PresentSimpleReelProps> = ({
               justifyContent: "space-between",
             }}
           >
-            {/* Reel Category Pill */}
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "12px",
-                backgroundColor: "rgba(15, 23, 42, 0.8)",
-                border: "1px solid rgba(255, 255, 255, 0.12)",
-                padding: "8px 20px",
-                borderRadius: "999px",
-                backdropFilter: "blur(12px)",
-              }}
-            >
-              <span
-                style={{
-                  width: "10px",
-                  height: "10px",
-                  borderRadius: "50%",
-                  backgroundColor: accentColor,
-                  boxShadow: `0 0 10px ${accentColor}`,
-                  display: "inline-block",
-                }}
-              />
-              <span
-                style={{
-                  fontSize: "22px",
-                  fontWeight: 700,
-                  letterSpacing: "1px",
-                  textTransform: "uppercase",
-                  color: "#E2E8F0",
-                }}
-              >
-                GRAMMAR IN 60 SECONDS
-              </span>
-            </div>
+
 
             {/* Live Clock & Step Badge */}
             <div
@@ -360,33 +299,7 @@ export const PresentSimpleReel: React.FC<PresentSimpleReelProps> = ({
                 gap: "14px",
               }}
             >
-              <div
-                style={{
-                  backgroundColor: "rgba(245, 158, 11, 0.15)",
-                  border: "1px solid rgba(245, 158, 11, 0.4)",
-                  padding: "8px 18px",
-                  borderRadius: "999px",
-                  fontSize: "20px",
-                  fontWeight: 700,
-                  color: "#FBBF24",
-                }}
-              >
-                {currentSceneIndex}/8 • {currentSceneName}
-              </div>
 
-              <div
-                style={{
-                  backgroundColor: "rgba(255, 255, 255, 0.08)",
-                  padding: "8px 18px",
-                  borderRadius: "999px",
-                  fontSize: "22px",
-                  fontWeight: 800,
-                  fontVariantNumeric: "tabular-nums",
-                  color: "#F8FAFC",
-                }}
-              >
-                ⏱️ {formattedTime} / 01:00
-              </div>
             </div>
           </div>
         </div>
@@ -481,7 +394,7 @@ export const PresentSimpleReel: React.FC<PresentSimpleReelProps> = ({
         <div
           style={{
             position: "absolute",
-            bottom: "80px",
+            bottom: "400px",
             left: "60px",
             right: "60px",
             display: "flex",
@@ -502,19 +415,7 @@ export const PresentSimpleReel: React.FC<PresentSimpleReelProps> = ({
               backdropFilter: "blur(16px)",
             }}
           >
-            <div
-              dir="auto"
-              style={{
-                fontSize: "18px",
-                fontWeight: 700,
-                color: accentColor,
-                letterSpacing: "1.5px",
-                textTransform: "uppercase",
-                marginBottom: "8px",
-              }}
-            >
-              🎙️ سكربت الريل (Present Simple)
-            </div>
+            {/* script */}
             <div
               dir="auto"
               style={{
@@ -647,7 +548,9 @@ export const SceneHook: React.FC<{
         alignItems: "center",
         justifyContent: "center",
         padding: "80px",
+        scale: 1.227
       }}
+      from={1}
     >
       {/* Dynamic Animated Stopwatch Badge */}
       <div
@@ -732,22 +635,6 @@ export const SceneHook: React.FC<{
           opacity: titleEntrance,
         }}
       >
-        <div
-          dir="auto"
-          style={{
-            backgroundColor: "rgba(245, 158, 11, 0.15)",
-            color: accentColor,
-            border: `2px solid ${accentColor}60`,
-            padding: "10px 28px",
-            borderRadius: "999px",
-            fontSize: "24px",
-            fontWeight: 800,
-            display: "inline-block",
-            marginBottom: "28px",
-          }}
-        >
-          دقيقة لتعلم الإنجليزية ⚡
-        </div>
 
         <h1
           dir="auto"
@@ -756,7 +643,7 @@ export const SceneHook: React.FC<{
             fontSize: "82px",
             fontWeight: 900,
             lineHeight: 1.15,
-            margin: "0 0 20px 0",
+            margin: "20px 0 20px 0",
           }}
         >
           Present Simple
@@ -767,11 +654,11 @@ export const SceneHook: React.FC<{
               color: accentColor,
               textShadow: `0 0 40px ${accentColor}80`,
               fontSize: "70px",
+              margin: "20px 0 20px 0",
             }}
           >
             المضارع البسيط في دقيقة
-          </span>{" "}
-          ⏱️
+          </span>
         </h1>
 
         <p
@@ -781,31 +668,13 @@ export const SceneHook: React.FC<{
             fontWeight: 600,
             color: "#94A3B8",
             maxWidth: "800px",
-            margin: "0 auto 40px auto",
+            margin: "100px auto 40px auto",
             lineHeight: 1.5,
           }}
         >
           الصيغ • القواعد • أمثلة حية • الاستخدامات الـ 4
         </p>
 
-        {/* Hook Breakdown Tag */}
-        <div
-          dir="auto"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "16px",
-            backgroundColor: "rgba(255, 255, 255, 0.08)",
-            border: "1px solid rgba(255, 255, 255, 0.2)",
-            padding: "16px 36px",
-            borderRadius: "20px",
-            fontSize: "30px",
-            fontWeight: 700,
-          }}
-        >
-          <span>🔥</span>
-          <span dir="auto">"تعال نفهم القاعدة خطوة بخطوة!"</span>
-        </div>
       </div>
     </AbsoluteFill>
   );
@@ -864,6 +733,7 @@ export const ScenePositive: React.FC<{
           alignItems: "flex-end",
           textAlign: "right",
           width: "100%",
+          gap: "100px",
         }}
       >
         <div
@@ -958,7 +828,7 @@ export const ScenePositive: React.FC<{
               borderRadius: "12px",
             }}
           >
-            V1 + s, es, ies
+            V1 + s
           </span>
         </div>
 
@@ -990,7 +860,7 @@ export const ScenePositive: React.FC<{
                 borderRadius: "6px",
               }}
             >
-              -s, -es, -ies
+              S
             </span>
             !
           </div>
@@ -1193,6 +1063,7 @@ export const SceneNegativeAndQuestion: React.FC<{
           alignItems: "flex-end",
           textAlign: "right",
           width: "100%",
+          gap: "100px",
         }}
       >
         <div
@@ -1222,9 +1093,11 @@ export const SceneNegativeAndQuestion: React.FC<{
             margin: 0,
             letterSpacing: "-1px",
             textAlign: "right",
+            marginBottom: "10px"
           }}
         >
-          Negative & Questions
+          النفي وتكوين السؤال
+
         </h2>
       </div>
 
@@ -1287,6 +1160,7 @@ export const SceneNegativeAndQuestion: React.FC<{
             fontSize: "36px",
             fontWeight: 800,
             marginBottom: "20px",
+            marginTop: "50px",
             color: "#F8FAFC",
           }}
         >
@@ -1316,6 +1190,7 @@ export const SceneNegativeAndQuestion: React.FC<{
             display: "flex",
             alignItems: "center",
             gap: "16px",
+            marginTop: "40px",
           }}
         >
           <span>👉</span>
@@ -1332,6 +1207,7 @@ export const SceneNegativeAndQuestion: React.FC<{
       {/* CARD 2: QUESTION FORM */}
       <div
         style={{
+          marginTop: "30px",
           backgroundColor: "#1E293B",
           border: "2px solid rgba(56, 189, 248, 0.6)",
           borderRadius: "26px",
@@ -1352,7 +1228,7 @@ export const SceneNegativeAndQuestion: React.FC<{
             alignItems: "center",
             justifyContent: "space-between",
             flexDirection: "row-reverse",
-            marginBottom: "16px",
+            marginBottom: "50px",
           }}
         >
           <div
@@ -1425,6 +1301,7 @@ export const SceneNegativeAndQuestion: React.FC<{
             display: "flex",
             alignItems: "center",
             gap: "16px",
+            marginTop: "40px",
           }}
         >
           <span>👉</span>
@@ -1485,6 +1362,7 @@ export const SceneHabitsTimeline: React.FC<{
           alignItems: "flex-end",
           textAlign: "right",
           width: "100%",
+          gap: "100px",
         }}
       >
         <div
@@ -1775,6 +1653,7 @@ export const SceneFactsTruths: React.FC<{
           alignItems: "flex-end",
           textAlign: "right",
           width: "100%",
+          gap: "100px",
         }}
       >
         <div
@@ -2127,6 +2006,7 @@ export const SceneInstructions: React.FC<{
           alignItems: "flex-end",
           textAlign: "right",
           width: "100%",
+          gap: "100px",
         }}
       >
         <div
@@ -2432,6 +2312,7 @@ export const SceneStoriesFilms: React.FC<{
           alignItems: "flex-end",
           textAlign: "right",
           width: "100%",
+          gap: "100px",
         }}
       >
         <div
@@ -2692,17 +2573,6 @@ export const SceneCallToAction: React.FC<{
           transform: `scale(${cardEntrance})`,
         }}
       >
-        {/* Animated Rocket Badge */}
-        <div
-          style={{
-            fontSize: "80px",
-            marginBottom: "20px",
-            transform: `translateY(${pulseRocket}px)`,
-            display: "inline-block",
-          }}
-        >
-          🚀
-        </div>
 
         <h2
           dir="auto"
@@ -2710,7 +2580,7 @@ export const SceneCallToAction: React.FC<{
             fontFamily: montserratFont,
             fontSize: "60px",
             fontWeight: 900,
-            margin: "0 0 16px 0",
+            margin: "50px 0 16px 0",
             lineHeight: 1.2,
           }}
         >
@@ -2719,18 +2589,6 @@ export const SceneCallToAction: React.FC<{
           <span dir="auto" style={{ color: accentColor }}>قواعد الإنجليزية في دقيقة!</span>
         </h2>
 
-        <p
-          dir="auto"
-          style={{
-            fontSize: "28px",
-            fontWeight: 600,
-            color: "#94A3B8",
-            margin: "0 0 40px 0",
-            lineHeight: 1.4,
-          }}
-        >
-          احترف أزمنة اللغة الإنجليزية، المفردات، والعبارات اليومية.
-        </p>
 
         {/* Comment prompt Box */}
         <div
@@ -2740,7 +2598,8 @@ export const SceneCallToAction: React.FC<{
             border: "2px dashed rgba(255, 255, 255, 0.2)",
             borderRadius: "20px",
             padding: "24px 30px",
-            marginBottom: "40px",
+            marginBottom: "100px",
+            marginTop: "100px",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",

@@ -702,46 +702,10 @@ export const RemotionRoot: React.FC = () => {
       />
 
       {/* Variant 3: Bold Kinetic Typography Style */}
-      <Composition
-        id="Variant-3-Kinetic-Typography"
-        component={KineticTypographyReel}
-        durationInFrames={1800}
-        fps={30}
-        width={1080}
-        height={1920}
-        defaultProps={{
-          backgroundColor: "#000000",
-          showCaptions: true,
-        }}
-      />
 
       {/* Variant 4: 90s Retro / Lo-Fi Desktop Style */}
-      <Composition
-        id="Variant-4-90s-Retro-Desktop"
-        component={RetroDesktopReel}
-        durationInFrames={1800}
-        fps={30}
-        width={1080}
-        height={1920}
-        defaultProps={{
-          showCaptions: true,
-        }}
-      />
 
       {/* Variant 5: Premium Minimalist Corporate Style */}
-      <Composition
-        id="Variant-5-Premium-Minimalist"
-        component={MinimalCorporateReel}
-        durationInFrames={1800}
-        fps={30}
-        width={1080}
-        height={1920}
-        defaultProps={{
-          brandColor: "#0F172A",
-          accentBlue: "#2563EB",
-          showCaptions: true,
-        }}
-      />
     </Folder>
     </>
   );
