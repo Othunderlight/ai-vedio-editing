@@ -111,7 +111,7 @@ export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
             color: "#44403C",
           }}
         >
-          📓 English Study Guide • Present Simple
+          📓 مذكرة القواعد • المضارع البسيط (Present Simple)
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
           <span>⏱️ {timeCode}</span>
@@ -257,7 +257,7 @@ export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
                 marginBottom: "4px",
               }}
             >
-              🎙️ TEACHER NOTES
+              🎙️ ملاحظات المعلم
             </div>
             <div
               style={{
@@ -337,7 +337,7 @@ const Scene1IpadHook: React.FC<{ frame: number; fps: number }> = ({
             marginBottom: "24px",
           }}
         >
-          ✨ Master English Grammar • 60s
+          ✨ تعلم قواعد الإنجليزية • في 60 ثانية
         </div>
 
         <h1
@@ -352,7 +352,7 @@ const Scene1IpadHook: React.FC<{ frame: number; fps: number }> = ({
           Present Simple
           <br />
           <span style={{ position: "relative", display: "inline-block" }}>
-            in 60 Seconds ⏱️
+            في 60 ثانية ⏱️
             {/* Highlighter Wipe Underneath */}
             <span
               style={{
@@ -377,7 +377,7 @@ const Scene1IpadHook: React.FC<{ frame: number; fps: number }> = ({
             marginTop: "16px",
           }}
         >
-          "Let's break it down step-by-step!" ✏️
+          "لنشرحها خطوة بخطوة!" ✏️
         </div>
       </div>
     </AbsoluteFill>
@@ -420,7 +420,7 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
           transform: `scale(${enter})`,
         }}
       >
-        📌 Rule 1: Positive Form
+        📌 القاعدة 1: صيغة الإثبات (Positive)
       </div>
 
       {/* Formula Study Card */}
@@ -435,7 +435,7 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
         }}
       >
         <div style={{ fontSize: "36px", fontWeight: 800, color: "#1C1917" }}>
-          Subject + <span style={{ color: "#2563EB" }}>V1</span> (base verb)
+          Subject + <span style={{ color: "#2563EB" }}>V1</span> (الفعل الأساسي)
         </div>
 
         {/* Highlight Note */}
@@ -449,9 +449,9 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
             color: "#B45309",
           }}
         >
-          For He / She / It ➔ add{" "}
+          مع He / She / It ➔ نضيف{" "}
           <span style={{ fontWeight: 800, color: "#DC2626" }}>
-            -s, -es, or -ies
+            -s أو -es أو -ies
           </span>
           {/* Highlighter Line */}
           <span
@@ -582,7 +582,7 @@ const Scene3IpadNegAndQ: React.FC<{ frame: number; fps: number }> = ({
             marginBottom: "12px",
           }}
         >
-          (–) Negatives: don't / doesn't
+          (–) صيغة النفي: don't / doesn't
         </div>
         <div style={{ fontSize: "30px", fontWeight: 700, color: "#1C1917" }}>
           Subject +{" "}
@@ -626,7 +626,7 @@ const Scene3IpadNegAndQ: React.FC<{ frame: number; fps: number }> = ({
             marginBottom: "12px",
           }}
         >
-          (?) Questions: Do / Does
+          (?) صيغة السؤال: Do / Does
         </div>
         <div style={{ fontSize: "30px", fontWeight: 700, color: "#1C1917" }}>
           <span style={{ color: "#0284C7", fontWeight: 800 }}>Do / Does</span> +
@@ -676,7 +676,7 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
           transform: `scale(${enter})`,
         }}
       >
-        📅 Use #1: Habits & Routine
+        📅 الاستخدام 1: العادات والروتين (Habits)
       </div>
 
       {/* Hand-drawn Style Timeline on Lined Notebook */}
@@ -700,9 +700,9 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
             marginBottom: "24px",
           }}
         >
-          <span>Past</span>
-          <span style={{ color: "#059669", fontWeight: 800 }}>Present (Now)</span>
-          <span>Future</span>
+          <span>الماضي (Past)</span>
+          <span style={{ color: "#059669", fontWeight: 800 }}>الحاضر (Now)</span>
+          <span>المستقبل (Future)</span>
         </div>
 
         {/* Drawn Timeline */}
@@ -752,13 +752,18 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
             marginTop: "12px",
           }}
         >
-          *repeated habits over time*
+          *أفعال وعادات متكررة عبر الزمن*
         </div>
       </div>
 
       {/* Cute Pastel Frequency Tags */}
       <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
-        {["always", "usually", "sometimes", "every day"].map((kw, i) => (
+        {[
+          { en: "always", ar: "دائماً" },
+          { en: "usually", ar: "عادةً" },
+          { en: "sometimes", ar: "أحياناً" },
+          { en: "every day", ar: "كل يوم" },
+        ].map((kw, i) => (
           <span
             key={i}
             style={{
@@ -771,7 +776,7 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
               fontWeight: 700,
             }}
           >
-            🏷️ {kw}
+            🏷️ {kw.en} ({kw.ar})
           </span>
         ))}
       </div>
@@ -852,8 +857,8 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
           transform: `scale(${enter})`,
         }}
       >
-        <span>🔬 USE #2 OF 4:</span>
-        <span style={{ fontWeight: 700 }}>Facts & Scientific Truths</span>
+        <span>🔬 الاستخدام 2 من 4:</span>
+        <span style={{ fontWeight: 700 }}>الحقائق العلمية (Facts & Scientific Truths)</span>
       </div>
 
       {/* SCIENTIFIC THERMOMETER & BOILING LAB CARD (iPad Note Card) */}
@@ -1063,7 +1068,7 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
               fontWeight: 700,
             }}
           >
-            ♨️ Boiling water at 100°C
+            ♨️ غليان الماء عند 100°م (Boiling water)
           </div>
         </div>
       </div>
@@ -1155,8 +1160,8 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
           transform: `scale(${enter})`,
         }}
       >
-        <span>📋 USE #3 OF 4:</span>
-        <span style={{ fontWeight: 700 }}>Instructions & Directions</span>
+        <span>📋 الاستخدام 3 من 4:</span>
+        <span style={{ fontWeight: 700 }}>إعطاء التعليمات والإرشادات (Instructions)</span>
       </div>
 
       {/* COMPUTER DESKTOP UI WINDOW CARD (iPad Digital Study Frame) */}
@@ -1216,7 +1221,7 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
               color: "#64748B",
             }}
           >
-            Desktop OS • Click Action Guide
+            نظام التشغيل • إرشادات النقر
           </div>
           <div style={{ width: "40px" }} />
         </div>
@@ -1311,7 +1316,7 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
                 boxShadow: "0 4px 12px rgba(16, 185, 129, 0.3)",
               }}
             >
-              *CLICK!* 🖱️
+              *اضغط هنا!* 🖱️
             </div>
           )}
 
@@ -1416,8 +1421,8 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
           transform: `scale(${enter})`,
         }}
       >
-        <span>🎬 USE #4 OF 4:</span>
-        <span style={{ fontWeight: 700 }}>Stories & Films</span>
+        <span>🎬 الاستخدام 4 من 4:</span>
+        <span style={{ fontWeight: 700 }}>سرد القصص وحبكات الأفلام (Stories)</span>
       </div>
 
       {/* MOVIE CLAPPERBOARD & HERO GRAPHIC CARD (iPad Note Card) */}
@@ -1488,7 +1493,7 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
                   letterSpacing: "1px",
                 }}
               >
-                PROD: GRAMMAR REEL
+                PROD: ملخص الفيلم
               </div>
               <div
                 style={{
@@ -1499,8 +1504,8 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
                   fontWeight: 700,
                 }}
               >
-                <span>SCENE: 04</span>
-                <span>TAKE: 01</span>
+                <span>مشهد: 04</span>
+                <span>تصوير: 01</span>
               </div>
               <div
                 style={{
@@ -1551,7 +1556,7 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
               fontWeight: 800,
             }}
           >
-            HERO SAVES VILLAGE!
+            البطل ينقذ أهل القرية!
           </div>
         </div>
       </div>
@@ -1622,10 +1627,10 @@ const Scene8IpadCTA: React.FC<{ frame: number; fps: number }> = ({
       >
         <div style={{ fontSize: "64px", marginBottom: "12px" }}>✏️</div>
         <h2 style={{ fontSize: "56px", fontWeight: 800, margin: "0 0 16px 0" }}>
-          Save This Note!
+          احفظ هذه الملاحظة! 📌
         </h2>
         <p style={{ fontSize: "28px", color: "#64748B", margin: "0 0 28px 0" }}>
-          Drop your own example sentence below to test yourself!
+          اكتب جملتك في التعليقات وسأصححها لك فوراً!
         </p>
         <div
           style={{
@@ -1639,7 +1644,7 @@ const Scene8IpadCTA: React.FC<{ frame: number; fps: number }> = ({
             boxShadow: "0 10px 24px rgba(16, 185, 129, 0.3)",
           }}
         >
-          + Follow for Daily Notes
+          + متابعة لمزيد من القواعد اليومية
         </div>
       </div>
     </AbsoluteFill>

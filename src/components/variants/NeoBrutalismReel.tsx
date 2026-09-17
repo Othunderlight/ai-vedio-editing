@@ -101,7 +101,7 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
           transform: "rotate(-2deg)",
         }}
       >
-        GRAMMAR REEL #01
+        قواعد الإنجليزية #01
       </div>
 
       <div
@@ -288,7 +288,7 @@ const Scene1BrutalistHook: React.FC<{ frame: number; fps: number }> = ({
           marginBottom: "36px",
         }}
       >
-        ⚡ CRASH COURSE IN 60 SECONDS
+        ⚡ دورة سريعة في 60 ثانية
       </div>
 
       {/* Main Chunky Card */}
@@ -328,7 +328,7 @@ const Scene1BrutalistHook: React.FC<{ frame: number; fps: number }> = ({
             SIMPLE
           </span>
           <br />
-          IN 60 SECONDS ⏱️
+          في 60 ثانية ⏱️
         </h1>
 
         <div
@@ -343,7 +343,7 @@ const Scene1BrutalistHook: React.FC<{ frame: number; fps: number }> = ({
             display: "inline-block",
           }}
         >
-          👉 "Let's break it down step-by-step!"
+          👉 "لنشرحها خطوة بخطوة!"
         </div>
       </div>
     </AbsoluteFill>
@@ -383,7 +383,7 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
           transform: `scale(${pop1}) rotate(-1.5deg)`,
         }}
       >
-        (+) POSITIVE FORMULA
+        (+) قاعدة الإثبات (Positive)
       </div>
 
       {/* Formula Box */}
@@ -433,7 +433,7 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
             fontWeight: 900,
           }}
         >
-          ⚠️ RULE: For He / She / It ➔ ADD -S, -ES, or -IES!
+          ⚠️ قاعدة: مع He / She / It ➔ نضيف -S أو -ES أو -IES!
         </div>
       </div>
 
@@ -545,7 +545,7 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
             marginBottom: "14px",
           }}
         >
-          (–) NEGATIVE FORM
+          (–) صيغة النفي (Negative)
         </div>
         <div style={{ fontSize: "36px", fontWeight: 900, color: "#000000" }}>
           Subject +{" "}
@@ -598,7 +598,7 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
             marginBottom: "14px",
           }}
         >
-          (?) QUESTION FORM
+          (?) صيغة السؤال (Question)
         </div>
         <div style={{ fontSize: "36px", fontWeight: 900 }}>
           <span
@@ -665,7 +665,7 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
           transform: `scale(${pop}) rotate(-2deg)`,
         }}
       >
-        USE #1: HABITS & ROUTINE
+        الاستخدام 1: العادات والروتين (Habits)
       </div>
 
       {/* Brutalist Timeline Board */}
@@ -687,11 +687,11 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
             justifyContent: "space-between",
           }}
         >
-          <span>PAST</span>
+          <span>الماضي (Past)</span>
           <span style={{ backgroundColor: "#FFE600", padding: "2px 10px", border: "2px solid #000" }}>
-            PRESENT (NOW)
+            الحاضر (Now)
           </span>
-          <span>FUTURE ➔</span>
+          <span>المستقبل (Future) ➔</span>
         </div>
 
         {/* The Black Axis */}
@@ -739,7 +739,7 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
         </div>
 
         <div style={{ fontSize: "22px", fontWeight: 800, textAlign: "center" }}>
-          Repeated actions across time: always happens!
+          أفعال متكررة عبر الزمن: تحدث دائماً!
         </div>
       </div>
 
@@ -829,7 +829,7 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
           transform: `scale(${pop}) rotate(1.5deg)`,
         }}
       >
-        USE #2: FACTS & TRUTHS
+        الاستخدام 2: الحقائق العلمية (Facts)
       </div>
 
       {/* SCIENTIFIC THERMOMETER & BOILING BEAKER CARD (Neo-Brutalist) */}
@@ -1030,7 +1030,7 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
               color: "#000000",
             }}
           >
-            ♨️ BOILING @ 100°C
+            ♨️ غليان الماء عند 100°م
           </div>
         </div>
       </div>
@@ -1122,7 +1122,7 @@ const Scene6BrutalistInstructions: React.FC<{
           transform: `scale(${pop}) rotate(-1.5deg)`,
         }}
       >
-        USE #3: INSTRUCTIONS
+        الاستخدام 3: إعطاء التعليمات (Instructions)
       </div>
 
       {/* COMPUTER DESKTOP UI WINDOW CARD */}
@@ -1187,7 +1187,7 @@ const Scene6BrutalistInstructions: React.FC<{
               padding: "2px 10px",
             }}
           >
-            DESKTOP OS • INSTRUCTIONS
+            نظام التشغيل • التعليمات
           </div>
           <div style={{ width: "40px" }} />
         </div>
@@ -1281,7 +1281,7 @@ const Scene6BrutalistInstructions: React.FC<{
                 transform: "rotate(-3deg)",
               }}
             >
-              *CLICK!* 🖱️
+              *اضغط هنا!* 🖱️
             </div>
           )}
 
@@ -1376,7 +1376,7 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
           transform: `scale(${pop}) rotate(2deg)`,
         }}
       >
-        USE #4: STORIES & FILMS
+        الاستخدام 4: سرد القصص والأفلام (Stories)
       </div>
 
       {/* MOVIE CLAPPERBOARD & HERO GRAPHIC CARD (Neo-Brutalist) */}
@@ -1444,7 +1444,7 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
                   letterSpacing: "1px",
                 }}
               >
-                PROD: GRAMMAR REEL
+                PROD: ملخص الفيلم
               </div>
               <div
                 style={{
@@ -1455,8 +1455,8 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
                   fontWeight: 800,
                 }}
               >
-                <span>SCENE: 04</span>
-                <span>TAKE: 01</span>
+                <span>مشهد: 04</span>
+                <span>تصوير: 01</span>
               </div>
               <div
                 style={{
@@ -1507,7 +1507,7 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
               fontWeight: 900,
             }}
           >
-            HERO SAVES VILLAGE!
+            البطل ينقذ أهل القرية!
           </div>
         </div>
       </div>
@@ -1579,9 +1579,9 @@ const Scene8BrutalistCTA: React.FC<{ frame: number; fps: number }> = ({
             margin: "0 0 20px 0",
           }}
         >
-          Follow for More
+          تابعنا للمزيد من
           <br />
-          Grammar in 1 Min!
+          قواعد الإنجليزية في دقيقة!
         </h2>
 
         <div
@@ -1595,7 +1595,7 @@ const Scene8BrutalistCTA: React.FC<{ frame: number; fps: number }> = ({
             marginBottom: "30px",
           }}
         >
-          💬 Drop your own example sentence below!
+          💬 اكتب جملتك في التعليقات وسأصححها لك!
         </div>
 
         <div
@@ -1610,7 +1610,7 @@ const Scene8BrutalistCTA: React.FC<{ frame: number; fps: number }> = ({
             display: "inline-block",
           }}
         >
-          + FOLLOW NOW
+          + متابعة (Follow)
         </div>
       </div>
     </AbsoluteFill>

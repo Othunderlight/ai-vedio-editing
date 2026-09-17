@@ -731,23 +731,20 @@ export const SceneHook: React.FC<{
             borderRadius: "999px",
             fontSize: "24px",
             fontWeight: 800,
-            letterSpacing: "2px",
             display: "inline-block",
             marginBottom: "28px",
           }}
         >
-          ENGLISH GRAMMAR SPRINT
+          دقيقة لتعلم الإنجليزية ⚡
         </div>
 
         <h1
           style={{
             fontFamily: montserratFont,
-            fontSize: "86px",
+            fontSize: "82px",
             fontWeight: 900,
-            lineHeight: 1.1,
-            letterSpacing: "-1.5px",
+            lineHeight: 1.15,
             margin: "0 0 20px 0",
-            textTransform: "uppercase",
           }}
         >
           Present Simple
@@ -756,24 +753,25 @@ export const SceneHook: React.FC<{
             style={{
               color: accentColor,
               textShadow: `0 0 40px ${accentColor}80`,
+              fontSize: "70px",
             }}
           >
-            in 60 Seconds
+            المضارع البسيط في دقيقة
           </span>{" "}
           ⏱️
         </h1>
 
         <p
           style={{
-            fontSize: "36px",
+            fontSize: "34px",
             fontWeight: 600,
             color: "#94A3B8",
             maxWidth: "800px",
             margin: "0 auto 40px auto",
-            lineHeight: 1.4,
+            lineHeight: 1.5,
           }}
         >
-          Formulas • Rules • Real Examples • 4 Key Uses
+          الصيغ • القواعد • أمثلة حية • الاستخدامات الـ 4
         </p>
 
         {/* Hook Breakdown Tag */}
@@ -791,7 +789,7 @@ export const SceneHook: React.FC<{
           }}
         >
           <span>🔥</span>
-          <span>"Let's break it down step-by-step!"</span>
+          <span>"تعال نفهم القاعدة خطوة بخطوة!"</span>
         </div>
       </div>
     </AbsoluteFill>
@@ -862,18 +860,18 @@ export const ScenePositive: React.FC<{
             marginBottom: "16px",
           }}
         >
-          <span>(+) POSITIVE STRUCTURE</span>
+          <span>(+) صيغة الإثبات (Positive)</span>
         </div>
         <h2
           style={{
             fontFamily: montserratFont,
-            fontSize: "64px",
+            fontSize: "60px",
             fontWeight: 900,
             margin: 0,
             letterSpacing: "-1px",
           }}
         >
-          The Positive Form
+          تركيب الجملة المثبتة
         </h2>
       </div>
 
@@ -894,12 +892,10 @@ export const ScenePositive: React.FC<{
             fontSize: "22px",
             fontWeight: 800,
             color: "#94A3B8",
-            letterSpacing: "1.5px",
-            textTransform: "uppercase",
             marginBottom: "14px",
           }}
         >
-          THE GOLDEN FORMULA
+          القاعدة الأساسية (Formula)
         </div>
 
         {/* Formula breakdown */}
@@ -955,7 +951,7 @@ export const ScenePositive: React.FC<{
         >
           <span style={{ fontSize: "28px" }}>⚠️</span>
           <div style={{ fontSize: "24px", fontWeight: 700, color: "#E2E8F0" }}>
-            For <span style={{ color: "#38BDF8" }}>He / She / It</span> ➔ add{" "}
+            مع <span style={{ color: "#38BDF8" }}>He / She / It</span> ➔ نضيف{" "}
             <span
               style={{
                 color: "#FBBF24",
@@ -1018,7 +1014,7 @@ export const ScenePositive: React.FC<{
               fontWeight: 800,
             }}
           >
-            Base Verb (V1)
+            فعل مجرد (V1)
           </div>
         </div>
 
@@ -1068,7 +1064,7 @@ export const ScenePositive: React.FC<{
               fontWeight: 800,
             }}
           >
-            +s (3rd person)
+            +s (للمفرد الغائب)
           </div>
         </div>
 
@@ -1172,12 +1168,12 @@ export const SceneNegativeAndQuestion: React.FC<{
             marginBottom: "16px",
           }}
         >
-          <span>(– & ?) NEGATIVES & QUESTIONS</span>
+          <span>(– & ؟) النفي وتكوين السؤال</span>
         </div>
         <h2
           style={{
             fontFamily: montserratFont,
-            fontSize: "64px",
+            fontSize: "60px",
             fontWeight: 900,
             margin: 0,
             letterSpacing: "-1px",
@@ -1219,7 +1215,7 @@ export const SceneNegativeAndQuestion: React.FC<{
               color: "#FB7185",
             }}
           >
-            (–) NEGATIVE RULE
+            (–) قاعدة النفي (Negative)
           </div>
           <div
             style={{
@@ -1231,7 +1227,7 @@ export const SceneNegativeAndQuestion: React.FC<{
               fontWeight: 800,
             }}
           >
-            don't / doesn't + V0
+            don't / doesn't + فعل مجرد
           </div>
         </div>
 
@@ -1314,7 +1310,7 @@ export const SceneNegativeAndQuestion: React.FC<{
               color: "#38BDF8",
             }}
           >
-            (?) QUESTION RULE
+            (؟) قاعدة السؤال (Questions)
           </div>
           <div
             style={{
@@ -1326,7 +1322,7 @@ export const SceneNegativeAndQuestion: React.FC<{
               fontWeight: 800,
             }}
           >
-            Do / Does + V0?
+            Do / Does + فعل مجرد؟
           </div>
         </div>
 
@@ -1441,18 +1437,18 @@ export const SceneHabitsTimeline: React.FC<{
             marginBottom: "16px",
           }}
         >
-          <span>USE #1 OF 4</span>
+          <span>الاستخدام 1 من 4</span>
         </div>
         <h2
           style={{
             fontFamily: montserratFont,
-            fontSize: "64px",
+            fontSize: "60px",
             fontWeight: 900,
             margin: 0,
             letterSpacing: "-1px",
           }}
         >
-          1. Habits & Routine
+          1. العادات والروتين اليومي (Habits)
         </h2>
       </div>
 
@@ -1473,15 +1469,13 @@ export const SceneHabitsTimeline: React.FC<{
             fontSize: "22px",
             fontWeight: 800,
             color: "#94A3B8",
-            letterSpacing: "1.5px",
-            textTransform: "uppercase",
             marginBottom: "30px",
             display: "flex",
             justifyContent: "space-between",
           }}
         >
-          <span>TIMELINE OF REPEATED ACTIONS</span>
-          <span style={{ color: accentColor }}>PAST ➔ PRESENT ➔ FUTURE</span>
+          <span>خط زمني لتكرار الحدث (Timeline)</span>
+          <span style={{ color: accentColor }}>الماضي ➔ الحاضر ➔ المستقبل</span>
         </div>
 
         {/* The Timeline SVG Track */}
@@ -1515,11 +1509,11 @@ export const SceneHabitsTimeline: React.FC<{
 
           {/* Sequential 'X' Marks along timeline */}
           {[
-            { springVal: marker1, left: "12%", label: "PAST" },
-            { springVal: marker2, left: "32%", label: "YESTERDAY" },
-            { springVal: marker3, left: "52%", label: "PRESENT (NOW)", isCenter: true },
-            { springVal: marker4, left: "72%", label: "TOMORROW" },
-            { springVal: marker5, left: "90%", label: "FUTURE" },
+            { springVal: marker1, left: "12%", label: "الماضي" },
+            { springVal: marker2, left: "32%", label: "أمس" },
+            { springVal: marker3, left: "52%", label: "الآن (الحاضر)", isCenter: true },
+            { springVal: marker4, left: "72%", label: "غداً" },
+            { springVal: marker5, left: "90%", label: "المستقبل" },
           ].map((item, idx) => (
             <div
               key={idx}
@@ -1580,7 +1574,7 @@ export const SceneHabitsTimeline: React.FC<{
             marginTop: "10px",
           }}
         >
-          "It happened before, it happens now, and it will happen again!"
+          "حدثت في الماضي، وتحدث الآن، وستتكرر مستقبلاً!"
         </div>
       </div>
 
@@ -1594,10 +1588,10 @@ export const SceneHabitsTimeline: React.FC<{
         }}
       >
         {[
-          { text: "⚡ always", s: tag1 },
-          { text: "⚡ usually", s: tag2 },
-          { text: "⚡ sometimes", s: tag3 },
-          { text: "⚡ every day", s: tag4 },
+          { text: "⚡ always (دائماً)", s: tag1 },
+          { text: "⚡ usually (عادةً)", s: tag2 },
+          { text: "⚡ sometimes (أحياناً)", s: tag3 },
+          { text: "⚡ every day (كل يوم)", s: tag4 },
         ].map((kw, i) => (
           <div
             key={i}
@@ -1713,18 +1707,18 @@ export const SceneFactsTruths: React.FC<{
             marginBottom: "16px",
           }}
         >
-          <span>USE #2 OF 4</span>
+          <span>الاستخدام 2 من 4</span>
         </div>
         <h2
           style={{
             fontFamily: montserratFont,
-            fontSize: "64px",
+            fontSize: "60px",
             fontWeight: 900,
             margin: 0,
             letterSpacing: "-1px",
           }}
         >
-          2. Facts & Truths
+          2. الحقائق العلمية والثوابت (Facts)
         </h2>
       </div>
 
@@ -1935,7 +1929,7 @@ export const SceneFactsTruths: React.FC<{
               color: "#38BDF8",
             }}
           >
-            ♨️ Boiling Water @ 100°C
+            ♨️ غليان الماء عند 100°م (حقيقة علمية)
           </div>
         </div>
       </div>
@@ -2050,18 +2044,18 @@ export const SceneInstructions: React.FC<{
             marginBottom: "16px",
           }}
         >
-          <span>USE #3 OF 4</span>
+          <span>الاستخدام 3 من 4</span>
         </div>
         <h2
           style={{
             fontFamily: montserratFont,
-            fontSize: "64px",
+            fontSize: "60px",
             fontWeight: 900,
             margin: 0,
             letterSpacing: "-1px",
           }}
         >
-          3. Instructions & Directions
+          3. إعطاء التعليمات والتوجيهات (Instructions)
         </h2>
       </div>
 
@@ -2123,7 +2117,7 @@ export const SceneInstructions: React.FC<{
               color: "#94A3B8",
             }}
           >
-            Desktop OS • Click Instructions
+            نظام التشغيل • خطوات التشغيل والضغط
           </div>
           <div style={{ width: "40px" }} />
         </div>
@@ -2220,7 +2214,7 @@ export const SceneInstructions: React.FC<{
                 boxShadow: "0 0 20px #10B981",
               }}
             >
-              *CLICK!* 🖱️
+              *اضغط هنا!* 🖱️
             </div>
           )}
 
@@ -2337,18 +2331,18 @@ export const SceneStoriesFilms: React.FC<{
             marginBottom: "16px",
           }}
         >
-          <span>USE #4 OF 4</span>
+          <span>الاستخدام 4 من 4</span>
         </div>
         <h2
           style={{
             fontFamily: montserratFont,
-            fontSize: "64px",
+            fontSize: "60px",
             fontWeight: 900,
             margin: 0,
             letterSpacing: "-1px",
           }}
         >
-          4. Stories & Films
+          4. سرد القصص وتلخيص الأفلام (Stories)
         </h2>
       </div>
 
@@ -2420,7 +2414,7 @@ export const SceneStoriesFilms: React.FC<{
                   letterSpacing: "1px",
                 }}
               >
-                PROD: GRAMMAR REEL
+                PROD: ملخص الفيلم
               </div>
               <div
                 style={{
@@ -2431,8 +2425,8 @@ export const SceneStoriesFilms: React.FC<{
                   fontWeight: 700,
                 }}
               >
-                <span>SCENE: 04</span>
-                <span>TAKE: 01</span>
+                <span>مشهد: 04</span>
+                <span>تصوير: 01</span>
               </div>
               <div
                 style={{
@@ -2483,7 +2477,7 @@ export const SceneStoriesFilms: React.FC<{
               fontWeight: 800,
             }}
           >
-            Hero Plot Summary
+            البطل ينقذ أهل القرية!
           </div>
         </div>
       </div>
@@ -2586,27 +2580,27 @@ export const SceneCallToAction: React.FC<{
         <h2
           style={{
             fontFamily: montserratFont,
-            fontSize: "64px",
+            fontSize: "60px",
             fontWeight: 900,
             margin: "0 0 16px 0",
-            lineHeight: 1.15,
+            lineHeight: 1.2,
           }}
         >
-          Follow for more
+          تابعنا للمزيد من
           <br />
-          <span style={{ color: accentColor }}>Grammar in 1 Min!</span>
+          <span style={{ color: accentColor }}>قواعد الإنجليزية في دقيقة!</span>
         </h2>
 
         <p
           style={{
-            fontSize: "30px",
+            fontSize: "28px",
             fontWeight: 600,
             color: "#94A3B8",
             margin: "0 0 40px 0",
             lineHeight: 1.4,
           }}
         >
-          Master English tenses, vocabulary, and native phrases daily.
+          احترف أزمنة اللغة الإنجليزية، المفردات، والعبارات اليومية.
         </p>
 
         {/* Comment prompt Box */}
@@ -2631,7 +2625,7 @@ export const SceneCallToAction: React.FC<{
               color: "#F8FAFC",
             }}
           >
-            "Drop your own example sentence below!"
+            "اكتب جملتك في التعليقات وسأصححها لك!"
           </span>
         </div>
 
@@ -2653,7 +2647,7 @@ export const SceneCallToAction: React.FC<{
             }`,
           }}
         >
-          <span>{isFollowClicked ? "Following ✔️" : "+ Follow"}</span>
+          <span>{isFollowClicked ? "تمت المتابعة ✔️" : "+ متابعة (Follow)"}</span>
         </div>
       </div>
     </AbsoluteFill>
