@@ -18,24 +18,33 @@ export interface KineticTypographyReelProps {
 }
 
 const VOICEOVER_CAPTIONS = [
-  { fromFrame: 0, toFrame: 75, text: "Master the Present Simple in under 60 seconds!" },
-  { fromFrame: 75, toFrame: 150, text: "Let's break it down! ⏱️" },
-  { fromFrame: 150, toFrame: 230, text: "First, the form! For positive sentences, use base verb (V1)." },
-  { fromFrame: 230, toFrame: 330, text: "But for he, she, or it, add -s, -es, or -ies!" },
-  { fromFrame: 330, toFrame: 420, text: "Like: 'I study law.'" },
-  { fromFrame: 420, toFrame: 540, text: "But: 'She likes reading' and 'He studies law.'" },
-  { fromFrame: 540, toFrame: 650, text: "For negatives, use don't or doesn't + V0: 'He doesn't study medicine.'" },
-  { fromFrame: 650, toFrame: 780, text: "For questions: start with Do or Does: 'Does he study law?'" },
-  { fromFrame: 780, toFrame: 880, text: "Now, when do we use it? Number 1: Regular habits or repeated actions!" },
-  { fromFrame: 880, toFrame: 1010, text: "Look at this timeline: past, present, future—it keeps happening!" },
-  { fromFrame: 1010, toFrame: 1140, text: "Example: 'I use the Internet every day.'" },
-  { fromFrame: 1140, toFrame: 1240, text: "Number 2: Universal facts and truths!" },
-  { fromFrame: 1240, toFrame: 1350, text: "'If you heat water to 100 degrees Celsius, it boils.'" },
-  { fromFrame: 1350, toFrame: 1430, text: "Number 3: Giving instructions or directions!" },
+  // 0:00 – 0:05 المقدمة (Hook)
+  { fromFrame: 0, toFrame: 75, text: "رح تفهم الـ Present Simple بأقل من دقيقة!" },
+  { fromFrame: 75, toFrame: 150, text: "جاهز؟ خلّينا نبلّش بسرعة! ⏱️" },
+  // 0:05 – 0:17 التركيب: الإيجاب (Positive)
+  { fromFrame: 150, toFrame: 240, text: "أول شي، القاعدة: بالجملة العادية منستخدم الفعل متل ما هو (V1)." },
+  { fromFrame: 240, toFrame: 330, text: "بس مع (he, she, it) بنضيف للفعل s أو es أو ies!" },
+  { fromFrame: 330, toFrame: 420, text: "متل: 'I study law'.." },
+  { fromFrame: 420, toFrame: 540, text: "بس منقول: 'She likes reading' و 'He studies law'." },
+  // 0:17 – 0:27 التركيب: النفي والسؤال (Negative & Question)
+  { fromFrame: 540, toFrame: 660, text: "وبالنفي، منحط don't أو doesn't مع الفعل بالمصدر: 'He doesn't study medicine.'" },
+  { fromFrame: 660, toFrame: 780, text: "أما بالسؤال، فمنبدأ بـ Do أو Does: 'Does he study law?'" },
+  // 0:27 – 0:38 الاستخدام 1: العادات والتكرار (Habits)
+  { fromFrame: 780, toFrame: 890, text: "طيّب، إيمتى منستخدمه؟ رقم واحد: للعادات والأشياء اللي بتتكرر دائماً." },
+  { fromFrame: 890, toFrame: 1010, text: "شوف هالخط الزمني: بالماضي، الحاضر، والمستقبل.. الفعل عم يتكرر!" },
+  { fromFrame: 1010, toFrame: 1140, text: "متل: 'I use the Internet every day.'" },
+  // 0:38 – 0:44 الاستخدام 2: الحقائق (Facts)
+  { fromFrame: 1140, toFrame: 1230, text: "رقم اتنين: للحقائق العلمية والعامة! 🔬" },
+  { fromFrame: 1230, toFrame: 1350, text: "'If you heat water to 100 degrees, it boils.'" },
+  // 0:44 – 0:50 الاستخدام 3: التعليمات (Instructions)
+  { fromFrame: 1350, toFrame: 1430, text: "رقم تلاتة: لنعطي تعليمات أو إرشادات! 📋" },
   { fromFrame: 1430, toFrame: 1530, text: "'To start the programme, first click on the desktop.'" },
-  { fromFrame: 1530, toFrame: 1610, text: "And number 4: Summarizing books or movies!" },
-  { fromFrame: 1610, toFrame: 1680, text: "'In the film, the hero saves the villagers.'" },
-  { fromFrame: 1680, toFrame: 1800, text: "Drop your own example sentence in the comments, and follow for more! 🚀" },
+  // 0:50 – 0:55 الاستخدام 4: ملخصات الأفلام والقصص (Stories)
+  { fromFrame: 1530, toFrame: 1600, text: "ورقم أربعة: لما نحكي ملخص فيلم أو قصة! 🎬" },
+  { fromFrame: 1600, toFrame: 1680, text: "'In the film, the hero saves the villagers.'" },
+  // 0:55 – 1:00 الخاتمة (Call to Action)
+  { fromFrame: 1680, toFrame: 1740, text: "اكتبلي جملتك بالـ Present Simple بالتعليقات! 💬" },
+  { fromFrame: 1740, toFrame: 1800, text: "وتابع الحساب لتتعلم قواعد تانية بدقيقة وحدة! 🚀" },
 ];
 
 export const KineticTypographyReel: React.FC<KineticTypographyReelProps> = ({

@@ -36,109 +36,109 @@ interface CaptionSegment {
 }
 
 const VOICEOVER_CAPTIONS: CaptionSegment[] = [
-  // 0:00 - 0:05 Hook
+  // 0:00 – 0:05 المقدمة (Hook)
   {
     fromFrame: 0,
     toFrame: 75,
     speaker: "Host",
-    text: "Master the Present Simple in under 60 seconds!",
+    text: "رح تفهم الـ Present Simple بأقل من دقيقة!",
     highlightedWord: "Present Simple",
   },
   {
     fromFrame: 75,
     toFrame: 150,
     speaker: "Host",
-    text: "Let's break it down! ⏱️",
-    highlightedWord: "break it down",
+    text: "جاهز؟ خلّينا نبلّش بسرعة! ⏱️",
+    highlightedWord: "نبلّش بسرعة",
   },
-  // 0:05 - 0:18 Structure (+)
+  // 0:05 – 0:17 التركيب: الإيجاب (Positive)
   {
     fromFrame: 150,
-    toFrame: 230,
+    toFrame: 240,
     speaker: "Host",
-    text: "First, the form! For positive sentences, use base verb (V1).",
-    highlightedWord: "base verb (V1)",
+    text: "أول شي، القاعدة: بالجملة العادية منستخدم الفعل متل ما هو (V1).",
+    highlightedWord: "(V1)",
   },
   {
-    fromFrame: 230,
+    fromFrame: 240,
     toFrame: 330,
     speaker: "Host",
-    text: "But for he, she, or it, add -s, -es, or -ies!",
-    highlightedWord: "-s, -es, or -ies",
+    text: "بس مع (he, she, it) بنضيف للفعل s أو es أو ies!",
+    highlightedWord: "s أو es أو ies",
   },
   {
     fromFrame: 330,
     toFrame: 420,
     speaker: "Host",
-    text: "Like: 'I study law.'",
-    highlightedWord: "study",
+    text: "متل: 'I study law'..",
+    highlightedWord: "'I study law'",
   },
   {
     fromFrame: 420,
     toFrame: 540,
     speaker: "Host",
-    text: "But: 'She likes reading' and 'He studies law.'",
-    highlightedWord: "studies",
+    text: "بس منقول: 'She likes reading' و 'He studies law'.",
+    highlightedWord: "'He studies law'",
   },
-  // 0:18 - 0:26 Structure (– & ?)
+  // 0:17 – 0:27 التركيب: النفي والسؤال (Negative & Question)
   {
     fromFrame: 540,
-    toFrame: 650,
+    toFrame: 660,
     speaker: "Host",
-    text: "For negatives, use don't or doesn't + base verb: 'He doesn't study medicine.'",
-    highlightedWord: "don't / doesn't",
+    text: "وبالنفي، منحط don't أو doesn't مع الفعل بالمصدر: 'He doesn't study medicine.'",
+    highlightedWord: "don't أو doesn't",
   },
   {
-    fromFrame: 650,
+    fromFrame: 660,
     toFrame: 780,
     speaker: "Host",
-    text: "For questions, start with Do or Does: 'Does he study law?'",
-    highlightedWord: "Do / Does",
+    text: "أما بالسؤال، فمنبدأ بـ Do أو Does: 'Does he study law?'",
+    highlightedWord: "Do أو Does",
   },
-  // 0:26 - 0:38 Use 1: Habits
+  // 0:27 – 0:38 الاستخدام 1: العادات والتكرار (Habits)
   {
     fromFrame: 780,
-    toFrame: 880,
+    toFrame: 890,
     speaker: "Host",
-    text: "Now, when do we use it? Number 1: Regular habits or repeated actions!",
-    highlightedWord: "Habits & Routine",
+    text: "طيّب، إيمتى منستخدمه؟ رقم واحد: للعادات والأشياء اللي بتتكرر دائماً.",
+    highlightedWord: "رقم واحد: للعادات",
   },
   {
-    fromFrame: 880,
+    fromFrame: 890,
     toFrame: 1010,
     speaker: "Host",
-    text: "Look at this timeline: past, present, future—it keeps happening!",
-    highlightedWord: "past ➔ present ➔ future",
+    text: "شوف هالخط الزمني: بالماضي، الحاضر، والمستقبل.. الفعل عم يتكرر!",
+    highlightedWord: "الفعل عم يتكرر",
   },
   {
     fromFrame: 1010,
     toFrame: 1140,
     speaker: "Host",
-    text: "Example: 'I use the Internet every day.'",
-    highlightedWord: "every day",
+    text: "متل: 'I use the Internet every day.'",
+    highlightedWord: "'I use the Internet every day.'",
   },
-  // 0:38 - 0:45 Use 2: Facts & Truths
+  // 0:38 – 0:44 الاستخدام 2: الحقائق (Facts)
   {
     fromFrame: 1140,
-    toFrame: 1240,
+    toFrame: 1230,
     speaker: "Host",
-    text: "Number 2: Universal facts and truths!",
-    highlightedWord: "Facts & Truths",
+    text: "رقم اتنين: للحقائق العلمية والعامة! 🔬",
+    highlightedWord: "للحقائق العلمية والعامة",
   },
   {
-    fromFrame: 1240,
+    fromFrame: 1230,
     toFrame: 1350,
     speaker: "Host",
-    text: "'If you heat water to 100 degrees Celsius, it boils.'",
-    highlightedWord: "100 °C boils",
+    text: "'If you heat water to 100 degrees, it boils.'",
+    highlightedWord: "100 degrees, it boils",
   },
-  // 0:45 - 0:51 Use 3: Instructions
+  // 0:44 – 0:50 الاستخدام 3: التعليمات (Instructions)
   {
     fromFrame: 1350,
     toFrame: 1430,
     speaker: "Host",
-    text: "Number 3: Giving instructions or directions!",
-    highlightedWord: "Instructions",
+    text: "رقم تلاتة: لنعطي تعليمات أو إرشادات! 📋",
+    highlightedWord: "تعليمات أو إرشادات",
   },
   {
     fromFrame: 1430,
@@ -147,28 +147,35 @@ const VOICEOVER_CAPTIONS: CaptionSegment[] = [
     text: "'To start the programme, first click on the desktop.'",
     highlightedWord: "first click",
   },
-  // 0:51 - 0:56 Use 4: Stories & Movies
+  // 0:50 – 0:55 الاستخدام 4: ملخصات الأفلام والقصص (Stories)
   {
     fromFrame: 1530,
-    toFrame: 1610,
+    toFrame: 1600,
     speaker: "Host",
-    text: "And number 4: Summarizing books or movies!",
-    highlightedWord: "Stories & Movies",
+    text: "ورقم أربعة: لما نحكي ملخص فيلم أو قصة! 🎬",
+    highlightedWord: "ملخص فيلم أو قصة",
   },
   {
-    fromFrame: 1610,
+    fromFrame: 1600,
     toFrame: 1680,
     speaker: "Host",
     text: "'In the film, the hero saves the villagers.'",
     highlightedWord: "hero saves",
   },
-  // 0:56 - 1:00 CTA
+  // 0:55 – 1:00 الخاتمة (Call to Action)
   {
     fromFrame: 1680,
+    toFrame: 1740,
+    speaker: "Host",
+    text: "اكتبلي جملتك بالـ Present Simple بالتعليقات! 💬",
+    highlightedWord: "Present Simple بالتعليقات",
+  },
+  {
+    fromFrame: 1740,
     toFrame: 1800,
     speaker: "Host",
-    text: "Drop your own example sentence in the comments, and follow for more!",
-    highlightedWord: "Follow for more! 🚀",
+    text: "وتابع الحساب لتتعلم قواعد تانية بدقيقة وحدة! 🚀",
+    highlightedWord: "بدقيقة وحدة! 🚀",
   },
 ];
 
@@ -496,6 +503,7 @@ export const PresentSimpleReel: React.FC<PresentSimpleReelProps> = ({
             }}
           >
             <div
+              dir="auto"
               style={{
                 fontSize: "18px",
                 fontWeight: 700,
@@ -505,9 +513,10 @@ export const PresentSimpleReel: React.FC<PresentSimpleReelProps> = ({
                 marginBottom: "8px",
               }}
             >
-              🎙️ VOICEOVER SCRIPT
+              🎙️ سكربت الريل (Present Simple)
             </div>
             <div
+              dir="auto"
               style={{
                 fontSize: "34px",
                 fontWeight: 800,
