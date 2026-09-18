@@ -118,6 +118,31 @@ const VOICEOVER_CAPTIONS = [
 
 ];
 
+// Frame ranges where caption overlaps with scene visuals (bottom ~400px area)
+// Each entry: [startFrame, endFrame] — caption is hidden during these ranges
+const CAPTION_OVERLAP_RANGES: [number, number][] = [
+  // Scene 2: last example cards can reach caption area
+  [540, 660],
+  // Scene 3: question box enters at local frame 150 (global 810), overlaps until scene end
+  [810, 960],
+  // Scene 4: keywords + example card near bottom
+  [1200, 1380],
+  // Scene 5: beaker + example card extend low
+  [1420, 1560],
+  // Scene 6: desktop card + example card extend low
+  [1620, 1770],
+  // Scene 7: clapperboard + example card extend low
+  [1820, 1950],
+  // Scene 8: CTA elements centered, large text can overlap
+  [2000, 2190],
+];
+
+function isCaptionOverlappingVisuals(frame: number): boolean {
+  return CAPTION_OVERLAP_RANGES.some(
+    ([start, end]) => frame >= start && frame < end
+  );
+}
+
 export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
   primaryBg = "#FFE600",
   showCaptions = true,
@@ -133,6 +158,9 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
   const activeCaption = VOICEOVER_CAPTIONS.find(
     (c) => frame >= c.fromFrame && frame < c.toFrame
   );
+
+  // Hide caption when it overlaps with scene visuals (bottom ~400px area)
+  const isCaptionOverlapping = isCaptionOverlappingVisuals(frame);
 
   return (
     <AbsoluteFill
@@ -296,7 +324,7 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
       {/* =========================================================================
           BOTTOM NEO-BRUTALIST CAPTION BAR
           ========================================================================= */}
-      {showCaptions && activeCaption && (
+      {showCaptions && activeCaption && !isCaptionOverlapping && (
         <div
           style={{
             position: "absolute",
