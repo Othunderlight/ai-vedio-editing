@@ -27,9 +27,6 @@ export interface NeoBrutalismReelProps {
 
 // Subtitles synchronized with voiceover
 const VOICEOVER_CAPTIONS = [
-  // 0:00 – 0:05 المقدمة (Hook)
-  { fromFrame: 0, toFrame: 75, text: "رح تفهم الـ Present Simple بأقل من دقيقة!" },
-  { fromFrame: 75, toFrame: 150, text: "جاهز؟ خلّينا نبلّش بسرعة! ⏱️" },
   // 0:05 – 0:17 التركيب: الإيجاب (Positive)
   { fromFrame: 150, toFrame: 240, text: "أول شي، القاعدة: بالجملة العادية منستخدم الفعل متل ما هو (V1)." },
   { fromFrame: 240, toFrame: 330, text: "بس مع (he, she, it) بنضيف للفعل s أو es أو ies!" },
@@ -51,9 +48,6 @@ const VOICEOVER_CAPTIONS = [
   // 0:50 – 0:55 الاستخدام 4: ملخصات الأفلام والقصص (Stories)
   { fromFrame: 1530, toFrame: 1600, text: "ورقم أربعة: لما نحكي ملخص فيلم أو قصة! 🎬" },
   { fromFrame: 1600, toFrame: 1680, text: "'In the film, the hero saves the villagers.'" },
-  // 0:55 – 1:00 الخاتمة (Call to Action)
-  { fromFrame: 1680, toFrame: 1740, text: "اكتبلي جملتك بالـ Present Simple بالتعليقات! 💬" },
-  { fromFrame: 1740, toFrame: 1800, text: "وتابع الحساب لتتعلم قواعد تانية بدقيقة وحدة! 🚀" },
 ];
 
 export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
@@ -220,7 +214,7 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
         <div
           style={{
             position: "absolute",
-            bottom: "80px",
+            bottom: "400px",
             left: "40px",
             right: "40px",
             zIndex: 60,
@@ -235,19 +229,7 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
               textAlign: "center",
             }}
           >
-            <div
-              dir="auto"
-              style={{
-                fontSize: "16px",
-                fontWeight: 900,
-                color: "#000000",
-                letterSpacing: "2px",
-                textTransform: "uppercase",
-                marginBottom: "6px",
-              }}
-            >
-              🎙️ سكربت الريل (Present Simple)
-            </div>
+            {/* script */}
             <div
               dir="auto"
               style={{
@@ -288,25 +270,6 @@ const Scene1BrutalistHook: React.FC<{ frame: number; fps: number }> = ({
         padding: "60px",
       }}
     >
-      {/* Pop-in Stamp Sticker */}
-      <div
-        dir="auto"
-        style={{
-          backgroundColor: "#55EFC4",
-          border: "5px solid #000000",
-          boxShadow: "8px 8px 0px #000000",
-          padding: "12px 32px",
-          fontSize: "26px",
-          fontWeight: 900,
-          letterSpacing: "2px",
-          transform: `scale(${popIn}) rotate(-3deg)`,
-          marginBottom: "36px",
-          textAlign: "right",
-        }}
-      >
-        ⚡ دورة سريعة في 60 ثانية
-      </div>
-
       {/* Main Chunky Card */}
       <div
         style={{
@@ -325,7 +288,7 @@ const Scene1BrutalistHook: React.FC<{ frame: number; fps: number }> = ({
             fontSize: "82px",
             fontWeight: 900,
             lineHeight: 1.05,
-            margin: "0 0 24px 0",
+            margin: "20px 0 24px 0",
             textTransform: "uppercase",
           }}
         >
@@ -347,22 +310,6 @@ const Scene1BrutalistHook: React.FC<{ frame: number; fps: number }> = ({
           <span dir="auto">في 60 ثانية ⏱️</span>
         </h1>
 
-        <div
-          dir="auto"
-          style={{
-            backgroundColor: "#FFE600",
-            border: "4px solid #000000",
-            boxShadow: "6px 6px 0px #000000",
-            padding: "16px 28px",
-            fontSize: "32px",
-            fontWeight: 900,
-            marginTop: "16px",
-            display: "inline-block",
-            textAlign: "right",
-          }}
-        >
-          👉 "لنشرحها خطوة بخطوة!"
-        </div>
       </div>
     </AbsoluteFill>
   );
@@ -437,7 +384,7 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
               boxShadow: "4px 4px 0px #000000",
             }}
           >
-            V1 + s, es, ies
+            V1 + s
           </span>
         </div>
 
@@ -455,7 +402,7 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
             textAlign: "right",
           }}
         >
-          ⚠️ قاعدة: مع He / She / It ➔ نضيف -S أو -ES أو -IES!
+          ⚠️ قاعدة: مع He / She / It ➔ نضيف S!
         </div>
       </div>
 
@@ -1643,7 +1590,6 @@ const Scene8BrutalistCTA: React.FC<{ frame: number; fps: number }> = ({
           maxWidth: "920px",
         }}
       >
-        <div style={{ fontSize: "70px", marginBottom: "16px" }}>🚀</div>
         <h2
           dir="auto"
           style={{
@@ -1651,7 +1597,7 @@ const Scene8BrutalistCTA: React.FC<{ frame: number; fps: number }> = ({
             fontSize: "64px",
             fontWeight: 900,
             lineHeight: 1.1,
-            margin: "0 0 20px 0",
+            margin: "50px 0 20px 0",
           }}
         >
           تابعنا للمزيد من
@@ -1668,7 +1614,8 @@ const Scene8BrutalistCTA: React.FC<{ frame: number; fps: number }> = ({
             padding: "16px 28px",
             fontSize: "28px",
             fontWeight: 900,
-            marginBottom: "30px",
+            marginBottom: "100px",
+            marginTop: "100px",
           }}
         >
           💬 اكتب جملتك في التعليقات وسأصححها لك!

@@ -24,9 +24,6 @@ export interface IpadNotesReelProps {
 }
 
 const VOICEOVER_CAPTIONS = [
-  // 0:00 – 0:05 المقدمة (Hook)
-  { fromFrame: 0, toFrame: 75, text: "رح تفهم الـ Present Simple بأقل من دقيقة!" },
-  { fromFrame: 75, toFrame: 150, text: "جاهز؟ خلّينا نبلّش بسرعة! ⏱️" },
   // 0:05 – 0:17 التركيب: الإيجاب (Positive)
   { fromFrame: 150, toFrame: 240, text: "أول شي، القاعدة: بالجملة العادية منستخدم الفعل متل ما هو (V1)." },
   { fromFrame: 240, toFrame: 330, text: "بس مع (he, she, it) بنضيف للفعل s أو es أو ies!" },
@@ -48,9 +45,6 @@ const VOICEOVER_CAPTIONS = [
   // 0:50 – 0:55 الاستخدام 4: ملخصات الأفلام والقصص (Stories)
   { fromFrame: 1530, toFrame: 1600, text: "ورقم أربعة: لما نحكي ملخص فيلم أو قصة! 🎬" },
   { fromFrame: 1600, toFrame: 1680, text: "'In the film, the hero saves the villagers.'" },
-  // 0:55 – 1:00 الخاتمة (Call to Action)
-  { fromFrame: 1680, toFrame: 1740, text: "اكتبلي جملتك بالـ Present Simple بالتعليقات! 💬" },
-  { fromFrame: 1740, toFrame: 1800, text: "وتابع الحساب لتتعلم قواعد تانية بدقيقة وحدة! 🚀" },
 ];
 
 export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
@@ -107,26 +101,6 @@ export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <span>9:41 AM</span>
           <span style={{ fontSize: "14px", color: "#A8A29E" }}>• iPad</span>
-        </div>
-        <div
-          dir="auto"
-          style={{
-            backgroundColor: "#FFFFFF",
-            padding: "6px 20px",
-            borderRadius: "20px",
-            boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
-            border: "1px solid #E7E5E4",
-            fontSize: "18px",
-            fontWeight: 700,
-            color: "#44403C",
-            textAlign: "right",
-          }}
-        >
-          📓 مذكرة القواعد • المضارع البسيط (Present Simple)
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <span>⏱️ {timeCode}</span>
-          <span>100% 🔋</span>
         </div>
       </div>
 
@@ -243,7 +217,7 @@ export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
         <div
           style={{
             position: "absolute",
-            bottom: "60px",
+            bottom: "400px",
             left: "50px",
             right: "50px",
             zIndex: 60,
@@ -259,18 +233,7 @@ export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
               textAlign: "center",
             }}
           >
-            <div
-              dir="auto"
-              style={{
-                fontSize: "14px",
-                fontWeight: 700,
-                color: "#10B981",
-                letterSpacing: "1px",
-                marginBottom: "4px",
-              }}
-            >
-              🎙️ سكربت الشرح (Present Simple)
-            </div>
+            {/* script */}
             <div
               dir="auto"
               style={{
@@ -348,10 +311,10 @@ const Scene1IpadHook: React.FC<{ frame: number; fps: number }> = ({
             borderRadius: "999px",
             fontSize: "22px",
             fontWeight: 700,
-            marginBottom: "24px",
+            marginBottom: "50px",
           }}
         >
-          ✨ تعلم قواعد الإنجليزية • في 60 ثانية
+          الانكليزية ب 60 ثانية لطلاب البكالوريا
         </div>
 
         <h1
@@ -384,17 +347,6 @@ const Scene1IpadHook: React.FC<{ frame: number; fps: number }> = ({
           </span>
         </h1>
 
-        <div
-          dir="auto"
-          style={{
-            fontFamily: caveatFont,
-            fontSize: "44px",
-            color: "#059669",
-            marginTop: "16px",
-          }}
-        >
-          "لنشرحها خطوة بخطوة!" ✏️
-        </div>
       </div>
     </AbsoluteFill>
   );
@@ -436,6 +388,8 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
           fontWeight: 800,
           transform: `scale(${enter})`,
           textAlign: "right",
+          marginTop: "50px",
+          marginBottom: "50px",
         }}
       >
         📌 القاعدة 1: صيغة الإثبات (Positive)
@@ -471,7 +425,7 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
         >
           مع He / She / It ➔ نضيف{" "}
           <span style={{ fontWeight: 800, color: "#DC2626" }}>
-            -s أو -es أو -ies
+            S
           </span>
           {/* Highlighter Line */}
           <span
@@ -576,7 +530,9 @@ const Scene3IpadNegAndQ: React.FC<{ frame: number; fps: number }> = ({
         display: "flex",
         flexDirection: "column",
         padding: "140px 60px 180px 60px",
-        gap: "24px",
+        gap: "50px",
+        marginTop: "50px",
+        marginBottom: "50px",
       }}
     >
       {/* Negative Note */}
@@ -702,7 +658,8 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
         display: "flex",
         flexDirection: "column",
         padding: "140px 60px 180px 60px",
-        gap: "24px",
+        gap: "50px",
+        marginTop: "50px",
       }}
     >
       <div
@@ -885,7 +842,8 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
         display: "flex",
         flexDirection: "column",
         padding: "140px 60px 180px 60px",
-        gap: "22px",
+        gap: "50px",
+        marginTop: "50px",
       }}
     >
       {/* Category Pill Tag */}
@@ -1193,7 +1151,8 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
         display: "flex",
         flexDirection: "column",
         padding: "140px 60px 180px 60px",
-        gap: "22px",
+        gap: "50px",
+        marginTop: "50px",
       }}
     >
       <div
@@ -1461,7 +1420,8 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
         display: "flex",
         flexDirection: "column",
         padding: "140px 60px 180px 60px",
-        gap: "22px",
+        gap: "50px",
+        marginTop: "50px",
       }}
     >
       <div
@@ -1691,19 +1651,13 @@ const Scene8IpadCTA: React.FC<{ frame: number; fps: number }> = ({
           transform: `scale(${enter})`,
         }}
       >
-        <div style={{ fontSize: "64px", marginBottom: "12px" }}>✏️</div>
         <h2
           dir="auto"
-          style={{ fontSize: "56px", fontWeight: 800, margin: "0 0 16px 0" }}
+          style={{ fontSize: "56px", fontWeight: 800, margin: "50px 0 16px 0" }}
         >
           احفظ هذه الملاحظة! 📌
         </h2>
-        <p
-          dir="auto"
-          style={{ fontSize: "28px", color: "#64748B", margin: "0 0 28px 0" }}
-        >
-          اكتب جملتك في التعليقات وسأصححها لك فوراً!
-        </p>
+
         <div
           dir="auto"
           style={{
