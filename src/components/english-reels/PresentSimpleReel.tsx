@@ -40,19 +40,6 @@ interface CaptionSegment {
 }
 
 const VOICEOVER_CAPTIONS = [
-  // 00:00 – 00:03
-  {
-    fromFrame: 0,
-    toFrame: 90,
-    text: "رح تفهم الـ Present Simple بأقل من دقيقة."
-  },
-
-  // 00:03 – 00:05
-  {
-    fromFrame: 90,
-    toFrame: 150,
-    text: "جاهز؟ خلينا نبلش بسرعة."
-  },
 
   // 00:05 – 00:10
   {
@@ -72,28 +59,28 @@ const VOICEOVER_CAPTIONS = [
   {
     fromFrame: 480,
     toFrame: 540,
-    text: "مثل: I study law."
+    text: "مثل:"
   },
 
   // 00:18 – 00:22
   {
     fromFrame: 540,
     toFrame: 660,
-    text: "بس بنقول: She likes reading و He studies law."
+    text: "بس بنقول:"
   },
 
   // 00:22 – 00:27
   {
     fromFrame: 660,
     toFrame: 810,
-    text: "وبالنفي، بنحط don't أو doesn't مع الفعل بالمصدر: He doesn't study medicine."
+    text: "وبالنفي، بنحط don't أو doesn't مع الفعل بالمصدر: "
   },
 
   // 00:27 – 00:32
   {
     fromFrame: 810,
     toFrame: 960,
-    text: "أما بالسؤال، فمنبدأ بـ Do أو Does: Does he study law?"
+    text: "أما بالسؤال، فمنبدأ بـ Do أو Does:"
   },
 
   // 00:32 – 00:37
@@ -114,43 +101,30 @@ const VOICEOVER_CAPTIONS = [
   {
     fromFrame: 1290,
     toFrame: 1380,
-    text: "مثل: I use the internet every day."
+    text: "مثل:"
   },
 
   // 00:46 – 00:52
   {
     fromFrame: 1380,
     toFrame: 1560,
-    text: "رقم اتنين: للحقائق العلمية والعامة: If you heat water to 100 degrees, it boils."
+    text: "رقم اتنين: للحقائق العلمية والعامة: "
   },
 
   // 00:52 – 00:59
   {
     fromFrame: 1560,
     toFrame: 1770,
-    text: "رقم تلاتة: لنعطي تعليمات أو إرشادات: To start the program, first click on the desktop."
+    text: "رقم تلاتة: لنعطي تعليمات أو إرشادات: "
   },
 
   // 00:59 – 01:05
   {
     fromFrame: 1770,
     toFrame: 1950,
-    text: "ورقم أربعة: لما نحكي ملخص فيلم أو قصة: In the film, the hero saves the villagers."
+    text: "ورقم أربعة: لما نحكي ملخص فيلم أو قصة: "
   },
 
-  // 01:05 – 01:09
-  {
-    fromFrame: 1950,
-    toFrame: 2070,
-    text: "اكتب كلمة ملخص بالتعليقات لأبعتلك الـ cheat sheet مجاناً."
-  },
-
-  // 01:09 – 01:13
-  {
-    fromFrame: 2070,
-    toFrame: 2190,
-    text: "وتابعنا لتتعلم قواعد تانية بدقيقة واحدة."
-  }
 ];
 
 export const PresentSimpleReel: React.FC<PresentSimpleReelProps> = ({
@@ -703,20 +677,30 @@ export const ScenePositive: React.FC<{
     config: { damping: 12, mass: 0.8 },
   });
 
+  // +s rule appears when voiceover says "بس مع he, she, it" (local frame ~160)
+  const ruleEntrance = spring({
+    frame: frame - 160,
+    fps,
+    config: { damping: 12, mass: 0.8 },
+  });
+
+  // "I study law" example (local frame ~330)
   const ex1Entrance = spring({
-    frame: frame - 30,
+    frame: frame - 330,
     fps,
     config: { damping: 12, mass: 0.75 },
   });
 
+  // "She likes reading" example (local frame ~390)
   const ex2Entrance = spring({
-    frame: frame - 90,
+    frame: frame - 390,
     fps,
     config: { damping: 12, mass: 0.75 },
   });
 
+  // "He studies law" example (local frame ~420)
   const ex3Entrance = spring({
-    frame: frame - 150,
+    frame: frame - 445,
     fps,
     config: { damping: 12, mass: 0.75 },
   });
@@ -855,6 +839,8 @@ export const ScenePositive: React.FC<{
             justifyContent: "flex-end",
             gap: "16px",
             textAlign: "right",
+            opacity: ruleEntrance,
+            transform: `translateY(${interpolate(ruleEntrance, [0, 1], [20, 0])}px)`,
           }}
         >
           <div dir="auto" style={{ fontSize: "24px", fontWeight: 700, color: "#E2E8F0", textAlign: "right" }}>
@@ -1047,7 +1033,7 @@ export const SceneNegativeAndQuestion: React.FC<{
   });
 
   const qEntrance = spring({
-    frame: frame - 60,
+    frame: frame - 150,
     fps,
     config: { damping: 12, mass: 0.8 },
   });
@@ -1338,18 +1324,21 @@ export const SceneHabitsTimeline: React.FC<{
     config: { damping: 12, mass: 0.8 },
   });
 
-  // Timeline markers progress
-  const marker1 = spring({ frame: frame - 25, fps });
-  const marker2 = spring({ frame: frame - 55, fps });
-  const marker3 = spring({ frame: frame - 85, fps });
-  const marker4 = spring({ frame: frame - 115, fps });
-  const marker5 = spring({ frame: frame - 145, fps });
+  // Timeline markers progress (appear when voiceover says "شوف هالخط الزمني" ~local frame 150)
+  const marker1 = spring({ frame: frame - 150, fps });
+  const marker2 = spring({ frame: frame - 175, fps });
+  const marker3 = spring({ frame: frame - 200, fps });
+  const marker4 = spring({ frame: frame - 225, fps });
+  const marker5 = spring({ frame: frame - 250, fps });
 
-  // Floating keywords staggered
-  const tag1 = spring({ frame: frame - 160, fps });
-  const tag2 = spring({ frame: frame - 180, fps });
-  const tag3 = spring({ frame: frame - 200, fps });
-  const tag4 = spring({ frame: frame - 220, fps });
+  // Floating keywords (appear with intro "للعادات والأشياء اللي بتتكرر دائماً" ~local frame 0)
+  const tag1 = spring({ frame: frame - 10, fps });
+  const tag2 = spring({ frame: frame - 25, fps });
+  const tag3 = spring({ frame: frame - 40, fps });
+  const tag4 = spring({ frame: frame - 55, fps });
+
+  // Example appears when voiceover says "مثل: I use the internet every day" ~local frame 330
+  const exampleEntrance = spring({ frame: frame - 330, fps, config: { damping: 12, mass: 0.8 } });
 
   return (
     <AbsoluteFill
@@ -1586,6 +1575,8 @@ export const SceneHabitsTimeline: React.FC<{
           alignItems: "center",
           gap: "20px",
           boxShadow: `0 16px 40px ${accentColor}20`,
+          opacity: exampleEntrance,
+          transform: `scale(${exampleEntrance})`,
         }}
       >
         <span style={{ fontSize: "40px" }}>👉</span>
@@ -2612,7 +2603,7 @@ export const SceneCallToAction: React.FC<{
               color: "#F8FAFC",
             }}
           >
-            "اكتب جملتك في التعليقات وسأصححها لك!"
+            "علّق ب "ملخص" لأبعتلك واحد مجانا"
           </span>
         </div>
 

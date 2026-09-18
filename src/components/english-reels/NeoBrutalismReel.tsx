@@ -31,19 +31,6 @@ export interface NeoBrutalismReelProps {
 
 // Subtitles synchronized with voiceover
 const VOICEOVER_CAPTIONS = [
-  // 00:00 – 00:03
-  {
-    fromFrame: 0,
-    toFrame: 90,
-    text: "رح تفهم الـ Present Simple بأقل من دقيقة."
-  },
-
-  // 00:03 – 00:05
-  {
-    fromFrame: 90,
-    toFrame: 150,
-    text: "جاهز؟ خلينا نبلش بسرعة."
-  },
 
   // 00:05 – 00:10
   {
@@ -63,28 +50,28 @@ const VOICEOVER_CAPTIONS = [
   {
     fromFrame: 480,
     toFrame: 540,
-    text: "مثل: I study law."
+    text: "مثل:"
   },
 
   // 00:18 – 00:22
   {
     fromFrame: 540,
     toFrame: 660,
-    text: "بس بنقول: She likes reading و He studies law."
+    text: "بس بنقول:"
   },
 
   // 00:22 – 00:27
   {
     fromFrame: 660,
     toFrame: 810,
-    text: "وبالنفي، بنحط don't أو doesn't مع الفعل بالمصدر: He doesn't study medicine."
+    text: "وبالنفي، بنحط don't أو doesn't مع الفعل بالمصدر: "
   },
 
   // 00:27 – 00:32
   {
     fromFrame: 810,
     toFrame: 960,
-    text: "أما بالسؤال، فمنبدأ بـ Do أو Does: Does he study law?"
+    text: "أما بالسؤال، فمنبدأ بـ Do أو Does:"
   },
 
   // 00:32 – 00:37
@@ -105,43 +92,30 @@ const VOICEOVER_CAPTIONS = [
   {
     fromFrame: 1290,
     toFrame: 1380,
-    text: "مثل: I use the internet every day."
+    text: "مثل:"
   },
 
   // 00:46 – 00:52
   {
     fromFrame: 1380,
     toFrame: 1560,
-    text: "رقم اتنين: للحقائق العلمية والعامة: If you heat water to 100 degrees, it boils."
+    text: "رقم اتنين: للحقائق العلمية والعامة: "
   },
 
   // 00:52 – 00:59
   {
     fromFrame: 1560,
     toFrame: 1770,
-    text: "رقم تلاتة: لنعطي تعليمات أو إرشادات: To start the program, first click on the desktop."
+    text: "رقم تلاتة: لنعطي تعليمات أو إرشادات: "
   },
 
   // 00:59 – 01:05
   {
     fromFrame: 1770,
     toFrame: 1950,
-    text: "ورقم أربعة: لما نحكي ملخص فيلم أو قصة: In the film, the hero saves the villagers."
+    text: "ورقم أربعة: لما نحكي ملخص فيلم أو قصة: "
   },
 
-  // 01:05 – 01:09
-  {
-    fromFrame: 1950,
-    toFrame: 2070,
-    text: "اكتب كلمة ملخص بالتعليقات لأبعتلك الـ cheat sheet مجاناً."
-  },
-
-  // 01:09 – 01:13
-  {
-    fromFrame: 2070,
-    toFrame: 2190,
-    text: "وتابعنا لتتعلم قواعد تانية بدقيقة واحدة."
-  }
 ];
 
 export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
@@ -382,9 +356,14 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
   fps,
 }) => {
   const pop1 = spring({ frame, fps, config: { mass: 0.5, damping: 8 } });
-  const pop2 = spring({ frame: frame - 25, fps, config: { mass: 0.5, damping: 8 } });
-  const pop3 = spring({ frame: frame - 60, fps, config: { mass: 0.5, damping: 8 } });
-  const pop4 = spring({ frame: frame - 95, fps, config: { mass: 0.5, damping: 8 } });
+  // +s rule appears when voiceover says "بس مع he, she, it" (local frame ~160)
+  const rulePop = spring({ frame: frame - 160, fps, config: { mass: 0.5, damping: 8 } });
+  // "I study law" (local frame ~330)
+  const pop2 = spring({ frame: frame - 330, fps, config: { mass: 0.5, damping: 8 } });
+  // "She likes reading" (local frame ~390)
+  const pop3 = spring({ frame: frame - 390, fps, config: { mass: 0.5, damping: 8 } });
+  // "He studies law" (local frame ~420)
+  const pop4 = spring({ frame: frame - 445, fps, config: { mass: 0.5, damping: 8 } });
 
   return (
     <AbsoluteFill
@@ -463,6 +442,8 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
             fontSize: "24px",
             fontWeight: 900,
             textAlign: "right",
+            opacity: rulePop,
+            transform: `scale(${rulePop})`,
           }}
         >
           مع He / She / It: نضيف S!
@@ -544,7 +525,8 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
   fps,
 }) => {
   const pop1 = spring({ frame, fps, config: { mass: 0.5, damping: 8 } });
-  const pop2 = spring({ frame: frame - 40, fps, config: { mass: 0.5, damping: 8 } });
+  // Question card appears when voiceover says "أما بالسؤال" (local frame ~150)
+  const pop2 = spring({ frame: frame - 150, fps, config: { mass: 0.5, damping: 8 } });
 
   return (
     <AbsoluteFill
@@ -694,11 +676,16 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
   fps,
 }) => {
   const pop = spring({ frame, fps, config: { mass: 0.5, damping: 8 } });
-  const m1 = spring({ frame: frame - 20, fps });
-  const m2 = spring({ frame: frame - 40, fps });
-  const m3 = spring({ frame: frame - 60, fps });
-  const m4 = spring({ frame: frame - 80, fps });
-  const m5 = spring({ frame: frame - 100, fps });
+  // Timeline markers appear when voiceover says "شوف هالخط الزمني" (local frame ~150)
+  const m1 = spring({ frame: frame - 150, fps });
+  const m2 = spring({ frame: frame - 170, fps });
+  const m3 = spring({ frame: frame - 190, fps });
+  const m4 = spring({ frame: frame - 210, fps });
+  const m5 = spring({ frame: frame - 230, fps });
+  // Tags appear with intro (local frame ~10)
+  const tagsEnter = spring({ frame: frame - 10, fps, config: { mass: 0.5, damping: 8 } });
+  // Example appears when voiceover says "مثل: I use the internet" (local frame ~330)
+  const exampleEnter = spring({ frame: frame - 330, fps, config: { mass: 0.5, damping: 8 } });
 
   return (
     <AbsoluteFill
@@ -813,7 +800,7 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
       </div>
 
       {/* Floating Keywords */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "12px" }}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", opacity: tagsEnter, transform: `translateY(${interpolate(tagsEnter, [0, 1], [15, 0])}px)` }}>
         {["always", "usually", "sometimes", "every day"].map((kw, i) => (
           <div
             key={i}
@@ -840,6 +827,8 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
           padding: "24px",
           fontSize: "34px",
           fontWeight: 900,
+          opacity: exampleEnter,
+          transform: `scale(${exampleEnter})`,
         }}
       >
         👉 I <span style={{ color: "#0984E3" }}>use</span> the Internet{" "}
@@ -1681,7 +1670,7 @@ const Scene8BrutalistCTA: React.FC<{ frame: number; fps: number }> = ({
             marginTop: "100px",
           }}
         >
-          💬 اكتب جملتك في التعليقات وسأصححها لك!
+          💬 علّق ب "ملخص" لأبعتلك واحد مجانا
         </div>
 
         <div

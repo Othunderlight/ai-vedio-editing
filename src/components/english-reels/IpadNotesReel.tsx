@@ -28,19 +28,6 @@ export interface IpadNotesReelProps {
 }
 
 const VOICEOVER_CAPTIONS = [
-  // 00:00 – 00:03
-  {
-    fromFrame: 0,
-    toFrame: 90,
-    text: "رح تفهم الـ Present Simple بأقل من دقيقة."
-  },
-
-  // 00:03 – 00:05
-  {
-    fromFrame: 90,
-    toFrame: 150,
-    text: "جاهز؟ خلينا نبلش بسرعة."
-  },
 
   // 00:05 – 00:10
   {
@@ -60,28 +47,28 @@ const VOICEOVER_CAPTIONS = [
   {
     fromFrame: 480,
     toFrame: 540,
-    text: "مثل: I study law."
+    text: "مثل:"
   },
 
   // 00:18 – 00:22
   {
     fromFrame: 540,
     toFrame: 660,
-    text: "بس بنقول: She likes reading و He studies law."
+    text: "بس بنقول:"
   },
 
   // 00:22 – 00:27
   {
     fromFrame: 660,
     toFrame: 810,
-    text: "وبالنفي، بنحط don't أو doesn't مع الفعل بالمصدر: He doesn't study medicine."
+    text: "وبالنفي، بنحط don't أو doesn't مع الفعل بالمصدر: "
   },
 
   // 00:27 – 00:32
   {
     fromFrame: 810,
     toFrame: 960,
-    text: "أما بالسؤال، فمنبدأ بـ Do أو Does: Does he study law?"
+    text: "أما بالسؤال، فمنبدأ بـ Do أو Does:"
   },
 
   // 00:32 – 00:37
@@ -102,43 +89,30 @@ const VOICEOVER_CAPTIONS = [
   {
     fromFrame: 1290,
     toFrame: 1380,
-    text: "مثل: I use the internet every day."
+    text: "مثل:"
   },
 
   // 00:46 – 00:52
   {
     fromFrame: 1380,
     toFrame: 1560,
-    text: "رقم اتنين: للحقائق العلمية والعامة: If you heat water to 100 degrees, it boils."
+    text: "رقم اتنين: للحقائق العلمية والعامة: "
   },
 
   // 00:52 – 00:59
   {
     fromFrame: 1560,
     toFrame: 1770,
-    text: "رقم تلاتة: لنعطي تعليمات أو إرشادات: To start the program, first click on the desktop."
+    text: "رقم تلاتة: لنعطي تعليمات أو إرشادات: "
   },
 
   // 00:59 – 01:05
   {
     fromFrame: 1770,
     toFrame: 1950,
-    text: "ورقم أربعة: لما نحكي ملخص فيلم أو قصة: In the film, the hero saves the villagers."
+    text: "ورقم أربعة: لما نحكي ملخص فيلم أو قصة: "
   },
 
-  // 01:05 – 01:09
-  {
-    fromFrame: 1950,
-    toFrame: 2070,
-    text: "اكتب كلمة ملخص بالتعليقات لأبعتلك الـ cheat sheet مجاناً."
-  },
-
-  // 01:09 – 01:13
-  {
-    fromFrame: 2070,
-    toFrame: 2190,
-    text: "وتابعنا لتتعلم قواعد تانية بدقيقة واحدة."
-  }
 ];
 
 export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
@@ -460,12 +434,17 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
   fps,
 }) => {
   const enter = spring({ frame, fps, config: { damping: 14 } });
-  const highlightW = interpolate(frame, [30, 70], [0, 100], {
+  // +s rule highlight (local frame ~160)
+  const highlightW = interpolate(frame, [160, 200], [0, 100], {
     extrapolateRight: "clamp",
+    extrapolateLeft: "clamp",
   });
-  const write1 = interpolate(frame, [40, 75], [0, 100], { extrapolateRight: "clamp" });
-  const write2 = interpolate(frame, [80, 115], [0, 100], { extrapolateRight: "clamp" });
-  const write3 = interpolate(frame, [120, 155], [0, 100], { extrapolateRight: "clamp" });
+  // "I study law" (local frame ~330)
+  const write1 = interpolate(frame, [330, 365], [0, 100], { extrapolateRight: "clamp", extrapolateLeft: "clamp" });
+  // "She likes reading" (local frame ~390)
+  const write2 = interpolate(frame, [390, 425], [0, 100], { extrapolateRight: "clamp", extrapolateLeft: "clamp" });
+  // "He studies law" (local frame ~420)
+  const write3 = interpolate(frame, [445, 455], [0, 100], { extrapolateRight: "clamp", extrapolateLeft: "clamp" });
 
   return (
     <AbsoluteFill
@@ -518,7 +497,6 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
           style={{
             position: "relative",
             marginTop: "16px",
-            display: "inline-block",
             fontSize: "28px",
             fontWeight: 700,
             color: "#B45309",
@@ -533,7 +511,7 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
           <span
             style={{
               position: "absolute",
-              left: "-4px",
+              right: "-4px",
               bottom: "-2px",
               height: "16px",
               width: `${highlightW}%`,
@@ -624,7 +602,9 @@ const Scene3IpadNegAndQ: React.FC<{ frame: number; fps: number }> = ({
   frame,
   fps,
 }) => {
-  const enter = spring({ frame, fps, config: { damping: 14 } });
+  const negEnter = spring({ frame, fps, config: { damping: 14 } });
+  // Question card appears when voiceover says "أما بالسؤال" (local frame ~150)
+  const qEnter = spring({ frame: frame - 150, fps, config: { damping: 14 } });
 
   return (
     <AbsoluteFill
@@ -645,7 +625,7 @@ const Scene3IpadNegAndQ: React.FC<{ frame: number; fps: number }> = ({
           borderRadius: "28px",
           padding: "32px",
           boxShadow: "0 10px 30px rgba(225, 29, 72, 0.05)",
-          transform: `scale(${enter})`,
+          transform: `scale(${negEnter})`,
         }}
       >
         <div
@@ -700,7 +680,7 @@ const Scene3IpadNegAndQ: React.FC<{ frame: number; fps: number }> = ({
           borderRadius: "28px",
           padding: "32px",
           boxShadow: "0 10px 30px rgba(2, 132, 199, 0.05)",
-          transform: `scale(${enter})`,
+          transform: `scale(${qEnter})`,
         }}
       >
         <div
@@ -753,6 +733,10 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
   fps,
 }) => {
   const enter = spring({ frame, fps, config: { damping: 14 } });
+  // Tags appear with intro (local frame ~10)
+  const tagsEnter = spring({ frame: frame - 10, fps, config: { damping: 14 } });
+  // Example appears when voiceover says "مثل: I use the internet" (local frame ~330)
+  const exampleEnter = spring({ frame: frame - 330, fps, config: { damping: 14 } });
 
   return (
     <AbsoluteFill
@@ -863,7 +847,7 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
       </div>
 
       {/* Cute Pastel Frequency Tags */}
-      <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+      <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", opacity: tagsEnter, transform: `translateY(${interpolate(tagsEnter, [0, 1], [15, 0])}px)` }}>
         {[
           { en: "always", ar: "دائماً" },
           { en: "usually", ar: "عادةً" },
@@ -895,6 +879,8 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
           borderRadius: "24px",
           padding: "24px 30px",
           boxShadow: "0 8px 24px rgba(0,0,0,0.04)",
+          opacity: exampleEnter,
+          transform: `scale(${exampleEnter})`,
         }}
       >
         <div
@@ -1784,7 +1770,7 @@ const Scene8IpadCTA: React.FC<{ frame: number; fps: number }> = ({
               color: "#1C1917",
             }}
           >
-            "اكتب جملتك في التعليقات وسأصححها لك!"
+            "علّق ب "ملخص" لأبعتلك واحد مجانا"
           </span>
         </div>
 
