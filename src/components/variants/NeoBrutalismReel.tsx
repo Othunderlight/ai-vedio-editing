@@ -1501,18 +1501,22 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
         >
           <div
             style={{
-              width: "140px",
-              height: "140px",
-              backgroundColor: "#FF7675",
+              width: "160px",
+              height: "160px",
               border: "5px solid #000000",
               boxShadow: "6px 6px 0px #000000",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "76px",
+              overflow: "hidden",
             }}
           >
-            🦸‍♂️
+            <img
+              src="/assets/spiderman-crawling.webp"
+              alt="Spiderman crawling - movie scene"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
           </div>
           <div
             dir="auto"
@@ -1528,7 +1532,7 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
               textAlign: "right",
             }}
           >
-            البطل ينقذ أهل القرية!
+            البطل ينقذ أهل القرية! 🎬
           </div>
         </div>
       </div>

@@ -2458,18 +2458,23 @@ export const SceneStoriesFilms: React.FC<{
         >
           <div
             style={{
-              width: "160px",
-              height: "160px",
-              borderRadius: "50%",
-              background: "linear-gradient(135deg, #EC4899, #8B5CF6)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "80px",
+              width: "180px",
+              height: "180px",
+              borderRadius: "24px",
+              overflow: "hidden",
+              border: "3px solid rgba(255, 255, 255, 0.3)",
               boxShadow: "0 0 50px rgba(236, 72, 153, 0.5)",
             }}
           >
-            🦸‍♂️
+            <img
+              src="/assets/spiderman-crawling.webp"
+              alt="Spiderman crawling - movie scene"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
           </div>
           <div
             dir="auto"
@@ -2485,7 +2490,7 @@ export const SceneStoriesFilms: React.FC<{
               textAlign: "right",
             }}
           >
-            البطل ينقذ أهل القرية!
+            البطل ينقذ أهل القرية! 🎬
           </div>
         </div>
       </div>

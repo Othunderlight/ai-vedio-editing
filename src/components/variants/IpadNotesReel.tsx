@@ -1555,18 +1555,23 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
         >
           <div
             style={{
-              width: "130px",
-              height: "130px",
-              borderRadius: "50%",
-              background: "linear-gradient(135deg, #EC4899, #8B5CF6)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "68px",
+              width: "150px",
+              height: "150px",
+              borderRadius: "24px",
+              overflow: "hidden",
               boxShadow: "0 8px 25px rgba(236, 72, 153, 0.35)",
+              border: "3px solid #E2E8F0",
             }}
           >
-            🦸‍♂️
+            <img
+              src="/assets/spiderman-crawling.webp"
+              alt="Spiderman crawling - movie scene"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
           </div>
           <div
             dir="auto"
@@ -1582,7 +1587,7 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
               textAlign: "right",
             }}
           >
-            البطل ينقذ أهل القرية!
+            البطل ينقذ أهل القرية! 🎬
           </div>
         </div>
       </div>
@@ -1628,6 +1633,8 @@ const Scene8IpadCTA: React.FC<{ frame: number; fps: number }> = ({
   fps,
 }) => {
   const enter = spring({ frame, fps, config: { damping: 14 } });
+  const buttonPop = spring({ frame: frame - 20, fps, config: { damping: 10, mass: 0.7 } });
+  const isFollowClicked = frame >= 45;
 
   return (
     <AbsoluteFill
@@ -1653,15 +1660,53 @@ const Scene8IpadCTA: React.FC<{ frame: number; fps: number }> = ({
       >
         <h2
           dir="auto"
-          style={{ fontSize: "56px", fontWeight: 800, margin: "50px 0 16px 0" }}
+          style={{
+            fontFamily: jakartaFont,
+            fontSize: "56px",
+            fontWeight: 800,
+            margin: "50px 0 16px 0",
+            lineHeight: 1.2,
+          }}
         >
-          احفظ هذه الملاحظة! 📌
+          تابعنا للمزيد من
+          <br />
+          <span dir="auto" style={{ color: "#059669" }}>قواعد الإنجليزية في دقيقة!</span>
         </h2>
 
+        {/* Comment Prompt Box */}
         <div
           dir="auto"
           style={{
-            backgroundColor: "#10B981",
+            backgroundColor: "#F8FAFC",
+            border: "2px dashed #D6D3CD",
+            borderRadius: "20px",
+            padding: "20px 28px",
+            marginBottom: "40px",
+            marginTop: "40px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "14px",
+          }}
+        >
+          <span style={{ fontSize: "32px" }}>💬</span>
+          <span
+            dir="auto"
+            style={{
+              fontSize: "26px",
+              fontWeight: 700,
+              color: "#1C1917",
+            }}
+          >
+            "اكتب جملتك في التعليقات وسأصححها لك!"
+          </span>
+        </div>
+
+        {/* Animated Follow Button */}
+        <div
+          dir="auto"
+          style={{
+            backgroundColor: isFollowClicked ? "#10B981" : "#10B981",
             color: "#FFFFFF",
             padding: "16px 48px",
             borderRadius: "999px",
@@ -1669,9 +1714,10 @@ const Scene8IpadCTA: React.FC<{ frame: number; fps: number }> = ({
             fontWeight: 800,
             display: "inline-block",
             boxShadow: "0 10px 24px rgba(16, 185, 129, 0.3)",
+            transform: `scale(${buttonPop})`,
           }}
         >
-          + متابعة لمزيد من القواعد اليومية
+          <span dir="auto">{isFollowClicked ? "تمت المتابعة ✔️" : "+ متابعة (Follow)"}</span>
         </div>
       </div>
     </AbsoluteFill>
