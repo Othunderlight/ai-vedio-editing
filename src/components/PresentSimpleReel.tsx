@@ -5,8 +5,10 @@ import {
   AbsoluteFill,
   interpolate,
   spring,
+  staticFile,
   useCurrentFrame,
   useVideoConfig,
+  Img,
 } from "remotion";
 
 const { fontFamily: montserratFont } = loadMontserrat("normal", {
@@ -2418,7 +2420,7 @@ export const SceneStoriesFilms: React.FC<{
                   textAlign: "right",
                 }}
               >
-                PROD: ملخص الفيلم
+                PROD: Spiderman
               </div>
               <div
                 dir="auto"
@@ -2466,8 +2468,8 @@ export const SceneStoriesFilms: React.FC<{
               boxShadow: "0 0 50px rgba(236, 72, 153, 0.5)",
             }}
           >
-            <img
-              src="/assets/spiderman-crawling.webp"
+            <Img
+              src={staticFile("/assets/spiderman-crawling.webp")}
               alt="Spiderman crawling - movie scene"
               style={{
                 width: "100%",
@@ -2475,22 +2477,6 @@ export const SceneStoriesFilms: React.FC<{
                 objectFit: "cover",
               }}
             />
-          </div>
-          <div
-            dir="auto"
-            style={{
-              marginTop: "16px",
-              backgroundColor: "rgba(168, 85, 247, 0.25)",
-              border: "1px solid #C084FC",
-              color: "#E9D5FF",
-              padding: "6px 18px",
-              borderRadius: "999px",
-              fontSize: "20px",
-              fontWeight: 800,
-              textAlign: "right",
-            }}
-          >
-            البطل ينقذ أهل القرية! 🎬
           </div>
         </div>
       </div>

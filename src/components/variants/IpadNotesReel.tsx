@@ -5,8 +5,10 @@ import {
   AbsoluteFill,
   interpolate,
   spring,
+  staticFile,
   useCurrentFrame,
   useVideoConfig,
+  Img
 } from "remotion";
 
 const { fontFamily: caveatFont } = loadCaveat("normal", {
@@ -1515,7 +1517,7 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
                   textAlign: "right",
                 }}
               >
-                PROD: ملخص الفيلم
+                PROD: Spiderman
               </div>
               <div
                 dir="auto"
@@ -1563,8 +1565,8 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
               border: "3px solid #E2E8F0",
             }}
           >
-            <img
-              src="/assets/spiderman-crawling.webp"
+            <Img
+              src={staticFile("/assets/spiderman-crawling.webp")}
               alt="Spiderman crawling - movie scene"
               style={{
                 width: "100%",
@@ -1572,22 +1574,6 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
                 objectFit: "cover",
               }}
             />
-          </div>
-          <div
-            dir="auto"
-            style={{
-              marginTop: "12px",
-              backgroundColor: "rgba(168, 85, 247, 0.15)",
-              border: "1px solid #C084FC",
-              color: "#7E22CE",
-              padding: "4px 14px",
-              borderRadius: "999px",
-              fontSize: "17px",
-              fontWeight: 800,
-              textAlign: "right",
-            }}
-          >
-            البطل ينقذ أهل القرية! 🎬
           </div>
         </div>
       </div>

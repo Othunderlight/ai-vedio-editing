@@ -5,8 +5,10 @@ import {
   AbsoluteFill,
   interpolate,
   spring,
+  staticFile,
   useCurrentFrame,
   useVideoConfig,
+  Img
 } from "remotion";
 
 const { fontFamily: montserratFont } = loadMontserrat("normal", {
@@ -1461,7 +1463,7 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
                   textAlign: "right",
                 }}
               >
-                PROD: ملخص الفيلم
+                PROD: Spiderman
               </div>
               <div
                 dir="auto"
@@ -1508,8 +1510,8 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
               overflow: "hidden",
             }}
           >
-            <img
-              src="/assets/spiderman-crawling.webp"
+            <Img
+              src={staticFile("/assets/spiderman-crawling.webp")}
               alt="Spiderman crawling - movie scene"
               style={{
                 width: "100%",
@@ -1518,22 +1520,7 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
               }}
             />
           </div>
-          <div
-            dir="auto"
-            style={{
-              marginTop: "12px",
-              backgroundColor: "#FFE600",
-              border: "3px solid #000000",
-              boxShadow: "3px 3px 0px #000000",
-              color: "#000000",
-              padding: "4px 14px",
-              fontSize: "18px",
-              fontWeight: 900,
-              textAlign: "right",
-            }}
-          >
-            البطل ينقذ أهل القرية! 🎬
-          </div>
+
         </div>
       </div>
 
