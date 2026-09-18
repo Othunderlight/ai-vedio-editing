@@ -220,52 +220,52 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
       {frame < 150 && <Scene1BrutalistHook frame={frame} fps={fps} />}
 
       {/* =========================================================================
-          SCENE 2: (+) POSITIVE STRUCTURE (0:05 - 0:18 | frames 150 - 540)
+          SCENE 2: (+) POSITIVE STRUCTURE (0:05 - 0:22 | frames 150 - 660)
           ========================================================================= */}
-      {frame >= 150 && frame < 540 && (
+      {frame >= 150 && frame < 660 && (
         <Scene2BrutalistPositive frame={frame - 150} fps={fps} />
       )}
 
       {/* =========================================================================
-          SCENE 3: (– & ?) NEGATIVE & QUESTIONS (0:18 - 0:26 | frames 540 - 780)
+          SCENE 3: (– & ?) NEGATIVE & QUESTIONS (0:22 - 0:32 | frames 660 - 960)
           ========================================================================= */}
-      {frame >= 540 && frame < 780 && (
-        <Scene3BrutalistNegAndQ frame={frame - 540} fps={fps} />
+      {frame >= 660 && frame < 960 && (
+        <Scene3BrutalistNegAndQ frame={frame - 660} fps={fps} />
       )}
 
       {/* =========================================================================
-          SCENE 4: USE 1: HABITS & ROUTINE + TIMELINE (0:26 - 0:38 | frames 780 - 1140)
+          SCENE 4: USE 1: HABITS & ROUTINE + TIMELINE (0:32 - 0:46 | frames 960 - 1380)
           ========================================================================= */}
-      {frame >= 780 && frame < 1140 && (
-        <Scene4BrutalistHabits frame={frame - 780} fps={fps} />
+      {frame >= 960 && frame < 1380 && (
+        <Scene4BrutalistHabits frame={frame - 960} fps={fps} />
       )}
 
       {/* =========================================================================
-          SCENE 5: USE 2: FACTS & TRUTHS (0:38 - 0:45 | frames 1140 - 1350)
+          SCENE 5: USE 2: FACTS & TRUTHS (0:46 - 0:52 | frames 1380 - 1560)
           ========================================================================= */}
-      {frame >= 1140 && frame < 1350 && (
-        <Scene5BrutalistFacts frame={frame - 1140} fps={fps} />
+      {frame >= 1380 && frame < 1560 && (
+        <Scene5BrutalistFacts frame={frame - 1380} fps={fps} />
       )}
 
       {/* =========================================================================
-          SCENE 6: USE 3: INSTRUCTIONS (0:45 - 0:51 | frames 1350 - 1530)
+          SCENE 6: USE 3: INSTRUCTIONS (0:52 - 0:59 | frames 1560 - 1770)
           ========================================================================= */}
-      {frame >= 1350 && frame < 1530 && (
-        <Scene6BrutalistInstructions frame={frame - 1350} fps={fps} />
+      {frame >= 1560 && frame < 1770 && (
+        <Scene6BrutalistInstructions frame={frame - 1560} fps={fps} />
       )}
 
       {/* =========================================================================
-          SCENE 7: USE 4: STORIES & FILMS (0:51 - 0:56 | frames 1530 - 1680)
+          SCENE 7: USE 4: STORIES & FILMS (0:59 - 1:05 | frames 1770 - 1950)
           ========================================================================= */}
-      {frame >= 1530 && frame < 1680 && (
-        <Scene7BrutalistStories frame={frame - 1530} fps={fps} />
+      {frame >= 1770 && frame < 1950 && (
+        <Scene7BrutalistStories frame={frame - 1770} fps={fps} />
       )}
 
       {/* =========================================================================
-          SCENE 8: CALL TO ACTION & END CARD (0:56 - 1:00 | frames 1680 - 1800)
+          SCENE 8: CALL TO ACTION & END CARD (1:05 - 1:13 | frames 1950 - 2190)
           ========================================================================= */}
-      {frame >= 1680 && (
-        <Scene8BrutalistCTA frame={frame - 1680} fps={fps} />
+      {frame >= 1950 && (
+        <Scene8BrutalistCTA frame={frame - 1950} fps={fps} />
       )}
 
       {/* =========================================================================

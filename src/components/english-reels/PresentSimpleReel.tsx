@@ -172,25 +172,25 @@ export const PresentSimpleReel: React.FC<PresentSimpleReelProps> = ({
   // Current Scene Index (1 to 8)
   let currentSceneIndex = 1;
   let currentSceneName = "Hook";
-  if (frame >= 150 && frame < 540) {
+  if (frame >= 150 && frame < 660) {
     currentSceneIndex = 2;
     currentSceneName = "(+) Positive Form";
-  } else if (frame >= 540 && frame < 780) {
+  } else if (frame >= 660 && frame < 960) {
     currentSceneIndex = 3;
     currentSceneName = "(– / ?) Neg & Questions";
-  } else if (frame >= 780 && frame < 1140) {
+  } else if (frame >= 960 && frame < 1380) {
     currentSceneIndex = 4;
     currentSceneName = "1. Habits & Routine";
-  } else if (frame >= 1140 && frame < 1350) {
+  } else if (frame >= 1380 && frame < 1560) {
     currentSceneIndex = 5;
     currentSceneName = "2. Facts & Truths";
-  } else if (frame >= 1350 && frame < 1530) {
+  } else if (frame >= 1560 && frame < 1770) {
     currentSceneIndex = 6;
     currentSceneName = "3. Instructions";
-  } else if (frame >= 1530 && frame < 1680) {
+  } else if (frame >= 1770 && frame < 1950) {
     currentSceneIndex = 7;
     currentSceneName = "4. Stories & Films";
-  } else if (frame >= 1680) {
+  } else if (frame >= 1950) {
     currentSceneIndex = 8;
     currentSceneName = "Call To Action";
   }
@@ -320,9 +320,9 @@ export const PresentSimpleReel: React.FC<PresentSimpleReelProps> = ({
       {frame < 150 && <SceneHook frame={frame} fps={fps} accentColor={accentColor} />}
 
       {/* =========================================================================
-          SCENE 2: STRUCTURE CARD (+) POSITIVE (0:05 - 0:18 | frames 150 - 540)
+          SCENE 2: STRUCTURE CARD (+) POSITIVE (0:05 - 0:22 | frames 150 - 660)
           ========================================================================= */}
-      {frame >= 150 && frame < 540 && (
+      {frame >= 150 && frame < 660 && (
         <ScenePositive
           frame={frame - 150}
           fps={fps}
@@ -331,66 +331,66 @@ export const PresentSimpleReel: React.FC<PresentSimpleReelProps> = ({
       )}
 
       {/* =========================================================================
-          SCENE 3: STRUCTURE CARD (– & ?) NEGATIVE & QUESTIONS (0:18 - 0:26 | frames 540 - 780)
+          SCENE 3: STRUCTURE CARD (– & ?) NEGATIVE & QUESTIONS (0:22 - 0:32 | frames 660 - 960)
           ========================================================================= */}
-      {frame >= 540 && frame < 780 && (
+      {frame >= 660 && frame < 960 && (
         <SceneNegativeAndQuestion
-          frame={frame - 540}
+          frame={frame - 660}
           fps={fps}
           accentColor={accentColor}
         />
       )}
 
       {/* =========================================================================
-          SCENE 4: USE 1: HABITS & ROUTINE + TIMELINE (0:26 - 0:38 | frames 780 - 1140)
+          SCENE 4: USE 1: HABITS & ROUTINE + TIMELINE (0:32 - 0:46 | frames 960 - 1380)
           ========================================================================= */}
-      {frame >= 780 && frame < 1140 && (
+      {frame >= 960 && frame < 1380 && (
         <SceneHabitsTimeline
-          frame={frame - 780}
+          frame={frame - 960}
           fps={fps}
           accentColor={accentColor}
         />
       )}
 
       {/* =========================================================================
-          SCENE 5: USE 2: FACTS & TRUTHS (0:38 - 0:45 | frames 1140 - 1350)
+          SCENE 5: USE 2: FACTS & TRUTHS (0:46 - 0:52 | frames 1380 - 1560)
           ========================================================================= */}
-      {frame >= 1140 && frame < 1350 && (
+      {frame >= 1380 && frame < 1560 && (
         <SceneFactsTruths
-          frame={frame - 1140}
+          frame={frame - 1380}
           fps={fps}
           accentColor={accentColor}
         />
       )}
 
       {/* =========================================================================
-          SCENE 6: USE 3: INSTRUCTIONS & DIRECTIONS (0:45 - 0:51 | frames 1350 - 1530)
+          SCENE 6: USE 3: INSTRUCTIONS & DIRECTIONS (0:52 - 0:59 | frames 1560 - 1770)
           ========================================================================= */}
-      {frame >= 1350 && frame < 1530 && (
+      {frame >= 1560 && frame < 1770 && (
         <SceneInstructions
-          frame={frame - 1350}
+          frame={frame - 1560}
           fps={fps}
           accentColor={accentColor}
         />
       )}
 
       {/* =========================================================================
-          SCENE 7: USE 4: STORIES & FILMS (0:51 - 0:56 | frames 1530 - 1680)
+          SCENE 7: USE 4: STORIES & FILMS (0:59 - 1:05 | frames 1770 - 1950)
           ========================================================================= */}
-      {frame >= 1530 && frame < 1680 && (
+      {frame >= 1770 && frame < 1950 && (
         <SceneStoriesFilms
-          frame={frame - 1530}
+          frame={frame - 1770}
           fps={fps}
           accentColor={accentColor}
         />
       )}
 
       {/* =========================================================================
-          SCENE 8: CALL TO ACTION & END CARD (0:56 - 1:00 | frames 1680 - 1800)
+          SCENE 8: CALL TO ACTION & END CARD (1:05 - 1:13 | frames 1950 - 2190)
           ========================================================================= */}
-      {frame >= 1680 && (
+      {frame >= 1950 && (
         <SceneCallToAction
-          frame={frame - 1680}
+          frame={frame - 1950}
           fps={fps}
           accentColor={accentColor}
         />
@@ -493,12 +493,12 @@ const SoundEffectCue: React.FC<{ frame: number }> = ({ frame }) => {
   const cues = [
     { frame: 12, label: "WOOSH 💨", color: "#38BDF8" },
     { frame: 165, label: "SLIDE IN ⚡", color: "#F59E0B" },
-    { frame: 555, label: "TRANSITION 🔄", color: "#EC4899" },
-    { frame: 800, label: "POP POP POP ✨", color: "#06B6D4" },
-    { frame: 1160, label: "SIZZLE / BOIL ♨️", color: "#FB923C" },
-    { frame: 1400, label: "CLICK! 🖱️", color: "#10B981" },
-    { frame: 1545, label: "CLAP! 🎬", color: "#A855F7" },
-    { frame: 1695, label: "TAP FOLLOW! 🚀", color: "#F59E0B" },
+    { frame: 675, label: "TRANSITION 🔄", color: "#EC4899" },
+    { frame: 980, label: "POP POP POP ✨", color: "#06B6D4" },
+    { frame: 1400, label: "SIZZLE / BOIL ♨️", color: "#FB923C" },
+    { frame: 1580, label: "CLICK! 🖱️", color: "#10B981" },
+    { frame: 1790, label: "CLAP! 🎬", color: "#A855F7" },
+    { frame: 1970, label: "TAP FOLLOW! 🚀", color: "#F59E0B" },
   ];
 
   const activeCue = cues.find((c) => Math.abs(frame - c.frame) <= 18);

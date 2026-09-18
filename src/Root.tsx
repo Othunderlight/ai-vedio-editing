@@ -519,7 +519,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="Reel-Present-Simple-60s-Master"
         component={PresentSimpleReel}
-        durationInFrames={1800}
+        durationInFrames={2190}
         fps={30}
         width={1080}
         height={1920}
@@ -530,7 +530,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="Variant-1-Neo-Brutalism"
         component={NeoBrutalismReel}
-        durationInFrames={1800}
+        durationInFrames={2190}
         fps={30}
         width={1080}
         height={1920}
@@ -544,7 +544,7 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="Variant-2-Modern-iPad-Notes"
         component={IpadNotesReel}
-        durationInFrames={1800}
+        durationInFrames={2190}
         fps={30}
         width={1080}
         height={1920}
