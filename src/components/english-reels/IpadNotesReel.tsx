@@ -115,6 +115,27 @@ const VOICEOVER_CAPTIONS = [
 
 ];
 
+// Frame ranges where caption overlaps with scene visuals (bottom ~400px area)
+// Caption occupies roughly y=1420 to y=1520 in the 1920-tall canvas
+const CAPTION_OVERLAP_RANGES: [number, number][] = [
+  // Scene 4 (Habits): timeline + tags + example push deep into caption zone
+  [1230, 1380],
+  // Scene 5 (Facts): thermometer + beaker are tall, example card at bottom
+  [1470, 1560],
+  // Scene 6 (Instructions): desktop UI + example are tall
+  [1670, 1770],
+  // Scene 7 (Stories): clapperboard + hero image + example
+  [1860, 1950],
+  // Scene 8 (CTA): full-screen centered content
+  [1950, 2190],
+];
+
+function isCaptionOverlappingVisuals(frame: number): boolean {
+  return CAPTION_OVERLAP_RANGES.some(
+    ([start, end]) => frame >= start && frame < end
+  );
+}
+
 export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
   showCaptions = true,
 }) => {
@@ -128,6 +149,8 @@ export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
   const activeCaption = VOICEOVER_CAPTIONS.find(
     (c) => frame >= c.fromFrame && frame < c.toFrame
   );
+
+  const isCaptionOverlapping = isCaptionOverlappingVisuals(frame);
 
   return (
     <AbsoluteFill
@@ -203,8 +226,8 @@ export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
           position: "absolute",
           inset: 0,
           backgroundImage:
-            "radial-gradient(#D6D3CD 1.5px, transparent 1.5px)",
-          backgroundSize: "28px 28px",
+            "radial-gradient(#D6D3CD 2.25px, transparent 2.25px)",
+          backgroundSize: "42px 42px",
           opacity: 0.6,
         }}
       />
@@ -213,21 +236,21 @@ export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
       <div
         style={{
           position: "absolute",
-          top: "30px",
-          left: "50px",
-          right: "50px",
+          top: "45px",
+          left: "75px",
+          right: "75px",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          fontSize: "19px",
+          fontSize: "28.5px",
           fontWeight: 600,
           color: "#78716C",
           zIndex: 50,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
           <span>9:41 AM</span>
-          <span style={{ fontSize: "14px", color: "#A8A29E" }}>• iPad</span>
+          <span style={{ fontSize: "21px", color: "#A8A29E" }}>• iPad</span>
         </div>
       </div>
 
@@ -235,10 +258,10 @@ export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
       <div
         style={{
           position: "absolute",
-          top: "85px",
-          left: "50px",
-          right: "50px",
-          height: "6px",
+          top: "127.5px",
+          left: "75px",
+          right: "75px",
+          height: "9px",
           backgroundColor: "#E7E5E4",
           borderRadius: "999px",
           overflow: "hidden",
@@ -259,17 +282,17 @@ export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
       <div
         style={{
           position: "absolute",
-          right: "30px",
-          bottom: "120px",
-          width: "28px",
-          height: "160px",
+          right: "45px",
+          bottom: "180px",
+          width: "42px",
+          height: "240px",
           background: "linear-gradient(180deg, #FFFFFF, #E2E8F0 80%, #718096)",
-          borderRadius: "14px 14px 4px 4px",
-          boxShadow: "4px 8px 20px rgba(0,0,0,0.15)",
-          border: "1px solid #CBD5E1",
+          borderRadius: "21px 21px 6px 6px",
+          boxShadow: "6px 12px 30px rgba(0,0,0,0.15)",
+          border: "1.5px solid #CBD5E1",
           zIndex: 45,
           opacity: 0.85,
-          transform: `rotate(-15deg) translateY(${Math.sin(frame / 15) * 6}px)`,
+          transform: `rotate(-15deg) translateY(${Math.sin(frame / 15) * 9}px)`,
         }}
       >
         <div
@@ -280,9 +303,9 @@ export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
             transform: "translateX(-50%)",
             width: "0",
             height: "0",
-            borderLeft: "8px solid transparent",
-            borderRight: "8px solid transparent",
-            borderTop: "14px solid #4A5568",
+            borderLeft: "12px solid transparent",
+            borderRight: "12px solid transparent",
+            borderTop: "21px solid #4A5568",
           }}
         />
       </div>
@@ -340,7 +363,7 @@ export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
       {frame >= 1950 && <Scene8IpadCTA frame={frame - 1950} fps={fps} />}
 
       {/* Synchronized Handwritten Style Caption Bar */}
-      {showCaptions && activeCaption && (
+      {showCaptions && activeCaption && !isCaptionOverlapping && (
         <div
           style={{
             position: "absolute",
@@ -396,19 +419,19 @@ const Scene1IpadHook: React.FC<{ frame: number; fps: number }> = ({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "60px",
+        padding: "90px",
       }}
     >
       {/* Aesthetic Study Card */}
       <div
         style={{
           backgroundColor: "#FFFFFF",
-          border: "1px solid #E2E8F0",
-          borderRadius: "32px",
-          boxShadow: "0 20px 50px rgba(44, 40, 37, 0.08)",
-          padding: "60px 48px",
+          border: "1.5px solid #E2E8F0",
+          borderRadius: "48px",
+          boxShadow: "0 30px 75px rgba(44, 40, 37, 0.08)",
+          padding: "90px 72px",
           textAlign: "center",
-          maxWidth: "920px",
+          maxWidth: "1380px",
           position: "relative",
           transform: `scale(${enter})`,
         }}
@@ -417,13 +440,13 @@ const Scene1IpadHook: React.FC<{ frame: number; fps: number }> = ({
         <div
           style={{
             position: "absolute",
-            top: "-16px",
+            top: "-24px",
             left: "50%",
             transform: "translateX(-50%) rotate(-1deg)",
-            width: "160px",
-            height: "32px",
+            width: "240px",
+            height: "48px",
             backgroundColor: "rgba(254, 240, 138, 0.7)",
-            border: "1px dashed rgba(202, 138, 4, 0.4)",
+            border: "1.5px dashed rgba(202, 138, 4, 0.4)",
           }}
         />
 
@@ -433,12 +456,12 @@ const Scene1IpadHook: React.FC<{ frame: number; fps: number }> = ({
             display: "inline-block",
             backgroundColor: "#ECFDF5",
             color: "#059669",
-            border: "1px solid #A7F3D0",
-            padding: "8px 24px",
+            border: "1.5px solid #A7F3D0",
+            padding: "12px 36px",
             borderRadius: "999px",
-            fontSize: "22px",
+            fontSize: "33px",
             fontWeight: 700,
-            marginBottom: "50px",
+            marginBottom: "75px",
           }}
         >
           الانكليزية ب 60 ثانية لطلاب البكالوريا
@@ -447,11 +470,11 @@ const Scene1IpadHook: React.FC<{ frame: number; fps: number }> = ({
         <h1
           dir="auto"
           style={{
-            fontSize: "76px",
+            fontSize: "114px",
             fontWeight: 800,
             lineHeight: 1.1,
             color: "#1C1917",
-            margin: "0 0 20px 0",
+            margin: "0 0 30px 0",
           }}
         >
           Present Simple
@@ -463,12 +486,12 @@ const Scene1IpadHook: React.FC<{ frame: number; fps: number }> = ({
               style={{
                 position: "absolute",
                 left: 0,
-                bottom: "4px",
-                height: "22px",
+                bottom: "6px",
+                height: "33px",
                 width: `${revealW}%`,
                 backgroundColor: "rgba(254, 240, 138, 0.55)",
                 zIndex: -1,
-                borderRadius: "4px",
+                borderRadius: "6px",
               }}
             />
           </span>
@@ -502,8 +525,8 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
       style={{
         display: "flex",
         flexDirection: "column",
-        padding: "140px 60px 180px 60px",
-        gap: "24px",
+        padding: "210px 90px 270px 90px",
+        gap: "36px",
       }}
     >
       {/* Chapter Tag */}
@@ -514,14 +537,14 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
           alignSelf: "flex-end",
           backgroundColor: "#DCFCE7",
           color: "#166534",
-          padding: "8px 24px",
-          borderRadius: "20px",
-          fontSize: "22px",
+          padding: "12px 36px",
+          borderRadius: "30px",
+          fontSize: "33px",
           fontWeight: 800,
           transform: `scale(${enter})`,
           textAlign: "right",
-          marginTop: "50px",
-          marginBottom: "50px",
+          marginTop: "75px",
+          marginBottom: "75px",
         }}
       >
         📌 القاعدة 1: صيغة الإثبات (Positive)
@@ -531,14 +554,14 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
       <div
         style={{
           backgroundColor: "#FFFFFF",
-          border: "1px solid #E2E8F0",
-          borderRadius: "28px",
-          padding: "36px",
-          boxShadow: "0 14px 40px rgba(0,0,0,0.05)",
+          border: "1.5px solid #E2E8F0",
+          borderRadius: "42px",
+          padding: "54px",
+          boxShadow: "0 21px 60px rgba(0,0,0,0.05)",
           transform: `scale(${enter})`,
         }}
       >
-        <div style={{ fontSize: "36px", fontWeight: 800, color: "#1C1917" }}>
+        <div style={{ fontSize: "54px", fontWeight: 800, color: "#1C1917" }}>
           Subject + <span style={{ color: "#2563EB" }}>V1</span> (الفعل الأساسي)
         </div>
 
@@ -547,8 +570,8 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
           dir="auto"
           style={{
             position: "relative",
-            marginTop: "16px",
-            fontSize: "28px",
+            marginTop: "24px",
+            fontSize: "42px",
             fontWeight: 700,
             color: "#B45309",
             textAlign: "right",
@@ -562,13 +585,13 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
           <span
             style={{
               position: "absolute",
-              right: "-4px",
-              bottom: "-2px",
-              height: "16px",
+              right: "-6px",
+              bottom: "-3px",
+              height: "24px",
               width: `${highlightW}%`,
               backgroundColor: "rgba(254, 240, 138, 0.6)",
               zIndex: -1,
-              borderRadius: "4px",
+              borderRadius: "6px",
             }}
           />
         </div>
@@ -578,23 +601,23 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
       <div
         style={{
           backgroundColor: "#FFFFFF",
-          border: "1px solid #E2E8F0",
-          borderRadius: "28px",
-          padding: "36px",
-          boxShadow: "0 14px 40px rgba(0,0,0,0.05)",
+          border: "1.5px solid #E2E8F0",
+          borderRadius: "42px",
+          padding: "54px",
+          boxShadow: "0 21px 60px rgba(0,0,0,0.05)",
           display: "flex",
           flexDirection: "column",
-          gap: "20px",
+          gap: "30px",
         }}
       >
         <div
           style={{
             fontFamily: caveatFont,
-            fontSize: "46px",
+            fontSize: "69px",
             color: "#1E293B",
             opacity: write1 > 0 ? 1 : 0,
-            borderBottom: "1px dashed #E2E8F0",
-            paddingBottom: "12px",
+            borderBottom: "1.5px dashed #E2E8F0",
+            paddingBottom: "18px",
           }}
         >
           • <span style={{ color: "#2563EB" }}>I</span> study law.
@@ -603,19 +626,19 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
         <div
           style={{
             fontFamily: caveatFont,
-            fontSize: "46px",
+            fontSize: "69px",
             color: "#1E293B",
             opacity: write2 > 0 ? 1 : 0,
-            borderBottom: "1px dashed #E2E8F0",
-            paddingBottom: "12px",
+            borderBottom: "1.5px dashed #E2E8F0",
+            paddingBottom: "18px",
           }}
         >
           • <span style={{ color: "#DC2626" }}>She</span> like
           <span
             style={{
               backgroundColor: "#FEF08A",
-              padding: "0 6px",
-              borderRadius: "4px",
+              padding: "0 2px",
+              borderRadius: "6px",
             }}
           >
             s
@@ -626,7 +649,7 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
         <div
           style={{
             fontFamily: caveatFont,
-            fontSize: "46px",
+            fontSize: "69px",
             color: "#1E293B",
             opacity: write3 > 0 ? 1 : 0,
           }}
@@ -635,8 +658,8 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
           <span
             style={{
               backgroundColor: "#FEF08A",
-              padding: "0 6px",
-              borderRadius: "4px",
+              padding: "0 9px",
+              borderRadius: "6px",
             }}
           >
             ies
@@ -662,10 +685,10 @@ const Scene3IpadNegAndQ: React.FC<{ frame: number; fps: number }> = ({
       style={{
         display: "flex",
         flexDirection: "column",
-        padding: "140px 60px 180px 60px",
-        gap: "50px",
-        marginTop: "50px",
-        marginBottom: "50px",
+        padding: "210px 90px 270px 90px",
+        gap: "75px",
+        marginTop: "75px",
+        marginBottom: "75px",
       }}
     >
       {/* Negative Note */}
@@ -673,9 +696,9 @@ const Scene3IpadNegAndQ: React.FC<{ frame: number; fps: number }> = ({
         style={{
           backgroundColor: "#FFFFFF",
           border: "1px solid #FECDD3",
-          borderRadius: "28px",
-          padding: "32px",
-          boxShadow: "0 10px 30px rgba(225, 29, 72, 0.05)",
+          borderRadius: "42px",
+          padding: "48px",
+          boxShadow: "0 15px 45px rgba(225, 29, 72, 0.05)",
           transform: `scale(${negEnter})`,
         }}
       >
@@ -685,7 +708,7 @@ const Scene3IpadNegAndQ: React.FC<{ frame: number; fps: number }> = ({
             display: "flex",
             justifyContent: "flex-end",
             width: "100%",
-            marginBottom: "12px",
+            marginBottom: "18px",
           }}
         >
           <div
@@ -694,9 +717,9 @@ const Scene3IpadNegAndQ: React.FC<{ frame: number; fps: number }> = ({
               display: "inline-block",
               backgroundColor: "#FFE4E6",
               color: "#E11D48",
-              padding: "4px 18px",
-              borderRadius: "14px",
-              fontSize: "18px",
+              padding: "6px 27px",
+              borderRadius: "21px",
+              fontSize: "27px",
               fontWeight: 800,
               textAlign: "right",
             }}
@@ -704,7 +727,7 @@ const Scene3IpadNegAndQ: React.FC<{ frame: number; fps: number }> = ({
             (–) صيغة النفي: don't / doesn't
           </div>
         </div>
-        <div style={{ fontSize: "30px", fontWeight: 700, color: "#1C1917" }}>
+        <div style={{ fontSize: "45px", fontWeight: 700, color: "#1C1917" }}>
           Subject +{" "}
           <span style={{ color: "#E11D48", fontWeight: 800 }}>
             don't / doesn't
@@ -714,9 +737,9 @@ const Scene3IpadNegAndQ: React.FC<{ frame: number; fps: number }> = ({
         <div
           style={{
             fontFamily: caveatFont,
-            fontSize: "44px",
+            fontSize: "66px",
             color: "#334155",
-            marginTop: "14px",
+            marginTop: "21px",
           }}
         >
           "He <span style={{ color: "#E11D48" }}>doesn't study</span> medicine."
@@ -728,9 +751,9 @@ const Scene3IpadNegAndQ: React.FC<{ frame: number; fps: number }> = ({
         style={{
           backgroundColor: "#FFFFFF",
           border: "1px solid #BAE6FD",
-          borderRadius: "28px",
-          padding: "32px",
-          boxShadow: "0 10px 30px rgba(2, 132, 199, 0.05)",
+          borderRadius: "42px",
+          padding: "48px",
+          boxShadow: "0 15px 45px rgba(2, 132, 199, 0.05)",
           transform: `scale(${qEnter})`,
         }}
       >
@@ -740,7 +763,7 @@ const Scene3IpadNegAndQ: React.FC<{ frame: number; fps: number }> = ({
             display: "flex",
             justifyContent: "flex-end",
             width: "100%",
-            marginBottom: "12px",
+            marginBottom: "18px",
           }}
         >
           <div
@@ -749,9 +772,9 @@ const Scene3IpadNegAndQ: React.FC<{ frame: number; fps: number }> = ({
               display: "inline-block",
               backgroundColor: "#E0F2FE",
               color: "#0284C7",
-              padding: "4px 18px",
-              borderRadius: "14px",
-              fontSize: "18px",
+              padding: "6px 27px",
+              borderRadius: "21px",
+              fontSize: "27px",
               fontWeight: 800,
               textAlign: "right",
             }}
@@ -759,16 +782,16 @@ const Scene3IpadNegAndQ: React.FC<{ frame: number; fps: number }> = ({
             (?) صيغة السؤال: Do / Does
           </div>
         </div>
-        <div style={{ fontSize: "30px", fontWeight: 700, color: "#1C1917" }}>
+        <div style={{ fontSize: "45px", fontWeight: 700, color: "#1C1917" }}>
           <span style={{ color: "#0284C7", fontWeight: 800 }}>Do / Does</span> +
           Subject + V0?
         </div>
         <div
           style={{
             fontFamily: caveatFont,
-            fontSize: "44px",
+            fontSize: "66px",
             color: "#334155",
-            marginTop: "14px",
+            marginTop: "21px",
           }}
         >
           "<span style={{ color: "#0284C7" }}>Does</span> he study law?"
@@ -794,9 +817,9 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
       style={{
         display: "flex",
         flexDirection: "column",
-        padding: "140px 60px 180px 60px",
-        gap: "50px",
-        marginTop: "50px",
+        padding: "210px 90px 270px 90px",
+        gap: "75px",
+        marginTop: "75px",
       }}
     >
       <div
@@ -806,9 +829,9 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
           alignSelf: "flex-end",
           backgroundColor: "#FEF3C7",
           color: "#B45309",
-          padding: "8px 24px",
-          borderRadius: "20px",
-          fontSize: "22px",
+          padding: "12px 36px",
+          borderRadius: "30px",
+          fontSize: "33px",
           fontWeight: 800,
           transform: `scale(${enter})`,
           textAlign: "right",
@@ -822,9 +845,9 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
         style={{
           backgroundColor: "#FFFFFF",
           border: "1px solid #E2E8F0",
-          borderRadius: "28px",
-          padding: "36px",
-          boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
+          borderRadius: "42px",
+          padding: "54px",
+          boxShadow: "0 15px 45px rgba(0,0,0,0.05)",
           transform: `scale(${enter})`,
         }}
       >
@@ -834,10 +857,10 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
             display: "flex",
             justifyContent: "space-between",
             flexDirection: "row-reverse",
-            fontSize: "20px",
+            fontSize: "30px",
             fontWeight: 700,
             color: "#64748B",
-            marginBottom: "24px",
+            marginBottom: "36px",
           }}
         >
           <span dir="auto">الماضي (Past)</span>
@@ -849,7 +872,7 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
         <div
           style={{
             position: "relative",
-            height: "60px",
+            height: "90px",
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
@@ -860,7 +883,7 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
               position: "absolute",
               left: 0,
               right: 0,
-              height: "3px",
+              height: "4.5px",
               backgroundColor: "#94A3B8",
               borderRadius: "2px",
             }}
@@ -871,11 +894,11 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
               style={{
                 zIndex: 2,
                 fontFamily: caveatFont,
-                fontSize: "38px",
+                fontSize: "57px",
                 color: i === 2 ? "#059669" : "#2563EB",
                 fontWeight: 900,
                 backgroundColor: "#FFFFFF",
-                padding: "0 8px",
+                padding: "0 12px",
               }}
             >
               {x}
@@ -887,10 +910,10 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
           dir="auto"
           style={{
             fontFamily: caveatFont,
-            fontSize: "32px",
+            fontSize: "48px",
             color: "#64748B",
             textAlign: "right",
-            marginTop: "12px",
+            marginTop: "18px",
           }}
         >
           *أفعال وعادات متكررة عبر الزمن*
@@ -898,7 +921,7 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
       </div>
 
       {/* Cute Pastel Frequency Tags */}
-      <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", opacity: tagsEnter, transform: `translateY(${interpolate(tagsEnter, [0, 1], [15, 0])}px)` }}>
+      <div style={{ display: "flex", gap: "15px", flexWrap: "wrap", opacity: tagsEnter, transform: `translateY(${interpolate(tagsEnter, [0, 1], [22.5, 0])}px)` }}>
         {[
           { en: "always", ar: "دائماً" },
           { en: "usually", ar: "عادةً" },
@@ -911,9 +934,9 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
               backgroundColor: "#ECFDF5",
               color: "#059669",
               border: "1px solid #A7F3D0",
-              padding: "6px 18px",
-              borderRadius: "16px",
-              fontSize: "20px",
+              padding: "9px 27px",
+              borderRadius: "24px",
+              fontSize: "30px",
               fontWeight: 700,
             }}
           >
@@ -927,9 +950,9 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
         style={{
           backgroundColor: "#FFFFFF",
           border: "1px solid #E2E8F0",
-          borderRadius: "24px",
-          padding: "24px 30px",
-          boxShadow: "0 8px 24px rgba(0,0,0,0.04)",
+          borderRadius: "36px",
+          padding: "36px 45px",
+          boxShadow: "0 12px 36px rgba(0,0,0,0.04)",
           opacity: exampleEnter,
           transform: `scale(${exampleEnter})`,
         }}
@@ -937,7 +960,7 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
         <div
           style={{
             fontFamily: caveatFont,
-            fontSize: "44px",
+            fontSize: "66px",
             color: "#1C1917",
           }}
         >
@@ -945,8 +968,8 @@ const Scene4IpadHabits: React.FC<{ frame: number; fps: number }> = ({
           <span
             style={{
               backgroundColor: "rgba(254, 240, 138, 0.7)",
-              padding: "0 6px",
-              borderRadius: "4px",
+              padding: "0 9px",
+              borderRadius: "6px",
             }}
           >
             every day
@@ -980,9 +1003,9 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
       style={{
         display: "flex",
         flexDirection: "column",
-        padding: "140px 60px 180px 60px",
-        gap: "50px",
-        marginTop: "50px",
+        padding: "210px 90px 270px 90px",
+        gap: "75px",
+        marginTop: "75px",
       }}
     >
       {/* Category Pill Tag */}
@@ -991,13 +1014,13 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
         style={{
           display: "inline-flex",
           alignItems: "center",
-          gap: "8px",
+          gap: "12px",
           alignSelf: "flex-end",
           backgroundColor: "#DCFCE7",
           color: "#166534",
-          padding: "8px 24px",
-          borderRadius: "20px",
-          fontSize: "22px",
+          padding: "12px 36px",
+          borderRadius: "30px",
+          fontSize: "33px",
           fontWeight: 800,
           transform: `scale(${enter})`,
           textAlign: "right",
@@ -1012,9 +1035,9 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
         style={{
           backgroundColor: "#FFFFFF",
           border: "1px solid #E2E8F0",
-          borderRadius: "28px",
-          padding: "28px 24px",
-          boxShadow: "0 12px 36px rgba(0,0,0,0.06)",
+          borderRadius: "42px",
+          padding: "42px 36px",
+          boxShadow: "0 18px 54px rgba(0,0,0,0.06)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-around",
@@ -1029,7 +1052,7 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
             alignItems: "center",
           }}
         >
-          <svg width="110" height="280" viewBox="0 0 100 280">
+          <svg width="165" height="420" viewBox="0 0 100 280">
             {/* Outer glass tube */}
             <rect
               x="38"
@@ -1103,12 +1126,12 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
             style={{
               backgroundColor: "#FEE2E2",
               border: "1px solid #FCA5A5",
-              borderRadius: "12px",
-              padding: "4px 14px",
-              fontSize: "22px",
+              borderRadius: "18px",
+              padding: "6px 21px",
+              fontSize: "33px",
               fontWeight: 800,
               color: "#DC2626",
-              marginTop: "6px",
+              marginTop: "9px",
             }}
           >
             {Math.round(tempProgress)} °C
@@ -1124,7 +1147,7 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
           }}
         >
           {/* Steam wisps rising */}
-          <svg width="170" height="65" viewBox="0 0 160 60">
+          <svg width="255" height="97.5" viewBox="0 0 160 60">
             <path
               d={`M 40 50 Q ${40 + steamWave} 25, 45 5`}
               stroke="rgba(100, 116, 139, 0.5)"
@@ -1151,14 +1174,14 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
           {/* Beaker Container */}
           <div
             style={{
-              width: "180px",
-              height: "160px",
-              borderRadius: "14px 14px 32px 32px",
+              width: "270px",
+              height: "240px",
+              borderRadius: "21px 21px 48px 48px",
               backgroundColor: "rgba(224, 242, 254, 0.6)",
-              border: "3px solid #94A3B8",
+              border: "4.5px solid #94A3B8",
               position: "relative",
               overflow: "hidden",
-              boxShadow: "0 8px 20px rgba(56, 189, 248, 0.15)",
+              boxShadow: "0 12px 30px rgba(56, 189, 248, 0.15)",
             }}
           >
             {/* Boiling Water Liquid */}
@@ -1168,9 +1191,9 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
                 bottom: 0,
                 left: 0,
                 right: 0,
-                height: "110px",
+                height: "165px",
                 backgroundColor: "rgba(56, 189, 248, 0.5)",
-                borderTop: "2px solid #38BDF8",
+                borderTop: "3px solid #38BDF8",
               }}
             >
               {/* Boiling Bubbles */}
@@ -1198,7 +1221,7 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
                 bottom: 0,
                 left: 0,
                 right: 0,
-                height: "18px",
+                height: "27px",
                 background:
                   "linear-gradient(to top, rgba(239, 68, 68, 0.6), transparent)",
               }}
@@ -1208,9 +1231,9 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
           <div
             dir="auto"
             style={{
-              marginTop: "12px",
+              marginTop: "18px",
               fontFamily: caveatFont,
-              fontSize: "26px",
+              fontSize: "39px",
               color: "#0369A1",
               fontWeight: 700,
               textAlign: "right",
@@ -1226,15 +1249,15 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
         style={{
           backgroundColor: "#FFFFFF",
           border: "1px solid #E2E8F0",
-          borderRadius: "24px",
-          padding: "26px 32px",
-          boxShadow: "0 8px 24px rgba(0,0,0,0.04)",
+          borderRadius: "36px",
+          padding: "39px 48px",
+          boxShadow: "0 12px 36px rgba(0,0,0,0.04)",
         }}
       >
         <div
           style={{
             fontFamily: caveatFont,
-            fontSize: "44px",
+            fontSize: "66px",
             color: "#1C1917",
             lineHeight: 1.4,
           }}
@@ -1243,8 +1266,8 @@ const Scene5IpadFacts: React.FC<{ frame: number; fps: number }> = ({
           <span
             style={{
               backgroundColor: "rgba(254, 240, 138, 0.7)",
-              padding: "0 8px",
-              borderRadius: "4px",
+              padding: "0 12px",
+              borderRadius: "6px",
             }}
           >
             boils
@@ -1264,10 +1287,10 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
   const enter = spring({ frame, fps, config: { damping: 14 } });
 
   // Animated Mouse Cursor gliding across to the desktop icon
-  const cursorX = interpolate(frame, [0, 60], [100, 340], {
+  const cursorX = interpolate(frame, [0, 60], [150, 510], {
     extrapolateRight: "clamp",
   });
-  const cursorY = interpolate(frame, [0, 60], [30, 90], {
+  const cursorY = interpolate(frame, [0, 60], [45, 135], {
     extrapolateRight: "clamp",
   });
 
@@ -1289,9 +1312,9 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
       style={{
         display: "flex",
         flexDirection: "column",
-        padding: "140px 60px 180px 60px",
-        gap: "50px",
-        marginTop: "50px",
+        padding: "210px 90px 270px 90px",
+        gap: "75px",
+        marginTop: "75px",
       }}
     >
       <div
@@ -1299,13 +1322,13 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
         style={{
           display: "inline-flex",
           alignItems: "center",
-          gap: "8px",
+          gap: "12px",
           alignSelf: "flex-end",
           backgroundColor: "#F3E8FF",
           color: "#7E22CE",
-          padding: "8px 24px",
-          borderRadius: "20px",
-          fontSize: "22px",
+          padding: "12px 36px",
+          borderRadius: "30px",
+          fontSize: "33px",
           fontWeight: 800,
           transform: `scale(${enter})`,
           textAlign: "right",
@@ -1320,9 +1343,9 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
         style={{
           backgroundColor: "#FFFFFF",
           border: "1px solid #E2E8F0",
-          borderRadius: "28px",
-          padding: "26px",
-          boxShadow: "0 12px 36px rgba(0,0,0,0.06)",
+          borderRadius: "42px",
+          padding: "39px",
+          boxShadow: "0 18px 54px rgba(0,0,0,0.06)",
           transform: `scale(${enter})`,
           position: "relative",
           overflow: "hidden",
@@ -1337,31 +1360,31 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
             justifyContent: "space-between",
             flexDirection: "row-reverse",
             borderBottom: "1px solid #E2E8F0",
-            paddingBottom: "14px",
-            marginBottom: "18px",
+            paddingBottom: "21px",
+            marginBottom: "27px",
           }}
         >
-          <div style={{ display: "flex", gap: "8px" }}>
+          <div style={{ display: "flex", gap: "12px" }}>
             <div
               style={{
-                width: "14px",
-                height: "14px",
+                width: "21px",
+                height: "21px",
                 borderRadius: "50%",
                 backgroundColor: "#EF4444",
               }}
             />
             <div
               style={{
-                width: "14px",
-                height: "14px",
+                width: "21px",
+                height: "21px",
                 borderRadius: "50%",
                 backgroundColor: "#F59E0B",
               }}
             />
             <div
               style={{
-                width: "14px",
-                height: "14px",
+                width: "21px",
+                height: "21px",
                 borderRadius: "50%",
                 backgroundColor: "#10B981",
               }}
@@ -1370,7 +1393,7 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
           <div
             dir="auto"
             style={{
-              fontSize: "17px",
+              fontSize: "25.5px",
               fontWeight: 700,
               color: "#64748B",
               textAlign: "right",
@@ -1378,17 +1401,17 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
           >
             نظام التشغيل • إرشادات النقر
           </div>
-          <div style={{ width: "40px" }} />
+          <div style={{ width: "60px" }} />
         </div>
 
         {/* Desktop Screen Area */}
         <div
           style={{
-            height: "190px",
+            height: "285px",
             backgroundColor: "#F8FAFC",
-            borderRadius: "16px",
+            borderRadius: "24px",
             border: "1px solid #E2E8F0",
-            padding: "20px",
+            padding: "30px",
             position: "relative",
           }}
         >
@@ -1398,38 +1421,38 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              gap: "8px",
+              gap: "12px",
               position: "absolute",
-              left: "300px",
-              top: "20px",
+              left: "450px",
+              top: "30px",
               transform: isClicked ? "scale(1.04)" : "scale(1)",
             }}
           >
             <div
               style={{
-                width: "80px",
-                height: "80px",
-                borderRadius: "18px",
+                width: "120px",
+                height: "120px",
+                borderRadius: "27px",
                 backgroundColor: isClicked ? "#10B981" : "#3B82F6",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 boxShadow: isClicked
-                  ? "0 0 24px rgba(16, 185, 129, 0.4)"
-                  : "0 8px 16px rgba(0,0,0,0.12)",
-                fontSize: "40px",
+                  ? "0 0 36px rgba(16, 185, 129, 0.4)"
+                  : "0 12px 24px rgba(0,0,0,0.12)",
+                fontSize: "60px",
               }}
             >
               💻
             </div>
             <span
               style={{
-                fontSize: "16px",
+                fontSize: "24px",
                 fontWeight: 700,
                 color: "#334155",
                 backgroundColor: "#FFFFFF",
-                padding: "2px 8px",
-                borderRadius: "6px",
+                padding: "3px 12px",
+                borderRadius: "9px",
                 border: "1px solid #E2E8F0",
               }}
             >
@@ -1442,12 +1465,12 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
             <div
               style={{
                 position: "absolute",
-                left: "340px",
-                top: "60px",
-                width: "80px",
-                height: "80px",
+                left: "510px",
+                top: "90px",
+                width: "120px",
+                height: "120px",
                 borderRadius: "50%",
-                border: "3px solid #10B981",
+                border: "4.5px solid #10B981",
                 transform: `translate(-50%, -50%) scale(${clickWave})`,
                 opacity: clickWaveOpacity,
                 pointerEvents: "none",
@@ -1461,15 +1484,15 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
               dir="auto"
               style={{
                 position: "absolute",
-                left: "405px",
-                top: "22px",
+                left: "607.5px",
+                top: "33px",
                 backgroundColor: "#10B981",
                 color: "#FFFFFF",
                 fontWeight: 800,
-                fontSize: "18px",
-                padding: "4px 14px",
+                fontSize: "27px",
+                padding: "6px 21px",
                 borderRadius: "999px",
-                boxShadow: "0 4px 12px rgba(16, 185, 129, 0.3)",
+                boxShadow: "0 6px 18px rgba(16, 185, 129, 0.3)",
               }}
             >
               *اضغط هنا!* 🖱️
@@ -1480,14 +1503,14 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
           <div
             style={{
               position: "absolute",
-              left: `${cursorX}px`,
-              top: `${cursorY}px`,
+              left: `${cursorX * 1.5}px`,
+              top: `${cursorY * 1.5}px`,
               transform: isClicked ? "scale(0.85)" : "scale(1)",
               zIndex: 30,
               filter: "drop-shadow(0 4px 8px rgba(0,0,0,0.25))",
             }}
           >
-            <svg width="44" height="44" viewBox="0 0 24 24" fill="none">
+            <svg width="66" height="66" viewBox="0 0 24 24" fill="none">
               <path
                 d="M4 3L11 20L14 13L21 11L4 3Z"
                 fill="#1E293B"
@@ -1505,15 +1528,15 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
         style={{
           backgroundColor: "#FFFFFF",
           border: "1px solid #E2E8F0",
-          borderRadius: "24px",
-          padding: "26px 32px",
-          boxShadow: "0 8px 24px rgba(0,0,0,0.04)",
+          borderRadius: "36px",
+          padding: "39px 48px",
+          boxShadow: "0 12px 36px rgba(0,0,0,0.04)",
         }}
       >
         <div
           style={{
             fontFamily: caveatFont,
-            fontSize: "42px",
+            fontSize: "63px",
             color: "#1C1917",
             lineHeight: 1.4,
           }}
@@ -1522,8 +1545,8 @@ const Scene6IpadInstructions: React.FC<{ frame: number; fps: number }> = ({
           <span
             style={{
               backgroundColor: "rgba(254, 240, 138, 0.7)",
-              padding: "0 8px",
-              borderRadius: "4px",
+              padding: "0 12px",
+              borderRadius: "6px",
             }}
           >
             click
@@ -1558,9 +1581,9 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
       style={{
         display: "flex",
         flexDirection: "column",
-        padding: "140px 60px 180px 60px",
-        gap: "50px",
-        marginTop: "50px",
+        padding: "210px 90px 270px 90px",
+        gap: "75px",
+        marginTop: "75px",
       }}
     >
       <div
@@ -1568,13 +1591,13 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
         style={{
           display: "inline-flex",
           alignItems: "center",
-          gap: "8px",
+          gap: "12px",
           alignSelf: "flex-end",
           backgroundColor: "#FFE4E6",
           color: "#E11D48",
-          padding: "8px 24px",
-          borderRadius: "20px",
-          fontSize: "22px",
+          padding: "12px 36px",
+          borderRadius: "30px",
+          fontSize: "33px",
           fontWeight: 800,
           transform: `scale(${enter})`,
           textAlign: "right",
@@ -1589,9 +1612,9 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
         style={{
           backgroundColor: "#FFFFFF",
           border: "1px solid #E2E8F0",
-          borderRadius: "28px",
-          padding: "28px 24px",
-          boxShadow: "0 12px 36px rgba(0,0,0,0.06)",
+          borderRadius: "42px",
+          padding: "42px 36px",
+          boxShadow: "0 18px 54px rgba(0,0,0,0.06)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-around",
@@ -1609,45 +1632,45 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
           <div
             style={{
               position: "relative",
-              width: "185px",
-              height: "160px",
+              width: "277.5px",
+              height: "240px",
             }}
           >
             {/* Clapper Top Moving Bar */}
             <div
               style={{
-                width: "185px",
-                height: "32px",
+                width: "277.5px",
+                height: "48px",
                 backgroundColor: "#1E293B",
-                border: "2px solid #0F172A",
-                borderRadius: "5px",
+                border: "3px solid #0F172A",
+                borderRadius: "7.5px",
                 transformOrigin: "left bottom",
                 transform: `rotate(${clapAngle}deg)`,
                 backgroundImage:
                   "repeating-linear-gradient(45deg, #FFFFFF, #FFFFFF 12px, #1E293B 12px, #1E293B 24px)",
-                marginBottom: "4px",
+                marginBottom: "6px",
               }}
             />
 
             {/* Clapperboard Body */}
             <div
               style={{
-                width: "185px",
-                height: "120px",
+                width: "277.5px",
+                height: "180px",
                 backgroundColor: "#1E293B",
-                border: "2px solid #0F172A",
-                borderRadius: "5px",
-                padding: "10px 12px",
+                border: "3px solid #0F172A",
+                borderRadius: "7.5px",
+                padding: "15px 18px",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                boxShadow: "0 6px 16px rgba(0,0,0,0.15)",
+                boxShadow: "0 9px 24px rgba(0,0,0,0.15)",
               }}
             >
               <div
                 dir="auto"
                 style={{
-                  fontSize: "14px",
+                  fontSize: "21px",
                   fontWeight: 800,
                   color: "#C084FC",
                   letterSpacing: "1px",
@@ -1662,7 +1685,7 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
                   display: "flex",
                   justifyContent: "space-between",
                   flexDirection: "row-reverse",
-                  fontSize: "13px",
+                  fontSize: "19.5px",
                   color: "#94A3B8",
                   fontWeight: 700,
                 }}
@@ -1672,7 +1695,7 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
               </div>
               <div
                 style={{
-                  fontSize: "18px",
+                  fontSize: "27px",
                   fontWeight: 900,
                   color: "#FBBF24",
                 }}
@@ -1694,12 +1717,12 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
         >
           <div
             style={{
-              width: "150px",
-              height: "150px",
-              borderRadius: "24px",
+              width: "225px",
+              height: "225px",
+              borderRadius: "36px",
               overflow: "hidden",
-              boxShadow: "0 8px 25px rgba(236, 72, 153, 0.35)",
-              border: "3px solid #E2E8F0",
+              boxShadow: "0 12px 37.5px rgba(236, 72, 153, 0.35)",
+              border: "4.5px solid #E2E8F0",
             }}
           >
             <Img
@@ -1720,15 +1743,15 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
         style={{
           backgroundColor: "#FFFFFF",
           border: "1px solid #E2E8F0",
-          borderRadius: "24px",
-          padding: "26px 32px",
-          boxShadow: "0 8px 24px rgba(0,0,0,0.04)",
+          borderRadius: "36px",
+          padding: "39px 48px",
+          boxShadow: "0 12px 36px rgba(0,0,0,0.04)",
         }}
       >
         <div
           style={{
             fontFamily: caveatFont,
-            fontSize: "42px",
+            fontSize: "63px",
             color: "#1C1917",
             lineHeight: 1.4,
           }}
@@ -1737,8 +1760,8 @@ const Scene7IpadStories: React.FC<{ frame: number; fps: number }> = ({
           <span
             style={{
               backgroundColor: "rgba(254, 240, 138, 0.7)",
-              padding: "0 8px",
-              borderRadius: "4px",
+              padding: "0 12px",
+              borderRadius: "6px",
             }}
           >
             saves
@@ -1766,18 +1789,18 @@ const Scene8IpadCTA: React.FC<{ frame: number; fps: number }> = ({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "60px",
+        padding: "90px",
       }}
     >
       <div
         style={{
           backgroundColor: "#FFFFFF",
           border: "1px solid #E2E8F0",
-          borderRadius: "36px",
-          boxShadow: "0 20px 50px rgba(0,0,0,0.08)",
-          padding: "54px 44px",
+          borderRadius: "54px",
+          boxShadow: "0 30px 75px rgba(0,0,0,0.08)",
+          padding: "81px 66px",
           textAlign: "center",
-          maxWidth: "880px",
+          maxWidth: "1320px",
           transform: `scale(${enter})`,
         }}
       >
@@ -1785,9 +1808,9 @@ const Scene8IpadCTA: React.FC<{ frame: number; fps: number }> = ({
           dir="auto"
           style={{
             fontFamily: jakartaFont,
-            fontSize: "56px",
+            fontSize: "84px",
             fontWeight: 800,
-            margin: "50px 0 16px 0",
+            margin: "75px 0 24px 0",
             lineHeight: 1.2,
           }}
         >
@@ -1801,22 +1824,22 @@ const Scene8IpadCTA: React.FC<{ frame: number; fps: number }> = ({
           dir="auto"
           style={{
             backgroundColor: "#F8FAFC",
-            border: "2px dashed #D6D3CD",
-            borderRadius: "20px",
-            padding: "20px 28px",
-            marginBottom: "40px",
-            marginTop: "40px",
+            border: "3px dashed #D6D3CD",
+            borderRadius: "30px",
+            padding: "30px 42px",
+            marginBottom: "60px",
+            marginTop: "60px",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            gap: "14px",
+            gap: "21px",
           }}
         >
-          <span style={{ fontSize: "32px" }}>💬</span>
+          <span style={{ fontSize: "48px" }}>💬</span>
           <span
             dir="auto"
             style={{
-              fontSize: "26px",
+              fontSize: "39px",
               fontWeight: 700,
               color: "#1C1917",
             }}
@@ -1831,12 +1854,12 @@ const Scene8IpadCTA: React.FC<{ frame: number; fps: number }> = ({
           style={{
             backgroundColor: isFollowClicked ? "#10B981" : "#10B981",
             color: "#FFFFFF",
-            padding: "16px 48px",
+            padding: "24px 72px",
             borderRadius: "999px",
-            fontSize: "30px",
+            fontSize: "45px",
             fontWeight: 800,
             display: "inline-block",
-            boxShadow: "0 10px 24px rgba(16, 185, 129, 0.3)",
+            boxShadow: "0 15px 36px rgba(16, 185, 129, 0.3)",
             transform: `scale(${buttonPop})`,
           }}
         >
