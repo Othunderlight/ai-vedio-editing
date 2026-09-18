@@ -89,52 +89,11 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
         }}
       />
 
-      {/* Retro Brutalist Corner Badges */}
-      <div
-        dir="auto"
-        style={{
-          position: "absolute",
-          top: "40px",
-          right: "40px",
-          backgroundColor: "#FFFFFF",
-          border: "4px solid #000000",
-          boxShadow: "5px 5px 0px #000000",
-          padding: "6px 16px",
-          fontSize: "20px",
-          fontWeight: 900,
-          letterSpacing: "1px",
-          zIndex: 40,
-          transform: "rotate(2deg)",
-          textAlign: "right",
-        }}
-      >
-        قواعد الإنجليزية #01
-      </div>
-
-      <div
-        style={{
-          position: "absolute",
-          top: "40px",
-          left: "40px",
-          backgroundColor: "#FF7675",
-          color: "#FFFFFF",
-          border: "4px solid #000000",
-          boxShadow: "5px 5px 0px #000000",
-          padding: "6px 18px",
-          fontSize: "22px",
-          fontWeight: 900,
-          zIndex: 40,
-          transform: "rotate(-2deg)",
-        }}
-      >
-        ⏱️ {timeCode} / 01:00
-      </div>
-
       {/* Brutalist Top Progress Bar */}
       <div
         style={{
           position: "absolute",
-          top: "105px",
+          top: "70px",
           left: "40px",
           right: "40px",
           height: "20px",
@@ -333,7 +292,7 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
         display: "flex",
         flexDirection: "column",
         padding: "150px 50px 180px 50px",
-        gap: "24px",
+        gap: "50px",
       }}
     >
       {/* Header Tag */}
@@ -350,6 +309,8 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
           fontWeight: 900,
           transform: `scale(${pop1}) rotate(-1.5deg)`,
           textAlign: "right",
+          marginTop: "50px",
+          marginBottom: "50px",
         }}
       >
         (+) قاعدة الإثبات (Positive)
@@ -404,7 +365,7 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
             textAlign: "right",
           }}
         >
-          ⚠️ قاعدة: مع He / She / It ➔ نضيف S!
+          مع He / She / It: نضيف S!
         </div>
       </div>
 
@@ -491,7 +452,7 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
         display: "flex",
         flexDirection: "column",
         padding: "150px 50px 180px 50px",
-        gap: "28px",
+        gap: "50px",
       }}
     >
       {/* Negative Box */}
@@ -503,6 +464,8 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
           padding: "32px",
           color: "#FFFFFF",
           transform: `scale(${pop1})`,
+          marginTop: "90px",
+          marginBottom: "50px",
         }}
       >
         <div
@@ -643,7 +606,7 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
         display: "flex",
         flexDirection: "column",
         padding: "150px 50px 180px 50px",
-        gap: "24px",
+        gap: "50px",
       }}
     >
       <div
@@ -658,6 +621,8 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
           alignSelf: "flex-end",
           transform: `scale(${pop}) rotate(-2deg)`,
           textAlign: "right",
+          marginTop: "50px",
+          marginBottom: "50px",
         }}
       >
         الاستخدام 1: العادات والروتين (Habits)
@@ -688,7 +653,7 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
           <span dir="auto" style={{ backgroundColor: "#FFE600", padding: "2px 10px", border: "2px solid #000" }}>
             الحاضر (Now)
           </span>
-          <span dir="auto">المستقبل (Future) ➔</span>
+          <span dir="auto">المستقبل (Future):</span>
         </div>
 
         {/* The Black Axis */}
@@ -816,7 +781,7 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
         display: "flex",
         flexDirection: "column",
         padding: "150px 50px 180px 50px",
-        gap: "24px",
+        gap: "50x",
       }}
     >
       {/* Header Tag */}
@@ -833,6 +798,8 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
           alignSelf: "flex-end",
           transform: `scale(${pop}) rotate(1.5deg)`,
           textAlign: "right",
+          marginTop: "50px",
+          marginBottom: "100px",
         }}
       >
         الاستخدام 2: الحقائق العلمية (Facts)
@@ -1053,6 +1020,7 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
           fontSize: "32px",
           fontWeight: 900,
           lineHeight: 1.35,
+          marginTop: "50px"
         }}
       >
         👉 If you heat water to{" "}
@@ -1115,7 +1083,7 @@ const Scene6BrutalistInstructions: React.FC<{
         display: "flex",
         flexDirection: "column",
         padding: "150px 50px 180px 50px",
-        gap: "24px",
+        gap: "50px",
       }}
     >
       <div
@@ -1130,6 +1098,8 @@ const Scene6BrutalistInstructions: React.FC<{
           alignSelf: "flex-end",
           transform: `scale(${pop}) rotate(-1.5deg)`,
           textAlign: "right",
+          marginTop: "50px",
+          marginBottom: "50px",
         }}
       >
         الاستخدام 3: إعطاء التعليمات (Instructions)
@@ -1376,7 +1346,7 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
         display: "flex",
         flexDirection: "column",
         padding: "150px 50px 180px 50px",
-        gap: "24px",
+        gap: "50px",
       }}
     >
       <div
@@ -1391,6 +1361,8 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
           alignSelf: "flex-end",
           transform: `scale(${pop}) rotate(2deg)`,
           textAlign: "right",
+          marginTop: "50px",
+          marginBottom: "50px",
         }}
       >
         الاستخدام 4: سرد القصص والأفلام (Stories)

@@ -851,7 +851,7 @@ export const ScenePositive: React.FC<{
           }}
         >
           <div dir="auto" style={{ fontSize: "24px", fontWeight: 700, color: "#E2E8F0", textAlign: "right" }}>
-            مع <span style={{ color: "#38BDF8" }}>He / She / It</span> ➔ نضيف{" "}
+            مع <span style={{ color: "#38BDF8" }}>He / She / It</span>: نضيف{" "}
             <span
               dir="auto"
               style={{
@@ -866,7 +866,6 @@ export const ScenePositive: React.FC<{
             </span>
             !
           </div>
-          <span style={{ fontSize: "28px" }}>⚠️</span>
         </div>
       </div>
 
@@ -1018,7 +1017,7 @@ export const ScenePositive: React.FC<{
               fontWeight: 800,
             }}
           >
-            study ➔ -ies
+            study: -ies
           </div>
         </div>
       </div>
@@ -1425,7 +1424,7 @@ export const SceneHabitsTimeline: React.FC<{
           }}
         >
           <span dir="auto">خط زمني لتكرار الحدث (Timeline)</span>
-          <span dir="auto" style={{ color: accentColor }}>الماضي ➔ الحاضر ➔ المستقبل</span>
+          <span dir="auto" style={{ color: accentColor }}>الماضي: الحاضر: المستقبل</span>
         </div>
 
         {/* The Timeline SVG Track */}

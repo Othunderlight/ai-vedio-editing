@@ -425,7 +425,7 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
             textAlign: "right",
           }}
         >
-          مع He / She / It ➔ نضيف{" "}
+          مع He / She / It: نضيف{" "}
           <span style={{ fontWeight: 800, color: "#DC2626" }}>
             S
           </span>

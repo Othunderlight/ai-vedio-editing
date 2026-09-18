@@ -1,8 +1,6 @@
 import "./index.css";
 import { Composition, Folder } from "remotion";
 import { ChapterTransitionProps, Overlay } from "./Overlay";
-import { BRollPriceComparison } from "./components/BRollPriceComparison";
-import { BRollSingleCard } from "./components/BRollSingleCard";
 import { FocusedReelShot } from "./components/FocusedAnalysisCard";
 import { BRollApiDocumentation } from "./components/BRollApiDocumentation";
 import { KineticTypography } from "./components/KineticTypography";
@@ -26,12 +24,10 @@ import {
   StandaloneInstructionsScene,
   StandaloneStoriesScene,
   StandaloneCTAScene,
-} from "./components/PresentSimpleReel";
-import { NeoBrutalismReel } from "./components/variants/NeoBrutalismReel";
-import { IpadNotesReel } from "./components/variants/IpadNotesReel";
-import { KineticTypographyReel } from "./components/variants/KineticTypographyReel";
-import { RetroDesktopReel } from "./components/variants/RetroDesktopReel";
-import { MinimalCorporateReel } from "./components/variants/MinimalCorporateReel";
+} from "./components/english-reels/PresentSimpleReel";
+import { NeoBrutalismReel } from "./components/english-reels/NeoBrutalismReel";
+import { IpadNotesReel } from "./components/english-reels/IpadNotesReel";
+
 
 // --- PRESENT SIMPLE 60-SECOND EDUCATIONAL REEL ---
 const presentSimpleReelDefaultProps: PresentSimpleReelProps = {
@@ -517,58 +513,9 @@ export const RemotionRoot: React.FC = () => {
       </Folder>
     </Folder>
 
-    {/* 2. ENGLISH TUTORIALS FOR INSTAGRAM (9:16 Vertical - 1080x1920) */}
-    <Folder name="english-tutorials-instagram">
-      <Composition
-        id="IG-Notebook-Grammar-Present-Simple"
-        component={NotebookGrammarReel}
-        durationInFrames={540}
-        fps={30}
-        width={1080}
-        height={1920}
-        defaultProps={presentSimpleNotebookProps}
-      />
-      <Composition
-        id="IG-English-01-Stop-Saying-Busy"
-        component={EnglishTutorialReel}
-        durationInFrames={150}
-        fps={30}
-        width={1080}
-        height={1920}
-        defaultProps={tutorial01Props}
-      />
-      <Composition
-        id="IG-English-02-Look-Forward-To"
-        component={EnglishTutorialReel}
-        durationInFrames={150}
-        fps={30}
-        width={1080}
-        height={1920}
-        defaultProps={tutorial02Props}
-      />
-      <Composition
-        id="IG-English-03-Phrasal-Verb-Break-Down"
-        component={EnglishTutorialReel}
-        durationInFrames={150}
-        fps={30}
-        width={1080}
-        height={1920}
-        defaultProps={tutorial03Props}
-      />
-      <Composition
-        id="IG-English-Template-Customizable"
-        component={EnglishTutorialReel}
-        durationInFrames={150}
-        fps={30}
-        width={1080}
-        height={1920}
-        defaultProps={tutorial01Props}
-      />
-    </Folder>
+    {/* 4. PRESENT SIMPLE DESIGN VARIANTS (Choose between 5 Distinct Styles) */}
+      <Folder name="present-simple-design-variants">
 
-    {/* 3. NEW: PRESENT SIMPLE IN 60 SECONDS (1080x1920 Vertical Reel) */}
-    <Folder name="present-simple-in-60-seconds">
-      {/* Master 60-Second Full Educational Reel (1800 frames @ 30fps) */}
       <Composition
         id="Reel-Present-Simple-60s-Master"
         component={PresentSimpleReel}
@@ -579,100 +526,6 @@ export const RemotionRoot: React.FC = () => {
         defaultProps={presentSimpleReelDefaultProps}
       />
 
-      {/* Individual Scene Breakdown for rapid testing, previewing & targeted exporting */}
-      <Folder name="Scenes-Breakdown">
-        {/* Scene 1: Hook & Title (0:00 - 0:05 | 150 frames) */}
-        <Composition
-          id="Scene-01-Title-Hook"
-          component={StandaloneHookScene}
-          durationInFrames={150}
-          fps={30}
-          width={1080}
-          height={1920}
-          defaultProps={{ accentColor: "#F59E0B" }}
-        />
-
-        {/* Scene 2: Structure (+) Positive Form (0:05 - 0:18 | 390 frames) */}
-        <Composition
-          id="Scene-02-Positive-Structure"
-          component={StandalonePositiveScene}
-          durationInFrames={390}
-          fps={30}
-          width={1080}
-          height={1920}
-          defaultProps={{ accentColor: "#F59E0B" }}
-        />
-
-        {/* Scene 3: Structure (– & ?) Negatives & Questions (0:18 - 0:26 | 240 frames) */}
-        <Composition
-          id="Scene-03-Negative-Questions"
-          component={StandaloneNegativeScene}
-          durationInFrames={240}
-          fps={30}
-          width={1080}
-          height={1920}
-          defaultProps={{ accentColor: "#F59E0B" }}
-        />
-
-        {/* Scene 4: Use 1: Habits & Routine Timeline (0:26 - 0:38 | 360 frames) */}
-        <Composition
-          id="Scene-04-Habits-Timeline"
-          component={StandaloneHabitsScene}
-          durationInFrames={360}
-          fps={30}
-          width={1080}
-          height={1920}
-          defaultProps={{ accentColor: "#F59E0B" }}
-        />
-
-        {/* Scene 5: Use 2: Facts & Truths Boiling Water (0:38 - 0:45 | 210 frames) */}
-        <Composition
-          id="Scene-05-Facts-BoilingWater"
-          component={StandaloneFactsScene}
-          durationInFrames={210}
-          fps={30}
-          width={1080}
-          height={1920}
-          defaultProps={{ accentColor: "#F59E0B" }}
-        />
-
-        {/* Scene 6: Use 3: Instructions Desktop Click (0:45 - 0:51 | 180 frames) */}
-        <Composition
-          id="Scene-06-Instructions-Desktop"
-          component={StandaloneInstructionsScene}
-          durationInFrames={180}
-          fps={30}
-          width={1080}
-          height={1920}
-          defaultProps={{ accentColor: "#F59E0B" }}
-        />
-
-        {/* Scene 7: Use 4: Stories & Films Clapperboard (0:51 - 0:56 | 150 frames) */}
-        <Composition
-          id="Scene-07-Stories-Films"
-          component={StandaloneStoriesScene}
-          durationInFrames={150}
-          fps={30}
-          width={1080}
-          height={1920}
-          defaultProps={{ accentColor: "#F59E0B" }}
-        />
-
-        {/* Scene 8: Call to Action & End Card (0:56 - 1:00 | 120 frames) */}
-        <Composition
-          id="Scene-08-CTA-EndCard"
-          component={StandaloneCTAScene}
-          durationInFrames={120}
-          fps={30}
-          width={1080}
-          height={1920}
-          defaultProps={{ accentColor: "#F59E0B" }}
-        />
-      </Folder>
-    </Folder>
-
-    {/* 4. PRESENT SIMPLE DESIGN VARIANTS (Choose between 5 Distinct Styles) */}
-    <Folder name="present-simple-design-variants">
       {/* Variant 1: Neo-Brutalism Style */}
       <Composition
         id="Variant-1-Neo-Brutalism"
@@ -701,11 +554,6 @@ export const RemotionRoot: React.FC = () => {
         }}
       />
 
-      {/* Variant 3: Bold Kinetic Typography Style */}
-
-      {/* Variant 4: 90s Retro / Lo-Fi Desktop Style */}
-
-      {/* Variant 5: Premium Minimalist Corporate Style */}
     </Folder>
     </>
   );
