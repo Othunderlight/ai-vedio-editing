@@ -186,54 +186,54 @@ export const PresentSimpleReel: React.FC<PresentSimpleReelProps> = ({
       {/* Main Voiceover */}
       <Audio src={staticFile('assets/sounds/voicceover/present-simple.wav')} />
 
-      {/* SFX – Scene Transitions & Key Moments */}
+      {/* SFX – Scene Transitions & Key Moments (low volume, voiceover is priority) */}
       <Sequence from={5}>
-        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/fast-whoosh.wav')} volume={0.6} />
+        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/fast-whoosh.wav')} volume={0.20} />
       </Sequence>
-      <Sequence from={148}>
-        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/deep-whoosh.wav')} volume={0.5} />
+      <Sequence from={150}>
+        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/deep-whoosh.wav')} volume={0.15} />
       </Sequence>
       <Sequence from={310}>
-        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/pop-hand.wav')} volume={0.7} />
+        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/pop-hand.wav')} volume={0.20} />
       </Sequence>
       <Sequence from={480}>
-        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/pop-hand.wav')} volume={0.5} />
+        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/pop-hand.wav')} volume={0.15} />
       </Sequence>
       <Sequence from={540}>
-        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/pop-hand.wav')} volume={0.5} />
+        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/pop-hand.wav')} volume={0.15} />
       </Sequence>
-      <Sequence from={658}>
-        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/swish-whoosh-large.wav')} volume={0.5} />
+      <Sequence from={660}>
+        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/swish-whoosh-large.wav')} volume={0.18} />
       </Sequence>
-      <Sequence from={958}>
-        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/deep-whoosh.wav')} volume={0.5} />
+      <Sequence from={960}>
+        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/fast-whoosh.wav')} volume={0.18} />
       </Sequence>
       <Sequence from={975}>
-        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/pop-hand.wav')} volume={0.6} />
+        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/pop-hand.wav')} volume={0.18} />
       </Sequence>
-      <Sequence from={1378}>
-        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/base-drop.wav')} volume={0.5} />
+      <Sequence from={1380}>
+        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/fast-whoosh.wav')} volume={0.20} />
       </Sequence>
       <Sequence from={1400}>
-        <Audio src={staticFile('assets/sounds/sfx/other/water_boils.wav')} volume={0.6} />
+        <Audio src={staticFile('assets/sounds/sfx/other/water_boils.wav')} volume={0.12} />
       </Sequence>
-      <Sequence from={1558}>
-        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/fast-whoosh.wav')} volume={0.5} />
+      <Sequence from={1560}>
+        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/fast-whoosh.wav')} volume={0.18} />
       </Sequence>
       <Sequence from={1620}>
-        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/mouse-click-1.wav')} volume={0.7} />
+        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/mouse-click-1.wav')} volume={0.20} />
       </Sequence>
-      <Sequence from={1768}>
-        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/swish-whoosh-large.wav')} volume={0.5} />
+      <Sequence from={1770}>
+        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/swish-whoosh-large.wav')} volume={0.18} />
       </Sequence>
       <Sequence from={1790}>
-        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/camera-shutter-1-shot.wav')} volume={0.7} />
+        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/camera-shutter-1-shot.wav')} volume={0.20} />
       </Sequence>
-      <Sequence from={1948}>
-        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/deep-whoosh.wav')} volume={0.5} />
+      <Sequence from={1950}>
+        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/fast-whoosh.wav')} volume={0.18} />
       </Sequence>
       <Sequence from={1970}>
-        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/notification-ding.wav')} volume={0.6} />
+        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/notification-ding.wav')} volume={0.18} />
       </Sequence>
 
       {/* Dynamic Background Atmosphere */}
