@@ -633,12 +633,15 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
             paddingBottom: "18px",
           }}
         >
-          • <span style={{ color: "#DC2626" }}>She</span> like
+          • <span style={{ color: "#DC2626" }}>She</span>{" "}
+          <span style={{ position: "relative", zIndex: 2 }}>like</span>
           <span
             style={{
               backgroundColor: "#FEF08A",
               padding: "0 2px",
               borderRadius: "6px",
+              position: "relative",
+              zIndex: 1,
             }}
           >
             s
@@ -654,12 +657,15 @@ const Scene2IpadPositive: React.FC<{ frame: number; fps: number }> = ({
             opacity: write3 > 0 ? 1 : 0,
           }}
         >
-          • <span style={{ color: "#2563EB" }}>He</span> stud
+          • <span style={{ color: "#2563EB" }}>He</span>{" "}
+          <span style={{ position: "relative", zIndex: 2 }}>stud</span>
           <span
             style={{
-              backgroundColor: "#FEF08A",
-              padding: "0 9px",
+              backgroundColor: "rgba(254, 240, 138, 1)",
+              padding: "0 2px",
               borderRadius: "6px",
+              position: "relative",
+              zIndex: 1,
             }}
           >
             ies
