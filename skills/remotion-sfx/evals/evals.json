@@ -1,0 +1,46 @@
+{
+  "skill_name": "remotion-sfx",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add SFX to my IpadNotesReel.tsx component. The SFX catalog is at public/assets/sounds/sfx/waven-sfx-catalog.json and audio files are in public/assets/sounds/sfx/waven-sfx/. I also have a special water_boils.wav in public/assets/sounds/sfx/other/. The voiceover is at public/assets/sounds/voicceover/present-simple.wav. Make sure the voiceover stays loud and the SFX are quiet background elements.",
+      "expected_output": "IpadNotesReel.tsx with 18 SFX Sequence+Audio blocks placed at correct scene boundary frames, all volumes at 0.12-0.20, voiceover untouched, water_boils clipped with durationInFrames",
+      "files": [],
+      "expectations": [
+        "Voiceover Audio has no volume prop (stays at 1.0)",
+        "All SFX volumes are between 0.10 and 0.25",
+        "SFX frame numbers match exact scene boundary frames (150, 660, 960, 1380, 1560, 1770, 1950)",
+        "Every scene transition has a whoosh SFX",
+        "Every element pop-in (spring/interpolate) has a matching pop-hand SFX",
+        "water_boils.wav has durationInFrames set to clip it to Scene 5",
+        "He studies law example (frame 595) has a pop-hand SFX",
+        "Question card (frame 810) has a pop-hand SFX",
+        "No SFX volume exceeds 0.25"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I have a Remotion component called GameReel.tsx with 5 scenes. Scene 1 is frames 0-90, Scene 2 is 90-300, Scene 3 is 300-500, Scene 4 is 500-700, Scene 5 is 700-900. Add SFX from the waven-sfx catalog. Each scene transition needs a whoosh, and every element that pops in needs a pop-hand. The voiceover must stay at full volume.",
+      "expected_output": "GameReel.tsx with SFX at frames 90, 300, 500, 700 for transitions, plus pop-hand at each element appearance frame, all volumes 0.15-0.20, voiceover untouched",
+      "files": [],
+      "expectations": [
+        "SFX Sequence blocks are placed at exact scene boundary frames (90, 300, 500, 700)",
+        "Voiceover Audio has no volume prop",
+        "All SFX volumes are 0.20 or below",
+        "Each scene transition has a whoosh-type SFX",
+        "Element pop-in frames have pop-hand SFX"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "The water_boils.wav in my Remotion project keeps playing after Scene 5 ends at frame 500. It starts at frame 350. How do I fix this?",
+      "expected_output": "Add durationInFrames={150} to the Sequence containing water_boils.wav (500 - 350 = 150 frames)",
+      "files": [],
+      "expectations": [
+        "Solution uses durationInFrames on the Sequence element",
+        "Duration is calculated as scene end frame minus SFX start frame",
+        "The Sequence from value matches the SFX start frame"
+      ]
+    }
+  ]
+}

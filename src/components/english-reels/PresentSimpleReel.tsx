@@ -202,8 +202,14 @@ export const PresentSimpleReel: React.FC<PresentSimpleReelProps> = ({
       <Sequence from={540}>
         <Audio src={staticFile('assets/sounds/sfx/waven-sfx/pop-hand.wav')} volume={0.15} />
       </Sequence>
+      <Sequence from={595}>
+        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/pop-hand.wav')} volume={0.15} />
+      </Sequence>
       <Sequence from={660}>
         <Audio src={staticFile('assets/sounds/sfx/waven-sfx/swish-whoosh-large.wav')} volume={0.18} />
+      </Sequence>
+      <Sequence from={810}>
+        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/pop-hand.wav')} volume={0.18} />
       </Sequence>
       <Sequence from={960}>
         <Audio src={staticFile('assets/sounds/sfx/waven-sfx/fast-whoosh.wav')} volume={0.18} />
