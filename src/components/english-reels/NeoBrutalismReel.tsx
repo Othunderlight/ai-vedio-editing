@@ -798,7 +798,7 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
           padding: "36px 30px",
           transform: `scale(${pop})`,
           scale: 1.5,
-          translate: "273.7px 85.1px"
+          translate: "0px 82.5px"
         }}
       >
         <Interactive.Div
@@ -810,13 +810,30 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
             display: "flex",
             justifyContent: "space-between",
             flexDirection: "row-reverse",
+            translate: "0px -7.2px",
+            gap: "1px",
           }}
         >
-          <span dir="auto">الماضي (Past)</span>
-          <span dir="auto" style={{ backgroundColor: "#FFE600", padding: "2px 10px", border: "2px solid #000" }}>
-            الحاضر (Now)
-          </span>
-          <span dir="auto">المستقبل (Future):</span>
+          <Interactive.Div
+            dir="auto"
+            style={{
+              translate: "-203.3px 7.7px"
+            }}
+          >الماضي</Interactive.Div>
+          <Interactive.Div
+            dir="auto"
+            style={{
+              backgroundColor: "#FFE600",
+              padding: "2px 10px",
+              border: "2px solid #000"
+            }}
+          >الحاضر</Interactive.Div>
+          <Interactive.Div
+            dir="auto"
+            style={{
+              translate: "205.8px 4.2px"
+            }}
+          >{"المستقبل "}</Interactive.Div>
         </Interactive.Div>
 
         {/* The Black Axis */}
@@ -833,11 +850,11 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
           />
 
           {[
-            { s: m1, left: "10%", text: "X" },
+
             { s: m2, left: "30%", text: "X" },
             { s: m3, left: "50%", text: "X", isCenter: true },
             { s: m4, left: "70%", text: "X" },
-            { s: m5, left: "90%", text: "X" },
+
           ].map((item, idx) => (
             <Interactive.Div
               key={idx}
@@ -869,6 +886,7 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
             fontSize: "22px",
             fontWeight: 800,
             textAlign: "right",
+            translate: "-119.7px 10.6px"
           }}
         >
           أفعال متكررة عبر الزمن: تحدث دائماً!
@@ -880,14 +898,14 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
         style={{
           display: "flex",
           flexWrap: "wrap",
-          gap: "12px",
+          gap: "120px",
           opacity: tagsEnter,
           transform: `translateY(${interpolate(tagsEnter, [0, 1], [15, 0])}px)`,
           scale: 1.045,
-          translate: "27.9px 314.8px"
+          translate: "27.9px 294.4px"
         }}
       >
-        {["always", "usually", "sometimes", "every day"].map((kw, i) => (
+        {["always", "usually", "sometimes"].map((kw, i) => (
           <Interactive.Div
             key={i}
             style={{
@@ -897,6 +915,8 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
               padding: "8px 18px",
               fontSize: "24px",
               fontWeight: 900,
+              translate: "76.1px -61.6px",
+              scale: 1.5
             }}
           >
             ⚡ {kw}
@@ -916,7 +936,7 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
           opacity: exampleEnter,
           transform: `scale(${exampleEnter})`,
           scale: 1.5,
-          translate: "290.8px 332.3px"
+          translate: "295.2px 347.2px"
         }}
       >
         👉 I <span style={{ color: "#0984E3" }}>use</span> the Internet{" "}
@@ -977,6 +997,8 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
           textAlign: "right",
           marginTop: "50px",
           marginBottom: "100px",
+          scale: 1.5,
+          translate: "-96.1px 0px"
         }}
       >
         الاستخدام 2: الحقائق العلمية (Facts)
@@ -990,9 +1012,12 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
           boxShadow: "10px 10px 0px #000000",
           padding: "32px 28px",
           display: "flex",
+          gap: "10px",
           alignItems: "center",
           justifyContent: "space-around",
           transform: `scale(${pop})`,
+          scale: 1.36,
+          translate: "40.3px 101px"
         }}
       >
         {/* Animated Thermometer SVG (Brutalist style) */}
@@ -1001,6 +1026,7 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            translate: "47.2px 5.9px"
           }}
         >
           <svg width="120" height="290" viewBox="0 0 100 280">
@@ -1084,6 +1110,7 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            translate: "-61.5px -5.9px"
           }}
         >
           {/* Steam wisps rising */}
@@ -1180,6 +1207,7 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
               fontWeight: 900,
               color: "#000000",
               textAlign: "right",
+              translate: "4.2px 33.4px"
             }}
           >
             ♨️ غليان الماء عند 100°م
@@ -1197,7 +1225,9 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
           fontSize: "32px",
           fontWeight: 900,
           lineHeight: 1.35,
-          marginTop: "50px"
+          marginTop: "50px",
+          scale: 1.5,
+          translate: "230.5px 290.2px"
         }}
       >
         👉 If you heat water to{" "}
@@ -1277,6 +1307,8 @@ const Scene6BrutalistInstructions: React.FC<{
           textAlign: "right",
           marginTop: "50px",
           marginBottom: "50px",
+          scale: 1.5,
+          translate: "-127.3px 8.2px"
         }}
       >
         الاستخدام 3: إعطاء التعليمات (Instructions)
@@ -1292,6 +1324,8 @@ const Scene6BrutalistInstructions: React.FC<{
           transform: `scale(${pop})`,
           position: "relative",
           overflow: "hidden",
+          scale: 1.5,
+          translate: "0px 109.7px"
         }}
       >
         {/* Desktop Titlebar */}
@@ -1481,6 +1515,8 @@ const Scene6BrutalistInstructions: React.FC<{
           fontSize: "32px",
           fontWeight: 900,
           lineHeight: 1.35,
+          translate: "234.7px 314.5px",
+          scale: 1.5
         }}
       >
         👉 To start the programme, first{" "}
@@ -1493,7 +1529,7 @@ const Scene6BrutalistInstructions: React.FC<{
         >
           click
         </span>{" "}
-        on the desktop.
+        <br />on the desktop.
       </Interactive.Div>
     </AbsoluteFill>
   );
@@ -1540,6 +1576,8 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
           textAlign: "right",
           marginTop: "50px",
           marginBottom: "50px",
+          scale: 1.5,
+          translate: "-129.3px 0px"
         }}
       >
         الاستخدام 4: سرد القصص والأفلام (Stories)
@@ -1556,6 +1594,8 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
           alignItems: "center",
           justifyContent: "space-around",
           transform: `scale(${pop})`,
+          scale: 2.403,
+          translate: "-1822.2px 129.6px"
         }}
       >
         {/* Animated Movie Clapperboard */}
@@ -1648,6 +1688,8 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
             flexDirection: "column",
             alignItems: "center",
             transform: `scale(${heroPop})`,
+            translate: "514.5px 31.8px",
+            scale: 1.383
           }}
         >
           <Interactive.Div
@@ -1683,6 +1725,8 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
           fontSize: "32px",
           fontWeight: 900,
           lineHeight: 1.35,
+          translate: "99px 484.1px",
+          scale: 1.5
         }}
       >
         👉 In the film, the hero{" "}
@@ -1728,6 +1772,7 @@ const Scene8BrutalistCTA: React.FC<{ frame: number; fps: number }> = ({
           textAlign: "center",
           transform: `scale(${pop})`,
           maxWidth: "920px",
+          scale: 1.5
         }}
       >
         <h2
