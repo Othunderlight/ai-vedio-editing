@@ -169,7 +169,7 @@ export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
       <Sequence from={1380}>
         <Audio src={staticFile('assets/sounds/sfx/waven-sfx/fast-whoosh.wav')} volume={0.20} />
       </Sequence>
-      <Sequence from={1400}>
+      <Sequence from={1400} durationInFrames={160}>
         <Audio src={staticFile('assets/sounds/sfx/other/water_boils.wav')} volume={0.12} />
       </Sequence>
       <Sequence from={1560}>
