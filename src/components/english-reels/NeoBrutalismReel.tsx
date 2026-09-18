@@ -31,81 +31,116 @@ export interface NeoBrutalismReelProps {
 
 // Subtitles synchronized with voiceover
 const VOICEOVER_CAPTIONS = [
-  // 00:06 – 00:12 (القاعدة: الجملة العادية)
+  // 00:00 – 00:03
   {
-    fromFrame: 180,
-    toFrame: 360,
-    text: "أول شي، القاعدة: بالجملة العادية منستخدم الفعل متل ما هو (V1)."
+    fromFrame: 0,
+    toFrame: 90,
+    text: "رح تفهم الـ Present Simple بأقل من دقيقة."
   },
 
-  // 00:12 – 00:18 (إضافة s/es/ies)
+  // 00:03 – 00:05
   {
-    fromFrame: 360,
-    toFrame: 560,
-    text: "بس مع (he, she, it) بنضيف للفعل s أو es أو ies!"
+    fromFrame: 90,
+    toFrame: 150,
+    text: "جاهز؟ خلينا نبلش بسرعة."
   },
 
-  // 00:19 – 00:21 (مثال مثبت)
+  // 00:05 – 00:10
   {
-    fromFrame: 570,
-    toFrame: 630,
-    text: "متل: 'I study law'.."
+    fromFrame: 150,
+    toFrame: 310,
+    text: "أول شي: القاعدة. بالجملة العادية منستخدم الفعل مثل ما هو (V1)."
   },
 
-  // 00:21 – 00:26 (أمثلة مع المفرد)
+  // 00:10 – 00:16
   {
-    fromFrame: 630,
-    toFrame: 800,
-    text: "بس منقول: 'She likes reading' و 'He studies law'."
+    fromFrame: 310,
+    toFrame: 480,
+    text: "بس مع he, she, it منضيف للفعل s أو es أو ies."
   },
 
-  // 00:27 – 00:34 (النفي)
+  // 00:16 – 00:18
+  {
+    fromFrame: 480,
+    toFrame: 540,
+    text: "مثل: I study law."
+  },
+
+  // 00:18 – 00:22
+  {
+    fromFrame: 540,
+    toFrame: 660,
+    text: "بس بنقول: She likes reading و He studies law."
+  },
+
+  // 00:22 – 00:27
+  {
+    fromFrame: 660,
+    toFrame: 810,
+    text: "وبالنفي، بنحط don't أو doesn't مع الفعل بالمصدر: He doesn't study medicine."
+  },
+
+  // 00:27 – 00:32
   {
     fromFrame: 810,
-    toFrame: 1040,
-    text: "وبالنفي، منحط don't أو doesn't مع الفعل بالمصدر: 'He doesn't study medicine.'"
+    toFrame: 960,
+    text: "أما بالسؤال، فمنبدأ بـ Do أو Does: Does he study law?"
   },
 
-  // 00:35 – 00:40 (السؤال)
+  // 00:32 – 00:37
   {
-    fromFrame: 1050,
-    toFrame: 1220,
-    text: "أما بالسؤال، فمنبدأ بـ Do أو Does: 'Does he study law?'"
+    fromFrame: 960,
+    toFrame: 1110,
+    text: "طيب، أيمتى منستخدمه؟ رقم واحد: للعادات والأشياء اللي بتتكرر دائماً."
   },
 
-  // 00:41 – 00:46 (الاستخدام 1: العادات)
+  // 00:37 – 00:43
   {
-    fromFrame: 1230,
-    toFrame: 1400,
-    text: "طيّب، إيمتى منستخدمه؟ رقم واحد: للعادات والأشياء اللي بتتكرر دائماً."
+    fromFrame: 1110,
+    toFrame: 1290,
+    text: "شوف هالخط الزمني: بالماضي، الحاضر، والمستقبل، الفعل عم يتكرر."
   },
 
-  // 00:47 – 00:53 (الخط الزمني)
+  // 00:43 – 00:46
   {
-    fromFrame: 1410,
-    toFrame: 1590,
-    text: "شوف هالخط الزمني: بالماضي، الحاضر، والمستقبل.. الفعل عم يتكرر!"
+    fromFrame: 1290,
+    toFrame: 1380,
+    text: "مثل: I use the internet every day."
   },
 
-  // 00:53 – 00:56 (مثال العادات)
+  // 00:46 – 00:52
   {
-    fromFrame: 1590,
-    toFrame: 1700,
-    text: "متل: 'I use the Internet every day.'"
+    fromFrame: 1380,
+    toFrame: 1560,
+    text: "رقم اتنين: للحقائق العلمية والعامة: If you heat water to 100 degrees, it boils."
   },
 
-  // 00:56 – 00:59 (الاستخدام 2: الحقائق)
+  // 00:52 – 00:59
   {
-    fromFrame: 1700,
-    toFrame: 1780,
-    text: "رقم اتنين: للحقائق العلمية والعامة! 🔬"
+    fromFrame: 1560,
+    toFrame: 1770,
+    text: "رقم تلاتة: لنعطي تعليمات أو إرشادات: To start the program, first click on the desktop."
   },
 
-  // 00:59 – 01:03 (مثال الحقائق)
+  // 00:59 – 01:05
   {
-    fromFrame: 1780,
-    toFrame: 1890,
-    text: "'If you heat water to 100 degrees, it boils.'"
+    fromFrame: 1770,
+    toFrame: 1950,
+    text: "ورقم أربعة: لما نحكي ملخص فيلم أو قصة: In the film, the hero saves the villagers."
+  },
+
+  // 01:05 – 01:09
+  {
+    fromFrame: 1950,
+    toFrame: 2070,
+    text: "اكتب كلمة ملخص بالتعليقات لأبعتلك الـ cheat sheet مجاناً."
+  },
+
+  // 01:09 – 01:13
+  {
+    fromFrame: 2070,
+    toFrame: 2190,
+    text: "وتابعنا لتتعلم قواعد تانية بدقيقة واحدة."
   }
 ];
 
