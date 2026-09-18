@@ -3,7 +3,6 @@ import { loadFont as loadSpaceGrotesk } from "@remotion/google-fonts/SpaceGrotes
 import React from "react";
 import {
   AbsoluteFill,
-  Interactive,
   interpolate,
   spring,
   staticFile,
@@ -141,7 +140,7 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
         backgroundColor: primaryBg,
         color: "#000000",
         fontFamily: spaceGroteskFont,
-        overflow: "hidden"
+        overflow: "hidden",
       }}
     >
       {/* Main Voiceover */}
@@ -204,7 +203,7 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
       </Sequence>
 
       {/* Background Neo-Brutalist Dot Grid */}
-      <Interactive.Div
+      <div
         style={{
           position: "absolute",
           inset: 0,
@@ -216,7 +215,7 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
       />
 
       {/* Brutalist Top Progress Bar */}
-      <Interactive.Div
+      <div
         style={{
           position: "absolute",
           top: "70px",
@@ -230,7 +229,7 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
           zIndex: 40,
         }}
       >
-        <Interactive.Div
+        <div
           style={{
             width: `${progressPercent}%`,
             height: "100%",
@@ -238,7 +237,7 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
             borderRight: "3px solid #000000",
           }}
         />
-      </Interactive.Div>
+      </div>
 
       {/* =========================================================================
           SCENE 1: HOOK & TITLE (0:00 - 0:05 | frames 0 - 150)
@@ -298,17 +297,16 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
           BOTTOM NEO-BRUTALIST CAPTION BAR
           ========================================================================= */}
       {showCaptions && activeCaption && (
-        <Interactive.Div
+        <div
           style={{
             position: "absolute",
             bottom: "400px",
             left: "40px",
             right: "40px",
             zIndex: 60,
-            translate: "0px 137.3px"
           }}
         >
-          <Interactive.Div
+          <div
             style={{
               backgroundColor: "#FFFFFF",
               border: "4px solid #000000",
@@ -318,7 +316,7 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
             }}
           >
             {/* script */}
-            <Interactive.Div
+            <div
               dir="auto"
               style={{
                 fontSize: "32px",
@@ -329,9 +327,9 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
               }}
             >
               {activeCaption.text}
-            </Interactive.Div>
-          </Interactive.Div>
-        </Interactive.Div>
+            </div>
+          </div>
+        </div>
       )}
     </AbsoluteFill>
   );
@@ -359,7 +357,7 @@ const Scene1BrutalistHook: React.FC<{ frame: number; fps: number }> = ({
       }}
     >
       {/* Main Chunky Card */}
-      <Interactive.Div
+      <div
         style={{
           backgroundColor: "#FFFFFF",
           border: "6px solid #000000",
@@ -368,7 +366,6 @@ const Scene1BrutalistHook: React.FC<{ frame: number; fps: number }> = ({
           textAlign: "center",
           maxWidth: "960px",
           transform: `scale(${popIn})`,
-          scale: 1.447
         }}
       >
         <h1
@@ -399,7 +396,7 @@ const Scene1BrutalistHook: React.FC<{ frame: number; fps: number }> = ({
           <span dir="auto">في 60 ثانية ⏱️</span>
         </h1>
 
-      </Interactive.Div>
+      </div>
     </AbsoluteFill>
   );
 };
@@ -429,7 +426,7 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
       }}
     >
       {/* Header Tag */}
-      <Interactive.Div
+      <div
         dir="auto"
         style={{
           display: "inline-block",
@@ -444,26 +441,22 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
           textAlign: "right",
           marginTop: "50px",
           marginBottom: "50px",
-          scale: 1.5,
-          translate: "-80.5px 2.5px"
         }}
       >
         (+) قاعدة الإثبات (Positive)
-      </Interactive.Div>
+      </div>
 
       {/* Formula Box */}
-      <Interactive.Div
+      <div
         style={{
           backgroundColor: "#FFFFFF",
           border: "5px solid #000000",
           boxShadow: "10px 10px 0px #000000",
           padding: "32px 36px",
           transform: `scale(${pop1})`,
-          scale: 1.5,
-          translate: "257.2px 38.5px"
         }}
       >
-        <Interactive.Div style={{ fontSize: "40px", fontWeight: 900, lineHeight: 1.3 }}>
+        <div style={{ fontSize: "40px", fontWeight: 900, lineHeight: 1.3 }}>
           Subject +{" "}
           <span
             style={{
@@ -486,9 +479,9 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
           >
             V1 + s
           </span>
-        </Interactive.Div>
+        </div>
 
-        <Interactive.Div
+        <div
           dir="auto"
           style={{
             marginTop: "20px",
@@ -502,15 +495,14 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
             textAlign: "right",
             opacity: rulePop,
             transform: `scale(${rulePop})`,
-            translate: "-280.5px 12.9px"
           }}
         >
           مع He / She / It: نضيف S!
-        </Interactive.Div>
-      </Interactive.Div>
+        </div>
+      </div>
 
       {/* Example 1 */}
-      <Interactive.Div
+      <div
         style={{
           backgroundColor: "#FFFFFF",
           border: "4px solid #000000",
@@ -519,16 +511,14 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
           fontSize: "36px",
           fontWeight: 900,
           transform: `scale(${pop2})`,
-          scale: 1.5,
-          translate: "267.1px 158.8px"
         }}
       >
         👉 <span style={{ color: "#0984E3" }}>I</span>{" "}
         <span style={{ textDecoration: "underline" }}>study</span> law.
-      </Interactive.Div>
+      </div>
 
       {/* Example 2 */}
-      <Interactive.Div
+      <div
         style={{
           backgroundColor: "#FFFFFF",
           border: "4px solid #000000",
@@ -537,8 +527,6 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
           fontSize: "36px",
           fontWeight: 900,
           transform: `scale(${pop3})`,
-          scale: 1.5,
-          translate: "347.1px 262.2px"
         }}
       >
         👉 <span style={{ color: "#D63031" }}>She</span> like
@@ -552,10 +540,10 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
           s
         </span>{" "}
         reading.
-      </Interactive.Div>
+      </div>
 
       {/* Example 3 */}
-      <Interactive.Div
+      <div
         style={{
           backgroundColor: "#FFFFFF",
           border: "4px solid #000000",
@@ -564,8 +552,6 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
           fontSize: "36px",
           fontWeight: 900,
           transform: `scale(${pop4})`,
-          scale: 1.5,
-          translate: "464.3px 374.9px"
         }}
       >
         👉 <span style={{ color: "#0984E3" }}>He</span> stud
@@ -579,7 +565,7 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
           ies
         </span>{" "}
         law.
-      </Interactive.Div>
+      </div>
     </AbsoluteFill>
   );
 };
@@ -603,7 +589,7 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
       }}
     >
       {/* Negative Box */}
-      <Interactive.Div
+      <div
         style={{
           backgroundColor: "#FF7675",
           border: "5px solid #000000",
@@ -613,11 +599,9 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
           transform: `scale(${pop1})`,
           marginTop: "90px",
           marginBottom: "50px",
-          scale: 1.5,
-          translate: "307.3px 130.2px"
         }}
       >
-        <Interactive.Div
+        <div
           dir="auto"
           style={{
             display: "flex",
@@ -626,7 +610,7 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
             marginBottom: "14px",
           }}
         >
-          <Interactive.Div
+          <div
             dir="auto"
             style={{
               backgroundColor: "#000000",
@@ -636,13 +620,12 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
               fontSize: "22px",
               fontWeight: 900,
               textAlign: "right",
-              translate: "-334px -51.7px"
             }}
           >
             (–) صيغة النفي (Negative)
-          </Interactive.Div>
-        </Interactive.Div>
-        <Interactive.Div style={{ fontSize: "36px", fontWeight: 900, color: "#000000" }}>
+          </div>
+        </div>
+        <div style={{ fontSize: "36px", fontWeight: 900, color: "#000000" }}>
           Subject +{" "}
           <span
             style={{
@@ -655,8 +638,8 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
             don't / doesn't
           </span>{" "}
           + V0
-        </Interactive.Div>
-        <Interactive.Div
+        </div>
+        <div
           style={{
             backgroundColor: "#FFFFFF",
             color: "#000000",
@@ -669,22 +652,20 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
           }}
         >
           👉 He <span style={{ color: "#D63031" }}>doesn't study</span> medicine.
-        </Interactive.Div>
-      </Interactive.Div>
+        </div>
+      </div>
 
       {/* Question Box */}
-      <Interactive.Div
+      <div
         style={{
           backgroundColor: "#74B9FF",
           border: "5px solid #000000",
           boxShadow: "10px 10px 0px #000000",
           padding: "32px",
           transform: `scale(${pop2})`,
-          translate: "312.6px 286.8px",
-          scale: 1.5
         }}
       >
-        <Interactive.Div
+        <div
           dir="auto"
           style={{
             display: "flex",
@@ -693,7 +674,7 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
             marginBottom: "14px",
           }}
         >
-          <Interactive.Div
+          <div
             dir="auto"
             style={{
               backgroundColor: "#000000",
@@ -703,13 +684,12 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
               fontSize: "22px",
               fontWeight: 900,
               textAlign: "right",
-              translate: "-330.4px -52.4px"
             }}
           >
             (?) صيغة السؤال (Question)
-          </Interactive.Div>
-        </Interactive.Div>
-        <Interactive.Div style={{ fontSize: "36px", fontWeight: 900 }}>
+          </div>
+        </div>
+        <div style={{ fontSize: "36px", fontWeight: 900 }}>
           <span
             style={{
               backgroundColor: "#FFE600",
@@ -721,8 +701,8 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
             Do / Does
           </span>{" "}
           + Subject + V0 ?
-        </Interactive.Div>
-        <Interactive.Div
+        </div>
+        <div
           style={{
             backgroundColor: "#FFFFFF",
             border: "4px solid #000000",
@@ -735,9 +715,8 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
         >
           👉 <span style={{ color: "#0984E3" }}>Does</span> he study law
           <span style={{ color: "#D63031" }}>?</span>
-        </Interactive.Div>
-      </Interactive.Div>
-
+        </div>
+      </div>
     </AbsoluteFill>
   );
 };
@@ -768,7 +747,7 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
         gap: "50px",
       }}
     >
-      <Interactive.Div
+      <div
         dir="auto"
         style={{
           backgroundColor: "#00F0FF",
@@ -782,26 +761,22 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
           textAlign: "right",
           marginTop: "50px",
           marginBottom: "50px",
-          scale: 1.5,
-          translate: "-111.1px 3.9px"
         }}
       >
         الاستخدام 1: العادات والروتين (Habits)
-      </Interactive.Div>
+      </div>
 
       {/* Brutalist Timeline Board */}
-      <Interactive.Div
+      <div
         style={{
           backgroundColor: "#FFFFFF",
           border: "5px solid #000000",
           boxShadow: "10px 10px 0px #000000",
           padding: "36px 30px",
           transform: `scale(${pop})`,
-          scale: 1.5,
-          translate: "0px 82.5px"
         }}
       >
-        <Interactive.Div
+        <div
           dir="auto"
           style={{
             fontSize: "24px",
@@ -810,35 +785,18 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
             display: "flex",
             justifyContent: "space-between",
             flexDirection: "row-reverse",
-            translate: "0px -7.2px",
-            gap: "1px",
           }}
         >
-          <Interactive.Div
-            dir="auto"
-            style={{
-              translate: "-203.3px 7.7px"
-            }}
-          >الماضي</Interactive.Div>
-          <Interactive.Div
-            dir="auto"
-            style={{
-              backgroundColor: "#FFE600",
-              padding: "2px 10px",
-              border: "2px solid #000"
-            }}
-          >الحاضر</Interactive.Div>
-          <Interactive.Div
-            dir="auto"
-            style={{
-              translate: "205.8px 4.2px"
-            }}
-          >{"المستقبل "}</Interactive.Div>
-        </Interactive.Div>
+          <span dir="auto">الماضي (Past)</span>
+          <span dir="auto" style={{ backgroundColor: "#FFE600", padding: "2px 10px", border: "2px solid #000" }}>
+            الحاضر (Now)
+          </span>
+          <span dir="auto">المستقبل (Future):</span>
+        </div>
 
         {/* The Black Axis */}
-        <Interactive.Div style={{ position: "relative", height: "80px", marginBottom: "20px" }}>
-          <Interactive.Div
+        <div style={{ position: "relative", height: "80px", marginBottom: "20px" }}>
+          <div
             style={{
               position: "absolute",
               top: "36px",
@@ -850,13 +808,13 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
           />
 
           {[
-
+            { s: m1, left: "10%", text: "X" },
             { s: m2, left: "30%", text: "X" },
             { s: m3, left: "50%", text: "X", isCenter: true },
             { s: m4, left: "70%", text: "X" },
-
+            { s: m5, left: "90%", text: "X" },
           ].map((item, idx) => (
-            <Interactive.Div
+            <div
               key={idx}
               style={{
                 position: "absolute",
@@ -876,37 +834,26 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
               }}
             >
               {item.text}
-            </Interactive.Div>
+            </div>
           ))}
-        </Interactive.Div>
+        </div>
 
-        <Interactive.Div
+        <div
           dir="auto"
           style={{
             fontSize: "22px",
             fontWeight: 800,
             textAlign: "right",
-            translate: "-119.7px 10.6px"
           }}
         >
           أفعال متكررة عبر الزمن: تحدث دائماً!
-        </Interactive.Div>
-      </Interactive.Div>
+        </div>
+      </div>
 
       {/* Floating Keywords */}
-      <Interactive.Div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "120px",
-          opacity: tagsEnter,
-          transform: `translateY(${interpolate(tagsEnter, [0, 1], [15, 0])}px)`,
-          scale: 1.045,
-          translate: "27.9px 294.4px"
-        }}
-      >
-        {["always", "usually", "sometimes"].map((kw, i) => (
-          <Interactive.Div
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", opacity: tagsEnter, transform: `translateY(${interpolate(tagsEnter, [0, 1], [15, 0])}px)` }}>
+        {["always", "usually", "sometimes", "every day"].map((kw, i) => (
+          <div
             key={i}
             style={{
               backgroundColor: "#A29BFE",
@@ -915,17 +862,15 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
               padding: "8px 18px",
               fontSize: "24px",
               fontWeight: 900,
-              translate: "76.1px -61.6px",
-              scale: 1.5
             }}
           >
             ⚡ {kw}
-          </Interactive.Div>
+          </div>
         ))}
-      </Interactive.Div>
+      </div>
 
       {/* Example Card */}
-      <Interactive.Div
+      <div
         style={{
           backgroundColor: "#FFFFFF",
           border: "4px solid #000000",
@@ -935,8 +880,6 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
           fontWeight: 900,
           opacity: exampleEnter,
           transform: `scale(${exampleEnter})`,
-          scale: 1.5,
-          translate: "295.2px 347.2px"
         }}
       >
         👉 I <span style={{ color: "#0984E3" }}>use</span> the Internet{" "}
@@ -950,7 +893,7 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
           every day
         </span>
         .
-      </Interactive.Div>
+      </div>
     </AbsoluteFill>
   );
 };
@@ -982,7 +925,7 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
       }}
     >
       {/* Header Tag */}
-      <Interactive.Div
+      <div
         dir="auto"
         style={{
           backgroundColor: "#FF7675",
@@ -997,36 +940,30 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
           textAlign: "right",
           marginTop: "50px",
           marginBottom: "100px",
-          scale: 1.5,
-          translate: "-96.1px 0px"
         }}
       >
         الاستخدام 2: الحقائق العلمية (Facts)
-      </Interactive.Div>
+      </div>
 
       {/* SCIENTIFIC THERMOMETER & BOILING BEAKER CARD (Neo-Brutalist) */}
-      <Interactive.Div
+      <div
         style={{
           backgroundColor: "#FFFFFF",
           border: "5px solid #000000",
           boxShadow: "10px 10px 0px #000000",
           padding: "32px 28px",
           display: "flex",
-          gap: "10px",
           alignItems: "center",
           justifyContent: "space-around",
           transform: `scale(${pop})`,
-          scale: 1.36,
-          translate: "40.3px 101px"
         }}
       >
         {/* Animated Thermometer SVG (Brutalist style) */}
-        <Interactive.Div
+        <div
           style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            translate: "47.2px 5.9px"
           }}
         >
           <svg width="120" height="290" viewBox="0 0 100 280">
@@ -1088,7 +1025,7 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
           </svg>
 
           {/* Temperature Digital Readout Badge */}
-          <Interactive.Div
+          <div
             style={{
               backgroundColor: "#FFE600",
               border: "3px solid #000000",
@@ -1101,16 +1038,15 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
             }}
           >
             {Math.round(tempProgress)} °C
-          </Interactive.Div>
-        </Interactive.Div>
+          </div>
+        </div>
 
         {/* Animated Boiling Beaker / Kettle */}
-        <Interactive.Div
+        <div
           style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            translate: "-61.5px -5.9px"
           }}
         >
           {/* Steam wisps rising */}
@@ -1139,7 +1075,7 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
           </svg>
 
           {/* Beaker Container */}
-          <Interactive.Div
+          <div
             style={{
               width: "190px",
               height: "170px",
@@ -1152,7 +1088,7 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
             }}
           >
             {/* Boiling Water Liquid */}
-            <Interactive.Div
+            <div
               style={{
                 position: "absolute",
                 bottom: 0,
@@ -1165,7 +1101,7 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
             >
               {/* Boiling Bubbles */}
               {[18, 48, 85, 125, 155].map((bx, i) => (
-                <Interactive.Div
+                <div
                   key={i}
                   style={{
                     position: "absolute",
@@ -1179,10 +1115,10 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
                   }}
                 />
               ))}
-            </Interactive.Div>
+            </div>
 
             {/* Bottom Flame Glow */}
-            <Interactive.Div
+            <div
               style={{
                 position: "absolute",
                 bottom: 0,
@@ -1193,9 +1129,9 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
                   "linear-gradient(to top, rgba(255, 118, 117, 0.9), transparent)",
               }}
             />
-          </Interactive.Div>
+          </div>
 
-          <Interactive.Div
+          <div
             dir="auto"
             style={{
               marginTop: "14px",
@@ -1207,16 +1143,15 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
               fontWeight: 900,
               color: "#000000",
               textAlign: "right",
-              translate: "4.2px 33.4px"
             }}
           >
             ♨️ غليان الماء عند 100°م
-          </Interactive.Div>
-        </Interactive.Div>
-      </Interactive.Div>
+          </div>
+        </div>
+      </div>
 
       {/* Example Card */}
-      <Interactive.Div
+      <div
         style={{
           backgroundColor: "#55EFC4",
           border: "4px solid #000000",
@@ -1225,9 +1160,7 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
           fontSize: "32px",
           fontWeight: 900,
           lineHeight: 1.35,
-          marginTop: "50px",
-          scale: 1.5,
-          translate: "230.5px 290.2px"
+          marginTop: "50px"
         }}
       >
         👉 If you heat water to{" "}
@@ -1251,7 +1184,7 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
           boils
         </span>
         .
-      </Interactive.Div>
+      </div>
     </AbsoluteFill>
   );
 };
@@ -1293,7 +1226,7 @@ const Scene6BrutalistInstructions: React.FC<{
         gap: "50px",
       }}
     >
-      <Interactive.Div
+      <div
         dir="auto"
         style={{
           backgroundColor: "#A29BFE",
@@ -1307,15 +1240,13 @@ const Scene6BrutalistInstructions: React.FC<{
           textAlign: "right",
           marginTop: "50px",
           marginBottom: "50px",
-          scale: 1.5,
-          translate: "-127.3px 8.2px"
         }}
       >
         الاستخدام 3: إعطاء التعليمات (Instructions)
-      </Interactive.Div>
+      </div>
 
       {/* COMPUTER DESKTOP UI WINDOW CARD */}
-      <Interactive.Div
+      <div
         style={{
           backgroundColor: "#FFFFFF",
           border: "5px solid #000000",
@@ -1324,12 +1255,10 @@ const Scene6BrutalistInstructions: React.FC<{
           transform: `scale(${pop})`,
           position: "relative",
           overflow: "hidden",
-          scale: 1.5,
-          translate: "0px 109.7px"
         }}
       >
         {/* Desktop Titlebar */}
-        <Interactive.Div
+        <div
           dir="auto"
           style={{
             display: "flex",
@@ -1341,8 +1270,8 @@ const Scene6BrutalistInstructions: React.FC<{
             marginBottom: "20px",
           }}
         >
-          <Interactive.Div style={{ display: "flex", gap: "10px" }}>
-            <Interactive.Div
+          <div style={{ display: "flex", gap: "10px" }}>
+            <div
               style={{
                 width: "18px",
                 height: "18px",
@@ -1351,7 +1280,7 @@ const Scene6BrutalistInstructions: React.FC<{
                 border: "2px solid #000000",
               }}
             />
-            <Interactive.Div
+            <div
               style={{
                 width: "18px",
                 height: "18px",
@@ -1360,7 +1289,7 @@ const Scene6BrutalistInstructions: React.FC<{
                 border: "2px solid #000000",
               }}
             />
-            <Interactive.Div
+            <div
               style={{
                 width: "18px",
                 height: "18px",
@@ -1369,8 +1298,8 @@ const Scene6BrutalistInstructions: React.FC<{
                 border: "2px solid #000000",
               }}
             />
-          </Interactive.Div>
-          <Interactive.Div
+          </div>
+          <div
             dir="auto"
             style={{
               fontSize: "20px",
@@ -1383,12 +1312,12 @@ const Scene6BrutalistInstructions: React.FC<{
             }}
           >
             نظام التشغيل • التعليمات
-          </Interactive.Div>
-          <Interactive.Div style={{ width: "40px" }} />
-        </Interactive.Div>
+          </div>
+          <div style={{ width: "40px" }} />
+        </div>
 
         {/* Desktop Screen Area */}
-        <Interactive.Div
+        <div
           style={{
             height: "210px",
             backgroundColor: "#DFE6E9",
@@ -1398,7 +1327,7 @@ const Scene6BrutalistInstructions: React.FC<{
           }}
         >
           {/* Target App Icon */}
-          <Interactive.Div
+          <div
             style={{
               display: "flex",
               flexDirection: "column",
@@ -1410,7 +1339,7 @@ const Scene6BrutalistInstructions: React.FC<{
               transform: isClicked ? "scale(0.96) translate(3px, 3px)" : "scale(1)",
             }}
           >
-            <Interactive.Div
+            <div
               style={{
                 width: "84px",
                 height: "84px",
@@ -1424,7 +1353,7 @@ const Scene6BrutalistInstructions: React.FC<{
               }}
             >
               💻
-            </Interactive.Div>
+            </div>
             <span
               style={{
                 fontSize: "18px",
@@ -1438,11 +1367,11 @@ const Scene6BrutalistInstructions: React.FC<{
             >
               Programme.exe
             </span>
-          </Interactive.Div>
+          </div>
 
           {/* Click Shockwave Ripple */}
           {isClicked && (
-            <Interactive.Div
+            <div
               style={{
                 position: "absolute",
                 left: "362px",
@@ -1461,7 +1390,7 @@ const Scene6BrutalistInstructions: React.FC<{
 
           {/* Click Badge */}
           {isClicked && (
-            <Interactive.Div
+            <div
               dir="auto"
               style={{
                 position: "absolute",
@@ -1478,11 +1407,11 @@ const Scene6BrutalistInstructions: React.FC<{
               }}
             >
               *اضغط هنا!* 🖱️
-            </Interactive.Div>
+            </div>
           )}
 
           {/* Moving Mouse Cursor */}
-          <Interactive.Div
+          <div
             style={{
               position: "absolute",
               left: `${cursorX}px`,
@@ -1501,12 +1430,12 @@ const Scene6BrutalistInstructions: React.FC<{
                 strokeLinejoin="round"
               />
             </svg>
-          </Interactive.Div>
-        </Interactive.Div>
-      </Interactive.Div>
+          </div>
+        </div>
+      </div>
 
       {/* Example Card */}
-      <Interactive.Div
+      <div
         style={{
           backgroundColor: "#FFE600",
           border: "4px solid #000000",
@@ -1515,8 +1444,6 @@ const Scene6BrutalistInstructions: React.FC<{
           fontSize: "32px",
           fontWeight: 900,
           lineHeight: 1.35,
-          translate: "234.7px 314.5px",
-          scale: 1.5
         }}
       >
         👉 To start the programme, first{" "}
@@ -1529,8 +1456,8 @@ const Scene6BrutalistInstructions: React.FC<{
         >
           click
         </span>{" "}
-        <br />on the desktop.
-      </Interactive.Div>
+        on the desktop.
+      </div>
     </AbsoluteFill>
   );
 };
@@ -1562,7 +1489,7 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
         gap: "50px",
       }}
     >
-      <Interactive.Div
+      <div
         dir="auto"
         style={{
           backgroundColor: "#55EFC4",
@@ -1576,15 +1503,13 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
           textAlign: "right",
           marginTop: "50px",
           marginBottom: "50px",
-          scale: 1.5,
-          translate: "-129.3px 0px"
         }}
       >
         الاستخدام 4: سرد القصص والأفلام (Stories)
-      </Interactive.Div>
+      </div>
 
       {/* MOVIE CLAPPERBOARD & HERO GRAPHIC CARD (Neo-Brutalist) */}
-      <Interactive.Div
+      <div
         style={{
           backgroundColor: "#FFFFFF",
           border: "5px solid #000000",
@@ -1594,19 +1519,17 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
           alignItems: "center",
           justifyContent: "space-around",
           transform: `scale(${pop})`,
-          scale: 2.403,
-          translate: "-1822.2px 129.6px"
         }}
       >
         {/* Animated Movie Clapperboard */}
-        <Interactive.Div
+        <div
           style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
           }}
         >
-          <Interactive.Div
+          <div
             style={{
               position: "relative",
               width: "190px",
@@ -1614,7 +1537,7 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
             }}
           >
             {/* Clapper Top Moving Bar */}
-            <Interactive.Div
+            <div
               style={{
                 width: "190px",
                 height: "34px",
@@ -1629,7 +1552,7 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
             />
 
             {/* Clapperboard Body */}
-            <Interactive.Div
+            <div
               style={{
                 width: "190px",
                 height: "125px",
@@ -1642,7 +1565,7 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
                 boxShadow: "5px 5px 0px #000000",
               }}
             >
-              <Interactive.Div
+              <div
                 dir="auto"
                 style={{
                   fontSize: "15px",
@@ -1653,8 +1576,8 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
                 }}
               >
                 PROD: Spiderman
-              </Interactive.Div>
-              <Interactive.Div
+              </div>
+              <div
                 dir="auto"
                 style={{
                   display: "flex",
@@ -1667,8 +1590,8 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
               >
                 <span dir="auto">مشهد: 04</span>
                 <span dir="auto">تصوير: 01</span>
-              </Interactive.Div>
-              <Interactive.Div
+              </div>
+              <div
                 style={{
                   fontSize: "18px",
                   fontWeight: 900,
@@ -1676,23 +1599,21 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
                 }}
               >
                 ACTION! 🎬
-              </Interactive.Div>
-            </Interactive.Div>
-          </Interactive.Div>
-        </Interactive.Div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* Hero Comic Action Badge */}
-        <Interactive.Div
+        <div
           style={{
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             transform: `scale(${heroPop})`,
-            translate: "514.5px 31.8px",
-            scale: 1.383
           }}
         >
-          <Interactive.Div
+          <div
             style={{
               width: "160px",
               height: "160px",
@@ -1710,13 +1631,13 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
                 objectFit: "cover",
               }}
             />
-          </Interactive.Div>
+          </div>
 
-        </Interactive.Div>
-      </Interactive.Div>
+        </div>
+      </div>
 
       {/* Example Card */}
-      <Interactive.Div
+      <div
         style={{
           backgroundColor: "#74B9FF",
           border: "4px solid #000000",
@@ -1725,8 +1646,6 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
           fontSize: "32px",
           fontWeight: 900,
           lineHeight: 1.35,
-          translate: "99px 484.1px",
-          scale: 1.5
         }}
       >
         👉 In the film, the hero{" "}
@@ -1740,7 +1659,7 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
           saves
         </span>{" "}
         the villagers.
-      </Interactive.Div>
+      </div>
     </AbsoluteFill>
   );
 };
@@ -1763,7 +1682,7 @@ const Scene8BrutalistCTA: React.FC<{ frame: number; fps: number }> = ({
         gap: "30px",
       }}
     >
-      <Interactive.Div
+      <div
         style={{
           backgroundColor: "#FFFFFF",
           border: "6px solid #000000",
@@ -1772,7 +1691,6 @@ const Scene8BrutalistCTA: React.FC<{ frame: number; fps: number }> = ({
           textAlign: "center",
           transform: `scale(${pop})`,
           maxWidth: "920px",
-          scale: 1.5
         }}
       >
         <h2
@@ -1790,7 +1708,7 @@ const Scene8BrutalistCTA: React.FC<{ frame: number; fps: number }> = ({
           <span dir="auto">قواعد الإنجليزية في دقيقة!</span>
         </h2>
 
-        <Interactive.Div
+        <div
           dir="auto"
           style={{
             backgroundColor: "#55EFC4",
@@ -1804,9 +1722,9 @@ const Scene8BrutalistCTA: React.FC<{ frame: number; fps: number }> = ({
           }}
         >
           💬 علّق ب "ملخص" لأبعتلك واحد مجانا
-        </Interactive.Div>
+        </div>
 
-        <Interactive.Div
+        <div
           dir="auto"
           style={{
             backgroundColor: "#000000",
@@ -1820,8 +1738,8 @@ const Scene8BrutalistCTA: React.FC<{ frame: number; fps: number }> = ({
           }}
         >
           <span dir="auto">+ متابعة (Follow)</span>
-        </Interactive.Div>
-      </Interactive.Div>
+        </div>
+      </div>
     </AbsoluteFill>
   );
 };
