@@ -9,7 +9,9 @@ import {
   useCurrentFrame,
   useVideoConfig,
   Img,
+  Sequence,
 } from "remotion";
+import { Audio } from "@remotion/media";
 
 const { fontFamily: montserratFont } = loadMontserrat("normal", {
   subsets: ["latin"],
@@ -172,6 +174,14 @@ export const PresentSimpleReel: React.FC<PresentSimpleReelProps> = ({
         overflow: "hidden",
       }}
     >
+      {/* Main Voiceover */}
+      <Audio src={staticFile('assets/sounds/voicceover/present-simple.wav')} />
+
+      {/* SFX placeholders (commented out for now) */}
+      {/* <Sequence from={45}>
+        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/pop-hand.wav')} volume={0.8} />
+      </Sequence> */}
+
       {/* Dynamic Background Atmosphere */}
       <div
         style={{

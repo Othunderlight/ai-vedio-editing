@@ -8,8 +8,10 @@ import {
   staticFile,
   useCurrentFrame,
   useVideoConfig,
-  Img
+  Img,
+  Sequence,
 } from "remotion";
+import { Audio } from "@remotion/media";
 
 const { fontFamily: montserratFont } = loadMontserrat("normal", {
   subsets: ["latin"],
@@ -132,6 +134,14 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
         overflow: "hidden",
       }}
     >
+      {/* Main Voiceover */}
+      <Audio src={staticFile('assets/sounds/voicceover/present-simple.wav')} />
+
+      {/* SFX placeholders (commented out for now) */}
+      {/* <Sequence from={45}>
+        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/pop-hand.wav')} volume={0.8} />
+      </Sequence> */}
+
       {/* Background Neo-Brutalist Dot Grid */}
       <div
         style={{

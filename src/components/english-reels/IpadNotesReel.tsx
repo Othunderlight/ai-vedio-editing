@@ -8,8 +8,10 @@ import {
   staticFile,
   useCurrentFrame,
   useVideoConfig,
-  Img
+  Img,
+  Sequence,
 } from "remotion";
+import { Audio } from "@remotion/media";
 
 const { fontFamily: caveatFont } = loadCaveat("normal", {
   subsets: ["latin"],
@@ -127,6 +129,14 @@ export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
         overflow: "hidden",
       }}
     >
+      {/* Main Voiceover */}
+      <Audio src={staticFile('assets/sounds/voicceover/present-simple.wav')} />
+
+      {/* SFX placeholders (commented out for now) */}
+      {/* <Sequence from={45}>
+        <Audio src={staticFile('assets/sounds/sfx/waven-sfx/pop-hand.wav')} volume={0.8} />
+      </Sequence> */}
+
       {/* Aesthetic Dotted / Grid Paper Texture */}
       <div
         style={{
