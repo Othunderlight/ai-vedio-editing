@@ -1,0 +1,23 @@
+{
+  "skill_name": "remotion-mobile-scale",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "My Remotion reel looks great on desktop but when I open it on my phone in Chrome's desktop mode, everything is way too small. The component is at src/components/english-reels/NeoBrutalismReel.tsx. Can you scale it up for mobile? Keep the captions as-is though, they're fine.",
+      "expected_output": "All visual elements (fonts, borders, shadows, padding, gaps, margins, SVG sizes, container dimensions, absolute positions) multiplied by 1.5x. Caption bar untouched. Caption overlap detection added with CAPTION_OVERLAP_RANGES and isCaptionOverlappingVisuals function.",
+      "files": ["src/components/english-reels/NeoBrutalismReel.tsx"]
+    },
+    {
+      "id": 2,
+      "prompt": "I have a Remotion component that uses neo-brutalist design with chunky borders and box shadows. It's designed for a 1080x1920 canvas but looks tiny on mobile. The file is at src/components/english-reels/NeoBrutalismReel.tsx. Scale everything up by 1.5x but don't touch the caption bar at the bottom.",
+      "expected_output": "Systematic 1.5x scaling of all visual properties. Caption bar at bottom:400px remains unchanged. Overlap detection function added to hide captions when scene content extends into the caption zone.",
+      "files": ["src/components/english-reels/NeoBrutalismReel.tsx"]
+    },
+    {
+      "id": 3,
+      "prompt": "Scale the Remotion video component at src/components/english-reels/NeoBrutalismReel.tsx for mobile viewing. Multiply all element sizes by 1.5. Keep subtitles at original size. Also make sure the subtitles don't overlap with the visual content — hide them when they would collide.",
+      "expected_output": "1.5x scaling applied to all visual elements. Subtitle/caption bar unchanged. CAPTION_OVERLAP_RANGES array defined with frame ranges where content overlaps the bottom caption area. isCaptionOverlappingVisuals function checks current frame against ranges. Caption rendering condition includes !isCaptionOverlapping check.",
+      "files": ["src/components/english-reels/NeoBrutalismReel.tsx"]
+    }
+  ]
+}
