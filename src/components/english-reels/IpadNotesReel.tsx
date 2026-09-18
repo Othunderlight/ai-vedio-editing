@@ -26,27 +26,82 @@ export interface IpadNotesReelProps {
 }
 
 const VOICEOVER_CAPTIONS = [
-  // 0:05 – 0:17 التركيب: الإيجاب (Positive)
-  { fromFrame: 150, toFrame: 240, text: "أول شي، القاعدة: بالجملة العادية منستخدم الفعل متل ما هو (V1)." },
-  { fromFrame: 240, toFrame: 330, text: "بس مع (he, she, it) بنضيف للفعل s أو es أو ies!" },
-  { fromFrame: 330, toFrame: 420, text: "متل: 'I study law'.." },
-  { fromFrame: 420, toFrame: 540, text: "بس منقول: 'She likes reading' و 'He studies law'." },
-  // 0:17 – 0:27 التركيب: النفي والسؤال (Negative & Question)
-  { fromFrame: 540, toFrame: 660, text: "وبالنفي، منحط don't أو doesn't مع الفعل بالمصدر: 'He doesn't study medicine.'" },
-  { fromFrame: 660, toFrame: 780, text: "أما بالسؤال، فمنبدأ بـ Do أو Does: 'Does he study law?'" },
-  // 0:27 – 0:38 الاستخدام 1: العادات والتكرار (Habits)
-  { fromFrame: 780, toFrame: 890, text: "طيّب، إيمتى منستخدمه؟ رقم واحد: للعادات والأشياء اللي بتتكرر دائماً." },
-  { fromFrame: 890, toFrame: 1010, text: "شوف هالخط الزمني: بالماضي، الحاضر، والمستقبل.. الفعل عم يتكرر!" },
-  { fromFrame: 1010, toFrame: 1140, text: "متل: 'I use the Internet every day.'" },
-  // 0:38 – 0:44 الاستخدام 2: الحقائق (Facts)
-  { fromFrame: 1140, toFrame: 1230, text: "رقم اتنين: للحقائق العلمية والعامة! 🔬" },
-  { fromFrame: 1230, toFrame: 1350, text: "'If you heat water to 100 degrees, it boils.'" },
-  // 0:44 – 0:50 الاستخدام 3: التعليمات (Instructions)
-  { fromFrame: 1350, toFrame: 1430, text: "رقم تلاتة: لنعطي تعليمات أو إرشادات! 📋" },
-  { fromFrame: 1430, toFrame: 1530, text: "'To start the programme, first click on the desktop.'" },
-  // 0:50 – 0:55 الاستخدام 4: ملخصات الأفلام والقصص (Stories)
-  { fromFrame: 1530, toFrame: 1600, text: "ورقم أربعة: لما نحكي ملخص فيلم أو قصة! 🎬" },
-  { fromFrame: 1600, toFrame: 1680, text: "'In the film, the hero saves the villagers.'" },
+  // 00:06 – 00:12 (القاعدة: الجملة العادية)
+  {
+    fromFrame: 180,
+    toFrame: 360,
+    text: "أول شي، القاعدة: بالجملة العادية منستخدم الفعل متل ما هو (V1)."
+  },
+
+  // 00:12 – 00:18 (إضافة s/es/ies)
+  {
+    fromFrame: 360,
+    toFrame: 560,
+    text: "بس مع (he, she, it) بنضيف للفعل s أو es أو ies!"
+  },
+
+  // 00:19 – 00:21 (مثال مثبت)
+  {
+    fromFrame: 570,
+    toFrame: 630,
+    text: "متل: 'I study law'.."
+  },
+
+  // 00:21 – 00:26 (أمثلة مع المفرد)
+  {
+    fromFrame: 630,
+    toFrame: 800,
+    text: "بس منقول: 'She likes reading' و 'He studies law'."
+  },
+
+  // 00:27 – 00:34 (النفي)
+  {
+    fromFrame: 810,
+    toFrame: 1040,
+    text: "وبالنفي، منحط don't أو doesn't مع الفعل بالمصدر: 'He doesn't study medicine.'"
+  },
+
+  // 00:35 – 00:40 (السؤال)
+  {
+    fromFrame: 1050,
+    toFrame: 1220,
+    text: "أما بالسؤال، فمنبدأ بـ Do أو Does: 'Does he study law?'"
+  },
+
+  // 00:41 – 00:46 (الاستخدام 1: العادات)
+  {
+    fromFrame: 1230,
+    toFrame: 1400,
+    text: "طيّب، إيمتى منستخدمه؟ رقم واحد: للعادات والأشياء اللي بتتكرر دائماً."
+  },
+
+  // 00:47 – 00:53 (الخط الزمني)
+  {
+    fromFrame: 1410,
+    toFrame: 1590,
+    text: "شوف هالخط الزمني: بالماضي، الحاضر، والمستقبل.. الفعل عم يتكرر!"
+  },
+
+  // 00:53 – 00:56 (مثال العادات)
+  {
+    fromFrame: 1590,
+    toFrame: 1700,
+    text: "متل: 'I use the Internet every day.'"
+  },
+
+  // 00:56 – 00:59 (الاستخدام 2: الحقائق)
+  {
+    fromFrame: 1700,
+    toFrame: 1780,
+    text: "رقم اتنين: للحقائق العلمية والعامة! 🔬"
+  },
+
+  // 00:59 – 01:03 (مثال الحقائق)
+  {
+    fromFrame: 1780,
+    toFrame: 1890,
+    text: "'If you heat water to 100 degrees, it boils.'"
+  }
 ];
 
 export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
