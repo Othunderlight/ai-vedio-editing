@@ -218,13 +218,13 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
       <div
         style={{
           position: "absolute",
-          top: "70px",
-          left: "40px",
-          right: "40px",
-          height: "20px",
+          top: "105px",
+          left: "60px",
+          right: "60px",
+          height: "30px",
           backgroundColor: "#FFFFFF",
-          border: "4px solid #000000",
-          boxShadow: "4px 4px 0px #000000",
+          border: "6px solid #000000",
+          boxShadow: "6px 6px 0px #000000",
           overflow: "hidden",
           zIndex: 40,
         }}
@@ -234,7 +234,7 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
             width: `${progressPercent}%`,
             height: "100%",
             backgroundColor: "#00F0FF",
-            borderRight: "3px solid #000000",
+            borderRight: "4.5px solid #000000",
           }}
         />
       </div>
@@ -353,28 +353,28 @@ const Scene1BrutalistHook: React.FC<{ frame: number; fps: number }> = ({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "60px",
+        padding: "90px",
       }}
     >
       {/* Main Chunky Card */}
       <div
         style={{
           backgroundColor: "#FFFFFF",
-          border: "6px solid #000000",
-          boxShadow: "14px 14px 0px #000000",
-          padding: "50px 40px",
+          border: "9px solid #000000",
+          boxShadow: "21px 21px 0px #000000",
+          padding: "75px 60px",
           textAlign: "center",
-          maxWidth: "960px",
+          maxWidth: "1440px",
           transform: `scale(${popIn})`,
         }}
       >
         <h1
           style={{
             fontFamily: montserratFont,
-            fontSize: "82px",
+            fontSize: "123px",
             fontWeight: 900,
             lineHeight: 1.05,
-            margin: "20px 0 24px 0",
+            margin: "30px 0 36px 0",
             textTransform: "uppercase",
           }}
         >
@@ -383,9 +383,9 @@ const Scene1BrutalistHook: React.FC<{ frame: number; fps: number }> = ({
           <span
             style={{
               backgroundColor: "#00F0FF",
-              border: "4px solid #000000",
-              boxShadow: "6px 6px 0px #000000",
-              padding: "4px 20px",
+              border: "6px solid #000000",
+              boxShadow: "9px 9px 0px #000000",
+              padding: "6px 30px",
               display: "inline-block",
               transform: "rotate(1.5deg)",
             }}
@@ -421,8 +421,8 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
       style={{
         display: "flex",
         flexDirection: "column",
-        padding: "150px 50px 180px 50px",
-        gap: "50px",
+        padding: "225px 75px 270px 75px",
+        gap: "75px",
       }}
     >
       {/* Header Tag */}
@@ -432,15 +432,15 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
           display: "inline-block",
           alignSelf: "flex-end",
           backgroundColor: "#55EFC4",
-          border: "4px solid #000000",
-          boxShadow: "6px 6px 0px #000000",
-          padding: "10px 24px",
-          fontSize: "26px",
+          border: "6px solid #000000",
+          boxShadow: "9px 9px 0px #000000",
+          padding: "15px 36px",
+          fontSize: "39px",
           fontWeight: 900,
           transform: `scale(${pop1}) rotate(-1.5deg)`,
           textAlign: "right",
-          marginTop: "50px",
-          marginBottom: "50px",
+          marginTop: "75px",
+          marginBottom: "75px",
         }}
       >
         (+) قاعدة الإثبات (Positive)
@@ -450,20 +450,20 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
       <div
         style={{
           backgroundColor: "#FFFFFF",
-          border: "5px solid #000000",
-          boxShadow: "10px 10px 0px #000000",
-          padding: "32px 36px",
+          border: "7.5px solid #000000",
+          boxShadow: "15px 15px 0px #000000",
+          padding: "48px 54px",
           transform: `scale(${pop1})`,
         }}
       >
-        <div style={{ fontSize: "40px", fontWeight: 900, lineHeight: 1.3 }}>
+        <div style={{ fontSize: "60px", fontWeight: 900, lineHeight: 1.3 }}>
           Subject +{" "}
           <span
             style={{
               backgroundColor: "#A29BFE",
-              border: "3px solid #000000",
-              padding: "2px 14px",
-              boxShadow: "4px 4px 0px #000000",
+              border: "4.5px solid #000000",
+              padding: "3px 21px",
+              boxShadow: "6px 6px 0px #000000",
             }}
           >
             V1
@@ -472,9 +472,9 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
           <span
             style={{
               backgroundColor: "#FFE600",
-              border: "3px solid #000000",
-              padding: "2px 14px",
-              boxShadow: "4px 4px 0px #000000",
+              border: "4.5px solid #000000",
+              padding: "3px 21px",
+              boxShadow: "6px 6px 0px #000000",
             }}
           >
             V1 + s
@@ -484,13 +484,13 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
         <div
           dir="auto"
           style={{
-            marginTop: "20px",
+            marginTop: "30px",
             backgroundColor: "#FF7675",
             color: "#FFFFFF",
-            border: "3px solid #000000",
-            boxShadow: "4px 4px 0px #000000",
-            padding: "12px 20px",
-            fontSize: "24px",
+            border: "4.5px solid #000000",
+            boxShadow: "6px 6px 0px #000000",
+            padding: "18px 30px",
+            fontSize: "36px",
             fontWeight: 900,
             textAlign: "right",
             opacity: rulePop,
@@ -505,10 +505,10 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
       <div
         style={{
           backgroundColor: "#FFFFFF",
-          border: "4px solid #000000",
-          boxShadow: "7px 7px 0px #000000",
-          padding: "20px 30px",
-          fontSize: "36px",
+          border: "6px solid #000000",
+          boxShadow: "10.5px 10.5px 0px #000000",
+          padding: "30px 45px",
+          fontSize: "54px",
           fontWeight: 900,
           transform: `scale(${pop2})`,
         }}
@@ -521,10 +521,10 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
       <div
         style={{
           backgroundColor: "#FFFFFF",
-          border: "4px solid #000000",
-          boxShadow: "7px 7px 0px #000000",
-          padding: "20px 30px",
-          fontSize: "36px",
+          border: "6px solid #000000",
+          boxShadow: "10.5px 10.5px 0px #000000",
+          padding: "30px 45px",
+          fontSize: "54px",
           fontWeight: 900,
           transform: `scale(${pop3})`,
         }}
@@ -533,8 +533,8 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
         <span
           style={{
             backgroundColor: "#FFE600",
-            border: "2px solid #000000",
-            padding: "0 8px",
+            border: "3px solid #000000",
+            padding: "0 12px",
           }}
         >
           s
@@ -546,10 +546,10 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
       <div
         style={{
           backgroundColor: "#FFFFFF",
-          border: "4px solid #000000",
-          boxShadow: "7px 7px 0px #000000",
-          padding: "20px 30px",
-          fontSize: "36px",
+          border: "6px solid #000000",
+          boxShadow: "10.5px 10.5px 0px #000000",
+          padding: "30px 45px",
+          fontSize: "54px",
           fontWeight: 900,
           transform: `scale(${pop4})`,
         }}
@@ -558,8 +558,8 @@ const Scene2BrutalistPositive: React.FC<{ frame: number; fps: number }> = ({
         <span
           style={{
             backgroundColor: "#FFE600",
-            border: "2px solid #000000",
-            padding: "0 8px",
+            border: "3px solid #000000",
+            padding: "0 12px",
           }}
         >
           ies
@@ -584,21 +584,21 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
       style={{
         display: "flex",
         flexDirection: "column",
-        padding: "150px 50px 180px 50px",
-        gap: "50px",
+        padding: "225px 75px 270px 75px",
+        gap: "75px",
       }}
     >
       {/* Negative Box */}
       <div
         style={{
           backgroundColor: "#FF7675",
-          border: "5px solid #000000",
-          boxShadow: "10px 10px 0px #000000",
-          padding: "32px",
+          border: "7.5px solid #000000",
+          boxShadow: "15px 15px 0px #000000",
+          padding: "48px",
           color: "#FFFFFF",
           transform: `scale(${pop1})`,
-          marginTop: "90px",
-          marginBottom: "50px",
+          marginTop: "135px",
+          marginBottom: "75px",
         }}
       >
         <div
@@ -607,7 +607,7 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
             display: "flex",
             justifyContent: "flex-end",
             width: "100%",
-            marginBottom: "14px",
+            marginBottom: "21px",
           }}
         >
           <div
@@ -616,8 +616,8 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
               backgroundColor: "#000000",
               color: "#FFFFFF",
               display: "inline-block",
-              padding: "6px 16px",
-              fontSize: "22px",
+              padding: "9px 24px",
+              fontSize: "33px",
               fontWeight: 900,
               textAlign: "right",
             }}
@@ -625,14 +625,14 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
             (–) صيغة النفي (Negative)
           </div>
         </div>
-        <div style={{ fontSize: "36px", fontWeight: 900, color: "#000000" }}>
+        <div style={{ fontSize: "54px", fontWeight: 900, color: "#000000" }}>
           Subject +{" "}
           <span
             style={{
               backgroundColor: "#FFFFFF",
-              border: "3px solid #000000",
-              padding: "2px 12px",
-              boxShadow: "4px 4px 0px #000000",
+              border: "4.5px solid #000000",
+              padding: "3px 18px",
+              boxShadow: "6px 6px 0px #000000",
             }}
           >
             don't / doesn't
@@ -643,12 +643,12 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
           style={{
             backgroundColor: "#FFFFFF",
             color: "#000000",
-            border: "4px solid #000000",
-            padding: "16px 20px",
-            fontSize: "32px",
+            border: "6px solid #000000",
+            padding: "24px 30px",
+            fontSize: "48px",
             fontWeight: 900,
-            marginTop: "18px",
-            boxShadow: "5px 5px 0px #000000",
+            marginTop: "27px",
+            boxShadow: "7.5px 7.5px 0px #000000",
           }}
         >
           👉 He <span style={{ color: "#D63031" }}>doesn't study</span> medicine.
@@ -659,9 +659,9 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
       <div
         style={{
           backgroundColor: "#74B9FF",
-          border: "5px solid #000000",
-          boxShadow: "10px 10px 0px #000000",
-          padding: "32px",
+          border: "7.5px solid #000000",
+          boxShadow: "15px 15px 0px #000000",
+          padding: "48px",
           transform: `scale(${pop2})`,
         }}
       >
@@ -671,7 +671,7 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
             display: "flex",
             justifyContent: "flex-end",
             width: "100%",
-            marginBottom: "14px",
+            marginBottom: "21px",
           }}
         >
           <div
@@ -680,8 +680,8 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
               backgroundColor: "#000000",
               color: "#FFFFFF",
               display: "inline-block",
-              padding: "6px 16px",
-              fontSize: "22px",
+              padding: "9px 24px",
+              fontSize: "33px",
               fontWeight: 900,
               textAlign: "right",
             }}
@@ -689,13 +689,13 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
             (?) صيغة السؤال (Question)
           </div>
         </div>
-        <div style={{ fontSize: "36px", fontWeight: 900 }}>
+        <div style={{ fontSize: "54px", fontWeight: 900 }}>
           <span
             style={{
               backgroundColor: "#FFE600",
-              border: "3px solid #000000",
-              padding: "2px 12px",
-              boxShadow: "4px 4px 0px #000000",
+              border: "4.5px solid #000000",
+              padding: "3px 18px",
+              boxShadow: "6px 6px 0px #000000",
             }}
           >
             Do / Does
@@ -705,12 +705,12 @@ const Scene3BrutalistNegAndQ: React.FC<{ frame: number; fps: number }> = ({
         <div
           style={{
             backgroundColor: "#FFFFFF",
-            border: "4px solid #000000",
-            padding: "16px 20px",
-            fontSize: "32px",
+            border: "6px solid #000000",
+            padding: "24px 30px",
+            fontSize: "48px",
             fontWeight: 900,
-            marginTop: "18px",
-            boxShadow: "5px 5px 0px #000000",
+            marginTop: "27px",
+            boxShadow: "7.5px 7.5px 0px #000000",
           }}
         >
           👉 <span style={{ color: "#0984E3" }}>Does</span> he study law
@@ -743,24 +743,24 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
       style={{
         display: "flex",
         flexDirection: "column",
-        padding: "150px 50px 180px 50px",
-        gap: "50px",
+        padding: "225px 75px 270px 75px",
+        gap: "75px",
       }}
     >
       <div
         dir="auto"
         style={{
           backgroundColor: "#00F0FF",
-          border: "4px solid #000000",
-          boxShadow: "6px 6px 0px #000000",
-          padding: "8px 24px",
-          fontSize: "26px",
+          border: "6px solid #000000",
+          boxShadow: "9px 9px 0px #000000",
+          padding: "12px 36px",
+          fontSize: "39px",
           fontWeight: 900,
           alignSelf: "flex-end",
           transform: `scale(${pop}) rotate(-2deg)`,
           textAlign: "right",
-          marginTop: "50px",
-          marginBottom: "50px",
+          marginTop: "75px",
+          marginBottom: "75px",
         }}
       >
         الاستخدام 1: العادات والروتين (Habits)
@@ -770,39 +770,39 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
       <div
         style={{
           backgroundColor: "#FFFFFF",
-          border: "5px solid #000000",
-          boxShadow: "10px 10px 0px #000000",
-          padding: "36px 30px",
+          border: "7.5px solid #000000",
+          boxShadow: "15px 15px 0px #000000",
+          padding: "54px 45px",
           transform: `scale(${pop})`,
         }}
       >
         <div
           dir="auto"
           style={{
-            fontSize: "24px",
+            fontSize: "36px",
             fontWeight: 900,
-            marginBottom: "30px",
+            marginBottom: "45px",
             display: "flex",
             justifyContent: "space-between",
             flexDirection: "row-reverse",
           }}
         >
           <span dir="auto">الماضي (Past)</span>
-          <span dir="auto" style={{ backgroundColor: "#FFE600", padding: "2px 10px", border: "2px solid #000" }}>
+          <span dir="auto" style={{ backgroundColor: "#FFE600", padding: "3px 15px", border: "3px solid #000" }}>
             الحاضر (Now)
           </span>
           <span dir="auto">المستقبل (Future):</span>
         </div>
 
         {/* The Black Axis */}
-        <div style={{ position: "relative", height: "80px", marginBottom: "20px" }}>
+        <div style={{ position: "relative", height: "120px", marginBottom: "30px" }}>
           <div
             style={{
               position: "absolute",
-              top: "36px",
-              left: "10px",
-              right: "10px",
-              height: "8px",
+              top: "54px",
+              left: "15px",
+              right: "15px",
+              height: "12px",
               backgroundColor: "#000000",
             }}
           />
@@ -818,18 +818,18 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
               key={idx}
               style={{
                 position: "absolute",
-                top: "10px",
+                top: "15px",
                 left: item.left,
                 transform: `translateX(-50%) scale(${item.s})`,
-                width: "56px",
-                height: "56px",
+                width: "84px",
+                height: "84px",
                 backgroundColor: item.isCenter ? "#FFE600" : "#55EFC4",
-                border: "4px solid #000000",
-                boxShadow: "4px 4px 0px #000000",
+                border: "6px solid #000000",
+                boxShadow: "6px 6px 0px #000000",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                fontSize: "32px",
+                fontSize: "48px",
                 fontWeight: 900,
               }}
             >
@@ -841,7 +841,7 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
         <div
           dir="auto"
           style={{
-            fontSize: "22px",
+            fontSize: "33px",
             fontWeight: 800,
             textAlign: "right",
           }}
@@ -851,16 +851,16 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
       </div>
 
       {/* Floating Keywords */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", opacity: tagsEnter, transform: `translateY(${interpolate(tagsEnter, [0, 1], [15, 0])}px)` }}>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "18px", opacity: tagsEnter, transform: `translateY(${interpolate(tagsEnter, [0, 1], [22.5, 0])}px)` }}>
         {["always", "usually", "sometimes", "every day"].map((kw, i) => (
           <div
             key={i}
             style={{
               backgroundColor: "#A29BFE",
-              border: "3px solid #000000",
-              boxShadow: "4px 4px 0px #000000",
-              padding: "8px 18px",
-              fontSize: "24px",
+              border: "4.5px solid #000000",
+              boxShadow: "6px 6px 0px #000000",
+              padding: "12px 27px",
+              fontSize: "36px",
               fontWeight: 900,
             }}
           >
@@ -873,10 +873,10 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
       <div
         style={{
           backgroundColor: "#FFFFFF",
-          border: "4px solid #000000",
-          boxShadow: "7px 7px 0px #000000",
-          padding: "24px",
-          fontSize: "34px",
+          border: "6px solid #000000",
+          boxShadow: "10.5px 10.5px 0px #000000",
+          padding: "36px",
+          fontSize: "51px",
           fontWeight: 900,
           opacity: exampleEnter,
           transform: `scale(${exampleEnter})`,
@@ -886,8 +886,8 @@ const Scene4BrutalistHabits: React.FC<{ frame: number; fps: number }> = ({
         <span
           style={{
             backgroundColor: "#FFE600",
-            border: "2px solid #000000",
-            padding: "2px 8px",
+            border: "3px solid #000000",
+            padding: "3px 12px",
           }}
         >
           every day
@@ -920,8 +920,8 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
       style={{
         display: "flex",
         flexDirection: "column",
-        padding: "150px 50px 180px 50px",
-        gap: "50x",
+        padding: "225px 75px 270px 75px",
+        gap: "75px",
       }}
     >
       {/* Header Tag */}
@@ -930,16 +930,16 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
         style={{
           backgroundColor: "#FF7675",
           color: "#FFFFFF",
-          border: "4px solid #000000",
-          boxShadow: "6px 6px 0px #000000",
-          padding: "8px 24px",
-          fontSize: "26px",
+          border: "6px solid #000000",
+          boxShadow: "9px 9px 0px #000000",
+          padding: "12px 36px",
+          fontSize: "39px",
           fontWeight: 900,
           alignSelf: "flex-end",
           transform: `scale(${pop}) rotate(1.5deg)`,
           textAlign: "right",
-          marginTop: "50px",
-          marginBottom: "100px",
+          marginTop: "75px",
+          marginBottom: "150px",
         }}
       >
         الاستخدام 2: الحقائق العلمية (Facts)
@@ -949,9 +949,9 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
       <div
         style={{
           backgroundColor: "#FFFFFF",
-          border: "5px solid #000000",
-          boxShadow: "10px 10px 0px #000000",
-          padding: "32px 28px",
+          border: "7.5px solid #000000",
+          boxShadow: "15px 15px 0px #000000",
+          padding: "48px 42px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-around",
@@ -966,7 +966,7 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
             alignItems: "center",
           }}
         >
-          <svg width="120" height="290" viewBox="0 0 100 280">
+          <svg width="180" height="435" viewBox="0 0 100 280">
             {/* Outer glass tube */}
             <rect
               x="38"
@@ -1028,13 +1028,13 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
           <div
             style={{
               backgroundColor: "#FFE600",
-              border: "3px solid #000000",
-              boxShadow: "4px 4px 0px #000000",
-              padding: "6px 16px",
-              fontSize: "26px",
+              border: "4.5px solid #000000",
+              boxShadow: "6px 6px 0px #000000",
+              padding: "9px 24px",
+              fontSize: "39px",
               fontWeight: 900,
               color: "#000000",
-              marginTop: "8px",
+              marginTop: "12px",
             }}
           >
             {Math.round(tempProgress)} °C
@@ -1050,7 +1050,7 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
           }}
         >
           {/* Steam wisps rising */}
-          <svg width="180" height="70" viewBox="0 0 160 60">
+          <svg width="270" height="105" viewBox="0 0 160 60">
             <path
               d={`M 40 50 Q ${40 + steamWave} 25, 45 5`}
               stroke="#000000"
@@ -1077,12 +1077,12 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
           {/* Beaker Container */}
           <div
             style={{
-              width: "190px",
-              height: "170px",
-              borderRadius: "14px 14px 34px 34px",
+              width: "285px",
+              height: "255px",
+              borderRadius: "21px 21px 51px 51px",
               backgroundColor: "#E0F2FE",
-              border: "5px solid #000000",
-              boxShadow: "6px 6px 0px #000000",
+              border: "7.5px solid #000000",
+              boxShadow: "9px 9px 0px #000000",
               position: "relative",
               overflow: "hidden",
             }}
@@ -1094,9 +1094,9 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
                 bottom: 0,
                 left: 0,
                 right: 0,
-                height: "120px",
+                height: "180px",
                 backgroundColor: "#74B9FF",
-                borderTop: "4px solid #000000",
+                borderTop: "6px solid #000000",
               }}
             >
               {/* Boiling Bubbles */}
@@ -1107,11 +1107,11 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
                     position: "absolute",
                     left: `${bx}px`,
                     bottom: `${(frame * 4 + i * 25) % 105}px`,
-                    width: `${12 + (i % 3) * 4}px`,
-                    height: `${12 + (i % 3) * 4}px`,
+                    width: `${18 + (i % 3) * 6}px`,
+                    height: `${18 + (i % 3) * 6}px`,
                     borderRadius: "50%",
                     backgroundColor: "#FFFFFF",
-                    border: "2px solid #000000",
+                    border: "3px solid #000000",
                   }}
                 />
               ))}
@@ -1124,7 +1124,7 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
                 bottom: 0,
                 left: 0,
                 right: 0,
-                height: "22px",
+                height: "33px",
                 background:
                   "linear-gradient(to top, rgba(255, 118, 117, 0.9), transparent)",
               }}
@@ -1134,12 +1134,12 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
           <div
             dir="auto"
             style={{
-              marginTop: "14px",
+              marginTop: "21px",
               backgroundColor: "#55EFC4",
-              border: "3px solid #000000",
-              boxShadow: "3px 3px 0px #000000",
-              padding: "4px 14px",
-              fontSize: "20px",
+              border: "4.5px solid #000000",
+              boxShadow: "4.5px 4.5px 0px #000000",
+              padding: "6px 21px",
+              fontSize: "30px",
               fontWeight: 900,
               color: "#000000",
               textAlign: "right",
@@ -1154,21 +1154,21 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
       <div
         style={{
           backgroundColor: "#55EFC4",
-          border: "4px solid #000000",
-          boxShadow: "7px 7px 0px #000000",
-          padding: "24px",
-          fontSize: "32px",
+          border: "6px solid #000000",
+          boxShadow: "10.5px 10.5px 0px #000000",
+          padding: "36px",
+          fontSize: "48px",
           fontWeight: 900,
           lineHeight: 1.35,
-          marginTop: "50px"
+          marginTop: "75px"
         }}
       >
         👉 If you heat water to{" "}
         <span
           style={{
             backgroundColor: "#FFFFFF",
-            border: "2px solid #000000",
-            padding: "2px 8px",
+            border: "3px solid #000000",
+            padding: "3px 12px",
           }}
         >
           100 °C
@@ -1177,8 +1177,8 @@ const Scene5BrutalistFacts: React.FC<{ frame: number; fps: number }> = ({
         <span
           style={{
             backgroundColor: "#FFE600",
-            border: "2px solid #000000",
-            padding: "2px 8px",
+            border: "3px solid #000000",
+            padding: "3px 12px",
           }}
         >
           boils
@@ -1222,24 +1222,24 @@ const Scene6BrutalistInstructions: React.FC<{
       style={{
         display: "flex",
         flexDirection: "column",
-        padding: "150px 50px 180px 50px",
-        gap: "50px",
+        padding: "225px 75px 270px 75px",
+        gap: "75px",
       }}
     >
       <div
         dir="auto"
         style={{
           backgroundColor: "#A29BFE",
-          border: "4px solid #000000",
-          boxShadow: "6px 6px 0px #000000",
-          padding: "8px 24px",
-          fontSize: "26px",
+          border: "6px solid #000000",
+          boxShadow: "9px 9px 0px #000000",
+          padding: "12px 36px",
+          fontSize: "39px",
           fontWeight: 900,
           alignSelf: "flex-end",
           transform: `scale(${pop}) rotate(-1.5deg)`,
           textAlign: "right",
-          marginTop: "50px",
-          marginBottom: "50px",
+          marginTop: "75px",
+          marginBottom: "75px",
         }}
       >
         الاستخدام 3: إعطاء التعليمات (Instructions)
@@ -1249,9 +1249,9 @@ const Scene6BrutalistInstructions: React.FC<{
       <div
         style={{
           backgroundColor: "#FFFFFF",
-          border: "5px solid #000000",
-          boxShadow: "10px 10px 0px #000000",
-          padding: "28px",
+          border: "7.5px solid #000000",
+          boxShadow: "15px 15px 0px #000000",
+          padding: "42px",
           transform: `scale(${pop})`,
           position: "relative",
           overflow: "hidden",
@@ -1265,64 +1265,64 @@ const Scene6BrutalistInstructions: React.FC<{
             alignItems: "center",
             justifyContent: "space-between",
             flexDirection: "row-reverse",
-            borderBottom: "4px solid #000000",
-            paddingBottom: "16px",
-            marginBottom: "20px",
+            borderBottom: "6px solid #000000",
+            paddingBottom: "24px",
+            marginBottom: "30px",
           }}
         >
-          <div style={{ display: "flex", gap: "10px" }}>
+          <div style={{ display: "flex", gap: "15px" }}>
             <div
               style={{
-                width: "18px",
-                height: "18px",
+                width: "27px",
+                height: "27px",
                 borderRadius: "50%",
                 backgroundColor: "#FF7675",
-                border: "2px solid #000000",
+                border: "3px solid #000000",
               }}
             />
             <div
               style={{
-                width: "18px",
-                height: "18px",
+                width: "27px",
+                height: "27px",
                 borderRadius: "50%",
                 backgroundColor: "#FFE600",
-                border: "2px solid #000000",
+                border: "3px solid #000000",
               }}
             />
             <div
               style={{
-                width: "18px",
-                height: "18px",
+                width: "27px",
+                height: "27px",
                 borderRadius: "50%",
                 backgroundColor: "#55EFC4",
-                border: "2px solid #000000",
+                border: "3px solid #000000",
               }}
             />
           </div>
           <div
             dir="auto"
             style={{
-              fontSize: "20px",
+              fontSize: "30px",
               fontWeight: 900,
               color: "#000000",
               backgroundColor: "#FFE600",
-              border: "2px solid #000000",
-              padding: "2px 10px",
+              border: "3px solid #000000",
+              padding: "3px 15px",
               textAlign: "right",
             }}
           >
             نظام التشغيل • التعليمات
           </div>
-          <div style={{ width: "40px" }} />
+          <div style={{ width: "60px" }} />
         </div>
 
         {/* Desktop Screen Area */}
         <div
           style={{
-            height: "210px",
+            height: "315px",
             backgroundColor: "#DFE6E9",
-            border: "4px solid #000000",
-            padding: "20px",
+            border: "6px solid #000000",
+            padding: "30px",
             position: "relative",
           }}
         >
@@ -1332,37 +1332,37 @@ const Scene6BrutalistInstructions: React.FC<{
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              gap: "8px",
+              gap: "12px",
               position: "absolute",
-              left: "320px",
-              top: "24px",
-              transform: isClicked ? "scale(0.96) translate(3px, 3px)" : "scale(1)",
+              left: "480px",
+              top: "36px",
+              transform: isClicked ? "scale(0.96) translate(4.5px, 4.5px)" : "scale(1)",
             }}
           >
             <div
               style={{
-                width: "84px",
-                height: "84px",
+                width: "126px",
+                height: "126px",
                 backgroundColor: isClicked ? "#55EFC4" : "#74B9FF",
-                border: "4px solid #000000",
-                boxShadow: isClicked ? "2px 2px 0px #000" : "6px 6px 0px #000",
+                border: "6px solid #000000",
+                boxShadow: isClicked ? "3px 3px 0px #000" : "9px 9px 0px #000",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                fontSize: "44px",
+                fontSize: "66px",
               }}
             >
               💻
             </div>
             <span
               style={{
-                fontSize: "18px",
+                fontSize: "27px",
                 fontWeight: 900,
                 color: "#000000",
                 backgroundColor: "#FFFFFF",
-                border: "2px solid #000000",
-                padding: "2px 8px",
-                boxShadow: "2px 2px 0px #000",
+                border: "3px solid #000000",
+                padding: "3px 12px",
+                boxShadow: "3px 3px 0px #000",
               }}
             >
               Programme.exe
@@ -1374,12 +1374,12 @@ const Scene6BrutalistInstructions: React.FC<{
             <div
               style={{
                 position: "absolute",
-                left: "362px",
-                top: "66px",
-                width: "90px",
-                height: "90px",
+                left: "543px",
+                top: "99px",
+                width: "135px",
+                height: "135px",
                 borderRadius: "50%",
-                border: "5px solid #000000",
+                border: "7.5px solid #000000",
                 backgroundColor: "rgba(85, 239, 196, 0.4)",
                 transform: `translate(-50%, -50%) scale(${clickWave})`,
                 opacity: clickWaveOpacity,
@@ -1394,15 +1394,15 @@ const Scene6BrutalistInstructions: React.FC<{
               dir="auto"
               style={{
                 position: "absolute",
-                left: "435px",
-                top: "26px",
+                left: "652px",
+                top: "39px",
                 backgroundColor: "#FF7675",
                 color: "#FFFFFF",
                 fontWeight: 900,
-                fontSize: "20px",
-                padding: "6px 14px",
-                border: "3px solid #000000",
-                boxShadow: "4px 4px 0px #000000",
+                fontSize: "30px",
+                padding: "9px 21px",
+                border: "4.5px solid #000000",
+                boxShadow: "6px 6px 0px #000000",
                 transform: "rotate(-3deg)",
               }}
             >
@@ -1414,14 +1414,14 @@ const Scene6BrutalistInstructions: React.FC<{
           <div
             style={{
               position: "absolute",
-              left: `${cursorX}px`,
-              top: `${cursorY}px`,
+              left: `${cursorX * 1.5}px`,
+              top: `${cursorY * 1.5}px`,
               transform: isClicked ? "scale(0.88)" : "scale(1)",
               zIndex: 30,
-              filter: "drop-shadow(3px 3px 0px #000000)",
+              filter: "drop-shadow(4.5px 4.5px 0px #000000)",
             }}
           >
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+            <svg width="72" height="72" viewBox="0 0 24 24" fill="none">
               <path
                 d="M4 3L11 20L14 13L21 11L4 3Z"
                 fill="#FFFFFF"
@@ -1438,10 +1438,10 @@ const Scene6BrutalistInstructions: React.FC<{
       <div
         style={{
           backgroundColor: "#FFE600",
-          border: "4px solid #000000",
-          boxShadow: "7px 7px 0px #000000",
-          padding: "24px",
-          fontSize: "32px",
+          border: "6px solid #000000",
+          boxShadow: "10.5px 10.5px 0px #000000",
+          padding: "36px",
+          fontSize: "48px",
           fontWeight: 900,
           lineHeight: 1.35,
         }}
@@ -1450,8 +1450,8 @@ const Scene6BrutalistInstructions: React.FC<{
         <span
           style={{
             backgroundColor: "#FFFFFF",
-            border: "2px solid #000000",
-            padding: "2px 8px",
+            border: "3px solid #000000",
+            padding: "3px 12px",
           }}
         >
           click
@@ -1485,24 +1485,24 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
       style={{
         display: "flex",
         flexDirection: "column",
-        padding: "150px 50px 180px 50px",
-        gap: "50px",
+        padding: "225px 75px 270px 75px",
+        gap: "75px",
       }}
     >
       <div
         dir="auto"
         style={{
           backgroundColor: "#55EFC4",
-          border: "4px solid #000000",
-          boxShadow: "6px 6px 0px #000000",
-          padding: "8px 24px",
-          fontSize: "26px",
+          border: "6px solid #000000",
+          boxShadow: "9px 9px 0px #000000",
+          padding: "12px 36px",
+          fontSize: "39px",
           fontWeight: 900,
           alignSelf: "flex-end",
           transform: `scale(${pop}) rotate(2deg)`,
           textAlign: "right",
-          marginTop: "50px",
-          marginBottom: "50px",
+          marginTop: "75px",
+          marginBottom: "75px",
         }}
       >
         الاستخدام 4: سرد القصص والأفلام (Stories)
@@ -1512,9 +1512,9 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
       <div
         style={{
           backgroundColor: "#FFFFFF",
-          border: "5px solid #000000",
-          boxShadow: "10px 10px 0px #000000",
-          padding: "32px 28px",
+          border: "7.5px solid #000000",
+          boxShadow: "15px 15px 0px #000000",
+          padding: "48px 42px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-around",
@@ -1532,46 +1532,46 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
           <div
             style={{
               position: "relative",
-              width: "190px",
-              height: "165px",
+              width: "285px",
+              height: "247.5px",
             }}
           >
             {/* Clapper Top Moving Bar */}
             <div
               style={{
-                width: "190px",
-                height: "34px",
+                width: "285px",
+                height: "51px",
                 backgroundColor: "#000000",
-                border: "3px solid #000000",
+                border: "4.5px solid #000000",
                 transformOrigin: "left bottom",
                 transform: `rotate(${clapAngle}deg)`,
                 backgroundImage:
-                  "repeating-linear-gradient(45deg, #FFE600, #FFE600 15px, #000000 15px, #000000 30px)",
-                marginBottom: "4px",
+                  "repeating-linear-gradient(45deg, #FFE600, #FFE600 22.5px, #000000 22.5px, #000000 45px)",
+                marginBottom: "6px",
               }}
             />
 
             {/* Clapperboard Body */}
             <div
               style={{
-                width: "190px",
-                height: "125px",
+                width: "285px",
+                height: "187.5px",
                 backgroundColor: "#000000",
-                border: "3px solid #000000",
-                padding: "10px 12px",
+                border: "4.5px solid #000000",
+                padding: "15px 18px",
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                boxShadow: "5px 5px 0px #000000",
+                boxShadow: "7.5px 7.5px 0px #000000",
               }}
             >
               <div
                 dir="auto"
                 style={{
-                  fontSize: "15px",
+                  fontSize: "22.5px",
                   fontWeight: 900,
                   color: "#FFE600",
-                  letterSpacing: "1px",
+                  letterSpacing: "1.5px",
                   textAlign: "right",
                 }}
               >
@@ -1583,7 +1583,7 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
                   display: "flex",
                   justifyContent: "space-between",
                   flexDirection: "row-reverse",
-                  fontSize: "13px",
+                  fontSize: "19.5px",
                   color: "#FFFFFF",
                   fontWeight: 800,
                 }}
@@ -1593,7 +1593,7 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
               </div>
               <div
                 style={{
-                  fontSize: "18px",
+                  fontSize: "27px",
                   fontWeight: 900,
                   color: "#55EFC4",
                 }}
@@ -1615,10 +1615,10 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
         >
           <div
             style={{
-              width: "160px",
-              height: "160px",
-              border: "5px solid #000000",
-              boxShadow: "6px 6px 0px #000000",
+              width: "240px",
+              height: "240px",
+              border: "7.5px solid #000000",
+              boxShadow: "9px 9px 0px #000000",
               overflow: "hidden",
             }}
           >
@@ -1640,10 +1640,10 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
       <div
         style={{
           backgroundColor: "#74B9FF",
-          border: "4px solid #000000",
-          boxShadow: "7px 7px 0px #000000",
-          padding: "24px",
-          fontSize: "32px",
+          border: "6px solid #000000",
+          boxShadow: "10.5px 10.5px 0px #000000",
+          padding: "36px",
+          fontSize: "48px",
           fontWeight: 900,
           lineHeight: 1.35,
         }}
@@ -1652,8 +1652,8 @@ const Scene7BrutalistStories: React.FC<{ frame: number; fps: number }> = ({
         <span
           style={{
             backgroundColor: "#FFE600",
-            border: "2px solid #000000",
-            padding: "2px 8px",
+            border: "3px solid #000000",
+            padding: "3px 12px",
           }}
         >
           saves
@@ -1678,29 +1678,29 @@ const Scene8BrutalistCTA: React.FC<{ frame: number; fps: number }> = ({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        padding: "60px",
-        gap: "30px",
+        padding: "90px",
+        gap: "45px",
       }}
     >
       <div
         style={{
           backgroundColor: "#FFFFFF",
-          border: "6px solid #000000",
-          boxShadow: "14px 14px 0px #000000",
-          padding: "50px 40px",
+          border: "9px solid #000000",
+          boxShadow: "21px 21px 0px #000000",
+          padding: "75px 60px",
           textAlign: "center",
           transform: `scale(${pop})`,
-          maxWidth: "920px",
+          maxWidth: "1380px",
         }}
       >
         <h2
           dir="auto"
           style={{
             fontFamily: montserratFont,
-            fontSize: "64px",
+            fontSize: "96px",
             fontWeight: 900,
             lineHeight: 1.1,
-            margin: "50px 0 20px 0",
+            margin: "75px 0 30px 0",
           }}
         >
           تابعنا للمزيد من
@@ -1712,13 +1712,13 @@ const Scene8BrutalistCTA: React.FC<{ frame: number; fps: number }> = ({
           dir="auto"
           style={{
             backgroundColor: "#55EFC4",
-            border: "4px solid #000000",
-            boxShadow: "6px 6px 0px #000000",
-            padding: "16px 28px",
-            fontSize: "28px",
+            border: "6px solid #000000",
+            boxShadow: "9px 9px 0px #000000",
+            padding: "24px 42px",
+            fontSize: "42px",
             fontWeight: 900,
-            marginBottom: "100px",
-            marginTop: "100px",
+            marginBottom: "150px",
+            marginTop: "150px",
           }}
         >
           💬 علّق ب "ملخص" لأبعتلك واحد مجانا
@@ -1729,10 +1729,10 @@ const Scene8BrutalistCTA: React.FC<{ frame: number; fps: number }> = ({
           style={{
             backgroundColor: "#000000",
             color: "#FFFFFF",
-            border: "4px solid #000000",
-            boxShadow: "8px 8px 0px #FFE600",
-            padding: "18px 48px",
-            fontSize: "36px",
+            border: "6px solid #000000",
+            boxShadow: "12px 12px 0px #FFE600",
+            padding: "27px 72px",
+            fontSize: "54px",
             fontWeight: 900,
             display: "inline-block",
           }}
