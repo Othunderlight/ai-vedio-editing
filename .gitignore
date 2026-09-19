@@ -6,7 +6,4 @@ dist
 # Ignore the output video from Git but not videos you import into src/.
 out
 package-lock.json
-rawvedio/
-sfx/
-*.mp4
-*.mp3
+public/

@@ -1,32 +1,17 @@
 import "./index.css";
 import { Composition, Folder } from "remotion";
 import { ChapterTransitionProps, Overlay } from "./Overlay";
-import { FocusedReelShot } from "./components/FocusedAnalysisCard";
-import { BRollApiDocumentation } from "./components/BRollApiDocumentation";
-import { KineticTypography } from "./components/captions/KineticTypography";
-import { KineticWithVideo } from "./components/captions/KineticWithVideo";
-import {
-  EnglishTutorialProps,
-  EnglishTutorialReel,
-} from "./components/EnglishTutorialReel";
-import {
-  NotebookGrammarProps,
-  NotebookGrammarReel,
-} from "./components/NotebookGrammarReel";
+import { FocusedReelShot } from "./components/general/B-rolls/FocusedAnalysisCard";
+import { BRollApiDocumentation } from "./components/general/B-rolls/BRollApiDocumentation";
+import { KineticTypography } from "./components/general/captions/KineticTypography";
+import { KineticWithVideo } from "./components/general/final/KineticWithVideo";
+
 import {
   PresentSimpleReel,
   PresentSimpleReelProps,
-  StandaloneHookScene,
-  StandalonePositiveScene,
-  StandaloneNegativeScene,
-  StandaloneHabitsScene,
-  StandaloneFactsScene,
-  StandaloneInstructionsScene,
-  StandaloneStoriesScene,
-  StandaloneCTAScene,
-} from "./components/english-reels/PresentSimpleReel";
-import { NeoBrutalismReel } from "./components/english-reels/NeoBrutalismReel";
-import { IpadNotesReel } from "./components/english-reels/IpadNotesReel";
+} from "./components/projects/english-tutorial-instegram/PresentSimpleReel";
+import { NeoBrutalismReel } from "./components/projects/english-tutorial-instegram/NeoBrutalismReel";
+import { IpadNotesReel } from "./components/projects/english-tutorial-instegram/IpadNotesReel";
 
 
 // --- PRESENT SIMPLE 60-SECOND EDUCATIONAL REEL ---
@@ -35,76 +20,6 @@ const presentSimpleReelDefaultProps: PresentSimpleReelProps = {
   showVoiceoverCaptions: true,
   showSoundEffects: true,
   showTopTracker: true,
-};
-
-// --- PRESENT SIMPLE NOTEBOOK GRAMMAR REEL (Matching user reference video) ---
-const presentSimpleNotebookProps: NotebookGrammarProps = {
-  baseVerb: "drink",
-  objectNoun: "coffee.",
-  firstPronouns: ["I", "You"],
-  thirdPronouns: ["He", "She"],
-  bgImagePath: "assets/bg-en-claen.png",
-};
-
-// --- ENGLISH TUTORIAL (INSTAGRAM REELS) ---
-const tutorial01Props: EnglishTutorialProps = {
-  episodeTag: "DAILY ENGLISH • EPISODE 01",
-  category: "vocabulary",
-  headline: "Stop Saying 'I'm Very Busy'!",
-  hookSubtext: "Level up your conversational English with this native phrase",
-  incorrectPhrase: "I am very busy today.",
-  incorrectLabel: "COMMON & REPETITIVE",
-  correctPhrase: "I'm swamped.",
-  correctLabel: "NATIVE & NATURAL",
-  phonetic: "/swɑːmpt/",
-  meaning: "Having too much to deal with at once",
-  exampleSentence:
-    '"Sorry I couldn\'t reply earlier, I\'m completely swamped with work."',
-  exampleHighlight: "swamped",
-  proTip:
-    "💡 Nuance: Use 'swamped' at work or with friends when overwhelmed by tasks.",
-  accentColor: "#F59E0B",
-  ctaText: "Double tap ❤️ & save for your next conversation!",
-};
-
-const tutorial02Props: EnglishTutorialProps = {
-  episodeTag: "GRAMMAR SECRETS • EPISODE 02",
-  category: "grammar",
-  headline: "Stop Making This Email Mistake!",
-  hookSubtext: "90% of English learners make this common preposition error",
-  incorrectPhrase: "I look forward to see you.",
-  incorrectLabel: "COMMON MISTAKE",
-  correctPhrase: "I look forward to seeing you.",
-  correctLabel: "GRAMMATICALLY ACCURATE",
-  phonetic: "/ˈsiːɪŋ/",
-  meaning: "Anticipating future meeting with positive expectation",
-  exampleSentence:
-    '"Thank you for your time, I look forward to seeing you next Tuesday."',
-  exampleHighlight: "seeing you",
-  proTip:
-    "💡 Rule: 'To' here is a preposition, not part of an infinitive, so it takes a gerund (-ing)!",
-  accentColor: "#3B82F6",
-  ctaText: "Save this 📌 for your next professional email!",
-};
-
-const tutorial03Props: EnglishTutorialProps = {
-  episodeTag: "PHRASAL VERBS • EPISODE 03",
-  category: "phrasal-verbs",
-  headline: "Master The Verb 'Break Down'!",
-  hookSubtext: "One phrasal verb with 3 completely different meanings",
-  incorrectPhrase: "My car stopped working suddenly.",
-  incorrectLabel: "BASIC VOCABULARY",
-  correctPhrase: "My car broke down.",
-  correctLabel: "NATURAL PHRASAL VERB",
-  phonetic: "/broʊk daʊn/",
-  meaning: "1. Mechanical failure | 2. Emotional collapse | 3. Explain simply",
-  exampleSentence:
-    '"Could you break down the monthly budget numbers for the team?"',
-  exampleHighlight: "break down",
-  proTip:
-    "💡 Bonus: When someone says 'let's break it down', they mean let's analyze step by step!",
-  accentColor: "#10B981",
-  ctaText: "Share with a friend 🚀 & follow for daily lessons!",
 };
 
 // --- EXISTING COMPOSITIONS (Retained) ---
@@ -287,7 +202,7 @@ const reelClaude02CleanProps: ChapterTransitionProps = {
 export const RemotionRoot: React.FC = () => {
   return (
     <>
-      <Folder name="parts">
+      <Folder name="general">
         <Folder name="overlay-part1-2-3">
           <Folder name="shorts-16-9">
             <Composition
