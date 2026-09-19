@@ -8,3 +8,5 @@ out
 package-lock.json
 rawvedio/
 sfx/
+*.mp4
+*.mp3
