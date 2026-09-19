@@ -3,8 +3,8 @@ import { Composition, Folder } from "remotion";
 import { ChapterTransitionProps, Overlay } from "./Overlay";
 import { FocusedReelShot } from "./components/FocusedAnalysisCard";
 import { BRollApiDocumentation } from "./components/BRollApiDocumentation";
-import { KineticTypography } from "./components/KineticTypography";
-import { KineticWithVideo } from "./components/KineticWithVideo";
+import { KineticTypography } from "./components/captions/KineticTypography";
+import { KineticWithVideo } from "./components/captions/KineticWithVideo";
 import {
   EnglishTutorialProps,
   EnglishTutorialReel,
@@ -287,274 +287,167 @@ const reelClaude02CleanProps: ChapterTransitionProps = {
 export const RemotionRoot: React.FC = () => {
   return (
     <>
-      <Folder name="section-transition">
-      {/* 1. INSTAGRAM REELS (9:16 Vertical - 1080x1920) */}
-      <Composition
-        id="Reel-Claude-Chapter-01"
-        component={Overlay}
-        durationInFrames={90}
-        fps={30}
-        width={1080}
-        height={1920}
-        defaultProps={reelClaude01Props}
-      />
-      <Composition
-        id="Reel-Claude-Chapter-02"
-        component={Overlay}
-        durationInFrames={90}
-        fps={30}
-        width={1080}
-        height={1920}
-        defaultProps={reelClaude02Props}
-      />
+      <Folder name="parts">
+        <Folder name="overlay-part1-2-3">
+          <Folder name="shorts-16-9">
+            <Composition
+              id="Reel-Ch1-NoTracker"
+              component={Overlay}
+              durationInFrames={90}
+              fps={30}
+              width={1080}
+              height={1920}
+              defaultProps={reelClaude01CleanProps}
+            />
+            <Composition
+              id="Reel-Ch2-NoTracker"
+              component={Overlay}
+              durationInFrames={90}
+              fps={30}
+              width={1080}
+              height={1920}
+              defaultProps={reelClaude02CleanProps}
+            />
+          </Folder>
 
-      <Folder name="Instagram-Reels-Variations">
-        <Composition
-          id="Reel-Ch2-SingleLine"
-          component={Overlay}
-          durationInFrames={90}
-          fps={30}
-          width={1080}
-          height={1920}
-          defaultProps={reelClaude02SingleLineProps}
-        />
-        <Composition
-          id="Reel-Ch1-NoTracker"
-          component={Overlay}
-          durationInFrames={90}
-          fps={30}
-          width={1080}
-          height={1920}
-          defaultProps={reelClaude01CleanProps}
-        />
-        <Composition
-          id="Reel-Ch2-NoTracker"
-          component={Overlay}
-          durationInFrames={90}
-          fps={30}
-          width={1080}
-          height={1920}
-          defaultProps={reelClaude02CleanProps}
-        />
+          <Folder name="youtube">
+            <Composition
+              id="Claude-Chapter-01"
+              component={Overlay}
+              durationInFrames={90}
+              fps={30}
+              width={1920}
+              height={1080}
+              defaultProps={claudeChapter01Props}
+            />
+            <Composition
+              id="Claude-Chapter-02"
+              component={Overlay}
+              durationInFrames={90}
+              fps={30}
+              width={1920}
+              height={1080}
+              defaultProps={claudeChapter02Props}
+            />
+            <Composition
+              id="ChapterTransition"
+              component={Overlay}
+              durationInFrames={90}
+              fps={30}
+              width={1920}
+              height={1080}
+              defaultProps={defaultChapter05Props}
+            />
+          </Folder>
+        </Folder>
+
+        <Folder name="B-rolls">
+          <Folder name="B-Roll-Pricing-Analysis">
+            <Composition
+              id="Reel-Shot-Intelligence-Only"
+              component={FocusedReelShot}
+              durationInFrames={120}
+              fps={30}
+              width={1080}
+              height={1920}
+              defaultProps={{
+                type: "intelligence",
+              }}
+            />
+            <Composition
+              id="Reel-Shot-Cost-Only"
+              component={FocusedReelShot}
+              durationInFrames={120}
+              fps={30}
+              width={1080}
+              height={1920}
+              defaultProps={{
+                type: "cost",
+              }}
+            />
+          </Folder>
+
+          <Folder name="B-Roll-API-Documentation">
+            <Composition
+              id="Reel-BRoll-ApiDocumentation"
+              component={BRollApiDocumentation}
+              durationInFrames={120}
+              fps={30}
+              width={1080}
+              height={1920}
+              defaultProps={{
+                scrollSpeed: 1.6,
+              }}
+            />
+            <Composition
+              id="BRoll-ApiDocumentation-16x9"
+              component={BRollApiDocumentation}
+              durationInFrames={120}
+              fps={30}
+              width={1920}
+              height={1080}
+              defaultProps={{
+                scrollSpeed: 1.6,
+              }}
+            />
+          </Folder>
+        </Folder>
+
+        <Folder name="captions">
+          <Composition
+            id="Kinetic-Typography"
+            component={KineticTypography}
+            durationInFrames={195}
+            fps={30}
+            width={1080}
+            height={1920}
+          />
+          <Composition
+            id="Kinetic-With-Video"
+            component={KineticWithVideo}
+            durationInFrames={195}
+            fps={30}
+            width={1080}
+            height={1920}
+          />
+        </Folder>
       </Folder>
 
-      {/* 2. B-ROLL GRAPHICS: Artificial Analysis Intelligence & Cost Comparisons */}
-      <Folder name="B-Roll-Pricing-Analysis">
-        {/* Isolated Single-Shot Visuals: Claude (Fable + Opus) vs DeepSeek V4.1 Flash ONLY (No text outside card) */}
+      <Folder name="english-tutorial-instegram">
         <Composition
-          id="Reel-Shot-Intelligence-Only"
-          component={FocusedReelShot}
-          durationInFrames={120}
+          id="Reel-Present-Simple-60s-Master"
+          component={PresentSimpleReel}
+          durationInFrames={2190}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={presentSimpleReelDefaultProps}
+        />
+        <Composition
+          id="Variant-1-Neo-Brutalism"
+          component={NeoBrutalismReel}
+          durationInFrames={2190}
           fps={30}
           width={1080}
           height={1920}
           defaultProps={{
-            type: "intelligence",
+            backgroundColor: "#FFF9D2",
+            showCaptions: true,
           }}
         />
-
         <Composition
-          id="Reel-Shot-Cost-Only"
-          component={FocusedReelShot}
-          durationInFrames={120}
+          id="Variant-2-Modern-iPad-Notes"
+          component={IpadNotesReel}
+          durationInFrames={2190}
           fps={30}
           width={1080}
           height={1920}
           defaultProps={{
-            type: "cost",
-          }}
-        />
-
-        {/* Master Instagram Reel Comparison with Audio Cues (9:16 - 1080x1920) */}
-
-        {/* Dedicated Cost per Task Reel (9:16 - 1080x1920) */}
-
-        {/* Dedicated Intelligence Index Reel (9:16 - 1080x1920) */}
-
-        {/* Widescreen YouTube / 16:9 Versions (1920x1080) */}
-      </Folder>
-
-      {/* 3. B-ROLL GRAPHICS: Routine API & OpenAPI Documentation (Audio Cue: jump cut at 01:03) */}
-      <Folder name="B-Roll-API-Documentation">
-        {/* Instagram Reel (9:16 - 1080x1920) */}
-        <Composition
-          id="Reel-BRoll-ApiDocumentation"
-          component={BRollApiDocumentation}
-          durationInFrames={120}
-          fps={30}
-          width={1080}
-          height={1920}
-          defaultProps={{
-            scrollSpeed: 1.6,
-          }}
-        />
-
-        {/* Landscape Version (16:9 - 1920x1080) */}
-        <Composition
-          id="BRoll-ApiDocumentation-16x9"
-          component={BRollApiDocumentation}
-          durationInFrames={120}
-          fps={30}
-          width={1920}
-          height={1080}
-          defaultProps={{
-            scrollSpeed: 1.6,
+            paperColor: "#FAF8F5",
+            showCaptions: true,
           }}
         />
       </Folder>
-
-      {/* 4. Primary 16:9 Script Chapters (Preserved) */}
-      <Composition
-        id="Claude-Chapter-01"
-        component={Overlay}
-        durationInFrames={90}
-        fps={30}
-        width={1920}
-        height={1080}
-        defaultProps={claudeChapter01Props}
-      />
-      <Composition
-        id="Claude-Chapter-02"
-        component={Overlay}
-        durationInFrames={90}
-        fps={30}
-        width={1920}
-        height={1080}
-        defaultProps={claudeChapter02Props}
-      />
-
-      {/* 2. Alternative Variations for Chapter 1 */}
-      <Folder name="Chapter-01-Alternatives">
-        <Composition
-          id="Ch1-Alt-TokenMaxing"
-          component={Overlay}
-          durationInFrames={90}
-          fps={30}
-          width={1920}
-          height={1080}
-          defaultProps={altTokenMaxingProps}
-        />
-        <Composition
-          id="Ch1-Alt-BudgetShock"
-          component={Overlay}
-          durationInFrames={90}
-          fps={30}
-          width={1920}
-          height={1080}
-          defaultProps={altBudgetShockProps}
-        />
-        <Composition
-          id="Ch1-Alt-LimitOut"
-          component={Overlay}
-          durationInFrames={90}
-          fps={30}
-          width={1920}
-          height={1080}
-          defaultProps={altLimitOutProps}
-        />
-        <Composition
-          id="Ch1-Alt-PocketBurn"
-          component={Overlay}
-          durationInFrames={90}
-          fps={30}
-          width={1920}
-          height={1080}
-          defaultProps={altPocketBurnProps}
-        />
-      </Folder>
-
-      {/* 3. Kinetic Typography Overlay */}
-      <Composition
-        id="Kinetic-Typography"
-        component={KineticTypography}
-        durationInFrames={195}
-        fps={30}
-        width={1080}
-        height={1920}
-      />
-      <Composition
-        id="Kinetic-With-Video"
-        component={KineticWithVideo}
-        durationInFrames={195}
-        fps={30}
-        width={1080}
-        height={1920}
-      />
-
-      {/* 4. Original Compositions (Preserved) */}
-      <Composition
-        id="ChapterTransition"
-        component={Overlay}
-        durationInFrames={90}
-        fps={30}
-        width={1920}
-        height={1080}
-        defaultProps={defaultChapter05Props}
-      />
-      <Folder name="Examples">
-        <Composition
-          id="Chapter-01-Intro"
-          component={Overlay}
-          durationInFrames={90}
-          fps={30}
-          width={1920}
-          height={1080}
-          defaultProps={chapter01Props}
-        />
-        <Composition
-          id="Chapter-10-Deploy"
-          component={Overlay}
-          durationInFrames={90}
-          fps={30}
-          width={1920}
-          height={1080}
-          defaultProps={chapter10Props}
-        />
-      </Folder>
-    </Folder>
-
-    {/* 4. PRESENT SIMPLE DESIGN VARIANTS (Choose between 5 Distinct Styles) */}
-      <Folder name="present-simple-design-variants">
-
-      <Composition
-        id="Reel-Present-Simple-60s-Master"
-        component={PresentSimpleReel}
-        durationInFrames={2190}
-        fps={30}
-        width={1080}
-        height={1920}
-        defaultProps={presentSimpleReelDefaultProps}
-      />
-
-      {/* Variant 1: Neo-Brutalism Style */}
-      <Composition
-        id="Variant-1-Neo-Brutalism"
-        component={NeoBrutalismReel}
-        durationInFrames={2190}
-        fps={30}
-        width={1080}
-        height={1920}
-        defaultProps={{
-          backgroundColor: "#FFF9D2",
-          showCaptions: true,
-        }}
-      />
-
-      {/* Variant 2: Modern iPad Note-Taking Style */}
-      <Composition
-        id="Variant-2-Modern-iPad-Notes"
-        component={IpadNotesReel}
-        durationInFrames={2190}
-        fps={30}
-        width={1080}
-        height={1920}
-        defaultProps={{
-          paperColor: "#FAF8F5",
-          showCaptions: true,
-        }}
-      />
-
-    </Folder>
     </>
   );
 };
