@@ -255,21 +255,29 @@ Is face video visible at this frame?
 - Videos: use `<OffthreadVideo src={staticFile(...)} />` inside `<Sequence>`
 
 ### Video B-roll: show the END of the video, not the start
-By default, `OffthreadVideo` plays from frame 0. For screen recordings and video clips, the user usually wants to see the **end result**, not the beginning. Use `startFrom` to skip to the end:
+By default, `OffthreadVideo` plays from frame 0. For screen recordings and video clips, the user usually wants to see the **end result**, not the beginning. Use `startFrom` to skip to the end. Think in **seconds**, convert to frames:
 
 ```tsx
-// Get video length: ffprobe -v error -show_entries stream=nb_frames -select_streams v:0 -of csv=p=0 file.mp4
-const VIDEO_LENGTH = 532; // total frames of the video file
-const B_ROLL_DURATION = toFrame - fromFrame; // how long the overlay is visible
+const { fps } = useVideoConfig();
+
+// Video file duration in seconds (use ffprobe to get real value):
+// ffprobe -v error -show_entries format=duration -of csv=p=0 file.mp4
+const VIDEO_SECONDS = 25;
+
+// B-roll overlay duration in seconds
+const bRollDurationSec = (toFrame - fromFrame) / fps;
+
+// Start from near the end so the video finishes when the overlay ends
+const startFrom = Math.round((VIDEO_SECONDS - bRollDurationSec) * fps);
 
 <OffthreadVideo
   src={staticFile(...)}
-  startFrom={VIDEO_LENGTH - B_ROLL_DURATION} // start near the end
+  startFrom={startFrom}
   style={{ ... }}
 />
 ```
 
-**Why:** `startFrom={VIDEO_LENGTH - B_ROLL_DURATION}` makes the video play its last `B_ROLL_DURATION` frames, so it ends exactly when the overlay ends. Always use `ffprobe` to get the real video length — don't guess.
+**Why:** If the video is 25s and the overlay is 11s, we start at 14s so the last 11s of the video play during the overlay. Always use `ffprobe` to get the real video duration — don't guess.
 
 ---
 

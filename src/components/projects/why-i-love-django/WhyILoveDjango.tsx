@@ -8,6 +8,7 @@ import {
   interpolate,
   staticFile,
   useCurrentFrame,
+  useVideoConfig,
 } from "remotion";
 import { WhyILoveDjangoCaptions } from "./WhyILoveDjangoCaptions";
 
@@ -16,7 +17,7 @@ const PROJECT_ASSETS = `projects/${PROJECT}/assets`;
 const PROJECT_RAW = `projects/${PROJECT}/raw`;
 
 const VIDEO_END = 1646;
-const ADMIN_VIDEO_LENGTH = 532;
+const ADMIN_VIDEO_SECONDS = 25;
 
 const BRollFadeWrapper: React.FC<{
   durationInFrames: number;
@@ -59,6 +60,10 @@ const BRollOverlay: React.FC<{
 
 export const WhyILoveDjango: React.FC = () => {
   const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  const bRollDurationSec = (1620 - 1290) / fps;
+  const adminStartFrom = Math.round((ADMIN_VIDEO_SECONDS - bRollDurationSec) * fps);
 
   const videoOpacity = interpolate(frame, [VIDEO_END - 15, VIDEO_END], [1, 0], {
     extrapolateLeft: "clamp",
@@ -109,7 +114,7 @@ export const WhyILoveDjango: React.FC = () => {
         >
           <OffthreadVideo
             src={staticFile(`${PROJECT_ASSETS}/admin_screen_recording.mp4`)}
-            startFrom={ADMIN_VIDEO_LENGTH - (1620 - 1290)}
+            startFrom={adminStartFrom}
             style={{
               width: "90%",
               borderRadius: 16,
