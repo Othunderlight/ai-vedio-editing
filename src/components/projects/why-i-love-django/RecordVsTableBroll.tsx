@@ -13,8 +13,6 @@ const TABLE_ROWS = [
   { changed: false },
   { changed: true },
   { changed: false },
-  { changed: true },
-  { changed: false },
 ];
 
 const TIMELINE_NODES = [
@@ -108,11 +106,11 @@ export const RecordVsTableBroll: React.FC = () => {
           backgroundColor: "rgba(239, 68, 68, 0.06)",
           border: "2px solid rgba(239, 68, 68, 0.3)",
           borderRadius: 24,
-          padding: "28px 36px",
-          width: 820,
+          padding: "20px 28px",
+          width: 480,
           zIndex: 10,
-          translate: "258.9px -302.9px",
-          scale: 1.239
+          translate: "0px -364.3px",
+          scale: 1.444
         }}
       >
         <Interactive.Div
@@ -154,7 +152,7 @@ export const RecordVsTableBroll: React.FC = () => {
               key={i}
               style={{
                 display: "flex",
-                gap: 12,
+                gap: 8,
                 padding: "12px 0",
                 borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
                 backgroundColor: isFlashing
@@ -191,7 +189,7 @@ export const RecordVsTableBroll: React.FC = () => {
           gap: 28,
           alignItems: "center",
           translate: "-425.5px 49.9px",
-          scale: 1.858
+          scale: 1.724
         }}
       >
         {/* Single record */}
