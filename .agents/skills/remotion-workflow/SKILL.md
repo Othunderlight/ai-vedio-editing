@@ -257,18 +257,45 @@ Is face video visible at this frame?
 ### Video B-roll: show the END of the video, not the start
 By default, `OffthreadVideo` plays from frame 0. For screen recordings and video clips, the user usually wants to see the **end result**, not the beginning. Use `startFrom` to skip to the end. Think in **seconds**, convert to frames:
 
+**Never hardcode video duration.** Use a hook to get it at render time:
+
 ```tsx
+// useVideoDuration.ts
+import { useEffect, useState } from "react";
+import { continueRender, delayRender, staticFile } from "remotion";
+
+export const useVideoDuration = (src: string): number | null => {
+  const [duration, setDuration] = useState<number | null>(null);
+  const [handle] = useState(() => delayRender("Loading video duration"));
+
+  useEffect(() => {
+    const video = document.createElement("video");
+    video.preload = "metadata";
+    video.src = staticFile(src);
+
+    video.onloadedmetadata = () => {
+      setDuration(video.duration);
+      continueRender(handle);
+    };
+
+    video.onerror = () => {
+      continueRender(handle);
+    };
+  }, [src, handle]);
+
+  return duration;
+};
+```
+
+```tsx
+// In your master composition:
 const { fps } = useVideoConfig();
+const videoDuration = useVideoDuration(`${PROJECT_ASSETS}/screen_recording.mp4`);
 
-// Video file duration in seconds (use ffprobe to get real value):
-// ffprobe -v error -show_entries format=duration -of csv=p=0 file.mp4
-const VIDEO_SECONDS = 25;
-
-// B-roll overlay duration in seconds
 const bRollDurationSec = (toFrame - fromFrame) / fps;
-
-// Start from near the end so the video finishes when the overlay ends
-const startFrom = Math.round((VIDEO_SECONDS - bRollDurationSec) * fps);
+const startFrom = videoDuration
+  ? Math.round((videoDuration - bRollDurationSec) * fps)
+  : 0;
 
 <OffthreadVideo
   src={staticFile(...)}
@@ -277,7 +304,7 @@ const startFrom = Math.round((VIDEO_SECONDS - bRollDurationSec) * fps);
 />
 ```
 
-**Why:** If the video is 25s and the overlay is 11s, we start at 14s so the last 11s of the video play during the overlay. Always use `ffprobe` to get the real video duration — don't guess.
+**Why:** If the video is 25s and the overlay is 11s, we start at 14s so the last 11s of the video play during the overlay. The hook uses `delayRender` to pause Remotion until the metadata loads, so `startFrom` is always correct.
 
 ---
 
@@ -344,15 +371,17 @@ For each new project:
 3. [ ] Create project folder: `src/components/projects/<name>/`
 4. [ ] Check asset directory for existing files
 5. [ ] Create each `generate_new` B-roll as a standalone component
-6. [ ] Create captions component (bottom pill for face + B-roll, kinetic for no-video sections)
-7. [ ] Create master composition with `<Sequence>`-wrapped `<BRollOverlay>`
-8. [ ] Add `<Audio>` for voiceover
-9. [ ] Set composition duration to match audio length
-10. [ ] Register in Root.tsx
-11. [ ] Run typecheck and lint
-12. [ ] Verify `<OffthreadVideo>` is used (never `<Video>`)
-13. [ ] Verify all B-rolls are wrapped in `<Sequence>`
-14. [ ] Scale graphics 1.5x for portrait mobile
+6. [ ] Create `useVideoDuration` hook if video B-rolls exist
+7. [ ] Create captions component (bottom pill for face + B-roll, kinetic for no-video sections)
+8. [ ] Create master composition with `<Sequence>`-wrapped `<BRollOverlay>`
+9. [ ] Add `<Audio>` for voiceover
+10. [ ] Set composition duration to match audio length
+11. [ ] Register in Root.tsx
+12. [ ] Run typecheck and lint
+13. [ ] Verify `<OffthreadVideo>` is used (never `<Video>`)
+14. [ ] Verify all B-rolls are wrapped in `<Sequence>`
+15. [ ] Scale graphics 1.5x for portrait mobile
+16. [ ] Video B-rolls use `startFrom` to show the end (never hardcode duration)
 
 ---
 

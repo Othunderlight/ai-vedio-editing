@@ -11,13 +11,13 @@ import {
   useVideoConfig,
 } from "remotion";
 import { WhyILoveDjangoCaptions } from "./WhyILoveDjangoCaptions";
+import { useVideoDuration } from "./useVideoDuration";
 
 const PROJECT = "why-i-love-django";
 const PROJECT_ASSETS = `projects/${PROJECT}/assets`;
 const PROJECT_RAW = `projects/${PROJECT}/raw`;
 
 const VIDEO_END = 1646;
-const ADMIN_VIDEO_SECONDS = 25;
 
 const BRollFadeWrapper: React.FC<{
   durationInFrames: number;
@@ -39,7 +39,12 @@ const BRollFadeWrapper: React.FC<{
 
   const opacity = Math.min(fadeIn, fadeOut);
 
-  return <AbsoluteFill style={{ opacity }}>{children}</AbsoluteFill>;
+  return <AbsoluteFill
+    style={{
+      opacity
+    }}
+    from={-1}
+  >{children}</AbsoluteFill>;
 };
 
 const BRollOverlay: React.FC<{
@@ -61,9 +66,12 @@ const BRollOverlay: React.FC<{
 export const WhyILoveDjango: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+  const adminDuration = useVideoDuration(`${PROJECT_ASSETS}/admin_screen_recording.mp4`);
 
   const bRollDurationSec = (1620 - 1290) / fps;
-  const adminStartFrom = Math.round((ADMIN_VIDEO_SECONDS - bRollDurationSec) * fps);
+  const adminStartFrom = adminDuration
+    ? Math.round((adminDuration - bRollDurationSec) * fps)
+    : 0;
 
   const videoOpacity = interpolate(frame, [VIDEO_END - 15, VIDEO_END], [1, 0], {
     extrapolateLeft: "clamp",
