@@ -16,6 +16,7 @@ const PROJECT_ASSETS = `projects/${PROJECT}/assets`;
 const PROJECT_RAW = `projects/${PROJECT}/raw`;
 
 const VIDEO_END = 1646;
+const ADMIN_VIDEO_LENGTH = 532;
 
 const BRollFadeWrapper: React.FC<{
   durationInFrames: number;
@@ -108,6 +109,7 @@ export const WhyILoveDjango: React.FC = () => {
         >
           <OffthreadVideo
             src={staticFile(`${PROJECT_ASSETS}/admin_screen_recording.mp4`)}
+            startFrom={ADMIN_VIDEO_LENGTH - (1620 - 1290)}
             style={{
               width: "90%",
               borderRadius: 16,

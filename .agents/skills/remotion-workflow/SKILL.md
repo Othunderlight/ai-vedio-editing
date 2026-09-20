@@ -254,6 +254,23 @@ Is face video visible at this frame?
 - Images: use `<Img src={staticFile(...)} />`
 - Videos: use `<OffthreadVideo src={staticFile(...)} />` inside `<Sequence>`
 
+### Video B-roll: show the END of the video, not the start
+By default, `OffthreadVideo` plays from frame 0. For screen recordings and video clips, the user usually wants to see the **end result**, not the beginning. Use `startFrom` to skip to the end:
+
+```tsx
+// Get video length: ffprobe -v error -show_entries stream=nb_frames -select_streams v:0 -of csv=p=0 file.mp4
+const VIDEO_LENGTH = 532; // total frames of the video file
+const B_ROLL_DURATION = toFrame - fromFrame; // how long the overlay is visible
+
+<OffthreadVideo
+  src={staticFile(...)}
+  startFrom={VIDEO_LENGTH - B_ROLL_DURATION} // start near the end
+  style={{ ... }}
+/>
+```
+
+**Why:** `startFrom={VIDEO_LENGTH - B_ROLL_DURATION}` makes the video play its last `B_ROLL_DURATION` frames, so it ends exactly when the overlay ends. Always use `ffprobe` to get the real video length — don't guess.
+
 ---
 
 ## 9. Asset Mapping
