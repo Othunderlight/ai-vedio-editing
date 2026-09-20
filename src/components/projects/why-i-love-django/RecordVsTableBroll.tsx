@@ -1,11 +1,13 @@
 import React from "react";
 import {
   AbsoluteFill,
+  Interactive,
   interpolate,
   spring,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+
 
 const TABLE_ROWS = [
   { changed: false },
@@ -79,10 +81,10 @@ export const RecordVsTableBroll: React.FC = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        gap: 50,
+        gap: 60,
       }}
     >
-      <div
+      <Interactive.Div
         style={{
           position: "absolute",
           top: "50%",
@@ -99,43 +101,45 @@ export const RecordVsTableBroll: React.FC = () => {
       />
 
       {/* Table Level */}
-      <div
+      <Interactive.Div
         style={{
           opacity: leftOpacity,
           transform: `scale(${leftScale})`,
           backgroundColor: "rgba(239, 68, 68, 0.06)",
-          border: "1.5px solid rgba(239, 68, 68, 0.25)",
-          borderRadius: 20,
-          padding: "20px 24px",
-          width: 680,
+          border: "2px solid rgba(239, 68, 68, 0.3)",
+          borderRadius: 24,
+          padding: "28px 36px",
+          width: 820,
           zIndex: 10,
+          translate: "258.9px -302.9px",
+          scale: 1.239
         }}
       >
-        <div
+        <Interactive.Div
           style={{
             display: "flex",
-            gap: 8,
-            paddingBottom: 8,
-            borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
-            marginBottom: 6,
+            gap: 5,
+            paddingBottom: 12,
+            borderBottom: "1.5px solid rgba(255, 255, 255, 0.12)",
+            marginBottom: 8,
           }}
         >
-          {["ID", "Patient", "Status"].map((h) => (
-            <div
+          {["ID", "DRUG"].map((h) => (
+            <Interactive.Div
               key={h}
               style={{
                 flex: 1,
-                fontSize: 11,
+                fontSize: 14,
                 fontWeight: 700,
                 color: "#6B7280",
                 textTransform: "uppercase" as const,
-                letterSpacing: 1,
+                letterSpacing: 1.5,
               }}
             >
               {h}
-            </div>
+            </Interactive.Div>
           ))}
-        </div>
+        </Interactive.Div>
         {TABLE_ROWS.map((row, i) => {
           const rowDelay = 18 + i * 3;
           const rowSpring = spring({
@@ -146,81 +150,73 @@ export const RecordVsTableBroll: React.FC = () => {
           const isFlashing = row.changed && changeFlash > 0;
 
           return (
-            <div
+            <Interactive.Div
               key={i}
               style={{
                 display: "flex",
-                gap: 8,
-                padding: "8px 0",
-                borderBottom: "1px solid rgba(255, 255, 255, 0.05)",
+                gap: 12,
+                padding: "12px 0",
+                borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
                 backgroundColor: isFlashing
                   ? `rgba(239, 68, 68, ${0.25 * changeFlash})`
                   : "transparent",
-                borderRadius: 8,
+                borderRadius: 10,
                 transform: `translateX(${interpolate(rowSpring, [0, 1], [20, 0])}px)`,
                 opacity: interpolate(rowSpring, [0, 1], [0, 1]),
               }}
             >
-              <div style={{ flex: 1, fontSize: 13, fontWeight: 600, color: "#D1D5DB" }}>
+              <Interactive.Div style={{ flex: 1, fontSize: 16, fontWeight: 600, color: "#D1D5DB" }}>
                 #{101 + i}
-              </div>
-              <div style={{ flex: 1, fontSize: 13, fontWeight: 600, color: "#F6F1EB" }}>
+              </Interactive.Div>
+              <Interactive.Div style={{ flex: 1, fontSize: 16, fontWeight: 600, color: "#F6F1EB" }}>
                 Record #{101 + i}
-              </div>
-              <div
-                style={{
-                  flex: 1,
-                  fontSize: 11,
-                  fontWeight: 700,
-                  color: isFlashing ? "#EF4444" : "#22C55E",
-                }}
-              >
-                {isFlashing ? "CHANGED" : "OK"}
-              </div>
-            </div>
+              </Interactive.Div>
+            </Interactive.Div>
           );
         })}
-      </div>
+      </Interactive.Div>
 
       {/* Record Level */}
-      <div
+      <Interactive.Div
         style={{
           opacity: rightOpacity,
           transform: `scale(${rightScale})`,
           backgroundColor: "rgba(34, 197, 94, 0.06)",
-          border: "1.5px solid rgba(34, 197, 94, 0.25)",
-          borderRadius: 20,
-          padding: "20px 24px",
-          width: 680,
+          border: "2px solid rgba(34, 197, 94, 0.3)",
+          borderRadius: 24,
+          padding: "32px 40px",
+          width: 820,
           zIndex: 10,
           display: "flex",
-          gap: 20,
+          gap: 28,
           alignItems: "center",
+          translate: "-425.5px 49.9px",
+          scale: 1.858
         }}
       >
         {/* Single record */}
-        <div
+        <Interactive.Div
           style={{
             flex: 1,
-            backgroundColor: "rgba(255, 255, 255, 0.05)",
-            border: "1px solid rgba(255, 255, 255, 0.1)",
-            borderRadius: 14,
-            padding: "14px 16px",
+            backgroundColor: "rgba(255, 255, 255, 0)",
+            padding: "24px 28px",
+            translate: "334px -89.6px",
+            scale: 0.989
           }}
         >
-          <div style={{ fontSize: 11, fontWeight: 700, color: "#6B7280", marginBottom: 4 }}>
-            PATIENT RECORD
-          </div>
-          <div style={{ fontSize: 18, fontWeight: 800, color: "#F6F1EB", marginBottom: 2 }}>
+          <Interactive.Div style={{ fontSize: 14, fontWeight: 700, color: "#6B7280", marginBottom: 6 }}>
+            DRUG RECORD
+          </Interactive.Div>
+          <Interactive.Div style={{ fontSize: 28, fontWeight: 800, color: "#F6F1EB", marginBottom: 4 }}>
             #102
-          </div>
-          <div style={{ fontSize: 12, fontWeight: 600, color: "#D1D5DB" }}>
-            Omar Gatab
-          </div>
-        </div>
+          </Interactive.Div>
+          <Interactive.Div style={{ fontSize: 18, fontWeight: 600, color: "#D1D5DB" }}>
+            Aspirin
+          </Interactive.Div>
+        </Interactive.Div>
 
         {/* Timeline */}
-        <div
+        <Interactive.Div
           style={{
             display: "flex",
             flexDirection: "column",
@@ -245,74 +241,74 @@ export const RecordVsTableBroll: React.FC = () => {
 
             return (
               <React.Fragment key={i}>
-                <div
+                <Interactive.Div
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    gap: 8,
+                    gap: 12,
                     opacity: interpolate(nodeSpring, [0, 1], [0, 1]),
                     transform: `scale(${interpolate(nodeSpring, [0, 1], [0.7, 1])})`,
                   }}
                 >
-                  <div
+                  <Interactive.Div
                     style={{
-                      width: 12,
-                      height: 12,
+                      width: 16,
+                      height: 16,
                       borderRadius: "50%",
                       backgroundColor: nodeColor,
                       border: isReverted
-                        ? "2px solid #22C55E"
-                        : "2px solid rgba(255,255,255,0.2)",
+                        ? "2.5px solid #22C55E"
+                        : "2.5px solid rgba(255,255,255,0.2)",
                       boxShadow: isReverted
-                        ? "0 0 12px rgba(34, 197, 94, 0.6)"
+                        ? "0 0 16px rgba(34, 197, 94, 0.6)"
                         : "none",
                     }}
                   />
-                  <div>
-                    <div
+                  <Interactive.Div>
+                    <Interactive.Div
                       style={{
-                        fontSize: 12,
+                        fontSize: 16,
                         fontWeight: 700,
                         color: isReverted ? "#22C55E" : "#F6F1EB",
                       }}
                     >
                       Edit #{i + 1}
-                    </div>
-                    <div style={{ fontSize: 10, fontWeight: 600, color: "#6B7280" }}>
+                    </Interactive.Div>
+                    <Interactive.Div style={{ fontSize: 13, fontWeight: 600, color: "#6B7280" }}>
                       {node.time}
-                    </div>
-                  </div>
+                    </Interactive.Div>
+                  </Interactive.Div>
                   {isReverted && (
-                    <div
+                    <Interactive.Div
                       style={{
-                        fontSize: 10,
+                        fontSize: 12,
                         fontWeight: 800,
                         color: "#22C55E",
                         backgroundColor: "rgba(34, 197, 94, 0.15)",
-                        padding: "2px 6px",
+                        padding: "3px 8px",
                         borderRadius: 6,
                         marginLeft: 4,
                       }}
                     >
                       REVERT
-                    </div>
+                    </Interactive.Div>
                   )}
-                </div>
+                </Interactive.Div>
                 {i < TIMELINE_NODES.length - 1 && (
-                  <div
+                  <Interactive.Div
                     style={{
-                      width: 2,
-                      height: 22,
+                      width: 2.5,
+                      height: 28,
                       backgroundColor: "rgba(255, 255, 255, 0.12)",
-                      marginLeft: 5,
+                      marginLeft: 7,
                     }}
                   />
                 )}
               </React.Fragment>
             );
           })}
-        </div>
-      </div>
+        </Interactive.Div>
+      </Interactive.Div>
     </AbsoluteFill>
   );
 };
