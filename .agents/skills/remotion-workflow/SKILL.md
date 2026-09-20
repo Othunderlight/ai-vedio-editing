@@ -223,6 +223,34 @@ const fadeOut = interpolate(wordLocalFrame, [framesPerWord - 5, framesPerWord], 
 
 Style: `fontSize: 76`, `fontWeight: 800`, centered, no text shadow, no scale animation. Keep it simple so the viewer can easily read each word.
 
+### Mode 2b: Kinetic cut (no animation variant)
+For captions where words should appear one after another with **no animation at all** — no fade, no spring, no scale. Just a clean cut from one word to the next. Use a `disableFade` prop:
+
+```tsx
+// In KineticWord component, early return for disableFade:
+if (disableFade) {
+  if (localFrame < 0 || localFrame >= framesPerWord) return null;
+  return (
+    <div style={{
+      position: "absolute",
+      top: "42%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      fontFamily: alexandriaFont,
+      fontSize: 76,
+      fontWeight: 800,
+      color: "#F6F1EB",
+      whiteSpace: "nowrap",
+      direction: "rtl",
+    }}>
+      {word}
+    </div>
+  );
+}
+```
+
+Set `disableFade` based on caption text (e.g., `activeCaption.text.startsWith("والأحلى")`). This keeps the word-by-word positioning but removes all motion.
+
 ### Decision logic (in order):
 
 ```
