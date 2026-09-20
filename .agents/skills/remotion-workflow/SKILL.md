@@ -182,10 +182,12 @@ Captions have **two modes** based on what's visually on screen at that moment:
 ### Mode 1: Bottom pill (default)
 Used when **any video is visible** — face/camera video OR B-roll overlay. The pill sits at the bottom of the screen, semi-transparent, so it doesn't compete with the visual content.
 
+**CRITICAL: Instagram UI safe zone.** Instagram Reels overlays UI elements on the bottom ~300px (username, caption, likes) and right side (heart, comment, share, save icons). Always use `bottom: 340` or higher to keep captions visible above the Instagram frame.
+
 ```tsx
 <div style={{
   position: "absolute",
-  bottom: 140,
+  bottom: 340,
   fontFamily: alexandriaFont,
   fontSize: 40,
   fontWeight: 800,
@@ -196,6 +198,10 @@ Used when **any video is visible** — face/camera video OR B-roll overlay. The 
   backgroundColor: "rgba(0, 0, 0, 0.55)",
   backdropFilter: "blur(8px)",
   textShadow: "0 2px 12px rgba(0, 0, 0, 0.7)",
+  whiteSpace: "normal",
+  width: "90%",        
+  lineHeight: 1.4,
+  textAlign: "center",
 }}>
   {text}
 </div>

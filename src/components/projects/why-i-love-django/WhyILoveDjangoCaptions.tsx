@@ -134,7 +134,7 @@ const BottomCaption: React.FC<{
     <div
       style={{
         position: "absolute",
-        bottom: 140,
+        bottom: 340,
         left: "50%",
         transform: "translateX(-50%)",
         opacity,
@@ -148,7 +148,10 @@ const BottomCaption: React.FC<{
         backgroundColor: "rgba(0, 0, 0, 0.55)",
         backdropFilter: "blur(8px)",
         textShadow: "0 2px 12px rgba(0, 0, 0, 0.7)",
-        whiteSpace: "nowrap",
+        whiteSpace: "normal", // allows text to wrap automatically
+        width: "90%",         // gives the container space to break lines
+        lineHeight: 1.4,
+        textAlign: "center",
       }}
     >
       {text}
