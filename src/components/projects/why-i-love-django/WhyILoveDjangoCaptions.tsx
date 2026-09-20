@@ -159,9 +159,19 @@ const BottomCaption: React.FC<{
   );
 };
 
-export const WhyILoveDjangoCaptions: React.FC = () => {
+interface HideRange {
+  from: number;
+  to: number;
+}
+
+export const WhyILoveDjangoCaptions: React.FC<{
+  hideRanges?: HideRange[];
+}> = ({ hideRanges = [] }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+
+  const isHidden = hideRanges.some((r) => frame >= r.from && frame <= r.to);
+  if (isHidden) return null;
 
   const activeCaption = CAPTIONS.find(
     (c) => frame >= c.from_frame && frame <= c.to_frame

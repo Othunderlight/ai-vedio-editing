@@ -12,6 +12,7 @@ import {
 } from "remotion";
 import { WhyILoveDjangoCaptions } from "./WhyILoveDjangoCaptions";
 import { useVideoDuration } from "./useVideoDuration";
+import { RecordVsTableBroll } from "./RecordVsTableBroll";
 
 const PROJECT = "why-i-love-django";
 const PROJECT_ASSETS = `projects/${PROJECT}/assets`;
@@ -46,6 +47,10 @@ const BRollFadeWrapper: React.FC<{
     from={-1}
   >{children}</AbsoluteFill>;
 };
+
+const HIDE_CAPTIONS_RANGES: { from: number; to: number }[] = [
+  { from: 870, to: 990 },
+];
 
 const BRollOverlay: React.FC<{
   fromFrame: number;
@@ -91,6 +96,10 @@ export const WhyILoveDjango: React.FC = () => {
       />
 
       <Audio src={staticFile(`${PROJECT_RAW}/main.mp3`)} />
+
+      <BRollOverlay fromFrame={870} toFrame={990}>
+        <RecordVsTableBroll />
+      </BRollOverlay>
 
       <BRollOverlay fromFrame={1140} toFrame={1230}>
         <AbsoluteFill
@@ -174,7 +183,7 @@ export const WhyILoveDjango: React.FC = () => {
         </AbsoluteFill>
       </BRollOverlay>
 
-      <WhyILoveDjangoCaptions />
+      <WhyILoveDjangoCaptions hideRanges={HIDE_CAPTIONS_RANGES} />
     </AbsoluteFill>
   );
 };
