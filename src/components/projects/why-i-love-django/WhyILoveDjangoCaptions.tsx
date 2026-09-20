@@ -57,6 +57,8 @@ const B_ROLL_RANGES: BRollRange[] = [
   { from_frame: 1860, to_frame: 2040 },
 ];
 
+const FACE_VIDEO_END = 1646;
+
 function isOverBRoll(frame: number): boolean {
   return B_ROLL_RANGES.some((r) => frame >= r.from_frame && frame <= r.to_frame);
 }
@@ -165,8 +167,9 @@ export const WhyILoveDjangoCaptions: React.FC = () => {
   if (!activeCaption) return null;
 
   const overBRoll = isOverBRoll(frame);
+  const hasFaceVideo = frame < FACE_VIDEO_END;
 
-  if (overBRoll) {
+  if (hasFaceVideo || overBRoll) {
     return (
       <BottomCaption
         text={activeCaption.text}

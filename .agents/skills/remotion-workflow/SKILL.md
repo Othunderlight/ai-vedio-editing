@@ -177,8 +177,11 @@ Then multiply by FPS (usually 30).
 
 ## 7. Caption System
 
-### During video (face/camera visible):
-Show captions at the **bottom** of the screen in a semi-transparent pill:
+Captions have **two modes** based on what's visually on screen at that moment:
+
+### Mode 1: Bottom pill (default)
+Used when **any video is visible** — face/camera video OR B-roll overlay. The pill sits at the bottom of the screen, semi-transparent, so it doesn't compete with the visual content.
+
 ```tsx
 <div style={{
   position: "absolute",
@@ -198,8 +201,8 @@ Show captions at the **bottom** of the screen in a semi-transparent pill:
 </div>
 ```
 
-### CRITICAL: when thier is no vedio and no B-roll, here is WHAT WE NEED TO DO:
-Switch to **kinetic word-by-word** mode — one word at a time, centered, large, on dark background:
+### Mode 2: Kinetic word-by-word (dark background only)
+Used **only when there's no face video AND no B-roll** — pure dark background sections. One word at a time, centered, large, animated.
 
 ```tsx
 // Split caption into words, show each for equal time
@@ -214,10 +217,17 @@ const fadeOut = interpolate(wordLocalFrame, [framesPerWord - 5, framesPerWord], 
 
 Style: `fontSize: 76`, `fontWeight: 800`, centered, no text shadow, no scale animation. Keep it simple so the viewer can easily read each word.
 
-### When to use which:
-- Check if the current caption overlaps with any B-roll range
-- If it does → use bottom caption (the B-roll covers the screen)
-- If it doesn't and we're past the video → use kinetic word-by-word
+### Decision logic (in order):
+
+```
+Is face video visible at this frame?
+├── YES → bottom pill
+└── NO → Is a B-roll active at this frame?
+    ├── YES → bottom pill
+    └── NO → kinetic word-by-word
+```
+
+**Key:** The face video end frame is NOT in the input JSON — you must determine it from the raw video duration (`ffprobe` on the face `.mp4`). Store it as a constant (e.g., `FACE_VIDEO_END`) in the captions component.
 
 ---
 
@@ -303,7 +313,7 @@ For each new project:
 3. [ ] Create project folder: `src/components/projects/<name>/`
 4. [ ] Check asset directory for existing files
 5. [ ] Create each `generate_new` B-roll as a standalone component
-6. [ ] Create captions component (bottom mode + kinetic mode)
+6. [ ] Create captions component (bottom pill for face + B-roll, kinetic for no-video sections)
 7. [ ] Create master composition with `<Sequence>`-wrapped `<BRollOverlay>`
 8. [ ] Add `<Audio>` for voiceover
 9. [ ] Set composition duration to match audio length
