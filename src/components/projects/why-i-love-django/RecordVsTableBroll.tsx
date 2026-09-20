@@ -182,14 +182,14 @@ export const RecordVsTableBroll: React.FC = () => {
           backgroundColor: "rgba(34, 197, 94, 0.06)",
           border: "2px solid rgba(34, 197, 94, 0.3)",
           borderRadius: 24,
-          padding: "32px 40px",
-          width: 820,
+          padding: "20px 28px",
+          width: 480,
           zIndex: 10,
           display: "flex",
           gap: 28,
           alignItems: "center",
-          translate: "-425.5px 49.9px",
-          scale: 1.724
+          translate: "-200.4px 106px",
+          scale: 1.881
         }}
       >
         {/* Single record */}
@@ -198,8 +198,8 @@ export const RecordVsTableBroll: React.FC = () => {
             flex: 1,
             backgroundColor: "rgba(255, 255, 255, 0)",
             padding: "24px 28px",
-            translate: "334px -89.6px",
-            scale: 0.989
+            translate: "81.9px -80.6px",
+            scale: 0.938
           }}
         >
           <Interactive.Div style={{ fontSize: 14, fontWeight: 700, color: "#6B7280", marginBottom: 6 }}>
