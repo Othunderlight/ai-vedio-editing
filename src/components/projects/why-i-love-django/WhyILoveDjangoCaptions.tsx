@@ -68,7 +68,30 @@ const KineticWord: React.FC<{
   localFrame: number;
   framesPerWord: number;
   fps: number;
-}> = ({ word, localFrame, framesPerWord, fps }) => {
+  disableFade?: boolean;
+}> = ({ word, localFrame, framesPerWord, fps, disableFade }) => {
+  if (disableFade) {
+    if (localFrame < 0 || localFrame >= framesPerWord) return null;
+    return (
+      <div
+        style={{
+          position: "absolute",
+          top: "42%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          fontFamily: alexandriaFont,
+          fontSize: 76,
+          fontWeight: 800,
+          color: "#F6F1EB",
+          whiteSpace: "nowrap",
+          direction: "rtl",
+        }}
+      >
+        {word}
+      </div>
+    );
+  }
+
   if (localFrame < -2 || localFrame > framesPerWord + 4) return null;
 
   const entranceSpring = spring({
@@ -197,6 +220,7 @@ export const WhyILoveDjangoCaptions: React.FC<{
   const duration = activeCaption.to_frame - activeCaption.from_frame;
   const framesPerWord = duration / words.length;
   const localFrame = frame - activeCaption.from_frame;
+  const disableFade = activeCaption.text.startsWith("والأحلى");
 
   return (
     <AbsoluteFill>
@@ -211,6 +235,7 @@ export const WhyILoveDjangoCaptions: React.FC<{
             localFrame={wordLocalFrame}
             framesPerWord={framesPerWord}
             fps={fps}
+            disableFade={disableFade}
           />
         );
       })}

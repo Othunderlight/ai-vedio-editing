@@ -52,8 +52,7 @@ const HIDE_CAPTIONS_RANGES: { from: number; to: number }[] = [
   { from: 870, to: 990 },
   { from: 1140, to: 1230 },
   { from: 1290, to: 1620 },
-  { from: 1800, to: 1860 },
-  { from: 1860, to: 2040 },
+
 ];
 
 const BRollOverlay: React.FC<{
