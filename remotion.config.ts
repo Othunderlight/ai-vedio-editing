@@ -9,5 +9,5 @@ import { enableTailwind } from '@remotion/tailwind-v4';
 
 Config.setRspack(true);
 Config.setVideoImageFormat("png");
-Config.setMuted(true);
+Config.setMuted(false);
 Config.overrideBundlerConfig(enableTailwind);

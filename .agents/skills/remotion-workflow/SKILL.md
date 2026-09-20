@@ -9,7 +9,6 @@ This skill guides you to generate production-ready Remotion components and compo
 
 ---
 
-
 ## 1. Input Specifications
 
 The input is provided as a JSON payload with the following schema:
@@ -22,49 +21,299 @@ The input is provided as a JSON payload with the following schema:
     - `"generate_new"`: Requires building a standalone animated Remotion component based on `generation_prompt` and `reason`.
     - `"existing_asset"`: References an asset via `asset_id` (matched in `public/projects/<project-name>/assets/`).
 
-
 ---
 
 ## 2. Discovery & Context Exploration
 
 1. **Inspect Existing B-Rolls & Components:**
-   - Look inside `src/` (e.g., `src/components/general/B-rolls`, `src/components/general/captions`) to match existing file naming conventions, import styles, and animation patterns.
+   - Look inside `src/components/general/B-rolls/`, `src/components/general/captions/`, `src/components/general/final/` to match existing file naming conventions, import styles, and animation patterns.
+   - Read at least 2-3 existing B-roll components to understand spring configs, interpolation patterns, and color schemes.
 2. **Verify Asset Directory Structure:**
    - Specific Assets live in `public/projects/<project-name>/assets/`
    - Raw video/audio live in `public/projects/<project-name>/raw/`
-   - Genral Assets (like logos..) live in `public/assets/`
-3. find on the internet the assets that doensot exists and download them, place them in the relvant genral or project spicific assets 
----
-
-## 3. Workflow & Output Deliverables
-
-First create the project in `src/components/projects/`
-
-### Step A: for every B-Roll, Generate Standalone Components (`generate_new`)
-
-For each B-roll item marked `"generate_new"`:
-1. Create a dedicated React component in the project's B-roll folder (e.g., `src/projects/<project-name>/parts/b-roll/<ComponentName>.tsx`).
-2. Animation Principles: use the same as the other ones already built `src/components/general/B-rolls/`.
-
-
-### Step B: genrate the captions component and animations:
-1. Create a dedicated React component in the project's B-roll folder (e.g., `src/projects/<project-name>/parts/captions/<ComponentName>.tsx`).
-2. Animation Principles: use the same as the other ones already built `src/components/general/captions/`
-3. follow the user instructions about the vedio type for animations, or if he dont need captions or just in a specifc places. if the user didnot specify, you dicde based on the vedio context. (same applies for the VFXs)
-
-### Step C: Build the Master Composition (the main component)
-
-Create or update the sequence coordinator component (e.g., `src/projects/<project-name>/<project-name>.tsx`):
-do it like i did in `src/components/general/final/KineticWithVideo.tsx` and in `src/components/projects/english-tutorial-instegram/NeoBrutalismReel.tsx`
+   - General Assets (like logos) live in `public/assets/`
+3. Find on the internet the assets that do not exist and download them, place them in the relevant general or project-specific assets.
 
 ---
 
-## 4. Aply it in Root:
-in `src/Root.tsx` add a new folder with <Composition> for each B-roll and captions we created, as well as the final ouput.
+## 3. Project Structure
+
+```
+src/components/projects/<project-name>/
+├── <ComponentName>Broll.tsx      # Each generate_new B-roll
+├── <ProjectName>Captions.tsx     # Caption overlays
+└── <ProjectName>.tsx             # Master composition
+```
+
+All project components go in `src/components/projects/<project-name>/`. NOT in `src/projects/`.
+
+---
+
+## 4. CRITICAL: VEDIO B-Roll Overlay Pattern (Sequence Wrapper)
+
+**This is the most important rule. Every B-roll MUST use `<Sequence>` to wrap its content.**
+
+### Why?
+
+`useCurrentFrame()` returns the **global** composition frame. If you render a B-roll at global frame 1320 without `<Sequence>`, then:
+- `OffthreadVideo` receives `frame=1320` and tries to seek to that point instead of playing from the start
+- `spring()` receives `frame=1320` and is already settled — no entrance animation
+- Everything breaks
+
+### The Correct Pattern
+
+```tsx
+const BRollOverlay: React.FC<{
+  fromFrame: number;
+  toFrame: number;
+  children: React.ReactNode;
+}> = ({ fromFrame, toFrame, children }) => {
+  const durationInFrames = toFrame - fromFrame;
+
+  return (
+    <Sequence from={fromFrame} durationInFrames={durationInFrames}>
+      <BRollFadeWrapper durationInFrames={durationInFrames}>
+        {children}
+      </BRollFadeWrapper>
+    </Sequence>
+  );
+};
+
+const BRollFadeWrapper: React.FC<{
+  durationInFrames: number;
+  children: React.ReactNode;
+}> = ({ durationInFrames, children }) => {
+  const frame = useCurrentFrame(); // NOW returns 0 locally!
+
+  const fadeIn = interpolate(frame, [0, 6], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
+  const fadeOut = interpolate(
+    frame,
+    [durationInFrames - 6, durationInFrames],
+    [1, 0],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+  );
+
+  const opacity = Math.min(fadeIn, fadeOut);
+
+  return <AbsoluteFill style={{ opacity }}>{children}</AbsoluteFill>;
+};
+```
+
+### What `<Sequence>` does:
+1. **Remounts children at `from` frame** — `OffthreadVideo` starts fresh from frame 0 of the video file
+2. **Resets `useCurrentFrame()` inside** — children see `frame=0` locally, so springs animate and videos play from the beginning
+3. **Auto-unmounts after duration** — no manual `if (frame < from) return null` needed
+
+### ❌ NEVER DO THIS:
+```tsx
+// WRONG — frame is global, springs settled, video seeks wrong position
+const frame = useCurrentFrame();
+if (frame < fromFrame || frame > toFrame) return null;
+// ... render children with global frame
+```
+
+---
+
+## 5. Video Playback Rules
+
+- **Always use `OffthreadVideo`** (not `<Video>`) for video elements. `<Video>` does not work correctly during rendering.
+- **`OffthreadVideo` only plays when wrapped in `<Sequence>`**. Without `<Sequence>`, it shows only the first frame as a static image.
+- Face/camera videos: use `objectFit: "cover"` to fill the frame.
+- Screen recordings: use `objectFit: "contain"` or wrap in a styled container with border-radius and shadow.
+
+---
+
+## 6. Master Composition Pattern
+
+```tsx
+export const MyProject: React.FC = () => {
+  const frame = useCurrentFrame();
+
+  // Fade out face video when it ends
+  const videoOpacity = interpolate(frame, [VIDEO_END - 10, VIDEO_END], [1, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
+  return (
+    <AbsoluteFill style={{ backgroundColor: "#000000" }}>
+      {/* 1. Base layer: face/camera video */}
+      <OffthreadVideo
+        src={staticFile(`${PROJECT_RAW}/video.mp4`)}
+        style={{ width: "100%", height: "100%", objectFit: "cover", opacity: videoOpacity }}
+      />
+
+      {/* 2. Voiceover audio — duration should match audio length, not video */}
+      <Audio src={staticFile(`${PROJECT_RAW}/audio.mp3`)} />
+
+      {/* 3. B-roll overlays — each wrapped in Sequence via BRollOverlay */}
+      <BRollOverlay fromFrame={0} toFrame={60}>
+        <IntroBroll />
+      </BRollOverlay>
+
+      <BRollOverlay fromFrame={540} toFrame={630}>
+        <CodeOverlay assetFile="code.png" />
+      </BRollOverlay>
+
+      {/* 4. Captions — always on top */}
+      <MyProjectCaptions />
+    </AbsoluteFill>
+  );
+};
+```
+
+### Duration rule:
+Set `durationInFrames` in Root.tsx to match the **audio** length, not the video. Use `ffprobe` to check:
+```bash
+ffprobe -v error -show_entries format=duration -of csv=p=0 file.mp3
+```
+Then multiply by FPS (usually 30).
+
+---
+
+## 7. Caption System
+
+### During video (face/camera visible):
+Show captions at the **bottom** of the screen in a semi-transparent pill:
+```tsx
+<div style={{
+  position: "absolute",
+  bottom: 140,
+  fontFamily: alexandriaFont,
+  fontSize: 40,
+  fontWeight: 800,
+  color: "#FFFFFF",
+  direction: "rtl",
+  padding: "12px 28px",
+  borderRadius: 12,
+  backgroundColor: "rgba(0, 0, 0, 0.55)",
+  backdropFilter: "blur(8px)",
+  textShadow: "0 2px 12px rgba(0, 0, 0, 0.7)",
+}}>
+  {text}
+</div>
+```
+
+### After video ends (no face, no B-roll):
+Switch to **kinetic word-by-word** mode — one word at a time, centered, large, on dark background:
+
+```tsx
+// Split caption into words, show each for equal time
+const words = entry.text.split(" ");
+const framesPerWord = duration / words.length;
+const activeIndex = Math.floor(localFrame / framesPerWord);
+
+// Simple fade in/out per word — keep it clean and readable
+const fadeIn = interpolate(wordLocalFrame, [0, 5], [0, 1], { ... });
+const fadeOut = interpolate(wordLocalFrame, [framesPerWord - 5, framesPerWord], [1, 0], { ... });
+```
+
+Style: `fontSize: 76`, `fontWeight: 800`, centered, no text shadow, no scale animation. Keep it simple so the viewer can easily read each word.
+
+### When to use which:
+- Check if the current caption overlaps with any B-roll range
+- If it does → use bottom caption (the B-roll covers the screen)
+- If it doesn't and we're past the video → use kinetic word-by-word
+
+---
+
+## 8. B-Roll Component Rules
+
+### Graphics scaling for portrait mobile:
+**Scale all B-roll graphics by 1.5x.** Portrait mobile screens need larger visuals. Apply via `transform: scale(${springValue * 1.5})` on the inner content wrapper.
+
+### Generate_new B-rolls (SVG/animated):
+- Use `spring()` for entrance: `{ mass: 0.6, damping: 10, stiffness: 150 }`
+- Use `interpolate()` for exit fade: last 8 frames before `durationInFrames`
+- Pulse/breathe effects: `Math.sin((frame / fps) * Math.PI * 2) * amplitude + base`
+- Dark backgrounds (`#0D1117`) with radial gradient glows matching the accent color
+
+### Existing asset B-rolls (images/video):
+- Wrap in a styled container: `borderRadius: 16`, `boxShadow`, subtle `border`
+- Use `spring()` for scale entrance: `interpolate(pop, [0, 1], [0.92, 1])`
+- Images: use `<Img src={staticFile(...)} />`
+- Videos: use `<OffthreadVideo src={staticFile(...)} />` inside `<Sequence>`
+
+---
+
+## 9. Asset Mapping
+
+The input JSON references `asset_id` values. Map them to actual files:
+
+```tsx
+const PROJECT = "my-project";
+const PROJECT_ASSETS = `projects/${PROJECT}/assets`;
+const PROJECT_RAW = `projects/${PROJECT}/raw`;
+
+// In components:
+staticFile(`${PROJECT_ASSETS}/code.png`)
+staticFile(`${PROJECT_RAW}/video.mp4`)
+staticFile(`${PROJECT_RAW}/audio.mp3`)
+```
+
+Check the asset directory first to verify exact filenames and extensions.
+
+---
+
+## 10. Root.tsx Registration
+
+```tsx
+import { MyProject } from "./components/projects/my-project/MyProject";
+
+// Inside RemotionRoot:
+<Folder name="my-project">
+  <Composition
+    id="MyProject-Portrait"
+    component={MyProject}
+    durationInFrames={2074}  // Match audio length
+    fps={30}
+    width={1080}
+    height={1920}
+  />
+</Folder>
+```
+
+---
+
+## 11. TypeScript & Lint
+
+After creating all files, ALWAYS run:
+```bash
+npx tsc --noEmit 2>&1 | grep "<project-name>"
+npx eslint src/components/projects/<project-name>/
+```
+
+Fix unused imports and variables. Common issues:
+- `Sequence` imported but unused (only needed in master comp)
+- `useCurrentFrame` or `fps` imported but unused in sub-components
+- `Video` imported — should be `OffthreadVideo` instead
+
+---
+
+## 12. Complete Checklist
+
+For each new project:
+
+1. [ ] Read input.json, understand video_format, captions, b_rolls
+2. [ ] Explore existing components for patterns
+3. [ ] Create project folder: `src/components/projects/<name>/`
+4. [ ] Check asset directory for existing files
+5. [ ] Create each `generate_new` B-roll as a standalone component
+6. [ ] Create captions component (bottom mode + kinetic mode)
+7. [ ] Create master composition with `<Sequence>`-wrapped `<BRollOverlay>`
+8. [ ] Add `<Audio>` for voiceover
+9. [ ] Set composition duration to match audio length
+10. [ ] Register in Root.tsx
+11. [ ] Run typecheck and lint
+12. [ ] Verify `<OffthreadVideo>` is used (never `<Video>`)
+13. [ ] Verify all B-rolls are wrapped in `<Sequence>`
+14. [ ] Scale graphics 1.5x for portrait mobile
 
 ---
 
 ## finally:
-use the other avilable remotion skills you have if needed.
-
-```
+use the other available remotion skills you have if needed.
