@@ -12,6 +12,7 @@ import {
 } from "./components/projects/english-tutorial-instegram/PresentSimpleReel";
 import { NeoBrutalismReel } from "./components/projects/english-tutorial-instegram/NeoBrutalismReel";
 import { IpadNotesReel } from "./components/projects/english-tutorial-instegram/IpadNotesReel";
+import { WhyILoveDjango } from "./components/projects/why-i-love-django/WhyILoveDjango";
 
 
 // --- PRESENT SIMPLE 60-SECOND EDUCATIONAL REEL ---
@@ -326,6 +327,17 @@ export const RemotionRoot: React.FC = () => {
             height={1920}
           />
         </Folder>
+      </Folder>
+
+      <Folder name="why-i-love-django">
+        <Composition
+          id="WhyILoveDjango-Portrait"
+          component={WhyILoveDjango}
+          durationInFrames={2074}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
       </Folder>
 
       <Folder name="english-tutorial-instegram">

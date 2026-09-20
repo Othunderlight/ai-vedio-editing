@@ -198,7 +198,7 @@ Show captions at the **bottom** of the screen in a semi-transparent pill:
 </div>
 ```
 
-### After video ends (no face, no B-roll):
+### CRITICAL: when thier is no vedio and no B-roll, here is WHAT WE NEED TO DO:
 Switch to **kinetic word-by-word** mode — one word at a time, centered, large, on dark background:
 
 ```tsx
