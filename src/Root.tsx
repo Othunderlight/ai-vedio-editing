@@ -14,6 +14,7 @@ import { NeoBrutalismReel } from "./components/projects/english-tutorial-instegr
 import { IpadNotesReel } from "./components/projects/english-tutorial-instegram/IpadNotesReel";
 import { WhyILoveDjango } from "./components/projects/why-i-love-django/WhyILoveDjango";
 import { RecordVsTableBroll } from "./components/projects/why-i-love-django/RecordVsTableBroll";
+import { DefusionLLM } from "./components/projects/defusion-llm/DefusionLLM";
 
 
 // --- PRESENT SIMPLE 60-SECOND EDUCATIONAL REEL ---
@@ -343,6 +344,17 @@ export const RemotionRoot: React.FC = () => {
           id="BRoll-RecordVsTable"
           component={RecordVsTableBroll}
           durationInFrames={120}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+      </Folder>
+
+      <Folder name="defusion-llm">
+        <Composition
+          id="DefusionLLM-Portrait"
+          component={DefusionLLM}
+          durationInFrames={2730}
           fps={30}
           width={1080}
           height={1920}
