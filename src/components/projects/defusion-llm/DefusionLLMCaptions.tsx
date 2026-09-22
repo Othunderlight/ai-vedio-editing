@@ -66,11 +66,13 @@ const CAPTIONS: CaptionEntry[] = [
   { from_frame: 2670, to_frame: 2730, text: "أفلس tokens!" },
 ];
 
-// No B-rolls in phase 1 — keep empty so captions default to bottom-pill while face is visible
-// Future: populate with B-roll ranges to keep bottom-pill on B-roll sections after face ends
-const B_ROLL_RANGES: BRollRange[] = [];
+const B_ROLL_RANGES: BRollRange[] = [
+  // Hook 0-60 is full-screen B-roll (off-white), keep pill logic but hook uses special style
+  { from_frame: 0, to_frame: 60 },
+];
 
 const FACE_VIDEO_END = 2719;
+const HOOK_END = 60;
 
 function isOverBRoll(frame: number): boolean {
   return B_ROLL_RANGES.some((r) => frame >= r.from_frame && frame <= r.to_frame);
@@ -141,6 +143,49 @@ const KineticWord: React.FC<{
       }}
     >
       {word}
+    </div>
+  );
+};
+
+const HookCaption: React.FC<{
+  text: string;
+  frame: number;
+  fromFrame: number;
+  toFrame: number;
+}> = ({ text, frame, fromFrame, toFrame }) => {
+  const localFrame = frame - fromFrame;
+  const duration = toFrame - fromFrame;
+
+  const fadeIn = interpolate(localFrame, [0, 5], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const fadeOut = interpolate(localFrame, [duration - 5, duration], [1, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const opacity = Math.min(fadeIn, fadeOut);
+
+  return (
+    <div
+      style={{
+        position: "absolute",
+        top: "58%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        opacity,
+        fontFamily: alexandriaFont,
+        fontSize: 58,
+        fontWeight: 900,
+        color: "#1A1A1A",
+        direction: "rtl",
+        width: "88%",
+        lineHeight: 1.25,
+        textAlign: "center",
+        letterSpacing: -0.5,
+      }}
+    >
+      {text}
     </div>
   );
 };
@@ -217,6 +262,18 @@ export const DefusionLLMCaptions: React.FC<{
 
   const overBRoll = isOverBRoll(frame);
   const hasFaceVideo = frame < FACE_VIDEO_END;
+  const isHook = frame >= 0 && frame < HOOK_END;
+
+  if (isHook) {
+    return (
+      <HookCaption
+        text={activeCaption.text}
+        frame={frame}
+        fromFrame={activeCaption.from_frame}
+        toFrame={activeCaption.to_frame}
+      />
+    );
+  }
 
   if (hasFaceVideo || overBRoll) {
     return (
