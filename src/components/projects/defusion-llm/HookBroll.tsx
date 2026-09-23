@@ -25,11 +25,12 @@ const { fontFamily: arefRuqaaFont } = loadArefRuqaa("normal", {
   weights: ["400", "700"],
 });
 
-// Word-by-word hook captions (30fps) — kinetic style: one word at a time.
+// Word-by-word hook captions (30fps) — hard cuts, no animation.
 // size = base Alexandria; highlight = Aref Ruqaa + green (important word).
 const BASE_SIZE = 58; // same as the old hook caption
 const BIG_SIZE = 84; // bigger than current
-const HIGHLIGHT_SIZE = 96;
+const HIGHLIGHT_SIZE = 120; // "مفتون" — bigger than before
+const HUGE_SIZE = 110; // "بـ Jeff" — bigger than before
 
 interface HookWord {
   from: number;
@@ -39,24 +40,16 @@ interface HookWord {
   highlight?: boolean;
 }
 
-const HOOK_WORDS: HookWord[] = [
-  { from: 0, to: 12, text: "بعرف", size: BIG_SIZE },
-  { from: 12, to: 27, text: "الإنترنت", size: BIG_SIZE },
-  { from: 27, to: 36, text: "كله", size: BASE_SIZE },
-  { from: 36, to: 48, text: "حالياً", size: BASE_SIZE },
-  { from: 48, to: 60, text: "مفتون", highlight: true },
-  { from: 60, to: 72, text: "بـ Jeff", size: BIG_SIZE },
-];
-
-// Words shown in pairs on one line: word 1 appears, word 2 joins it when
+// Explicit groups (not fixed pairs): word 1 appears, word 2 joins it when
 // spoken, then the line clears. Hard cuts — no animations.
-const chunk = <T,>(arr: T[], size: number): T[][] => {
-  const out: T[][] = [];
-  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
-  return out;
-};
-
-const WORD_CHUNKS = chunk(HOOK_WORDS, 2);
+const WORD_CHUNKS: HookWord[][] = [
+  [{ from: 0, to: 12, text: "بعرف", size: BIG_SIZE },
+   { from: 12, to: 27, text: "الإنترنت", size: BIG_SIZE }],
+  [{ from: 27, to: 36, text: "كله", size: BASE_SIZE },
+   { from: 36, to: 48, text: "حالياً", size: BASE_SIZE }],
+  [{ from: 48, to: 60, text: "مفتون", highlight: true }],
+  [{ from: 60, to: 72, text: "بـ Jeff", size: HUGE_SIZE }],
+];
 
 const HookWordCaption: React.FC = () => {
   const frame = useCurrentFrame();
