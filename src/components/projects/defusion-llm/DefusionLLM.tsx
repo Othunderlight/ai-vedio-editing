@@ -9,7 +9,7 @@ import {
   useCurrentFrame,
 } from "remotion";
 import { DefusionLLMCaptions, SPLIT_RANGES } from "./DefusionLLMCaptions";
-import { HookBroll } from "./HookBroll";
+import { HookBroll, HOOK_DURATION } from "./HookBroll";
 import { DiffusionExplainerBroll } from "./DiffusionExplainerBroll";
 import { EditVsDiffusionBroll } from "./EditVsDiffusionBroll";
 import { SpeedGaugeBroll } from "./SpeedGaugeBroll";
@@ -79,7 +79,12 @@ export const DefusionLLM: React.FC = () => {
   const faceShift = 270 * splitT;
 
   return (
-    <AbsoluteFill style={{ backgroundColor: "#000000" }}>
+    <AbsoluteFill
+      style={{
+        backgroundColor: "#000000",
+        scale: 1.017
+      }}
+    >
       {/* 1. Base layer: face/camera video — 1080x1920 portrait, cover */}
       <OffthreadVideo
         src={staticFile(`${PROJECT_RAW}/video_only.mp4`)}
@@ -96,7 +101,7 @@ export const DefusionLLM: React.FC = () => {
       <Audio src={staticFile(`${PROJECT_RAW}/audio_only.mp3`)} />
 
       {/* 3. Hook B-roll — 0-60 (first 2s) off-white duel, cuted.mp4 on top */}
-      <BRollOverlay fromFrame={0} toFrame={60}>
+      <BRollOverlay fromFrame={0} toFrame={HOOK_DURATION}>
         <HookBroll />
       </BRollOverlay>
 
