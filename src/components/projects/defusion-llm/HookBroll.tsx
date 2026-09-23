@@ -2,7 +2,10 @@ import React from "react";
 import { AbsoluteFill, OffthreadVideo, Sequence, staticFile } from "remotion";
 
 export const HOOK_BG = "#F0EEEB";
-export const HOOK_DURATION = 60;
+// Full clip: 2.766s @ 30fps = 83 frames — play all of it (no trim) so the
+// tail can overlap caption 2 (starts f60) for the L/J-cut feel before the
+// 6-frame crossfade into the face.
+export const HOOK_DURATION = 83;
 
 export const HookBroll: React.FC = () => {
   return (
