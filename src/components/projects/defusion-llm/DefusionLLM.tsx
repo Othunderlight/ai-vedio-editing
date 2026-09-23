@@ -64,19 +64,12 @@ export const DefusionLLM: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
-  // Split sections: zoom the face and shift it down so it frames nicely
-  // inside the bottom window below the b-roll panel (transform: scale then translate)
-  const splitT = SPLIT_RANGES.reduce((t, r) => {
-    const enter = interpolate(frame, [r.from_frame - 6, r.from_frame + 12], [0, 1], {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    });
-    const exit = interpolate(frame, [r.to_frame - 12, r.to_frame + 6], [1, 0], {
-      extrapolateLeft: "clamp",
-      extrapolateRight: "clamp",
-    });
-    return Math.max(t, Math.min(enter, exit));
-  }, 0);
+  // Split sections: hard CUT (no zoom animation) — the face snaps to the
+  // reframed framing exactly on the boundary frame, like a jump cut
+  const inSplit = SPLIT_RANGES.some(
+    (r) => frame >= r.from_frame && frame < r.to_frame
+  );
+  const splitT = inSplit ? 1 : 0;
 
   const faceScale = 1 + 0.3 * splitT;
   const faceShift = 270 * splitT;

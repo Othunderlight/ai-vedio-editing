@@ -2,8 +2,10 @@ import { loadFont as loadAlexandria } from "@remotion/google-fonts/Alexandria";
 import React from "react";
 import {
   AbsoluteFill,
+  Img,
   interpolate,
   spring,
+  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
@@ -32,33 +34,12 @@ const hash = (n: number) => {
 
 const smooth = (t: number) => t * t * (3 - 2 * t);
 
-type RGB = [number, number, number];
+const clamp01 = (t: number) => Math.max(0, Math.min(1, t));
 
-const hexToRgb = (hex: string): RGB => {
-  const n = parseInt(hex.slice(1), 16);
-  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
-};
-
-const SKY = ["#7DD3FC", "#38BDF8", "#0EA5E9"];
-const GRASS = "#4ADE80";
-const SUN = "#FDE047";
-
-// Target "generated image": sun top-right, sky rows, grass bottom row
-const targetColor = (r: number, c: number): RGB => {
-  if (r <= 1 && c >= 5) return hexToRgb(SUN);
-  if (r < 3) return hexToRgb(SKY[r]);
-  return hexToRgb(GRASS);
-};
-
-const noiseColor = (i: number, block: number): RGB => {
+const noiseColor = (i: number, block: number): string => {
   const g = Math.floor(35 + hash(i * 13.7 + block * 7.3) * 195);
-  return [g, g, g];
+  return `rgb(${g}, ${g}, ${g})`;
 };
-
-const mixRgb = (a: RGB, b: RGB, t: number): string =>
-  `rgb(${Math.round(a[0] + (b[0] - a[0]) * t)}, ${Math.round(
-    a[1] + (b[1] - a[1]) * t
-  )}, ${Math.round(a[2] + (b[2] - a[2]) * t)})`;
 
 const BAR_WIDTHS = [1, 0.85, 0.62];
 
@@ -160,30 +141,51 @@ export const DiffusionExplainerBroll: React.FC = () => {
               </div>
               <div
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: `repeat(${GRID_COLS}, ${CELL}px)`,
-                  gap: GRID_GAP,
+                  position: "relative",
+                  width: COL_W,
+                  height: 4 * CELL + 3 * GRID_GAP,
                 }}
               >
-                {Array.from({ length: GRID_COLS * 4 }).map((_, i) => {
-                  const r = Math.floor(i / GRID_COLS);
-                  const c = i % GRID_COLS;
-                  return (
-                    <div
-                      key={i}
-                      style={{
-                        width: CELL,
-                        height: CELL,
-                        borderRadius: 8,
-                        backgroundColor: mixRgb(
-                          noiseColor(i, block),
-                          targetColor(r, c),
-                          p
-                        ),
-                      }}
-                    />
-                  );
-                })}
+                {/* Real cat photo — revealed as noise cells dissolve */}
+                <Img
+                  src={staticFile("assets/imgs/general/cat.jpeg")}
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    borderRadius: 8,
+                  }}
+                />
+                {/* Noise cells on top, staggered dissolve */}
+                <div
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    display: "grid",
+                    gridTemplateColumns: `repeat(${GRID_COLS}, ${CELL}px)`,
+                    gap: GRID_GAP,
+                  }}
+                >
+                  {Array.from({ length: GRID_COLS * 4 }).map((_, i) => {
+                    const stagger = hash(i * 3.7) * 0.45;
+                    const cellOpacity =
+                      1 - smooth(clamp01((p - stagger) / 0.55));
+                    return (
+                      <div
+                        key={i}
+                        style={{
+                          width: CELL,
+                          height: CELL,
+                          borderRadius: 8,
+                          backgroundColor: noiseColor(i, block),
+                          opacity: cellOpacity,
+                        }}
+                      />
+                    );
+                  })}
+                </div>
               </div>
               <div
                 style={{
