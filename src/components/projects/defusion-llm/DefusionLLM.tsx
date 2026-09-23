@@ -100,6 +100,36 @@ export const DefusionLLM: React.FC = () => {
       {/* 2. Voiceover audio */}
       <Audio src={staticFile(`${PROJECT_RAW}/audio_only.mp3`)} />
 
+
+      <Sequence from={834}>
+        <Audio
+          src={staticFile("assets/sounds/sfx/waven-sfx/fast-whoosh.wav")}
+          volume={0.15}
+        />
+      </Sequence>
+
+      {/* Major transition: full-screen Mercury 2.5 intro */}
+      <Sequence from={1290}>
+        <Audio
+          src={staticFile("assets/sounds/sfx/waven-sfx/deep-whoosh.wav")}
+          volume={0.15}
+        />
+      </Sequence>
+      {/* Major transition: coding section starts */}
+      <Sequence from={1920}>
+        <Audio
+          src={staticFile("assets/sounds/sfx/waven-sfx/swish-whoosh-large.wav")}
+          volume={0.18}
+        />
+      </Sequence>
+      {/* Clip1 → clip2 cut inside the coding section (local 245) */}
+      <Sequence from={2165}>
+        <Audio
+          src={staticFile("assets/sounds/sfx/waven-sfx/fast-whoosh.wav")}
+          volume={0.15}
+        />
+      </Sequence>
+
       {/* 3. Hook B-roll — 0-60 (first 2s) off-white duel, cuted.mp4 on top */}
       <BRollOverlay fromFrame={0} toFrame={HOOK_DURATION}>
         <HookBroll />
