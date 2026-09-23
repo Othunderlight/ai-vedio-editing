@@ -62,6 +62,7 @@ export const SpeedGaugeBroll: React.FC = () => {
     extrapolateRight: "clamp" as const,
   };
 
+  // Card entrance
   const enter = spring({
     frame,
     fps,
@@ -70,26 +71,31 @@ export const SpeedGaugeBroll: React.FC = () => {
   const cardScale = interpolate(enter, [0, 1], [0.94, 1]);
   const cardOpacity = interpolate(enter, [0, 1], [0, 1]);
 
-  // Needle: holds low for a beat, then the FAST original spring (peaks in
-  // ~17f, settles ~25f) so it reads "speedy" — Math.min(1, ...) clamps the
-  // overshoot so the pointer never leaves the arc (<= 180°).
-  const SWEEP_START = 50;
-  const sweep = Math.min(
-    1,
-    spring({
-      frame: Math.max(0, frame - SWEEP_START),
-      fps,
-      config: { mass: 1, damping: 11, stiffness: 70 },
-    }),
-  );
-  const p = 0.06 + sweep * 0.94;
+  // SWEEP ANIMATION:
+  // Starts around frame 24 so the viewer registers the slow state, then whips fast
+  const SWEEP_START = 24;
+
+  // Authentic spring physics without Math.min clamping so it has the natural needle bounce
+  const sweepSpring = spring({
+    frame: Math.max(0, frame - SWEEP_START),
+    fps,
+    config: { mass: 0.85, damping: 10.5, stiffness: 90 },
+  });
+
+  // Matches video positions:
+  // - Starts at ~0.22 (~40° up-left, matching image 00:00)
+  // - Sweeps to ~0.92 (~165° down-right, matching image 00:01)
+  // - Overshoots to ~0.95 during bounce and settles back to 0.92
+  const START_P = 0.22;
+  const TARGET_P = 0.92;
+  const p = START_P + (TARGET_P - START_P) * sweepSpring;
   const needleDeg = 180 * p;
 
-  // Speed dashes off the right end — in only near max, gentle pulse after
+  // Speed dashes off the east end
   const dashOpacity =
-    interpolate(sweep, [0.8, 1], [0, 1], clamp) *
-    (frame > SWEEP_START + 30
-      ? 0.75 + 0.25 * Math.sin((frame - SWEEP_START - 30) / 8)
+    interpolate(sweepSpring, [0.8, 1], [0, 1], clamp) *
+    (frame > SWEEP_START + 25
+      ? 0.75 + 0.25 * Math.sin((frame - SWEEP_START - 25) / 6)
       : 1);
 
   return (
@@ -135,8 +141,9 @@ export const SpeedGaugeBroll: React.FC = () => {
             >
               <defs>
                 <linearGradient id="gaugeGrad" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stopColor="#A5DFB4" />
-                  <stop offset="100%" stopColor="#35A65F" />
+                  <stop offset="0%" stopColor="#86EFAC" />
+                  <stop offset="50%" stopColor="#34D399" />
+                  <stop offset="100%" stopColor="#15803D" />
                 </linearGradient>
               </defs>
 
@@ -148,7 +155,8 @@ export const SpeedGaugeBroll: React.FC = () => {
                 strokeWidth={TRACK_W}
                 strokeLinecap="round"
               />
-              {/* Green progress, sweeps west -> north -> east */}
+
+              {/* Green progress, locked in real-time with the needle's position & bounce */}
               <path
                 d={ARC_PATH}
                 fill="none"
@@ -156,8 +164,9 @@ export const SpeedGaugeBroll: React.FC = () => {
                 strokeWidth={TRACK_W}
                 strokeLinecap="round"
                 pathLength={100}
-                strokeDasharray={`${p * 100} 100`}
+                strokeDasharray={`${Math.max(0, p * 100)} 100`}
               />
+
               {/* Ticks over the band */}
               {TICKS.map((t, i) => (
                 <line
@@ -173,7 +182,7 @@ export const SpeedGaugeBroll: React.FC = () => {
                 />
               ))}
 
-              {/* Needle — drawn pointing west, rotates clockwise with p */}
+              {/* Needle — sweeps smoothly from 0.22 to 0.92 with organic settle */}
               <line
                 x1={CX}
                 y1={CY}
@@ -187,13 +196,37 @@ export const SpeedGaugeBroll: React.FC = () => {
 
               {/* Speed dashes off the east end */}
               <g opacity={dashOpacity}>
-                <line x1={620} y1={250} x2={684} y2={238} stroke="#37A863" strokeWidth={9} strokeLinecap="round" />
-                <line x1={624} y1={300} x2={694} y2={300} stroke="#37A863" strokeWidth={9} strokeLinecap="round" />
-                <line x1={620} y1={350} x2={684} y2={362} stroke="#37A863" strokeWidth={9} strokeLinecap="round" />
+                <line
+                  x1={620}
+                  y1={250}
+                  x2={684}
+                  y2={238}
+                  stroke="#37A863"
+                  strokeWidth={9}
+                  strokeLinecap="round"
+                />
+                <line
+                  x1={624}
+                  y1={300}
+                  x2={694}
+                  y2={300}
+                  stroke="#37A863"
+                  strokeWidth={9}
+                  strokeLinecap="round"
+                />
+                <line
+                  x1={620}
+                  y1={350}
+                  x2={684}
+                  y2={362}
+                  stroke="#37A863"
+                  strokeWidth={9}
+                  strokeLinecap="round"
+                />
               </g>
             </svg>
 
-            {/* Hub label — Diffusion LLM (needle pivot, on top of needle base) */}
+            {/* Hub label — Diffusion LLM (needle pivot) */}
             <div
               style={{
                 ...labelBox,
@@ -207,6 +240,7 @@ export const SpeedGaugeBroll: React.FC = () => {
                 fontSize: 28,
                 fontWeight: 900,
                 color: "#16181C",
+                zIndex: 10,
               }}
             >
               Diffusion
@@ -214,7 +248,7 @@ export const SpeedGaugeBroll: React.FC = () => {
               LLM
             </div>
 
-            {/* Slow-end marker — Normal LLM (replaces the pink icon) */}
+            {/* Slow-end marker — Normal LLM */}
             <div
               style={{
                 ...labelBox,
@@ -228,6 +262,7 @@ export const SpeedGaugeBroll: React.FC = () => {
                 fontSize: 24,
                 fontWeight: 800,
                 color: "#16181C",
+                zIndex: 5,
               }}
             >
               Normal

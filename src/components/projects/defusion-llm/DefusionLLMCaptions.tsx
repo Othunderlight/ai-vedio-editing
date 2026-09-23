@@ -156,48 +156,7 @@ const KineticWord: React.FC<{
   );
 };
 
-const HookCaption: React.FC<{
-  text: string;
-  frame: number;
-  fromFrame: number;
-  toFrame: number;
-}> = ({ text, frame, fromFrame, toFrame }) => {
-  const localFrame = frame - fromFrame;
-  const duration = toFrame - fromFrame;
-
-  const fadeIn = interpolate(localFrame, [0, 5], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const fadeOut = interpolate(localFrame, [duration - 5, duration], [1, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const opacity = Math.min(fadeIn, fadeOut);
-
-  return (
-    <div
-      style={{
-        position: "absolute",
-        top: "58%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-        opacity,
-        fontFamily: alexandriaFont,
-        fontSize: 58,
-        fontWeight: 900,
-        color: "#1A1A1A",
-        direction: "rtl",
-        width: "88%",
-        lineHeight: 1.25,
-        textAlign: "center",
-        letterSpacing: -0.5,
-      }}
-    >
-      {text}
-    </div>
-  );
-};
+// (Hook captions moved to HookBroll.tsx — word-by-word with big/highlight styles)
 
 // Caption pill sitting on the boundary between top b-roll panel and face video
 const SplitCaption: React.FC<{
@@ -325,14 +284,9 @@ export const DefusionLLMCaptions: React.FC<{
   );
 
   if (isHook) {
-    return (
-      <HookCaption
-        text={activeCaption.text}
-        frame={frame}
-        fromFrame={activeCaption.from_frame}
-        toFrame={activeCaption.to_frame}
-      />
-    );
+    // Hook now renders its own word-by-word captions inside HookBroll
+    // (big / normal / highlighted styles) — don't draw the old full-text one.
+    return null;
   }
 
   if (isSplit) {
