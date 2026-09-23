@@ -11,6 +11,7 @@ import {
 import { DefusionLLMCaptions, SPLIT_RANGES } from "./DefusionLLMCaptions";
 import { HookBroll } from "./HookBroll";
 import { DiffusionExplainerBroll } from "./DiffusionExplainerBroll";
+import { EditVsDiffusionBroll } from "./EditVsDiffusionBroll";
 
 const PROJECT_RAW = "projects/defusion-llm/raw";
 
@@ -101,7 +102,12 @@ export const DefusionLLM: React.FC = () => {
         <DiffusionExplainerBroll />
       </BRollOverlay>
 
-      {/* 5. Captions — hook / split-boundary / pill */}
+      {/* 5. Can't-edit graphic 720-840, dllm.mkv clip 840-1050 (0:35) */}
+      <BRollOverlay fromFrame={720} toFrame={1050}>
+        <EditVsDiffusionBroll />
+      </BRollOverlay>
+
+      {/* 6. Captions — hook / split-boundary / pill */}
       <DefusionLLMCaptions />
     </AbsoluteFill>
   );

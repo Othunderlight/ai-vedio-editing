@@ -18,9 +18,9 @@ const { fontFamily: alexandriaFont } = loadAlexandria("normal", {
 
 // Split layout: off-white panel on top (0..PANEL_H), face video shows below
 export const PANEL_H = 860;
-const CARD_W = 940;
-const CARD_H = 600;
-const CARD_TOP = 110;
+export const CARD_W = 940;
+export const CARD_H = 600;
+export const CARD_TOP = 110;
 
 const CELL = 60;
 const GRID_GAP = 6;

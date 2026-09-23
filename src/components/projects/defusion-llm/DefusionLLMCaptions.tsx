@@ -73,13 +73,16 @@ const B_ROLL_RANGES: BRollRange[] = [
 ];
 
 // Split-layout sections: b-roll card on top, face below, caption pill on the boundary
-export const SPLIT_RANGES: BRollRange[] = [{ from_frame: 270, to_frame: 570 }];
+export const SPLIT_RANGES: BRollRange[] = [
+  { from_frame: 270, to_frame: 570 },
+  { from_frame: 720, to_frame: 1050 },
+];
 
 const FACE_VIDEO_END = 2719;
 const HOOK_END = 60;
 
 function isOverBRoll(frame: number): boolean {
-  return B_ROLL_RANGES.some((r) => frame >= r.from_frame && frame <= r.to_frame);
+  return B_ROLL_RANGES.some((r) => frame >= r.from_frame && frame < r.to_frame);
 }
 
 const KineticWord: React.FC<{
@@ -307,7 +310,7 @@ export const DefusionLLMCaptions: React.FC<{
   if (isHidden) return null;
 
   const activeCaption = CAPTIONS.find(
-    (c) => frame >= c.from_frame && frame <= c.to_frame
+    (c) => frame >= c.from_frame && frame < c.to_frame
   );
 
   if (!activeCaption) return null;
@@ -316,7 +319,7 @@ export const DefusionLLMCaptions: React.FC<{
   const hasFaceVideo = frame < FACE_VIDEO_END;
   const isHook = frame >= 0 && frame < HOOK_END;
   const isSplit = SPLIT_RANGES.some(
-    (r) => frame >= r.from_frame && frame <= r.to_frame
+    (r) => frame >= r.from_frame && frame < r.to_frame
   );
 
   if (isHook) {
