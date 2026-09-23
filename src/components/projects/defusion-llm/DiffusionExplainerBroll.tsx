@@ -55,15 +55,9 @@ export const DiffusionExplainerBroll: React.FC = () => {
   const cardScale = interpolate(enter, [0, 1], [0.94, 1]);
   const cardOpacity = interpolate(enter, [0, 1], [0, 1]);
 
-  // 90-frame loop: noise -> resolve -> hold -> re-noise
-  const phase = (frame % 90) / 90;
-  const raw =
-    phase < 0.5
-      ? phase / 0.5
-      : phase < 0.88
-      ? 1
-      : 1 - (phase - 0.88) / 0.12;
-  const p = smooth(Math.max(0, Math.min(1, raw)));
+  // Noise runs until 0:17 (local frame 240 = global 510), then cat/text fully shown.
+  // Reveal is done by opacity crossfade — img fades in, noise fades out.
+  const p = smooth(clamp01(frame / 240));
   const block = Math.floor(frame / 4);
 
   return (
@@ -146,7 +140,7 @@ export const DiffusionExplainerBroll: React.FC = () => {
                   height: 4 * CELL + 3 * GRID_GAP,
                 }}
               >
-                {/* Real cat photo — revealed as noise cells dissolve */}
+                {/* Real cat photo — fades in (opacity 0 → 1) as noise fades out */}
                 <Img
                   src={staticFile("assets/imgs/general/cat.jpeg")}
                   style={{
@@ -156,9 +150,10 @@ export const DiffusionExplainerBroll: React.FC = () => {
                     height: "100%",
                     objectFit: "cover",
                     borderRadius: 8,
+                    opacity: p,
                   }}
                 />
-                {/* Noise cells on top, staggered dissolve */}
+                {/* Noise layer — fades out (opacity 1 → 0), not stacked on the img */}
                 <div
                   style={{
                     position: "absolute",
@@ -166,25 +161,20 @@ export const DiffusionExplainerBroll: React.FC = () => {
                     display: "grid",
                     gridTemplateColumns: `repeat(${GRID_COLS}, ${CELL}px)`,
                     gap: GRID_GAP,
+                    opacity: 1 - p,
                   }}
                 >
-                  {Array.from({ length: GRID_COLS * 4 }).map((_, i) => {
-                    const stagger = hash(i * 3.7) * 0.45;
-                    const cellOpacity =
-                      1 - smooth(clamp01((p - stagger) / 0.55));
-                    return (
-                      <div
-                        key={i}
-                        style={{
-                          width: CELL,
-                          height: CELL,
-                          borderRadius: 8,
-                          backgroundColor: noiseColor(i, block),
-                          opacity: cellOpacity,
-                        }}
-                      />
-                    );
-                  })}
+                  {Array.from({ length: GRID_COLS * 4 }).map((_, i) => (
+                    <div
+                      key={i}
+                      style={{
+                        width: CELL,
+                        height: CELL,
+                        borderRadius: 8,
+                        backgroundColor: noiseColor(i, block),
+                      }}
+                    />
+                  ))}
                 </div>
               </div>
               <div
