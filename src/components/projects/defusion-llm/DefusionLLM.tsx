@@ -13,6 +13,7 @@ import { HookBroll } from "./HookBroll";
 import { DiffusionExplainerBroll } from "./DiffusionExplainerBroll";
 import { EditVsDiffusionBroll } from "./EditVsDiffusionBroll";
 import { SpeedGaugeBroll } from "./SpeedGaugeBroll";
+import { MercuryIntroBroll } from "./MercuryIntroBroll";
 
 const PROJECT_RAW = "projects/defusion-llm/raw";
 
@@ -113,7 +114,12 @@ export const DefusionLLM: React.FC = () => {
         <SpeedGaugeBroll />
       </BRollOverlay>
 
-      {/* 7. Captions — hook / split-boundary / pill */}
+      {/* 7. Mercury 2.5 intro — full-screen 1290-1830 (0:42-1:01), bottom scrim */}
+      <BRollOverlay fromFrame={1290} toFrame={1830}>
+        <MercuryIntroBroll />
+      </BRollOverlay>
+
+      {/* 8. Captions — hook / split-boundary / pill */}
       <DefusionLLMCaptions />
     </AbsoluteFill>
   );
