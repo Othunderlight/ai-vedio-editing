@@ -18,9 +18,6 @@ const { fontFamily: alexandriaFont } = loadAlexandria("normal", {
   weights: ["400", "600", "700", "800", "900"],
 });
 
-const MONO =
-  "ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace";
-
 // Normal LLM chat output: two claims, then the model corrects itself
 const LINES = [
   "To find player velocity, we divide current_position by delta_time.",
@@ -37,12 +34,13 @@ const LINE_RANGES: [number, number][] = [
 ];
 const FIX_LINE_COLOR = "#E45A35";
 
-// Phase A: 0..120 (global 720-840), Phase B: 120..330 (global 840-1050 = 0:35)
-const PHASE_B_START = 120;
-const PHASE_B_DURATION = 210;
+// Phase A: 0..120 (global 720-840), Phase B: 114..330 (global 834-1050 = 0:35)
+// Phase B starts slightly early so its 6f fade-in crossfades with Phase A's fade-out
+const PHASE_B_START = 114;
+const PHASE_B_DURATION = 216;
 
-// dllm.mkv trimmed from 0:17 (frame 510 @ 30fps), 7s -> ends 0:24 (inside 0:16-0:27)
-const DLLM_START_FROM = 510;
+// dllm.mkv trimmed from 0:18 (frame 540 @ 30fps), 216f = 7.2s -> ends ~0:25 (inside 0:16-0:27)
+const DLLM_START_FROM = 540;
 
 const cardBox: React.CSSProperties = {
   position: "absolute",
@@ -70,20 +68,16 @@ const DiffusionClip: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
+  // Full-bleed: video fills the entire top panel, no card/container
   return (
     <div
       style={{
         position: "absolute",
-        top: CARD_TOP,
-        left: "50%",
-        transform: "translateX(-50%)",
-        width: CARD_W,
-        height: CARD_H,
-        borderRadius: 30,
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: PANEL_H,
         overflow: "hidden",
-        border: "1px solid rgba(0, 0, 0, 0.05)",
-        boxShadow: "0 24px 60px rgba(0, 0, 0, 0.12)",
-        backgroundColor: "#0B0D10",
         opacity,
       }}
     >
@@ -301,6 +295,10 @@ export const EditVsDiffusionBroll: React.FC = () => {
         <Sequence
           from={PHASE_B_START}
           durationInFrames={PHASE_B_DURATION}
+          style={{
+            scale: 1.153,
+            translate: "0px -60.9px"
+          }}
         >
           <DiffusionClip />
         </Sequence>
