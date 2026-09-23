@@ -143,8 +143,6 @@ export const IpadNotesReel: React.FC<IpadNotesReelProps> = ({
   const { fps, durationInFrames } = useVideoConfig();
 
   const progressPercent = Math.min(100, (frame / durationInFrames) * 100);
-  const seconds = Math.floor(frame / fps);
-  const timeCode = `00:${seconds.toString().padStart(2, "0")}`;
 
   const activeCaption = VOICEOVER_CAPTIONS.find(
     (c) => frame >= c.fromFrame && frame < c.toFrame

@@ -151,8 +151,6 @@ export const NeoBrutalismReel: React.FC<NeoBrutalismReelProps> = ({
   const { fps, durationInFrames } = useVideoConfig();
 
   const progressPercent = Math.min(100, (frame / durationInFrames) * 100);
-  const seconds = Math.floor(frame / fps);
-  const timeCode = `00:${seconds.toString().padStart(2, "0")}`;
 
   // Current active caption
   const activeCaption = VOICEOVER_CAPTIONS.find(

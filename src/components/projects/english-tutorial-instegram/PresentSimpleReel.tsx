@@ -34,12 +34,12 @@ export interface PresentSimpleReelProps {
 interface CaptionSegment {
   fromFrame: number;
   toFrame: number;
-  speaker: string;
+  speaker?: string;
   text: string;
   highlightedWord?: string;
 }
 
-const VOICEOVER_CAPTIONS = [
+const VOICEOVER_CAPTIONS: CaptionSegment[] = [
 
   // 00:05 – 00:10
   {
@@ -138,36 +138,6 @@ export const PresentSimpleReel: React.FC<PresentSimpleReelProps> = ({
 
   // Progress percentage (0 - 100%)
   const overallProgress = Math.min(100, (frame / durationInFrames) * 100);
-
-  // Time display (MM:SS)
-  const currentSeconds = Math.floor(frame / fps);
-  const formattedTime = `00:${currentSeconds.toString().padStart(2, "0")}`;
-
-  // Current Scene Index (1 to 8)
-  let currentSceneIndex = 1;
-  let currentSceneName = "Hook";
-  if (frame >= 150 && frame < 660) {
-    currentSceneIndex = 2;
-    currentSceneName = "(+) Positive Form";
-  } else if (frame >= 660 && frame < 960) {
-    currentSceneIndex = 3;
-    currentSceneName = "(– / ?) Neg & Questions";
-  } else if (frame >= 960 && frame < 1380) {
-    currentSceneIndex = 4;
-    currentSceneName = "1. Habits & Routine";
-  } else if (frame >= 1380 && frame < 1560) {
-    currentSceneIndex = 5;
-    currentSceneName = "2. Facts & Truths";
-  } else if (frame >= 1560 && frame < 1770) {
-    currentSceneIndex = 6;
-    currentSceneName = "3. Instructions";
-  } else if (frame >= 1770 && frame < 1950) {
-    currentSceneIndex = 7;
-    currentSceneName = "4. Stories & Films";
-  } else if (frame >= 1950) {
-    currentSceneIndex = 8;
-    currentSceneName = "Call To Action";
-  }
 
   // Find active caption
   const activeCaption = VOICEOVER_CAPTIONS.find(
@@ -2587,7 +2557,6 @@ export const SceneCallToAction: React.FC<{
   });
 
   const isFollowClicked = frame >= 45;
-  const pulseRocket = Math.sin(frame / 4) * 10;
 
   return (
     <AbsoluteFill

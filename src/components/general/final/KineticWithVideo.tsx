@@ -6,7 +6,6 @@ import {
   spring,
   useCurrentFrame,
   useVideoConfig,
-  Video,
   OffthreadVideo,
   staticFile,
 } from "remotion";

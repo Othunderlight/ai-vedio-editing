@@ -1,21 +1,41 @@
 import "./index.css";
 import { Composition, Folder } from "remotion";
 import { ChapterTransitionProps, Overlay } from "./Overlay";
+import { BRollPriceComparison } from "./components/general/B-rolls/BRollPriceComparison";
+import { BRollSingleCard } from "./components/general/B-rolls/BRollSingleCard";
 import { FocusedReelShot } from "./components/general/B-rolls/FocusedAnalysisCard";
 import { BRollApiDocumentation } from "./components/general/B-rolls/BRollApiDocumentation";
+import { ArtificialAnalysisCard } from "./components/general/B-rolls/ArtificialAnalysisCard";
 import { KineticTypography } from "./components/general/captions/KineticTypography";
 import { KineticWithVideo } from "./components/general/final/KineticWithVideo";
-
+import { DefusionLLM } from "./components/projects/defusion-llm/DefusionLLM";
+import { WhyILoveDjango } from "./components/projects/why-i-love-django/WhyILoveDjango";
+import { RecordVsTableBroll } from "./components/projects/why-i-love-django/RecordVsTableBroll";
 import {
   PresentSimpleReel,
   PresentSimpleReelProps,
+  StandaloneHookScene,
+  StandalonePositiveScene,
+  StandaloneNegativeScene,
+  StandaloneHabitsScene,
+  StandaloneFactsScene,
+  StandaloneInstructionsScene,
+  StandaloneStoriesScene,
+  StandaloneCTAScene,
 } from "./components/projects/english-tutorial-instegram/PresentSimpleReel";
 import { NeoBrutalismReel } from "./components/projects/english-tutorial-instegram/NeoBrutalismReel";
 import { IpadNotesReel } from "./components/projects/english-tutorial-instegram/IpadNotesReel";
-import { WhyILoveDjango } from "./components/projects/why-i-love-django/WhyILoveDjango";
-import { RecordVsTableBroll } from "./components/projects/why-i-love-django/RecordVsTableBroll";
-import { DefusionLLM } from "./components/projects/defusion-llm/DefusionLLM";
-
+import {
+  PresentContinuousNeoBrutalismReel,
+  PCScene1Hook,
+  PCScene2Structure,
+  PCScene3HappeningNow,
+  PCScene4Temporary,
+  PCScene5Trends,
+  PCScene6AnnoyingHabits,
+  PCScene7StateVerbsWarning,
+  PCScene8CTA,
+} from "./components/projects/english-tutorial-instegram/PresentContinuousNeoBrutalismReel";
 
 // --- PRESENT SIMPLE 60-SECOND EDUCATIONAL REEL ---
 const presentSimpleReelDefaultProps: PresentSimpleReelProps = {
@@ -205,144 +225,311 @@ const reelClaude02CleanProps: ChapterTransitionProps = {
 export const RemotionRoot: React.FC = () => {
   return (
     <>
-      <Folder name="general">
-        <Folder name="overlay-part1-2-3">
-          <Folder name="shorts-16-9">
-            <Composition
-              id="Reel-Ch1-NoTracker"
-              component={Overlay}
-              durationInFrames={90}
-              fps={30}
-              width={1080}
-              height={1920}
-              defaultProps={reelClaude01CleanProps}
-            />
-            <Composition
-              id="Reel-Ch2-NoTracker"
-              component={Overlay}
-              durationInFrames={90}
-              fps={30}
-              width={1080}
-              height={1920}
-              defaultProps={reelClaude02CleanProps}
-            />
-          </Folder>
+      {/* 1. SECTION TRANSITION & REEL OVERLAYS */}
+      <Folder name="section-transition">
+        <Composition
+          id="Reel-Claude-Chapter-01"
+          component={Overlay}
+          durationInFrames={90}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={reelClaude01Props}
+        />
+        <Composition
+          id="Reel-Claude-Chapter-02"
+          component={Overlay}
+          durationInFrames={90}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={reelClaude02Props}
+        />
 
-          <Folder name="youtube">
-            <Composition
-              id="Claude-Chapter-01"
-              component={Overlay}
-              durationInFrames={90}
-              fps={30}
-              width={1920}
-              height={1080}
-              defaultProps={claudeChapter01Props}
-            />
-            <Composition
-              id="Claude-Chapter-02"
-              component={Overlay}
-              durationInFrames={90}
-              fps={30}
-              width={1920}
-              height={1080}
-              defaultProps={claudeChapter02Props}
-            />
-            <Composition
-              id="ChapterTransition"
-              component={Overlay}
-              durationInFrames={90}
-              fps={30}
-              width={1920}
-              height={1080}
-              defaultProps={defaultChapter05Props}
-            />
-          </Folder>
-        </Folder>
-
-        <Folder name="B-rolls">
-          <Folder name="B-Roll-Pricing-Analysis">
-            <Composition
-              id="Reel-Shot-Intelligence-Only"
-              component={FocusedReelShot}
-              durationInFrames={120}
-              fps={30}
-              width={1080}
-              height={1920}
-              defaultProps={{
-                type: "intelligence",
-              }}
-            />
-            <Composition
-              id="Reel-Shot-Cost-Only"
-              component={FocusedReelShot}
-              durationInFrames={120}
-              fps={30}
-              width={1080}
-              height={1920}
-              defaultProps={{
-                type: "cost",
-              }}
-            />
-          </Folder>
-
-          <Folder name="B-Roll-API-Documentation">
-            <Composition
-              id="Reel-BRoll-ApiDocumentation"
-              component={BRollApiDocumentation}
-              durationInFrames={120}
-              fps={30}
-              width={1080}
-              height={1920}
-              defaultProps={{
-                scrollSpeed: 1.6,
-              }}
-            />
-            <Composition
-              id="BRoll-ApiDocumentation-16x9"
-              component={BRollApiDocumentation}
-              durationInFrames={120}
-              fps={30}
-              width={1920}
-              height={1080}
-              defaultProps={{
-                scrollSpeed: 1.6,
-              }}
-            />
-          </Folder>
-        </Folder>
-
-        <Folder name="captions">
+        <Folder name="Instagram-Reels-Variations">
           <Composition
-            id="Kinetic-Typography"
-            component={KineticTypography}
-            durationInFrames={195}
+            id="Reel-Ch2-SingleLine"
+            component={Overlay}
+            durationInFrames={90}
             fps={30}
             width={1080}
             height={1920}
+            defaultProps={reelClaude02SingleLineProps}
           />
           <Composition
-            id="Kinetic-With-Video"
-            component={KineticWithVideo}
-            durationInFrames={195}
+            id="Reel-Ch1-NoTracker"
+            component={Overlay}
+            durationInFrames={90}
             fps={30}
             width={1080}
             height={1920}
+            defaultProps={reelClaude01CleanProps}
+          />
+          <Composition
+            id="Reel-Ch2-NoTracker"
+            component={Overlay}
+            durationInFrames={90}
+            fps={30}
+            width={1080}
+            height={1920}
+            defaultProps={reelClaude02CleanProps}
+          />
+        </Folder>
+
+        <Composition
+          id="Claude-Chapter-01"
+          component={Overlay}
+          durationInFrames={90}
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={claudeChapter01Props}
+        />
+        <Composition
+          id="Claude-Chapter-02"
+          component={Overlay}
+          durationInFrames={90}
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={claudeChapter02Props}
+        />
+
+        <Folder name="Chapter-01-Alternatives">
+          <Composition
+            id="Ch1-Alt-TokenMaxing"
+            component={Overlay}
+            durationInFrames={90}
+            fps={30}
+            width={1920}
+            height={1080}
+            defaultProps={altTokenMaxingProps}
+          />
+          <Composition
+            id="Ch1-Alt-BudgetShock"
+            component={Overlay}
+            durationInFrames={90}
+            fps={30}
+            width={1920}
+            height={1080}
+            defaultProps={altBudgetShockProps}
+          />
+          <Composition
+            id="Ch1-Alt-LimitOut"
+            component={Overlay}
+            durationInFrames={90}
+            fps={30}
+            width={1920}
+            height={1080}
+            defaultProps={altLimitOutProps}
+          />
+          <Composition
+            id="Ch1-Alt-PocketBurn"
+            component={Overlay}
+            durationInFrames={90}
+            fps={30}
+            width={1920}
+            height={1080}
+            defaultProps={altPocketBurnProps}
+          />
+        </Folder>
+
+        <Composition
+          id="ChapterTransition"
+          component={Overlay}
+          durationInFrames={90}
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={defaultChapter05Props}
+        />
+        <Composition
+          id="Overlay"
+          component={Overlay}
+          durationInFrames={90}
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={defaultChapter05Props}
+        />
+        <Folder name="Examples">
+          <Composition
+            id="Chapter-01-Intro"
+            component={Overlay}
+            durationInFrames={90}
+            fps={30}
+            width={1920}
+            height={1080}
+            defaultProps={chapter01Props}
+          />
+          <Composition
+            id="Chapter-10-Deploy"
+            component={Overlay}
+            durationInFrames={90}
+            fps={30}
+            width={1920}
+            height={1080}
+            defaultProps={chapter10Props}
           />
         </Folder>
       </Folder>
 
-      <Folder name="why-i-love-django">
+      {/* 2. GENERAL B-ROLL GRAPHICS */}
+      <Folder name="B-Roll-Pricing-Analysis">
         <Composition
-          id="WhyILoveDjango-Portrait"
-          component={WhyILoveDjango}
-          durationInFrames={2074}
+          id="Reel-Shot-Intelligence-Only"
+          component={FocusedReelShot}
+          durationInFrames={120}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            type: "intelligence",
+          }}
+        />
+
+        <Composition
+          id="Reel-Shot-Cost-Only"
+          component={FocusedReelShot}
+          durationInFrames={120}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            type: "cost",
+          }}
+        />
+
+        <Composition
+          id="Reel-BRoll-CostVsIntelligence"
+          component={BRollPriceComparison}
+          durationInFrames={150}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            titleArabicLine1: "كلود 7 دولار تقريباً عالتاسك...",
+            titleArabicLine2: "ديب سيك 0.67 دولار فقط!",
+            claudePriceText: "$7.63",
+            deepseekPriceText: "$0.67",
+            multiplierText: "أرخص بأكثر من 11 ضعف!",
+            highlightComparison: true,
+          }}
+        />
+
+        <Composition
+          id="Reel-BRoll-CostOnly"
+          component={BRollSingleCard}
+          durationInFrames={120}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            type: "cost",
+            arabicHeadline: "السعر: كلود 7$ عالتاسك... ديب سيك 0.67$!",
+            arabicSubheadline: "وفر أكثر من 11 ضعف التكلفة لنفس النتيجة بالضبط 💸",
+            highlightComparison: true,
+          }}
+        />
+
+        <Composition
+          id="Reel-BRoll-IntelligenceOnly"
+          component={BRollSingleCard}
+          durationInFrames={120}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            type: "intelligence",
+            arabicHeadline: "مقارنة الذكاء: ديب سيك وكلود بنفس الكفاءة!",
+            arabicSubheadline: "أداء شبه متطابق في المهام متوسطة الصعوبة 🧠",
+            highlightComparison: true,
+          }}
+        />
+
+        <Composition
+          id="ArtificialAnalysisCard"
+          component={ArtificialAnalysisCard}
+          durationInFrames={120}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            type: "intelligence",
+          }}
+        />
+
+        <Composition
+          id="BRoll-CostVsIntelligence-16x9"
+          component={BRollPriceComparison}
+          durationInFrames={150}
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={{
+            titleArabicLine1: "كلود سبعة دولار تقريباً عالتاسك...",
+            titleArabicLine2: "ديب سيك 0.67 فقط!",
+            claudePriceText: "$7.63",
+            deepseekPriceText: "$0.67",
+            multiplierText: "أرخص بأكثر من 11 ضعف!",
+            highlightComparison: true,
+          }}
+        />
+        <Composition
+          id="BRoll-CostOnly-16x9"
+          component={BRollSingleCard}
+          durationInFrames={120}
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={{
+            type: "cost",
+            arabicHeadline: "السعر: كلود 7$ عالتاسك... ديب سيك 0.67$!",
+            arabicSubheadline: "فرق التكلفة أكثر من 11 ضعف لكل مهمة 💸",
+            highlightComparison: true,
+          }}
+        />
+      </Folder>
+
+      {/* 3. B-ROLL API DOCUMENTATION */}
+      <Folder name="B-Roll-API-Documentation">
+        <Composition
+          id="Reel-BRoll-ApiDocumentation"
+          component={BRollApiDocumentation}
+          durationInFrames={120}
+          fps={30}
+          width={1080}
+          height={1920}
+          defaultProps={{
+            scrollSpeed: 1.6,
+          }}
+        />
+        <Composition
+          id="BRoll-ApiDocumentation-16x9"
+          component={BRollApiDocumentation}
+          durationInFrames={120}
+          fps={30}
+          width={1920}
+          height={1080}
+          defaultProps={{
+            scrollSpeed: 1.6,
+          }}
+        />
+      </Folder>
+
+      {/* 4. GENERAL CAPTIONS & FINAL COMPOSITIONS */}
+      <Folder name="general-captions-and-final">
+        <Composition
+          id="General-KineticTypography"
+          component={KineticTypography}
+          durationInFrames={120}
           fps={30}
           width={1080}
           height={1920}
         />
         <Composition
-          id="BRoll-RecordVsTable"
-          component={RecordVsTableBroll}
+          id="General-KineticWithVideo"
+          component={KineticWithVideo}
           durationInFrames={120}
           fps={30}
           width={1080}
@@ -350,51 +537,233 @@ export const RemotionRoot: React.FC = () => {
         />
       </Folder>
 
-      <Folder name="defusion-llm">
+      {/* 5. PROJECT: DEFUSION LLM */}
+      <Folder name="project-defusion-llm">
         <Composition
-          id="DefusionLLM-Portrait"
+          id="DefusionLLM-Main"
           component={DefusionLLM}
-          durationInFrames={2730}
+          durationInFrames={2719}
           fps={30}
           width={1080}
           height={1920}
         />
       </Folder>
 
-      <Folder name="english-tutorial-instegram">
+      {/* 6. PROJECT: WHY I LOVE DJANGO */}
+      <Folder name="project-why-i-love-django">
+        <Composition
+          id="WhyILoveDjango-Main"
+          component={WhyILoveDjango}
+          durationInFrames={1646}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+        <Composition
+          id="WhyILoveDjango-RecordVsTable"
+          component={RecordVsTableBroll}
+          durationInFrames={150}
+          fps={30}
+          width={1080}
+          height={1920}
+        />
+      </Folder>
+
+      {/* 7. PROJECT: ENGLISH TUTORIAL INSTAGRAM */}
+      <Folder name="project-english-tutorial-instagram">
         <Composition
           id="Reel-Present-Simple-60s-Master"
           component={PresentSimpleReel}
-          durationInFrames={2190}
+          durationInFrames={1800}
           fps={30}
           width={1080}
           height={1920}
           defaultProps={presentSimpleReelDefaultProps}
         />
-        <Composition
-          id="Variant-1-Neo-Brutalism"
-          component={NeoBrutalismReel}
-          durationInFrames={2190}
-          fps={30}
-          width={1080}
-          height={1920}
-          defaultProps={{
-            backgroundColor: "#FFF9D2",
-            showCaptions: true,
-          }}
-        />
-        <Composition
-          id="Variant-2-Modern-iPad-Notes"
-          component={IpadNotesReel}
-          durationInFrames={2190}
-          fps={30}
-          width={1080}
-          height={1920}
-          defaultProps={{
-            paperColor: "#FAF8F5",
-            showCaptions: true,
-          }}
-        />
+
+        <Folder name="Scenes-Breakdown">
+          <Composition
+            id="Scene-01-Title-Hook"
+            component={StandaloneHookScene}
+            durationInFrames={150}
+            fps={30}
+            width={1080}
+            height={1920}
+            defaultProps={{ accentColor: "#F59E0B" }}
+          />
+          <Composition
+            id="Scene-02-Positive-Structure"
+            component={StandalonePositiveScene}
+            durationInFrames={390}
+            fps={30}
+            width={1080}
+            height={1920}
+            defaultProps={{ accentColor: "#F59E0B" }}
+          />
+          <Composition
+            id="Scene-03-Negative-Questions"
+            component={StandaloneNegativeScene}
+            durationInFrames={240}
+            fps={30}
+            width={1080}
+            height={1920}
+            defaultProps={{ accentColor: "#F59E0B" }}
+          />
+          <Composition
+            id="Scene-04-Habits-Timeline"
+            component={StandaloneHabitsScene}
+            durationInFrames={360}
+            fps={30}
+            width={1080}
+            height={1920}
+            defaultProps={{ accentColor: "#F59E0B" }}
+          />
+          <Composition
+            id="Scene-05-Facts-BoilingWater"
+            component={StandaloneFactsScene}
+            durationInFrames={210}
+            fps={30}
+            width={1080}
+            height={1920}
+            defaultProps={{ accentColor: "#F59E0B" }}
+          />
+          <Composition
+            id="Scene-06-Instructions-Desktop"
+            component={StandaloneInstructionsScene}
+            durationInFrames={180}
+            fps={30}
+            width={1080}
+            height={1920}
+            defaultProps={{ accentColor: "#F59E0B" }}
+          />
+          <Composition
+            id="Scene-07-Stories-Films"
+            component={StandaloneStoriesScene}
+            durationInFrames={150}
+            fps={30}
+            width={1080}
+            height={1920}
+            defaultProps={{ accentColor: "#F59E0B" }}
+          />
+          <Composition
+            id="Scene-08-CTA-EndCard"
+            component={StandaloneCTAScene}
+            durationInFrames={120}
+            fps={30}
+            width={1080}
+            height={1920}
+            defaultProps={{ accentColor: "#F59E0B" }}
+          />
+        </Folder>
+
+        <Folder name="Design-Variants">
+          <Composition
+            id="Variant-1-Neo-Brutalism"
+            component={NeoBrutalismReel}
+            durationInFrames={1800}
+            fps={30}
+            width={1080}
+            height={1920}
+            defaultProps={{
+              backgroundColor: "#FFF9D2",
+              showCaptions: true,
+            }}
+          />
+          <Composition
+            id="Variant-2-Modern-iPad-Notes"
+            component={IpadNotesReel}
+            durationInFrames={1800}
+            fps={30}
+            width={1080}
+            height={1920}
+            defaultProps={{
+              paperColor: "#FAF8F5",
+              showCaptions: true,
+            }}
+          />
+        </Folder>
+
+        {/* --- PRESENT CONTINUOUS NEO-BRUTALISM 60S REEL --- */}
+        <Folder name="Present-Continuous-Reel">
+          <Composition
+            id="Reel-Present-Continuous-60s-NeoBrutalism"
+            component={PresentContinuousNeoBrutalismReel}
+            durationInFrames={2100}
+            fps={30}
+            width={1080}
+            height={1920}
+            defaultProps={{
+              primaryBg: "#FFE600",
+              showCaptions: true,
+            }}
+          />
+          <Folder name="Present-Continuous-Scenes">
+            <Composition
+              id="PC-Scene-01-Title-Hook"
+              component={PCScene1Hook}
+              durationInFrames={180}
+              fps={30}
+              width={1080}
+              height={1920}
+            />
+            <Composition
+              id="PC-Scene-02-Structure"
+              component={PCScene2Structure}
+              durationInFrames={510}
+              fps={30}
+              width={1080}
+              height={1920}
+            />
+            <Composition
+              id="PC-Scene-03-Use1-Happening-Now"
+              component={PCScene3HappeningNow}
+              durationInFrames={210}
+              fps={30}
+              width={1080}
+              height={1920}
+            />
+            <Composition
+              id="PC-Scene-04-Use2-Temporary"
+              component={PCScene4Temporary}
+              durationInFrames={180}
+              fps={30}
+              width={1080}
+              height={1920}
+            />
+            <Composition
+              id="PC-Scene-05-Use3-Trends"
+              component={PCScene5Trends}
+              durationInFrames={210}
+              fps={30}
+              width={1080}
+              height={1920}
+            />
+            <Composition
+              id="PC-Scene-06-Use4-Annoying-Habits"
+              component={PCScene6AnnoyingHabits}
+              durationInFrames={210}
+              fps={30}
+              width={1080}
+              height={1920}
+            />
+            <Composition
+              id="PC-Scene-07-Warning-State-Verbs"
+              component={PCScene7StateVerbsWarning}
+              durationInFrames={330}
+              fps={30}
+              width={1080}
+              height={1920}
+            />
+            <Composition
+              id="PC-Scene-08-CTA-EndCard"
+              component={PCScene8CTA}
+              durationInFrames={270}
+              fps={30}
+              width={1080}
+              height={1920}
+            />
+          </Folder>
+        </Folder>
       </Folder>
     </>
   );

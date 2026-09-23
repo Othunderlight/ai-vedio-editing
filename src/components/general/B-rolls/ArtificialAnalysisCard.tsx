@@ -221,7 +221,7 @@ export const COST_DATA: ChartDataPoint[] = [
 ];
 
 export interface ArtificialAnalysisCardProps {
-  type: "intelligence" | "cost";
+  type?: "intelligence" | "cost";
   startFrame?: number;
   highlightComparison?: boolean;
   scale?: number;
@@ -231,7 +231,7 @@ export interface ArtificialAnalysisCardProps {
 }
 
 export const ArtificialAnalysisCard: React.FC<ArtificialAnalysisCardProps> = ({
-  type,
+  type = "intelligence",
   startFrame = 0,
   highlightComparison = false,
   width = 660,
