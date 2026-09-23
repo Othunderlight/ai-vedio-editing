@@ -82,7 +82,7 @@ export const ZedCodingBroll: React.FC = () => {
         {/* Clip 1 */}
         <Sequence
           durationInFrames={CLIP1_DURATION}
-          name="zed.mkv 0:11-0:19"
+          name="zed.mp4 0:11-0:19"
           style={{
             width: "100%",
             height: "100%",
@@ -91,7 +91,7 @@ export const ZedCodingBroll: React.FC = () => {
           }}
         >
           <ClipVideo
-            asset="projects/defusion-llm/assets/zed.mkv"
+            asset="projects/defusion-llm/assets/zed.mp4"
             startFrom={ZED_START_FROM}
             durationInFrames={CLIP1_DURATION}
             fadeOut={8}
@@ -102,7 +102,7 @@ export const ZedCodingBroll: React.FC = () => {
         <Sequence
           from={CLIP2_START}
           durationInFrames={CLIP2_DURATION}
-          name="inline.mkv 0:31-0:37"
+          name="inline.mp4 0:31-0:37"
           style={{
             width: "100%",
             height: "100%",
@@ -111,7 +111,7 @@ export const ZedCodingBroll: React.FC = () => {
           }}
         >
           <ClipVideo
-            asset="projects/defusion-llm/assets/inline.mkv"
+            asset="projects/defusion-llm/assets/inline.mp4"
             startFrom={INLINE_START_FROM}
             durationInFrames={CLIP2_DURATION}
             fadeIn={8}

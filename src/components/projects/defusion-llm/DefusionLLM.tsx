@@ -140,7 +140,7 @@ export const DefusionLLM: React.FC = () => {
         <DiffusionExplainerBroll />
       </BRollOverlay>
 
-      {/* 5. Can't-edit graphic 720-840, dllm.mkv clip 840-1050 (0:35) */}
+      {/* 5. Can't-edit graphic 720-840, dllm.mp4 clip 840-1050 (0:35) */}
       <BRollOverlay fromFrame={720} toFrame={1050}>
         <EditVsDiffusionBroll />
       </BRollOverlay>
@@ -155,7 +155,7 @@ export const DefusionLLM: React.FC = () => {
         <MercuryIntroBroll />
       </BRollOverlay>
 
-      {/* 8. Coding demos — split-screen 1920-2370: zed.mkv then inline.mkv */}
+      {/* 8. Coding demos — split-screen 1920-2370: zed.mp4 then inline.mp4 */}
       <BRollOverlay fromFrame={1920} toFrame={2370}>
         <ZedCodingBroll />
       </BRollOverlay>

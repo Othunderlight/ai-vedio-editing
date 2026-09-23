@@ -39,7 +39,7 @@ const FIX_LINE_COLOR = "#E45A35";
 const PHASE_B_START = 114;
 const PHASE_B_DURATION = 216;
 
-// dllm.mkv trimmed from 0:19 (frame 570 @ 30fps), 216f = 7.2s -> ends ~0:26 (inside 0:16-0:27)
+// dllm.mp4 trimmed from 0:19 (frame 570 @ 30fps), 216f = 7.2s -> ends ~0:26 (inside 0:16-0:27)
 const DLLM_START_FROM = 570;
 
 const cardBox: React.CSSProperties = {
@@ -82,7 +82,7 @@ const DiffusionClip: React.FC = () => {
       }}
     >
       <OffthreadVideo
-        src={staticFile("projects/defusion-llm/assets/dllm.mkv")}
+        src={staticFile("projects/defusion-llm/assets/dllm.mp4")}
         startFrom={DLLM_START_FROM}
         muted
         style={{ width: "100%", height: "100%", objectFit: "cover" }}
