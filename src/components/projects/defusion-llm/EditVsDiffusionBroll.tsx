@@ -15,23 +15,25 @@ import { CARD_H, CARD_TOP, CARD_W, PANEL_H } from "./DiffusionExplainerBroll";
 
 const { fontFamily: alexandriaFont } = loadAlexandria("normal", {
   subsets: ["arabic", "latin"],
-  weights: ["600", "700", "800", "900"],
+  weights: ["400", "600", "700", "800", "900"],
 });
 
 const MONO =
   "ui-monospace, SFMono-Regular, Menlo, Consolas, 'Liberation Mono', monospace";
 
-// Normal LLM output: two normal lines, then a self-correction aimed at line 1
+// Normal LLM chat output: two claims, then the model corrects itself
 const LINES = [
-  "Step 1: write all the code",
-  "Step 2: test it at the end",
-  "wait, actually fix line 1: test as you go",
+  "To find player velocity, we divide current_position by delta_time.",
+  "This verifies player speed on the server to prevent speed-hacking.",
+  "Wait, actually, that gives distance from the map origin, not velocity.",
+  "We must calculate the change in position first: (current_position - previous_position) / delta_time.",
 ];
-// Line timing (local frames): L1 6-30, L2 30-54, L3 54-82
+// Line timing (local frames): L1 4-28, L2 28-48, L3 48-66, L4 66-90
 const LINE_RANGES: [number, number][] = [
-  [6, 30],
-  [30, 54],
-  [54, 82],
+  [4, 28],
+  [28, 48],
+  [48, 66],
+  [66, 90],
 ];
 const FIX_LINE_COLOR = "#E45A35";
 
@@ -54,10 +56,10 @@ const cardBox: React.CSSProperties = {
   border: "1px solid rgba(0, 0, 0, 0.05)",
   boxShadow: "0 24px 60px rgba(0, 0, 0, 0.10)",
   boxSizing: "border-box",
-  padding: 40,
+  padding: "48px 56px",
   display: "flex",
   flexDirection: "column",
-  alignItems: "center",
+  alignItems: "flex-start",
   justifyContent: "center",
 };
 
@@ -139,36 +141,36 @@ export const EditVsDiffusionBroll: React.FC = () => {
     ([a, b]) => frame >= a && frame < b
   );
   const blink = Math.floor(frame / 8) % 2 === 0;
-  const typingDone = frame >= LINE_RANGES[2][1];
+  const typingDone = frame >= LINE_RANGES[3][1];
   // Solid caret while typing, blinking when idle
   const caretOn = activeLine >= 0 ? true : blink;
 
   const keyEnter = spring({
-    frame: Math.max(0, frame - 40),
+    frame: Math.max(0, frame - 56),
     fps,
     config: { mass: 0.6, damping: 11, stiffness: 150 },
   });
-  const keyOpacity = interpolate(frame, [40, 46], [0, 1], clamp);
+  const keyOpacity = interpolate(frame, [56, 62], [0, 1], clamp);
   // Double press: down-up-down-up
   const keyScale = interpolate(
     frame,
-    [86, 89, 93, 97, 101],
+    [92, 95, 98, 101, 105],
     [1, 0.84, 0.96, 0.9, 1],
     clamp
   );
 
-  // Line shakes while backspace fails
+  // Text shakes while backspace fails
   const shake =
-    frame >= 88 && frame <= 112
-      ? Math.sin((frame - 88) * 1.6) * 9 * (1 - (frame - 88) / 24)
+    frame >= 94 && frame <= 114
+      ? Math.sin((frame - 94) * 1.6) * 9 * (1 - (frame - 94) / 20)
       : 0;
 
   const badgePop = spring({
-    frame: Math.max(0, frame - 96),
+    frame: Math.max(0, frame - 92),
     fps,
     config: { mass: 0.5, damping: 10, stiffness: 160 },
   });
-  const badgeOpacity = interpolate(frame, [96, 100], [0, 1], clamp);
+  const badgeOpacity = interpolate(frame, [92, 96], [0, 1], clamp);
 
   // Crossfade A -> B around the handoff (panel background stays)
   const phaseAOpacity =
@@ -188,7 +190,7 @@ export const EditVsDiffusionBroll: React.FC = () => {
           backgroundColor: HOOK_BG,
         }}
       >
-        {/* Phase A card: LLM generates, edit attempt blocked — visual only */}
+        {/* Phase A card: chat-style message, generated line by line */}
         <div
           style={{
             ...cardBox,
@@ -196,56 +198,44 @@ export const EditVsDiffusionBroll: React.FC = () => {
             opacity: phaseAOpacity,
           }}
         >
-          {/* Editor box with 3 generated lines */}
-          <div
-            style={{
-              width: "100%",
-              boxSizing: "border-box",
-              backgroundColor: "#F6F5F3",
-              border: "1px solid #E8E6E2",
-              borderRadius: 18,
-              padding: "44px 44px",
-              transform: `translateX(${shake}px)`,
-            }}
-          >
+          {/* Message text directly on the card — no box, ChatGPT-like */}
+          <div style={{ width: "100%", transform: `translateX(${shake}px)` }}>
             {LINES.map((line, i) => {
               if (frame < LINE_RANGES[i][0]) return null;
               const isActive =
                 activeLine === i || (typingDone && i === LINES.length - 1);
+              const lineColor = i === 2 ? FIX_LINE_COLOR : "#0D0D0D";
 
               return (
-                <div
+                <p
                   key={i}
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    minHeight: 50,
+                    margin: "0 0 22px 0",
+                    fontFamily: alexandriaFont,
+                    fontSize: 31,
+                    fontWeight: 400,
+                    lineHeight: 1.55,
+                    color: lineColor,
+                    direction: "ltr",
+                    textAlign: "left",
                   }}
                 >
-                  <span
-                    style={{
-                      fontFamily: MONO,
-                      fontSize: 30,
-                      color: i === 2 ? FIX_LINE_COLOR : "#16181C",
-                      direction: "ltr",
-                      whiteSpace: "pre",
-                    }}
-                  >
-                    {line.slice(0, typed[i])}
-                  </span>
+                  {line.slice(0, typed[i])}
                   {isActive ? (
-                    <div
+                    <span
                       style={{
+                        display: "inline-block",
                         width: 4,
-                        height: 38,
-                        marginLeft: 6,
-                        backgroundColor:
-                          i === 2 ? FIX_LINE_COLOR : "#16181C",
+                        height: "0.95em",
+                        marginLeft: 4,
+                        verticalAlign: "text-bottom",
+                        borderRadius: 1,
+                        backgroundColor: lineColor,
                         opacity: caretOn ? 1 : 0.15,
                       }}
                     />
                   ) : null}
-                </div>
+                </p>
               );
             })}
           </div>
@@ -256,7 +246,7 @@ export const EditVsDiffusionBroll: React.FC = () => {
               display: "flex",
               alignItems: "center",
               gap: 30,
-              marginTop: 40,
+              marginTop: 34,
             }}
           >
             <div
