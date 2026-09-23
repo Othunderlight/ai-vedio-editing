@@ -70,20 +70,27 @@ export const SpeedGaugeBroll: React.FC = () => {
   const cardScale = interpolate(enter, [0, 1], [0.94, 1]);
   const cardOpacity = interpolate(enter, [0, 1], [0, 1]);
 
-  // Needle sweep: starts near the slow end, springs up past full with a small
-  // overshoot bounce, settles by ~f70
-  const sweep = spring({
-    frame: Math.max(0, frame - 8),
-    fps,
-    config: { mass: 1, damping: 11, stiffness: 70 },
-  });
-  const p = 0.05 + sweep * 1.0;
+  // Needle: holds low for a beat, then the FAST original spring (peaks in
+  // ~17f, settles ~25f) so it reads "speedy" — Math.min(1, ...) clamps the
+  // overshoot so the pointer never leaves the arc (<= 180°).
+  const SWEEP_START = 50;
+  const sweep = Math.min(
+    1,
+    spring({
+      frame: Math.max(0, frame - SWEEP_START),
+      fps,
+      config: { mass: 1, damping: 11, stiffness: 70 },
+    }),
+  );
+  const p = 0.06 + sweep * 0.94;
   const needleDeg = 180 * p;
 
-  // Speed dashes off the right end — in after the sweep, gentle pulse after
+  // Speed dashes off the right end — in only near max, gentle pulse after
   const dashOpacity =
-    interpolate(frame, [68, 80], [0, 1], clamp) *
-    (frame > 80 ? 0.75 + 0.25 * Math.sin((frame - 80) / 10) : 1);
+    interpolate(sweep, [0.8, 1], [0, 1], clamp) *
+    (frame > SWEEP_START + 30
+      ? 0.75 + 0.25 * Math.sin((frame - SWEEP_START - 30) / 8)
+      : 1);
 
   return (
     <AbsoluteFill>
