@@ -14,6 +14,7 @@ import { DiffusionExplainerBroll } from "./DiffusionExplainerBroll";
 import { EditVsDiffusionBroll } from "./EditVsDiffusionBroll";
 import { SpeedGaugeBroll } from "./SpeedGaugeBroll";
 import { MercuryIntroBroll } from "./MercuryIntroBroll";
+import { ZedCodingBroll } from "./ZedCodingBroll";
 
 const PROJECT_RAW = "projects/defusion-llm/raw";
 
@@ -119,7 +120,12 @@ export const DefusionLLM: React.FC = () => {
         <MercuryIntroBroll />
       </BRollOverlay>
 
-      {/* 8. Captions — hook / split-boundary / pill */}
+      {/* 8. Coding demos — split-screen 1920-2370: zed.mkv then inline.mkv */}
+      <BRollOverlay fromFrame={1920} toFrame={2370}>
+        <ZedCodingBroll />
+      </BRollOverlay>
+
+      {/* 9. Captions — hook / split-boundary / pill */}
       <DefusionLLMCaptions />
     </AbsoluteFill>
   );
