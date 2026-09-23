@@ -5,11 +5,8 @@ import {
   AbsoluteFill,
   OffthreadVideo,
   Sequence,
-  interpolate,
-  spring,
   staticFile,
   useCurrentFrame,
-  useVideoConfig,
 } from "remotion";
 
 export const HOOK_BG = "#F0EEEB";
@@ -51,32 +48,26 @@ const HOOK_WORDS: HookWord[] = [
   { from: 60, to: 72, text: "بـ Jeff", size: BIG_SIZE },
 ];
 
+// Words shown in pairs on one line: word 1 appears, word 2 joins it when
+// spoken, then the line clears. Hard cuts — no animations.
+const chunk = <T,>(arr: T[], size: number): T[][] => {
+  const out: T[][] = [];
+  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
+  return out;
+};
+
+const WORD_CHUNKS = chunk(HOOK_WORDS, 2);
+
 const HookWordCaption: React.FC = () => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
 
-  const word = HOOK_WORDS.find((w) => frame >= w.from && frame < w.to);
-  if (!word) return null;
+  const active = WORD_CHUNKS.find(
+    (c) => frame >= c[0].from && frame < c[c.length - 1].to
+  );
+  if (!active) return null;
 
-  const localFrame = frame - word.from;
-  const duration = word.to - word.from;
-
-  const pop = spring({
-    frame: localFrame,
-    fps,
-    config: { damping: 11, mass: 0.5, stiffness: 170 },
-  });
-
-  const exit = interpolate(localFrame, [duration - 3, duration], [1, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
-  const opacity = exit;
-  const scale = interpolate(pop, [0, 1], [0.4, 1]);
-  const translateY = interpolate(pop, [0, 1], [30, 0]);
-
-  const isHighlight = word.highlight === true;
+  const visible = active.filter((w) => frame >= w.from);
+  if (visible.length === 0) return null;
 
   return (
     <div
@@ -84,19 +75,32 @@ const HookWordCaption: React.FC = () => {
         position: "absolute",
         top: "58%",
         left: "50%",
-        transform: `translate(-50%, -50%) translateY(${translateY}px) scale(${scale})`,
-        opacity,
-        fontFamily: isHighlight ? arefRuqaaFont : alexandriaFont,
-        fontSize: isHighlight ? HIGHLIGHT_SIZE : (word.size ?? BASE_SIZE),
-        fontWeight: isHighlight ? 700 : 900,
-        color: isHighlight ? "#1A7A3E" : "#1A1A1A",
+        transform: "translate(-50%, -50%)",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 22,
         direction: "rtl",
         whiteSpace: "nowrap",
-        textAlign: "center",
-        lineHeight: 1.2,
       }}
     >
-      {word.text}
+      {visible.map((w) => {
+        const isHighlight = w.highlight === true;
+        return (
+          <span
+            key={w.from}
+            style={{
+              fontFamily: isHighlight ? arefRuqaaFont : alexandriaFont,
+              fontSize: isHighlight ? HIGHLIGHT_SIZE : (w.size ?? BASE_SIZE),
+              fontWeight: isHighlight ? 700 : 900,
+              color: isHighlight ? "#1A7A3E" : "#1A1A1A",
+              lineHeight: 1.2,
+            }}
+          >
+            {w.text}
+          </span>
+        );
+      })}
     </div>
   );
 };
