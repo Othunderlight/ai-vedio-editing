@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, OffthreadVideo, staticFile } from "remotion";
 
-const HOOK_BG = "#F0EEEB";
+export const HOOK_BG = "#F0EEEB";
 
 export const HookBroll: React.FC = () => {
   return (

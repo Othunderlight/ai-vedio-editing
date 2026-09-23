@@ -8,8 +8,9 @@ import {
   staticFile,
   useCurrentFrame,
 } from "remotion";
-import { DefusionLLMCaptions } from "./DefusionLLMCaptions";
+import { DefusionLLMCaptions, SPLIT_RANGES } from "./DefusionLLMCaptions";
 import { HookBroll } from "./HookBroll";
+import { DiffusionExplainerBroll } from "./DiffusionExplainerBroll";
 
 const PROJECT_RAW = "projects/defusion-llm/raw";
 
@@ -63,6 +64,23 @@ export const DefusionLLM: React.FC = () => {
     extrapolateRight: "clamp",
   });
 
+  // Split sections: zoom the face and shift it down so it frames nicely
+  // inside the bottom window below the b-roll panel (transform: scale then translate)
+  const splitT = SPLIT_RANGES.reduce((t, r) => {
+    const enter = interpolate(frame, [r.from_frame - 6, r.from_frame + 12], [0, 1], {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    });
+    const exit = interpolate(frame, [r.to_frame - 12, r.to_frame + 6], [1, 0], {
+      extrapolateLeft: "clamp",
+      extrapolateRight: "clamp",
+    });
+    return Math.max(t, Math.min(enter, exit));
+  }, 0);
+
+  const faceScale = 1 + 0.3 * splitT;
+  const faceShift = 270 * splitT;
+
   return (
     <AbsoluteFill style={{ backgroundColor: "#000000" }}>
       {/* 1. Base layer: face/camera video — 1080x1920 portrait, cover */}
@@ -73,6 +91,7 @@ export const DefusionLLM: React.FC = () => {
           height: "100%",
           objectFit: "cover",
           opacity: videoOpacity,
+          transform: `translateY(${faceShift}px) scale(${faceScale})`,
         }}
       />
 
@@ -84,7 +103,12 @@ export const DefusionLLM: React.FC = () => {
         <HookBroll />
       </BRollOverlay>
 
-      {/* 4. Captions — hook style for 0-60, pill otherwise */}
+      {/* 4. Diffusion explainer — 270-570: card top, face bottom */}
+      <BRollOverlay fromFrame={270} toFrame={570}>
+        <DiffusionExplainerBroll />
+      </BRollOverlay>
+
+      {/* 5. Captions — hook / split-boundary / pill */}
       <DefusionLLMCaptions />
     </AbsoluteFill>
   );

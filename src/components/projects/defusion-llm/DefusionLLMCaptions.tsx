@@ -7,6 +7,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
+import { PANEL_H } from "./DiffusionExplainerBroll";
 
 const { fontFamily: alexandriaFont } = loadAlexandria("normal", {
   subsets: ["arabic", "latin"],
@@ -70,6 +71,9 @@ const B_ROLL_RANGES: BRollRange[] = [
   // Hook 0-60 is full-screen B-roll (off-white), keep pill logic but hook uses special style
   { from_frame: 0, to_frame: 60 },
 ];
+
+// Split-layout sections: b-roll card on top, face below, caption pill on the boundary
+export const SPLIT_RANGES: BRollRange[] = [{ from_frame: 270, to_frame: 570 }];
 
 const FACE_VIDEO_END = 2719;
 const HOOK_END = 60;
@@ -190,6 +194,54 @@ const HookCaption: React.FC<{
   );
 };
 
+// Caption pill sitting on the boundary between top b-roll panel and face video
+const SplitCaption: React.FC<{
+  text: string;
+  frame: number;
+  fromFrame: number;
+  toFrame: number;
+}> = ({ text, frame, fromFrame, toFrame }) => {
+  const localFrame = frame - fromFrame;
+  const duration = toFrame - fromFrame;
+
+  const fadeIn = interpolate(localFrame, [0, 5], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const fadeOut = interpolate(localFrame, [duration - 5, duration], [1, 0], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const opacity = Math.min(fadeIn, fadeOut);
+
+  return (
+    <div
+      style={{
+        position: "absolute",
+        top: PANEL_H,
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        opacity,
+        fontFamily: alexandriaFont,
+        fontSize: 44,
+        fontWeight: 800,
+        color: "#FFFFFF",
+        direction: "rtl",
+        padding: "16px 32px",
+        borderRadius: 14,
+        backgroundColor: "#1B1B1D",
+        boxShadow: "0 10px 30px rgba(0, 0, 0, 0.35)",
+        whiteSpace: "normal",
+        width: "86%",
+        lineHeight: 1.4,
+        textAlign: "center",
+      }}
+    >
+      {text}
+    </div>
+  );
+};
+
 const BottomCaption: React.FC<{
   text: string;
   frame: number;
@@ -263,10 +315,24 @@ export const DefusionLLMCaptions: React.FC<{
   const overBRoll = isOverBRoll(frame);
   const hasFaceVideo = frame < FACE_VIDEO_END;
   const isHook = frame >= 0 && frame < HOOK_END;
+  const isSplit = SPLIT_RANGES.some(
+    (r) => frame >= r.from_frame && frame <= r.to_frame
+  );
 
   if (isHook) {
     return (
       <HookCaption
+        text={activeCaption.text}
+        frame={frame}
+        fromFrame={activeCaption.from_frame}
+        toFrame={activeCaption.to_frame}
+      />
+    );
+  }
+
+  if (isSplit) {
+    return (
+      <SplitCaption
         text={activeCaption.text}
         frame={frame}
         fromFrame={activeCaption.from_frame}
