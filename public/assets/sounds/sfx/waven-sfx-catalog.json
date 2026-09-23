@@ -1,0 +1,315 @@
+[
+  {
+    "id": "airplane-ding",
+    "duration_ms": 1184,
+    "tags": [
+      "ding",
+      "ambient"
+    ],
+    "default_volume": 0.4
+  },
+  {
+    "id": "applause",
+    "duration_ms": 12910,
+    "tags": [
+      "applause",
+      "reaction"
+    ],
+    "default_volume": 0.45
+  },
+  {
+    "id": "base-drop",
+    "duration_ms": 3297,
+    "tags": [
+      "impact",
+      "bass"
+    ],
+    "default_volume": 0.55
+  },
+  {
+    "id": "bass-impact",
+    "duration_ms": 2461,
+    "tags": [
+      "impact",
+      "bass"
+    ],
+    "default_volume": 0.55
+  },
+  {
+    "id": "beep-short",
+    "duration_ms": 697,
+    "tags": [
+      "ui"
+    ],
+    "default_volume": 0.35
+  },
+  {
+    "id": "camera-analog",
+    "duration_ms": 859,
+    "tags": [
+      "camera",
+      "ui"
+    ],
+    "default_volume": 0.4
+  },
+  {
+    "id": "camera-flash",
+    "duration_ms": 6455,
+    "tags": [
+      "pop",
+      "camera"
+    ],
+    "default_volume": 0.4
+  },
+  {
+    "id": "camera-shutter-1-shot",
+    "duration_ms": 279,
+    "tags": [
+      "camera",
+      "ui"
+    ],
+    "default_volume": 0.4
+  },
+  {
+    "id": "camera-shutter-8-shots",
+    "duration_ms": 1115,
+    "tags": [
+      "camera",
+      "ui"
+    ],
+    "default_volume": 0.4
+  },
+  {
+    "id": "camera-shutter-release",
+    "duration_ms": 580,
+    "tags": [
+      "camera",
+      "ui"
+    ],
+    "default_volume": 0.4
+  },
+  {
+    "id": "cheers-and-applause",
+    "duration_ms": 4087,
+    "tags": [
+      "applause",
+      "reaction",
+      "cheer"
+    ],
+    "default_volume": 0.45
+  },
+  {
+    "id": "deep-whoosh",
+    "duration_ms": 3228,
+    "tags": [
+      "whoosh",
+      "transition"
+    ],
+    "default_volume": 0.45
+  },
+  {
+    "id": "dj-scratch",
+    "duration_ms": 1556,
+    "tags": [
+      "glitch"
+    ],
+    "default_volume": 0.4
+  },
+  {
+    "id": "dull-thud",
+    "duration_ms": 1393,
+    "tags": [
+      "impact",
+      "thud"
+    ],
+    "default_volume": 0.5
+  },
+  {
+    "id": "elevator-ding",
+    "duration_ms": 1997,
+    "tags": [
+      "ding"
+    ],
+    "default_volume": 0.4
+  },
+  {
+    "id": "explosion",
+    "duration_ms": 3181,
+    "tags": [
+      "impact",
+      "dramatic"
+    ],
+    "default_volume": 0.45
+  },
+  {
+    "id": "fast-whoosh",
+    "duration_ms": 395,
+    "tags": [
+      "whoosh",
+      "transition"
+    ],
+    "default_volume": 0.45
+  },
+  {
+    "id": "female-gasp",
+    "duration_ms": 488,
+    "tags": [
+      "gasp",
+      "reaction",
+      "voice"
+    ],
+    "default_volume": 0.4
+  },
+  {
+    "id": "frog-ribbit",
+    "duration_ms": 697,
+    "tags": [
+      "ambient",
+      "novelty"
+    ],
+    "default_volume": 0.35
+  },
+  {
+    "id": "glitch-logo",
+    "duration_ms": 627,
+    "tags": [
+      "glitch"
+    ],
+    "default_volume": 0.4
+  },
+  {
+    "id": "keyboard-typing",
+    "duration_ms": 10286,
+    "tags": [
+      "ui"
+    ],
+    "default_volume": 0.35
+  },
+  {
+    "id": "keyboard-typing-realistic",
+    "duration_ms": 3390,
+    "tags": [
+      "ui"
+    ],
+    "default_volume": 0.35
+  },
+  {
+    "id": "male-gasp",
+    "duration_ms": 464,
+    "tags": [
+      "gasp",
+      "reaction",
+      "voice"
+    ],
+    "default_volume": 0.4
+  },
+  {
+    "id": "message-pop-reply",
+    "duration_ms": 882,
+    "tags": [
+      "pop",
+      "ui"
+    ],
+    "default_volume": 0.4
+  },
+  {
+    "id": "money-chalking",
+    "duration_ms": 1858,
+    "tags": [
+      "ui",
+      "impact"
+    ],
+    "default_volume": 0.4
+  },
+  {
+    "id": "mouse-click-1",
+    "duration_ms": 766,
+    "tags": [
+      "ui"
+    ],
+    "default_volume": 0.3
+  },
+  {
+    "id": "mouse-click-2",
+    "duration_ms": 186,
+    "tags": [
+      "ui"
+    ],
+    "default_volume": 0.3
+  },
+  {
+    "id": "notification-ding",
+    "duration_ms": 1997,
+    "tags": [
+      "ding",
+      "ui"
+    ],
+    "default_volume": 0.4
+  },
+  {
+    "id": "pop-hand",
+    "duration_ms": 348,
+    "tags": [
+      "pop"
+    ],
+    "default_volume": 0.4
+  },
+  {
+    "id": "record-needle-scratch",
+    "duration_ms": 1649,
+    "tags": [
+      "glitch"
+    ],
+    "default_volume": 0.4
+  },
+  {
+    "id": "record-scratch",
+    "duration_ms": 1277,
+    "tags": [
+      "glitch"
+    ],
+    "default_volume": 0.4
+  },
+  {
+    "id": "several-coins",
+    "duration_ms": 1416,
+    "tags": [
+      "ui",
+      "ambient"
+    ],
+    "default_volume": 0.4
+  },
+  {
+    "id": "sideways-record-needle",
+    "duration_ms": 580,
+    "tags": [
+      "glitch"
+    ],
+    "default_volume": 0.4
+  },
+  {
+    "id": "swish-whoosh-large",
+    "duration_ms": 789,
+    "tags": [
+      "whoosh",
+      "transition"
+    ],
+    "default_volume": 0.45
+  },
+  {
+    "id": "tick-sound",
+    "duration_ms": 557,
+    "tags": [
+      "ui"
+    ],
+    "default_volume": 0.3
+  },
+  {
+    "id": "auto-pistol-shot",
+    "duration_ms": 557,
+    "tags": [
+      "ui"
+    ],
+    "default_volume": 0.3
+  }
+]

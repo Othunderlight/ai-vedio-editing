@@ -6,4 +6,9 @@ dist
 # Ignore the output video from Git but not videos you import into src/.
 out
 package-lock.json
-public/
+#public/
+# Ignore everything inside the folder
+public/projects/*
+
+# But do not ignore this specific folder
+!public/projects/english-tutorials-instegram/
