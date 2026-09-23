@@ -27,7 +27,7 @@ interface BRollRange {
 
 const CAPTIONS: CaptionEntry[] = [
   { from_frame: 0, to_frame: 60, text: "بعرف الإنترنت كله حالياً مفتون بـ Jev" },
-  { from_frame: 60, to_frame: 120, text: "بس أنا بالحقيقة مفتون بشغلة ثانية" },
+  { from_frame: 83, to_frame: 120, text: "بس أنا بالحقيقة مفتون بشغلة ثانية" },
   { from_frame: 120, to_frame: 150, text: "عم تطير تحت الرادار" },
   { from_frame: 180, to_frame: 240, text: "يلي هي Diffusion LLM" },
   { from_frame: 270, to_frame: 330, text: "بكل بساطة الـ Diffusion..." },
