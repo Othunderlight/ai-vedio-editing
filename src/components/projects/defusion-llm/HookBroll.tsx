@@ -9,7 +9,14 @@ export const HookBroll: React.FC = () => {
     <AbsoluteFill style={{ backgroundColor: HOOK_BG, alignItems: "center" }}>
       {/* cuted animation — 720x732, off-white bg matches HOOK_BG.
           Own <Sequence> so it's an interactive/selectable layer in Studio. */}
-      <Sequence durationInFrames={HOOK_DURATION} name="cuted.mp4">
+      <Sequence
+        durationInFrames={HOOK_DURATION}
+        name="cuted.mp4"
+        style={{
+          scale: 1.796,
+          translate: "0px 73.5px"
+        }}
+      >
         <div
           style={{
             position: "absolute",
