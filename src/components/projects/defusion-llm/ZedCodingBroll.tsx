@@ -11,11 +11,11 @@ import { HOOK_BG } from "./HookBroll";
 import { PANEL_H } from "./DiffusionExplainerBroll";
 
 const CLIP1_DURATION = 240;
-const CLIP2_START = 270;
-const CLIP2_DURATION = 180;
+const CLIP2_START = 245;       // Gap is now 5 frames (240 -> 245)
+const CLIP2_DURATION = 205;    // Stretches to the same end point (frame 450)
 
 const ZED_START_FROM = 330;
-const INLINE_START_FROM = 930;
+const INLINE_START_FROM = 905; // Starts 25 frames earlier in the video file
 
 const clamp = {
   extrapolateLeft: "clamp" as const,
@@ -68,11 +68,6 @@ const ClipVideo: React.FC<{
 export const ZedCodingBroll: React.FC = () => {
   return (
     <AbsoluteFill>
-      {/*
-        This container strictly contains the video AND the HOOK_BG color.
-        clipPath: "inset(0)" guarantees that neither the background color
-        nor the scaled video can spill out or trim the caption underneath.
-      */}
       <div
         style={{
           position: "absolute",
@@ -84,7 +79,7 @@ export const ZedCodingBroll: React.FC = () => {
           clipPath: "inset(0px 0px 0px 0px)",
         }}
       >
-        {/* Clip 1 — preserves your Studio transforms */}
+        {/* Clip 1 */}
         <Sequence
           durationInFrames={CLIP1_DURATION}
           name="zed.mkv 0:11-0:19"
@@ -92,7 +87,7 @@ export const ZedCodingBroll: React.FC = () => {
             width: "100%",
             height: "100%",
             scale: 1.487,
-            translate: "263px -8.6px",
+            translate: "260px -20.3px"
           }}
         >
           <ClipVideo
@@ -103,7 +98,7 @@ export const ZedCodingBroll: React.FC = () => {
           />
         </Sequence>
 
-        {/* Clip 2 — preserves your Studio transforms */}
+        {/* Clip 2 (now starts at frame 245 with a 5-frame gap) */}
         <Sequence
           from={CLIP2_START}
           durationInFrames={CLIP2_DURATION}
