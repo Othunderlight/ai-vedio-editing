@@ -76,6 +76,7 @@ const B_ROLL_RANGES: BRollRange[] = [
 export const SPLIT_RANGES: BRollRange[] = [
   { from_frame: 270, to_frame: 570 },
   { from_frame: 720, to_frame: 1050 },
+  { from_frame: 1140, to_frame: 1290 },
 ];
 
 const FACE_VIDEO_END = 2719;

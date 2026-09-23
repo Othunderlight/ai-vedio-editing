@@ -12,6 +12,7 @@ import { DefusionLLMCaptions, SPLIT_RANGES } from "./DefusionLLMCaptions";
 import { HookBroll } from "./HookBroll";
 import { DiffusionExplainerBroll } from "./DiffusionExplainerBroll";
 import { EditVsDiffusionBroll } from "./EditVsDiffusionBroll";
+import { SpeedGaugeBroll } from "./SpeedGaugeBroll";
 
 const PROJECT_RAW = "projects/defusion-llm/raw";
 
@@ -107,7 +108,12 @@ export const DefusionLLM: React.FC = () => {
         <EditVsDiffusionBroll />
       </BRollOverlay>
 
-      {/* 6. Captions — hook / split-boundary / pill */}
+      {/* 6. Speed gauge — 1140-1290: "10x faster" */}
+      <BRollOverlay fromFrame={1140} toFrame={1290}>
+        <SpeedGaugeBroll />
+      </BRollOverlay>
+
+      {/* 7. Captions — hook / split-boundary / pill */}
       <DefusionLLMCaptions />
     </AbsoluteFill>
   );
